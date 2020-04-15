@@ -1,0 +1,10 @@
+SECRET_KEY="fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cy$15d"
+DB_NAME="objecttypes"
+DB_USER="objecttypes"
+#
+# For peer authentication via unix domain socket
+# these should be kept empty.
+#
+DB_PASSWORD=""
+DB_HOST=""
+DB_PORT=""
