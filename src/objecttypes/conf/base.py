@@ -65,8 +65,10 @@ INSTALLED_APPS = [
     "hijack",
     "compat",  # Part of hijack
     "hijack_admin",
+    "rest_framework",
     # Project applications.
     "objecttypes.accounts",
+    "objecttypes.api",
     "objecttypes.utils",
 ]
 
@@ -228,11 +230,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "objecttypes": {
-            "handlers": ["project"],
-            "level": "INFO",
-            "propagate": True,
-        },
+        "objecttypes": {"handlers": ["project"], "level": "INFO", "propagate": True,},
         "django.request": {
             "handlers": ["django"],
             "level": "ERROR",
