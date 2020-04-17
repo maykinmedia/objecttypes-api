@@ -1,13 +1,29 @@
 from django.db import transaction
 
+from jsonschema.exceptions import SchemaError
+from jsonschema.validators import validator_for
 from rest_framework import serializers
 
 from .models import ObjectType, ObjectVersion
 
 
 class ObjectVersionSerializer(serializers.ModelSerializer):
-    model = ObjectVersion
-    fields = ("version", "publication_date", "json_schema")
+    class Meta:
+        model = ObjectVersion
+        fields = ("version", "publicationDate", "jsonSchema")
+        extra_kwargs = {
+            "publicationDate": {"source": "publication_date"},
+            "jsonSchema": {"source": "json_schema"},
+        }
+
+    def validate_jsonSchema(self, schema):
+        schema_validator = validator_for(schema)
+        try:
+            schema_validator.check_schema(schema)
+        except SchemaError as exc:
+            raise serializers.ValidationError(exc.args[0]) from exc
+
+        return schema
 
 
 class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,10 +31,18 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ObjectType
-        fields = ("url", "name", "name_plural", "versions")
+        fields = ("url", "name", "namePlural", "versions")
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
+            "namePlural": {"source": "name_plural"},
         }
+
+    def validate_versions(self, value):
+        # versions should always be filled
+        if not value:
+            raise serializers.ValidationError("This field can't be empty")
+
+        return value
 
     @transaction.atomic
     def create(self, validated_data):
