@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -29,8 +30,8 @@ class ObjectVersion(models.Model):
     publication_date = models.DateField(
         _("publication date"), auto_now=True, help_text=_("Date of Version publication")
     )
-    json_schema = models.URLField(
-        _("JSON schema"), help_text="Url reference to JSON schema for Object validation"
+    json_schema = JSONField(
+        _("JSON schema"), help_text="JSON schema for Object validation"
     )
 
     class Meta:
