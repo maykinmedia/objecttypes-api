@@ -65,8 +65,10 @@ INSTALLED_APPS = [
     "hijack",
     "compat",  # Part of hijack
     "hijack_admin",
+    "rest_framework",
     # Project applications.
     "objecttypes.accounts",
+    "objecttypes.api",
     "objecttypes.utils",
 ]
 
@@ -228,11 +230,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "objecttypes": {
-            "handlers": ["project"],
-            "level": "INFO",
-            "propagate": True,
-        },
+        "objecttypes": {"handlers": ["project"], "level": "INFO", "propagate": True,},
         "django.request": {
             "handlers": ["django"],
             "level": "ERROR",
@@ -346,4 +344,12 @@ ELASTIC_APM = {
     "SERVICE_NAME": "objecttypes",
     "SECRET_TOKEN": os.getenv("ELASTIC_APM_SECRET_TOKEN", "default"),
     "SERVER_URL": os.getenv("ELASTIC_APM_SERVER_URL", "http://example.com"),
+}
+
+# api settings
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+    "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
+    # test
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
