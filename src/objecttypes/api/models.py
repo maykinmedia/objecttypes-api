@@ -24,7 +24,7 @@ class ObjectVersion(models.Model):
     object_type = models.ForeignKey(
         ObjectType, on_delete=models.CASCADE, related_name="versions"
     )
-    version = models.SmallIntegerField(
+    version = models.PositiveSmallIntegerField(
         _("version"), help_text=_("Integer version of the OBJECTTYPE")
     )
     publication_date = models.DateField(

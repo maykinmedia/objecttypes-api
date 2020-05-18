@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "compat",  # Part of hijack
     "hijack_admin",
     "rest_framework",
+    "drf_yasg",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
@@ -352,4 +353,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
     # test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": None,
 }
