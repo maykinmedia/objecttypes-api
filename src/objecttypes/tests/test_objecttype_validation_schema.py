@@ -12,6 +12,7 @@ class ObjectTypeValidationTests(APITestCase):
         data = {
             "name": "boom",
             "namePlural": "bomen",
+            "description": "object type for trees",
             "versions": [
                 {
                     "version": 1,

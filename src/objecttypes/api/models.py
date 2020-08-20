@@ -15,6 +15,12 @@ class ObjectType(models.Model):
     name_plural = models.CharField(
         _("name plural"), max_length=100, help_text="Plural name of the object type"
     )
+    description = models.CharField(
+        _("description"),
+        max_length=1000,
+        blank=True,
+        help_text="The description of the object type",
+    )
 
     def __str__(self):
         return f"{self.name}"
