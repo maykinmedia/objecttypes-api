@@ -4,6 +4,8 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from .constants import ObjectTypeStatus
+
 
 class ObjectType(models.Model):
     uuid = models.UUIDField(
@@ -43,6 +45,13 @@ class ObjectType(models.Model):
         max_length=200,
         blank=True,
         help_text="Business department which is responsible for the object type",
+    )
+    status = models.CharField(
+        _("status"),
+        max_length=20,
+        choices=ObjectTypeStatus.choices,
+        default=ObjectTypeStatus.draft,
+        help_text="Status of the object type",
     )
 
     def __str__(self):

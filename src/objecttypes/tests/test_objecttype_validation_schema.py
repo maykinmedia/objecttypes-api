@@ -3,6 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from objecttypes.api.constants import ObjectTypeStatus
 from objecttypes.api.models import ObjectType
 
 
@@ -51,6 +52,7 @@ class ObjectTypeValidationTests(APITestCase):
         self.assertEqual(object_type.maintainer, "Some municipality")
         self.assertEqual(object_type.contact, "John Smith")
         self.assertEqual(object_type.domain, "Tree department")
+        self.assertEqual(object_type.status, ObjectTypeStatus.draft)
         self.assertEqual(object_type.versions.count(), 1)
 
         object_version = object_type.versions.get()
