@@ -14,6 +14,8 @@ class ObjectTypeValidationTests(APITestCase):
             "namePlural": "bomen",
             "description": "object type for trees",
             "public": True,
+            "maintainer": "Some municipality",
+            "contact": "John Smith",
             "versions": [
                 {
                     "version": 1,
@@ -45,6 +47,8 @@ class ObjectTypeValidationTests(APITestCase):
 
         object_type = ObjectType.objects.get()
         self.assertEqual(object_type.name, "boom")
+        self.assertEqual(object_type.maintainer, "Some municipality")
+        self.assertEqual(object_type.contact, "John Smith")
         self.assertEqual(object_type.versions.count(), 1)
 
         object_version = object_type.versions.get()

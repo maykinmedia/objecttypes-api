@@ -31,7 +31,16 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ObjectType
-        fields = ("url", "name", "namePlural", "description", "public", "versions")
+        fields = (
+            "url",
+            "name",
+            "namePlural",
+            "description",
+            "public",
+            "maintainer",
+            "contact",
+            "versions",
+        )
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
             "namePlural": {"source": "name_plural"},

@@ -26,6 +26,18 @@ class ObjectType(models.Model):
         default=True,
         help_text="Indicates whether this data is accessible without any specific authorizations",
     )
+    maintainer = models.CharField(
+        _("maintainer"),
+        max_length=200,
+        blank=True,
+        help_text="Organization which is responsible for the object type",
+    )
+    contact = models.CharField(
+        _("contact"),
+        max_length=200,
+        blank=True,
+        help_text="Person in the organization who can provide information about the object type",
+    )
 
     def __str__(self):
         return f"{self.name}"
