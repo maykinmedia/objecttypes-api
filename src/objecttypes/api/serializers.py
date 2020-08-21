@@ -39,6 +39,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "public",
             "maintainer",
             "contact",
+            "domain",
             "versions",
         )
         extra_kwargs = {

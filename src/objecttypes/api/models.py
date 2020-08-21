@@ -38,6 +38,12 @@ class ObjectType(models.Model):
         blank=True,
         help_text="Person in the organization who can provide information about the object type",
     )
+    domain = models.CharField(
+        _("domain"),
+        max_length=200,
+        blank=True,
+        help_text="Business department which is responsible for the object type",
+    )
 
     def __str__(self):
         return f"{self.name}"
