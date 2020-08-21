@@ -21,6 +21,11 @@ class ObjectType(models.Model):
         blank=True,
         help_text="The description of the object type",
     )
+    public = models.BooleanField(
+        _("public"),
+        default=True,
+        help_text="Indicates whether this data is accessible without any specific authorizations",
+    )
 
     def __str__(self):
         return f"{self.name}"

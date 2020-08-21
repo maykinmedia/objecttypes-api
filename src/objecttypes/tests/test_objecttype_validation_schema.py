@@ -13,6 +13,7 @@ class ObjectTypeValidationTests(APITestCase):
             "name": "boom",
             "namePlural": "bomen",
             "description": "object type for trees",
+            "public": True,
             "versions": [
                 {
                     "version": 1,
