@@ -1,4 +1,5 @@
 import uuid
+from datetime import date
 
 from django.contrib.postgres.fields import JSONField
 from django.core.exceptions import ValidationError
@@ -63,7 +64,9 @@ class ObjectVersion(models.Model):
         _("version"), help_text=_("Integer version of the OBJECTTYPE")
     )
     publication_date = models.DateField(
-        _("publication date"), auto_now=True, help_text=_("Date of Version publication")
+        _("publication date"),
+        default=date.today,
+        help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
         _("JSON schema"), help_text="JSON schema for Object validation"
