@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from .constants import ObjectTypeStatus
+from .constants import ObjectVersionStatus
 
 
 class ObjectType(models.Model):
@@ -46,13 +46,6 @@ class ObjectType(models.Model):
         blank=True,
         help_text="Business department which is responsible for the object type",
     )
-    status = models.CharField(
-        _("status"),
-        max_length=20,
-        choices=ObjectTypeStatus.choices,
-        default=ObjectTypeStatus.draft,
-        help_text="Status of the object type",
-    )
 
     def __str__(self):
         return f"{self.name}"
@@ -70,6 +63,13 @@ class ObjectVersion(models.Model):
     )
     json_schema = JSONField(
         _("JSON schema"), help_text="JSON schema for Object validation"
+    )
+    status = models.CharField(
+        _("status"),
+        max_length=20,
+        choices=ObjectVersionStatus.choices,
+        default=ObjectVersionStatus.draft,
+        help_text="Status of the object type version",
     )
 
     class Meta:

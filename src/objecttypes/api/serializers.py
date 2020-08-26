@@ -10,10 +10,16 @@ from .models import ObjectType, ObjectVersion
 class ObjectVersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ObjectVersion
-        fields = ("version", "publicationDate", "jsonSchema")
+        fields = (
+            "version",
+            "publicationDate",
+            "status",
+            "jsonSchema",
+        )
         extra_kwargs = {
             "publicationDate": {"source": "publication_date"},
             "jsonSchema": {"source": "json_schema"},
+            "status": {"read_only": True},
         }
 
     def validate_jsonSchema(self, schema):
@@ -40,13 +46,11 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "maintainer",
             "contact",
             "domain",
-            "status",
             "versions",
         )
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
             "namePlural": {"source": "name_plural"},
-            "status": {"read_only": True},
         }
 
     def validate_versions(self, value):
