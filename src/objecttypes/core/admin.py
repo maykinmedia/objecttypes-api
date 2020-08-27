@@ -14,7 +14,13 @@ class ObjectVersionInline(admin.StackedInline):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        last_version = queryset.order_by("-version").first()
+        parent_id = request.resolver_match.kwargs.get("object_id")
+        if not parent_id:
+            return queryset
+
+        last_version = (
+            queryset.filter(object_type_id=parent_id).order_by("-version").first()
+        )
         return queryset.filter(id=last_version.id)
 
     def has_delete_permission(self, request, obj=None):
