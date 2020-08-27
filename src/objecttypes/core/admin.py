@@ -1,4 +1,6 @@
-from django.contrib import admin
+from django.contrib import admin, messages
+from django.http import HttpResponseRedirect
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from .constants import ObjectVersionStatus
@@ -46,3 +48,19 @@ class ObjectTypeAdmin(admin.ModelAdmin):
             return super().has_change_permission(request, obj)
 
         return False
+
+    def response_change(self, request, obj):
+        if "_publish" not in request.POST:
+            return super().response_change(request, obj)
+
+        last_version = obj.last_version
+        last_version.status = ObjectVersionStatus.published
+        last_version.save()
+
+        msg = format_html(
+            _("The object type {version} has been published successfully!"),
+            version=obj.last_version,
+        )
+        self.message_user(request, msg, level=messages.SUCCESS)
+
+        return HttpResponseRedirect(request.path)
