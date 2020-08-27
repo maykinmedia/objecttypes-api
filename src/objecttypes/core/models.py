@@ -55,6 +55,13 @@ class ObjectType(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    @property
+    def last_version(self):
+        if not self.versions:
+            return None
+
+        return self.versions.order_by("-version").first()
+
 
 class ObjectVersion(models.Model):
     object_type = models.ForeignKey(
@@ -69,7 +76,7 @@ class ObjectVersion(models.Model):
         help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
-        _("JSON schema"), help_text="JSON schema for Object validation"
+        _("JSON schema"), help_text="JSON schema for Object validation", default={}
     )
     status = models.CharField(
         _("status"),
