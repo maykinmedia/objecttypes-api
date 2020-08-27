@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+from .constants import ObjectVersionStatus
 from .models import ObjectType, ObjectVersion
 
 
@@ -25,3 +26,17 @@ class ObjectTypeAdmin(admin.ModelAdmin):
     list_display = ("name", "name_plural")
     search_fields = ("uuid",)
     inlines = [ObjectVersionInline]
+
+    def get_readonly_fields(self, request, obj=None):
+        if not obj:
+            return super().get_readonly_fields(request, obj)
+
+        # make all meta fields read_only when changing the existing object type
+        field_names = [field.name for field in self.opts.local_fields]
+        return field_names
+
+    def has_change_permission(self, request, obj=None):
+        if not obj or obj.last_version.status == ObjectVersionStatus.draft:
+            return super().has_change_permission(request, obj)
+
+        return False

@@ -76,7 +76,7 @@ class ObjectVersion(models.Model):
         help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
-        _("JSON schema"), help_text="JSON schema for Object validation", default={}
+        _("JSON schema"), help_text="JSON schema for Object validation", default=dict
     )
     status = models.CharField(
         _("status"),

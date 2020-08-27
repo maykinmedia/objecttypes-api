@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="objectversion",
             name="json_schema",
             field=django.contrib.postgres.fields.jsonb.JSONField(
-                default={},
+                default=dict,
                 help_text="JSON schema for Object validation",
                 verbose_name="JSON schema",
             ),
