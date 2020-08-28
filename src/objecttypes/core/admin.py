@@ -7,12 +7,23 @@ from .constants import ObjectVersionStatus
 from .models import ObjectType, ObjectVersion
 
 
+def can_change(obj) -> bool:
+    if not obj:
+        return True
+
+    if obj.last_version.status == ObjectVersionStatus.draft:
+        return True
+
+    return False
+
+
 class ObjectVersionInline(admin.StackedInline):
     verbose_name_plural = _("last version")
     model = ObjectVersion
     extra = 0
     max_num = 1
     min_num = 1
+    readonly_fields = ("version", "status")
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
@@ -27,6 +38,13 @@ class ObjectVersionInline(admin.StackedInline):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    # duplicate ObjectTypeAdmin.has_change_permission logic to avoid validation errors
+    def get_readonly_fields(self, request, obj=None):
+        if not can_change(obj):
+            return [field.name for field in self.opts.local_fields]
+
+        return super().get_readonly_fields(request, obj)
 
 
 @admin.register(ObjectType)
@@ -44,15 +62,12 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         return field_names
 
     def has_change_permission(self, request, obj=None):
-        if not obj or obj.last_version.status == ObjectVersionStatus.draft:
-            return super().has_change_permission(request, obj)
+        if not can_change(obj) and "_newversion" not in request.POST:
+            return False
 
-        return False
+        return super().has_change_permission(request, obj)
 
-    def response_change(self, request, obj):
-        if "_publish" not in request.POST:
-            return super().response_change(request, obj)
-
+    def publish(self, request, obj):
         last_version = obj.last_version
         last_version.status = ObjectVersionStatus.published
         last_version.save()
@@ -64,3 +79,27 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         self.message_user(request, msg, level=messages.SUCCESS)
 
         return HttpResponseRedirect(request.path)
+
+    def add_new_version(self, request, obj):
+        new_version = obj.last_version
+        new_version.pk = None
+        new_version.version = new_version.version + 1
+        new_version.status = ObjectVersionStatus.draft
+        new_version.save()
+
+        msg = format_html(
+            _("The new version {version} has been created successfully!"),
+            version=new_version,
+        )
+        self.message_user(request, msg, level=messages.SUCCESS)
+
+        return HttpResponseRedirect(request.path)
+
+    def response_change(self, request, obj):
+        if "_publish" in request.POST:
+            return self.publish(request, obj)
+
+        if "_newversion" in request.POST:
+            return self.add_new_version(request, obj)
+
+        return super().response_change(request, obj)

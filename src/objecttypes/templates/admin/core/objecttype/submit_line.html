@@ -6,6 +6,9 @@
 
   {% if original.last_version.status == 'draft' %}
       <input type="submit" value="{% trans 'Publish' %}" name="_publish">
+
+  {% elif original.last_version.status == 'published' %}
+      <input type="submit" value="{% trans 'New version' %}" name="_newversion">
   {% endif %}
 
 {% endblock %}
