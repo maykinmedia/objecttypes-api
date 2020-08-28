@@ -62,6 +62,10 @@ class ObjectType(models.Model):
 
         return self.versions.order_by("-version").first()
 
+    @property
+    def ordered_versions(self):
+        return self.versions.order_by("-version")
+
 
 class ObjectVersion(models.Model):
     object_type = models.ForeignKey(
