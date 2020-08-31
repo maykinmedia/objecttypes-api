@@ -1,9 +1,12 @@
 from datetime import date
 
 from django.contrib import admin, messages
+from django.contrib.postgres.fields import JSONField
 from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+
+from jsonsuit.widgets import JSONSuit
 
 from .constants import ObjectVersionStatus
 from .models import ObjectType, ObjectVersion
@@ -26,6 +29,7 @@ class ObjectVersionInline(admin.StackedInline):
     max_num = 1
     min_num = 1
     readonly_fields = ("version", "status")
+    formfield_overrides = {JSONField: {"widget": JSONSuit}}
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
