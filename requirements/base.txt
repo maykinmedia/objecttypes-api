@@ -17,11 +17,12 @@ django-compat==1.0.15     # via django-hijack, django-hijack-admin
 django-hijack-admin==2.1.10  # via -r requirements/base.in
 django-hijack==2.1.10     # via -r requirements/base.in, django-hijack-admin
 django-ipware==2.1.0      # via django-axes
+django-jsonsuit==0.4.4    # via -r requirements/base.in
 django-ordered-model==3.3.0  # via django-admin-index
 django-redis==4.11.0      # via -r requirements/base.in
 django-rosetta==0.9.4     # via -r requirements/base.in
 django-sniplates==0.7.0   # via -r requirements/base.in
-django==2.2.12            # via -r requirements/base.in, django-appconf, django-axes, django-choices, django-redis, django-rosetta, django-sniplates, djangorestframework, drf-yasg
+django==2.2.12            # via -r requirements/base.in, django-appconf, django-axes, django-choices, django-jsonsuit, django-redis, django-rosetta, django-sniplates, djangorestframework, drf-yasg
 djangorestframework==3.11.0  # via -r requirements/base.in, drf-yasg
 drf-yasg==1.17.1          # via -r requirements/base.in
 elastic-apm==5.5.2        # via -r requirements/base.in
