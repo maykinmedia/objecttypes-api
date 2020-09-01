@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n static hijack_tags %}
+{% load i18n static hijack_tags jsonsuit %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Administration') }}{% endblock %}
 
@@ -7,6 +7,7 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin/admin_overrides.css' %}">
+    {% jsonsuit_css %}
 {% endblock %}
 
 {% block branding %}
@@ -22,4 +23,5 @@
 
 {% block footer %}
     {{ block.super }}
+    {% jsonsuit_js %}
 {% endblock %}
