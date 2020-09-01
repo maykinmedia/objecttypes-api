@@ -51,6 +51,7 @@ class ObjectVersionInline(admin.StackedInline):
 class ObjectTypeAdmin(admin.ModelAdmin):
     list_display = ("name", "name_plural")
     search_fields = ("uuid",)
+    readonly_fields = ("uuid",)
     inlines = [ObjectVersionInline]
 
     def get_readonly_fields(self, request, obj=None):

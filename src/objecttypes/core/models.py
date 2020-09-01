@@ -72,7 +72,7 @@ class ObjectVersion(models.Model):
         ObjectType, on_delete=models.CASCADE, related_name="versions"
     )
     version = models.PositiveSmallIntegerField(
-        _("version"), help_text=_("Integer version of the OBJECTTYPE")
+        _("version"), help_text=_("Integer version of the OBJECTTYPE"), default=1
     )
     publication_date = models.DateField(
         _("publication date"),
