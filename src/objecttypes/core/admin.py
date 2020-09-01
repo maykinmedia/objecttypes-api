@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
 from django.utils.html import format_html
@@ -86,6 +88,7 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         new_version.pk = None
         new_version.version = new_version.version + 1
         new_version.status = ObjectVersionStatus.draft
+        new_version.publication_date = date.today()
         new_version.save()
 
         msg = format_html(
