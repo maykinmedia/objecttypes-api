@@ -26,7 +26,7 @@ class ObjectType(models.Model):
     public = models.BooleanField(
         _("public"),
         default=True,
-        help_text="Indicates whether this data is accessible without any specific authorizations",
+        help_text="Indicates whether objects of this objecttype are accessible without any specific authorizations",
     )
     maintainer = models.CharField(
         _("maintainer"),
