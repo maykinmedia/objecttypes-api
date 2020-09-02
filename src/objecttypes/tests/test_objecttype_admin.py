@@ -41,9 +41,9 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public"] = False
-        form["maintainer"] = "tree municipality"
-        form["contact"] = "John Smith"
+        form["public_data"] = False
+        form["maintainer_organization"] = "tree municipality"
+        form["maintainer_contact_email"] = "John Smith"
         form["domain"] = "object types department"
         form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(JSON_SCHEMA)
@@ -59,9 +59,9 @@ class AdminAddTests(WebTest):
         self.assertEqual(object_type.name, "boom")
         self.assertEqual(object_type.name_plural, "bomen")
         self.assertEqual(object_type.description, "some object type description")
-        self.assertEqual(object_type.public, False)
-        self.assertEqual(object_type.maintainer, "tree municipality")
-        self.assertEqual(object_type.contact, "John Smith")
+        self.assertEqual(object_type.public_data, False)
+        self.assertEqual(object_type.maintainer_organization, "tree municipality")
+        self.assertEqual(object_type.maintainer_contact_email, "John Smith")
         self.assertEqual(object_type.domain, "object types department")
         self.assertEqual(object_type.versions.count(), 1)
 
@@ -79,9 +79,9 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public"] = False
-        form["maintainer"] = "tree municipality"
-        form["contact"] = "John Smith"
+        form["public_data"] = False
+        form["maintainer_organization"] = "tree municipality"
+        form["maintainer_contact_email"] = "John Smith"
         form["domain"] = "object types department"
 
         response = form.submit()
@@ -96,9 +96,9 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public"] = False
-        form["maintainer"] = "tree municipality"
-        form["contact"] = "John Smith"
+        form["public_data"] = False
+        form["maintainer_organization"] = "tree municipality"
+        form["maintainer_contact_email"] = "John Smith"
         form["domain"] = "object types department"
         form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(
