@@ -23,19 +23,19 @@ class ObjectType(models.Model):
         blank=True,
         help_text="The description of the object type",
     )
-    public = models.BooleanField(
-        _("public"),
+    public_data = models.BooleanField(
+        _("public data"),
         default=True,
         help_text="Indicates whether this data is accessible without any specific authorizations",
     )
-    maintainer = models.CharField(
-        _("maintainer"),
+    maintainer_organization = models.CharField(
+        _("maintainer organization"),
         max_length=200,
         blank=True,
         help_text="Organization which is responsible for the object type",
     )
-    contact = models.CharField(
-        _("contact"),
+    maintainer_contact_email = models.CharField(
+        _("maintainer contact email"),
         max_length=200,
         blank=True,
         help_text="Person in the organization who can provide information about the object type",

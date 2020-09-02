@@ -42,15 +42,18 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "name",
             "namePlural",
             "description",
-            "public",
-            "maintainer",
-            "contact",
+            "publicData",
+            "maintainerOrganization",
+            "maintainerContactEmail",
             "domain",
             "versions",
         )
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
             "namePlural": {"source": "name_plural"},
+            "publicData": {"source": "public_data"},
+            "maintainerOrganization": {"source": "maintainer_organization"},
+            "maintainerContactEmail": {"source": "maintainer_contact_email"},
         }
 
     def validate_versions(self, value):
