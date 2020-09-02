@@ -4,7 +4,7 @@ from jsonschema.exceptions import SchemaError
 from jsonschema.validators import validator_for
 from rest_framework import serializers
 
-from .models import ObjectType, ObjectVersion
+from objecttypes.core.models import ObjectType, ObjectVersion
 
 
 class ObjectVersionSerializer(serializers.ModelSerializer):

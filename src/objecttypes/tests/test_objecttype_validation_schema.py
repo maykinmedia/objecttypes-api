@@ -3,8 +3,8 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from objecttypes.api.constants import ObjectVersionStatus
-from objecttypes.api.models import ObjectType
+from objecttypes.core.constants import ObjectVersionStatus
+from objecttypes.core.models import ObjectType
 
 
 class ObjectTypeValidationTests(APITestCase):
