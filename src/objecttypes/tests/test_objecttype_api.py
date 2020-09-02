@@ -22,9 +22,9 @@ class ObjectTypeAPITests(APITestCase):
                 "name": object_type.name,
                 "namePlural": object_type.name_plural,
                 "description": object_type.description,
-                "public": object_type.public,
-                "maintainer": object_type.maintainer,
-                "contact": object_type.contact,
+                "publicData": object_type.public_data,
+                "maintainerOrganization": object_type.maintainer_organization,
+                "maintainerContactEmail": object_type.maintainer_contact_email,
                 "domain": object_type.domain,
                 "versions": [
                     {
