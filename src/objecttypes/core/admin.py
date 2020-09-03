@@ -1,9 +1,13 @@
+import json
 from datetime import date
 
 from django.contrib import admin, messages
+from django.contrib.postgres.fields import JSONField
 from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+
+from jsonsuit.widgets import JSONSuit
 
 from .constants import ObjectVersionStatus
 from .models import ObjectType, ObjectVersion
@@ -26,6 +30,7 @@ class ObjectVersionInline(admin.StackedInline):
     max_num = 1
     min_num = 1
     readonly_fields = ("version", "status")
+    formfield_overrides = {JSONField: {"widget": JSONSuit}}
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
@@ -41,12 +46,29 @@ class ObjectVersionInline(admin.StackedInline):
     def has_delete_permission(self, request, obj=None):
         return False
 
-    # duplicate ObjectTypeAdmin.has_change_permission logic to avoid validation errors
+    # work around to prettify readonly JSON field
+    def get_exclude(self, request, obj=None):
+        if not can_change(obj):
+            return ("json_schema",)
+        return super().get_exclude(request, obj)
+
     def get_readonly_fields(self, request, obj=None):
         if not can_change(obj):
-            return [field.name for field in self.opts.local_fields]
+            local_fields = [field.name for field in self.opts.local_fields]
+            # work around to prettify readonly JSON field
+            local_fields.remove("json_schema")
+            local_fields.append("json_schema_readonly")
+            return local_fields
 
         return super().get_readonly_fields(request, obj)
+
+    def json_schema_readonly(self, obj):
+        return format_html(
+            '<pre><code class="language-json">{}</code></pre>',
+            json.dumps(obj.json_schema, indent=2),
+        )
+
+    json_schema_readonly.short_description = "JSON schema"
 
 
 @admin.register(ObjectType)
