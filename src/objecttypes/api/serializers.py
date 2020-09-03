@@ -4,16 +4,22 @@ from jsonschema.exceptions import SchemaError
 from jsonschema.validators import validator_for
 from rest_framework import serializers
 
-from .models import ObjectType, ObjectVersion
+from objecttypes.core.models import ObjectType, ObjectVersion
 
 
 class ObjectVersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ObjectVersion
-        fields = ("version", "publicationDate", "jsonSchema")
+        fields = (
+            "version",
+            "publicationDate",
+            "status",
+            "jsonSchema",
+        )
         extra_kwargs = {
             "publicationDate": {"source": "publication_date"},
             "jsonSchema": {"source": "json_schema"},
+            "status": {"read_only": True},
         }
 
     def validate_jsonSchema(self, schema):
@@ -31,10 +37,23 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ObjectType
-        fields = ("url", "name", "namePlural", "versions")
+        fields = (
+            "url",
+            "name",
+            "namePlural",
+            "description",
+            "publicData",
+            "maintainerOrganization",
+            "maintainerContactEmail",
+            "domain",
+            "versions",
+        )
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
             "namePlural": {"source": "name_plural"},
+            "publicData": {"source": "public_data"},
+            "maintainerOrganization": {"source": "maintainer_organization"},
+            "maintainerContactEmail": {"source": "maintainer_contact_email"},
         }
 
     def validate_versions(self, value):

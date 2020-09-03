@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from .models import ObjectType
+from objecttypes.core.models import ObjectType
+
 from .serializers import ObjectTypeSerializer
 
 
