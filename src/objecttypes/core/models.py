@@ -1,8 +1,13 @@
 import uuid
+from datetime import date
 
 from django.contrib.postgres.fields import JSONField
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+from jsonschema.exceptions import SchemaError
+from jsonschema.validators import validator_for
 
 from .constants import ObjectVersionStatus
 
@@ -59,7 +64,9 @@ class ObjectVersion(models.Model):
         _("version"), help_text=_("Integer version of the OBJECTTYPE")
     )
     publication_date = models.DateField(
-        _("publication date"), auto_now=True, help_text=_("Date of Version publication")
+        _("publication date"),
+        default=date.today,
+        help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
         _("JSON schema"), help_text="JSON schema for Object validation"
@@ -77,3 +84,12 @@ class ObjectVersion(models.Model):
 
     def __str__(self):
         return f"{self.object_type} v.{self.version}"
+
+    def clean(self):
+        super().clean()
+
+        schema_validator = validator_for(self.json_schema)
+        try:
+            schema_validator.check_schema(self.json_schema)
+        except SchemaError as exc:
+            raise ValidationError(exc.args[0]) from exc
