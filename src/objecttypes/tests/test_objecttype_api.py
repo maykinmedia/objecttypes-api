@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .factory import ObjectTypeFactory, ObjectVersionFactory
+from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 
 
 class ObjectTypeAPITests(APITestCase):

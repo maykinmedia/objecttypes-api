@@ -16,9 +16,11 @@ class ObjectVersionFactory(factory.django.DjangoModelFactory):
     object_type = factory.SubFactory(ObjectTypeFactory)
     version = factory.Sequence(lambda n: n)
     json_schema = {
-        "title": "schema",
+        "type": "object",
+        "title": "Tree",
         "$schema": "http://json-schema.org/draft-07/schema#",
-        "type": "any",
+        "required": ["diameter"],
+        "properties": {"diameter": {"type": "integer", "description": "size in cm."}},
     }
 
     class Meta:

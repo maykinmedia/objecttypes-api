@@ -55,13 +55,24 @@ class ObjectType(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    @property
+    def last_version(self):
+        if not self.versions:
+            return None
+
+        return self.versions.order_by("-version").first()
+
+    @property
+    def ordered_versions(self):
+        return self.versions.order_by("-version")
+
 
 class ObjectVersion(models.Model):
     object_type = models.ForeignKey(
         ObjectType, on_delete=models.CASCADE, related_name="versions"
     )
     version = models.PositiveSmallIntegerField(
-        _("version"), help_text=_("Integer version of the OBJECTTYPE")
+        _("version"), help_text=_("Integer version of the OBJECTTYPE"), default=1
     )
     publication_date = models.DateField(
         _("publication date"),
@@ -69,7 +80,7 @@ class ObjectVersion(models.Model):
         help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
-        _("JSON schema"), help_text="JSON schema for Object validation"
+        _("JSON schema"), help_text="JSON schema for Object validation", default=dict
     )
     status = models.CharField(
         _("status"),
