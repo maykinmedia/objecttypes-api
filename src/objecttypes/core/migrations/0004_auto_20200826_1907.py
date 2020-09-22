@@ -10,7 +10,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(model_name="objecttype", name="status",),
+        migrations.RemoveField(
+            model_name="objecttype",
+            name="status",
+        ),
         migrations.AddField(
             model_name="objectversion",
             name="status",

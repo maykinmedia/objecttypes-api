@@ -94,6 +94,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"unique_together": {("object_type", "version")},},
+            options={
+                "unique_together": {("object_type", "version")},
+            },
         ),
     ]
