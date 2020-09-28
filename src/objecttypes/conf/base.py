@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.sessions",
     # Note: If enabled, at least one Site object is required
-    # 'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # django-admin-index
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "hijack_admin",
     "rest_framework",
     "drf_yasg",
+    "vng_api_common",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
