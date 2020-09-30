@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 
 from sentry_sdk.integrations import django, redis
 
+from .api import *  # noqa
+
 try:
     from sentry_sdk.integrations import celery
 except Exception:  # no celery in this proejct
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.sessions",
     # Note: If enabled, at least one Site object is required
-    # 'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # django-admin-index
@@ -68,6 +70,7 @@ INSTALLED_APPS = [
     "hijack_admin",
     "rest_framework",
     "drf_yasg",
+    "vng_api_common",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
@@ -364,16 +367,4 @@ ELASTIC_APM = {
     "SERVICE_NAME": "objecttypes",
     "SECRET_TOKEN": os.getenv("ELASTIC_APM_SECRET_TOKEN", "default"),
     "SERVER_URL": os.getenv("ELASTIC_APM_SERVER_URL", "http://example.com"),
-}
-
-# api settings
-REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
-    "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
-    # test
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
-}
-
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": None,
 }
