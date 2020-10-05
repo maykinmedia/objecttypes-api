@@ -9,7 +9,7 @@ Objecttypen API
 
 |build-status| |docs| |coverage| |black| |docker|
 
-API om object definities te beheren. [`(English version)`_]
+API om object definities te beheren. (`English version`_)
 
 Ontwikkeld door `Maykin Media B.V.`_ in opdracht van de gemeente Utrecht.
 

@@ -9,7 +9,7 @@ Objecttypes API
 
 |build-status| |docs| |coverage| |black| |docker|
 
-API to manage object definitions. [`(Nederlandse versie)`_]
+API to manage object definitions. (`(Nederlandse versie)`_)
 
 Developed by `Maykin Media B.V.`_ commissioned by the Municipality of Utrecht.
 
@@ -46,7 +46,7 @@ Licensed under the EUPL_
 
 .. _`Maykin Media B.V.`: https://www.maykinmedia.nl
 
-.. _`Objects API's`: https://github.com/maykinmedia/objects-api
+.. _`Objects APIs`: https://github.com/maykinmedia/objects-api
 
 .. _`EUPL`: LICENCE.md
 
