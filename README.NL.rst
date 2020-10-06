@@ -17,13 +17,13 @@ Ontwikkeld door `Maykin Media B.V.`_ in opdracht van de gemeente Utrecht.
 Introductie
 ===========
 
-De Objecttypen API heeft als doel om uiteenlopende typen objecten op een 
+De Objecttypen API heeft als doel om uiteenlopende typen objecten op een
 dynamische wijze te standaardiseren op landelijk niveau en om te voorkomen dat
 voor elk (eenvoudig) object een volledige API wordt opgezet.
 
-Deze landelijke Objecttypen API is noodzakelijk voor het registreren van 
-objecten in lokale `Objecten API's`_. Organisaties kunnen lokaal ook een 
-Objecttypen API draaien en zo landelijke als lokale definities van objecten 
+Deze landelijke Objecttypen API is noodzakelijk voor het registreren van
+objecten in lokale `Objecten API's`_. Organisaties kunnen lokaal ook een
+Objecttypen API draaien en zo landelijke als lokale definities van objecten
 hanteren.
 
 
@@ -43,7 +43,7 @@ Copyright © Maykin Media, 2020
 Licensed under the EUPL_
 
 
-.. _`(English version)`: README.rst
+.. _`English version`: README.rst
 
 .. _`Maykin Media B.V.`: https://www.maykinmedia.nl
 

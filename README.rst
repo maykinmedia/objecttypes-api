@@ -9,7 +9,7 @@ Objecttypes API
 
 |build-status| |docs| |coverage| |black| |docker|
 
-API to manage object definitions. (`(Nederlandse versie)`_)
+API to manage object definitions. (`Nederlandse versie`_)
 
 Developed by `Maykin Media B.V.`_ commissioned by the Municipality of Utrecht.
 
@@ -17,11 +17,11 @@ Developed by `Maykin Media B.V.`_ commissioned by the Municipality of Utrecht.
 Introduction
 ============
 
-The Objecttypes API aims to standardize various types of objects, on a national 
-level, in an accessible way and without the need to create a whole new API for 
+The Objecttypes API aims to standardize various types of objects, on a national
+level, in an accessible way and without the need to create a whole new API for
 each (simple) object.
 
-This national Objecttypes API is required for registering objects in local 
+This national Objecttypes API is required for registering objects in local
 `Objects APIs`_. Organisations can also run an Objecttypes API locally, to use
 both national and local definitions of objects.
 
@@ -42,7 +42,7 @@ Copyright © Maykin Media, 2020
 Licensed under the EUPL_
 
 
-.. _`(Nederlandse versie)`: README.NL.rst
+.. _`Nederlandse versie`: README.NL.rst
 
 .. _`Maykin Media B.V.`: https://www.maykinmedia.nl
 
