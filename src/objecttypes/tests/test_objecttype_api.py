@@ -4,9 +4,10 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
+from objecttypes.utils.test import TokenAuthMixin
 
 
-class ObjectTypeAPITests(APITestCase):
+class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
     def test_get_objecttypes(self):
         object_type = ObjectTypeFactory.create()
         object_version = ObjectVersionFactory.create(object_type=object_type)
