@@ -3,6 +3,8 @@ info:
   title: objecttypes API
   description: An API to access Object types
   version: 0.1.0
+security:
+- Token: []
 paths:
   /objecttypes/:
     get:
@@ -308,6 +310,11 @@ tags:
 servers:
 - url: https://example.com/api/v1
 components:
+  securitySchemes:
+    Token:
+      type: apiKey
+      name: Authorization
+      in: header
   schemas:
     ObjectVersion:
       type: object
