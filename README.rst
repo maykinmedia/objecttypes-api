@@ -5,7 +5,6 @@ Objecttypes API
 :Version: 0.1.0
 :Source: https://github.com/maykinmedia/objecttypes-api
 :Keywords: objects, assets, zaakobjecten
-:PythonVersion: 3.7
 
 |docs|
 
@@ -57,11 +56,11 @@ Quickstart
 
    .. code:: bash
 
-      $ wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/docker-compose.yml
-      $ docker-compose up
+      $ wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/docker-compose-quickstart.yml
+      $ docker-compose -f docker-compose-quickstart.yml up -d
       $ docker-compose exec web src/manage.py createsuperuser
 
-2. In the browser, navigate to ``http://localhost:8000/`` to access the admin 
+2. In the browser, navigate to ``http://localhost:8001/`` to access the admin 
    and the API.
 
 
