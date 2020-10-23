@@ -8,7 +8,6 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD:-objecttypes}
 
   web:
-    build: .
     image: maykinmedia/objecttypes-api:latest
     environment:
       - DJANGO_SETTINGS_MODULE=objecttypes.conf.docker
