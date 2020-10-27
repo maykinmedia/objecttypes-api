@@ -6,7 +6,7 @@ info:
 security:
 - Token: []
 paths:
-  /objecttypes/:
+  /objecttypes:
     get:
       operationId: objecttype_list
       description: ''
@@ -144,7 +144,7 @@ paths:
       tags:
       - objecttypes
     parameters: []
-  /objecttypes/{uuid}/:
+  /objecttypes/{uuid}:
     get:
       operationId: objecttype_read
       description: ''
@@ -159,12 +159,12 @@ paths:
           \ voor meer informatie."
         required: false
         examples:
-          oneValue:
-            summary: "E\xE9n ETag-waarde"
-            value: '"79054025255fb1a26e4bc422aef54eb4"'
           multipleValues:
             summary: Meerdere ETag-waardes
             value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
+          oneValue:
+            summary: "E\xE9n ETag-waarde"
+            value: '"79054025255fb1a26e4bc422aef54eb4"'
         schema:
           type: string
       responses:
@@ -305,16 +305,16 @@ paths:
         type: string
         format: uuid
 tags:
-- name: ''
+- name: objecttypes
   description: ''
 servers:
 - url: https://example.com/api/v1
 components:
   securitySchemes:
     Token:
-      type: apiKey
-      name: Authorization
       in: header
+      name: Authorization
+      type: apiKey
   schemas:
     ObjectVersion:
       type: object

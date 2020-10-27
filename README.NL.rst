@@ -5,9 +5,8 @@ Objecttypen API
 :Version: 0.1.0
 :Source: https://github.com/maykinmedia/objecttypes-api
 :Keywords: objecten, assets, zaakobjecten
-:PythonVersion: 3.7
 
-|build-status| |docs| |coverage| |black| |docker|
+|docs|
 
 API om object definities te beheren. (`English version`_)
 
@@ -27,9 +26,50 @@ Objecttypen API draaien en zo landelijke als lokale definities van objecten
 hanteren.
 
 
+API specificatie
+================
+
+|lint-oas| |generate-sdks| |generate-postman-collection|
+
+==============  ==============  =============================
+Versie          Release datum   API specificatie
+==============  ==============  =============================
+1.0.0-alpha     n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/openapi.yaml>`_,
+                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/openapi.yaml>`_
+==============  ==============  =============================
+
+Zie: `Alle versies en wijzigingen <https://github.com/maykinmedia/objecttypes-api/blob/master/CHANGELOG.rst>`_
+
+
+Referentie implementatie
+========================
+
+|build-status| |coverage| |black| |docker| |python-versions|
+
+De referentie implementatie toont de API in actie en kan gebruikt worden voor
+test en demonstratie doeleinden. De referentie implementatie is open source,
+goed getest en beschikbaar als Docker image.
+
+Quickstart
+----------
+
+1. Download en start de Objecttypen API:
+
+   .. code:: bash
+
+      $ wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/docker-compose-quickstart.yml -O docker-compose.yml
+      $ docker-compose up -d
+      $ docker-compose exec web src/manage.py createsuperuser
+
+2. In de browser, navigeer naar ``http://localhost:8001/`` om de admin en de 
+   API te benaderen.
+
+
 Links
 =====
 
+* `Documentatie <https://readthedocs.org/projects/objects-and-objecttypes-api/badge/?version=latest>`_
+* `Docker image <https://hub.docker.com/r/maykinmedia/objecttypes-api>`_
 * `Issues <https://github.com/maykinmedia/objecttypes-api/issues>`_
 * `Code <https://github.com/maykinmedia/objecttypes-api>`_
 * `Community <https://commonground.nl/groups/view/54477963/objecten-en-objecttypen-api>`_
@@ -64,7 +104,24 @@ Licensed under the EUPL_
     :target: https://codecov.io/gh/maykinmedia/objecttypes-api
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :alt: Code style
     :target: https://github.com/psf/black
 
 .. |docker| image:: https://images.microbadger.com/badges/image/maykinmedia/objecttypes-api.svg
-    :target: https://microbadger.com/images/maykinmedia/objecttypes-api
+    :alt: Docker image
+    :target: https://hub.docker.com/r/maykinmedia/objecttypes-api
+
+.. |python-versions| image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
+    :alt: Supported Python version
+
+.. |lint-oas| image:: https://github.com/maykinmedia/objecttypes-api/workflows/lint-oas/badge.svg
+    :alt: Lint OAS
+    :target: https://github.com/maykinmedia/objecttypes-api/actions?query=workflow%3Alint-oas
+
+.. |generate-sdks| image:: https://github.com/maykinmedia/objecttypes-api/workflows/generate-sdks/badge.svg
+    :alt: Generate SDKs
+    :target: https://github.com/maykinmedia/objecttypes-api/actions?query=workflow%3Agenerate-sdks
+
+.. |generate-postman-collection| image:: https://github.com/maykinmedia/objecttypes-api/workflows/generate-postman-collection/badge.svg
+    :alt: Generate Postman collection
+    :target: https://github.com/maykinmedia/objecttypes-api/actions?query=workflow%3Agenerate-postman-collection

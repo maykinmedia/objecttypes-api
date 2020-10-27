@@ -18,9 +18,9 @@
     ],
     "securityDefinitions": {
         "Token": {
-            "type": "apiKey",
+            "in": "header",
             "name": "Authorization",
-            "in": "header"
+            "type": "apiKey"
         }
     },
     "security": [
@@ -29,7 +29,7 @@
         }
     ],
     "paths": {
-        "/objecttypes/": {
+        "/objecttypes": {
             "get": {
                 "operationId": "objecttype_list",
                 "description": "",
@@ -193,7 +193,7 @@
             },
             "parameters": []
         },
-        "/objecttypes/{uuid}/": {
+        "/objecttypes/{uuid}": {
             "get": {
                 "operationId": "objecttype_read",
                 "description": "",
@@ -205,13 +205,13 @@
                         "required": false,
                         "type": "string",
                         "examples": {
-                            "oneValue": {
-                                "summary": "E\u00e9n ETag-waarde",
-                                "value": "\"79054025255fb1a26e4bc422aef54eb4\""
-                            },
                             "multipleValues": {
                                 "summary": "Meerdere ETag-waardes",
                                 "value": "\"79054025255fb1a26e4bc422aef54eb4\", \"e4d909c290d0fb1ca068ffaddf22cbd0\""
+                            },
+                            "oneValue": {
+                                "summary": "E\u00e9n ETag-waarde",
+                                "value": "\"79054025255fb1a26e4bc422aef54eb4\""
                             }
                         }
                     }
@@ -611,7 +611,7 @@
     },
     "tags": [
         {
-            "name": "",
+            "name": "objecttypes",
             "description": ""
         }
     ]
