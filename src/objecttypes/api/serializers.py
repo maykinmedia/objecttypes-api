@@ -32,7 +32,13 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "dataClassification",
             "maintainerOrganization",
             "maintainerDepartment",
+            "contactPerson",
             "contactEmail",
+            "source",
+            "updateFrequency",
+            "providerOrganization",
+            "documentationUrl",
+            "labels",
             "versions",
         )
         extra_kwargs = {
@@ -41,5 +47,9 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "dataClassification": {"source": "data_classification"},
             "maintainerOrganization": {"source": "maintainer_organization"},
             "maintainerDepartment": {"source": "maintainer_department"},
+            "contactPerson": {"source": "contact_person"},
             "contactEmail": {"source": "contact_email"},
+            "updateFrequency": {"source": "update_frequency"},
+            "providerOrganization": {"source": "provider_organization"},
+            "documentationUrl": {"source": "documentation_url"},
         }

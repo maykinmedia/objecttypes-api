@@ -9,7 +9,11 @@ from django.utils.translation import ugettext_lazy as _
 from jsonschema.exceptions import SchemaError
 from jsonschema.validators import validator_for
 
-from .constants import DataClassificationChoices, ObjectVersionStatus
+from .constants import (
+    DataClassificationChoices,
+    ObjectVersionStatus,
+    UpdateFrequencyChoices,
+)
 
 
 class ObjectType(models.Model):
@@ -47,11 +51,46 @@ class ObjectType(models.Model):
         blank=True,
         help_text="Business department which is responsible for the object type",
     )
+    contact_person = models.CharField(
+        _("contact person"),
+        max_length=200,
+        blank=True,
+        help_text="Name of the person in the organization who can provide information about the object type",
+    )
     contact_email = models.CharField(
         _("contact email"),
         max_length=200,
         blank=True,
         help_text="Email of the person in the organization who can provide information about the object type",
+    )
+    source = models.CharField(
+        _("source"),
+        max_length=200,
+        blank=True,
+        help_text="Name of the system from which the object type originates",
+    )
+    update_frequency = models.CharField(
+        _("update frequency"),
+        max_length=10,
+        choices=UpdateFrequencyChoices.choices,
+        default=UpdateFrequencyChoices.unknown,
+        help_text="Indicates how often the object type is updated",
+    )
+    provider_organization = models.CharField(
+        _("provider organization"),
+        max_length=200,
+        blank=True,
+        help_text="Organization which is responsible for publication of the object type",
+    )
+    documentation_url = models.URLField(
+        _("documentation url"),
+        blank=True,
+        help_text="Link to the documentation for the object type",
+    )
+    labels = JSONField(
+        _("labels"),
+        help_text="Key-value pairs of keywords related for the object type",
+        default=dict,
     )
 
     def __str__(self):
