@@ -31,8 +31,8 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "description",
             "publicData",
             "maintainerOrganization",
-            "maintainerContactEmail",
-            "domain",
+            "maintainerDepartment",
+            "contactEmail",
             "versions",
         )
         extra_kwargs = {
@@ -40,5 +40,6 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "namePlural": {"source": "name_plural"},
             "publicData": {"source": "public_data"},
             "maintainerOrganization": {"source": "maintainer_organization"},
-            "maintainerContactEmail": {"source": "maintainer_contact_email"},
+            "maintainerDepartment": {"source": "maintainer_department"},
+            "contactEmail": {"source": "contact_email"},
         }

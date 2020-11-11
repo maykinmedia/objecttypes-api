@@ -39,14 +39,14 @@ class ObjectType(models.Model):
         blank=True,
         help_text="Organization which is responsible for the object type",
     )
-    maintainer_contact_email = models.CharField(
-        _("maintainer contact email"),
+    contact_email = models.CharField(
+        _("contact email"),
         max_length=200,
         blank=True,
-        help_text="Person in the organization who can provide information about the object type",
+        help_text="Email of the person in the organization who can provide information about the object type",
     )
-    domain = models.CharField(
-        _("domain"),
+    maintainer_department = models.CharField(
+        _("maintainer department"),
         max_length=200,
         blank=True,
         help_text="Business department which is responsible for the object type",
