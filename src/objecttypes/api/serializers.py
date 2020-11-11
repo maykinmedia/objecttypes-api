@@ -29,7 +29,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "name",
             "namePlural",
             "description",
-            "publicData",
+            "dataClassification",
             "maintainerOrganization",
             "maintainerDepartment",
             "contactEmail",
@@ -38,7 +38,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
             "namePlural": {"source": "name_plural"},
-            "publicData": {"source": "public_data"},
+            "dataClassification": {"source": "data_classification"},
             "maintainerOrganization": {"source": "maintainer_organization"},
             "maintainerDepartment": {"source": "maintainer_department"},
             "contactEmail": {"source": "contact_email"},

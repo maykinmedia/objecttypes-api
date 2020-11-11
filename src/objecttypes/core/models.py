@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from jsonschema.exceptions import SchemaError
 from jsonschema.validators import validator_for
 
-from .constants import ObjectVersionStatus
+from .constants import DataClassificationChoices, ObjectVersionStatus
 
 
 class ObjectType(models.Model):
@@ -28,10 +28,12 @@ class ObjectType(models.Model):
         blank=True,
         help_text="The description of the object type",
     )
-    public_data = models.BooleanField(
-        _("public data"),
-        default=True,
-        help_text="Indicates whether this data is accessible without any specific authorizations",
+    data_classification = models.CharField(
+        _("data classification"),
+        max_length=20,
+        choices=DataClassificationChoices.choices,
+        default=DataClassificationChoices.open,
+        help_text="Confidential level of the object type",
     )
     maintainer_organization = models.CharField(
         _("maintainer organization"),
@@ -39,17 +41,17 @@ class ObjectType(models.Model):
         blank=True,
         help_text="Organization which is responsible for the object type",
     )
-    contact_email = models.CharField(
-        _("contact email"),
-        max_length=200,
-        blank=True,
-        help_text="Email of the person in the organization who can provide information about the object type",
-    )
     maintainer_department = models.CharField(
         _("maintainer department"),
         max_length=200,
         blank=True,
         help_text="Business department which is responsible for the object type",
+    )
+    contact_email = models.CharField(
+        _("contact email"),
+        max_length=200,
+        blank=True,
+        help_text="Email of the person in the organization who can provide information about the object type",
     )
 
     def __str__(self):
