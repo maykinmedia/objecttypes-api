@@ -18,79 +18,86 @@ from .constants import (
 
 class ObjectType(models.Model):
     uuid = models.UUIDField(
-        unique=True, default=uuid.uuid4, help_text="Unique identifier (UUID4)"
+        unique=True, default=uuid.uuid4, help_text=_("Unique identifier (UUID4)")
     )
     name = models.CharField(
-        _("name"), max_length=100, help_text="Name of the object type"
+        _("name"), max_length=100, help_text=_("Name of the object type")
     )
     name_plural = models.CharField(
-        _("name plural"), max_length=100, help_text="Plural name of the object type"
+        _("name plural"), max_length=100, help_text=_("Plural name of the object type")
     )
     description = models.CharField(
         _("description"),
         max_length=1000,
         blank=True,
-        help_text="The description of the object type",
+        help_text=_("The description of the object type"),
     )
     data_classification = models.CharField(
         _("data classification"),
         max_length=20,
         choices=DataClassificationChoices.choices,
         default=DataClassificationChoices.open,
-        help_text="Confidential level of the object type",
+        help_text=_("Confidential level of the object type"),
     )
     maintainer_organization = models.CharField(
         _("maintainer organization"),
         max_length=200,
         blank=True,
-        help_text="Organization which is responsible for the object type",
+        help_text=_("Organization which is responsible for the object type"),
     )
     maintainer_department = models.CharField(
         _("maintainer department"),
         max_length=200,
         blank=True,
-        help_text="Business department which is responsible for the object type",
+        help_text=_("Business department which is responsible for the object type"),
     )
     contact_person = models.CharField(
         _("contact person"),
         max_length=200,
         blank=True,
-        help_text="Name of the person in the organization who can provide information about the object type",
+        help_text=_(
+            "Name of the person in the organization who can provide information about the object type"
+        ),
     )
     contact_email = models.CharField(
         _("contact email"),
         max_length=200,
         blank=True,
-        help_text="Email of the person in the organization who can provide information about the object type",
+        help_text=_(
+            "Email of the person in the organization who can provide information about the object type"
+        ),
     )
     source = models.CharField(
         _("source"),
         max_length=200,
         blank=True,
-        help_text="Name of the system from which the object type originates",
+        help_text=_("Name of the system from which the object type originates"),
     )
     update_frequency = models.CharField(
         _("update frequency"),
         max_length=10,
         choices=UpdateFrequencyChoices.choices,
         default=UpdateFrequencyChoices.unknown,
-        help_text="Indicates how often the object type is updated",
+        help_text=_("Indicates how often the object type is updated"),
     )
     provider_organization = models.CharField(
         _("provider organization"),
         max_length=200,
         blank=True,
-        help_text="Organization which is responsible for publication of the object type",
+        help_text=_(
+            "Organization which is responsible for publication of the object type"
+        ),
     )
     documentation_url = models.URLField(
         _("documentation url"),
         blank=True,
-        help_text="Link to the documentation for the object type",
+        help_text=_("Link to the documentation for the object type"),
     )
     labels = JSONField(
         _("labels"),
-        help_text="Key-value pairs of keywords related for the object type",
+        help_text=_("Key-value pairs of keywords related for the object type"),
         default=dict,
+        blank=True,
     )
 
     def __str__(self):
@@ -121,14 +128,14 @@ class ObjectVersion(models.Model):
         help_text=_("Date of Version publication"),
     )
     json_schema = JSONField(
-        _("JSON schema"), help_text="JSON schema for Object validation", default=dict
+        _("JSON schema"), help_text=_("JSON schema for Object validation"), default=dict
     )
     status = models.CharField(
         _("status"),
         max_length=20,
         choices=ObjectVersionStatus.choices,
         default=ObjectVersionStatus.draft,
-        help_text="Status of the object type version",
+        help_text=_("Status of the object type version"),
     )
 
     class Meta:
