@@ -7,7 +7,11 @@ from django_webtest import WebTest
 from freezegun import freeze_time
 
 from objecttypes.accounts.tests.factories import SuperUserFactory
-from objecttypes.core.constants import ObjectVersionStatus
+from objecttypes.core.constants import (
+    DataClassificationChoices,
+    ObjectVersionStatus,
+    UpdateFrequencyChoices,
+)
 from objecttypes.core.models import ObjectType
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 
@@ -41,10 +45,17 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public_data"] = False
+        form["data_classification"] = DataClassificationChoices.intern
         form["maintainer_organization"] = "tree municipality"
-        form["maintainer_contact_email"] = "John Smith"
-        form["domain"] = "object types department"
+        form["maintainer_department"] = "object types department"
+        form["contact_person"] = "John Smith"
+        form["contact_email"] = "John.Smith@objecttypes.nl"
+        form["source"] = "tree system"
+        form["update_frequency"] = UpdateFrequencyChoices.monthly
+        form["provider_organization"] = "tree provider"
+        form["documentation_url"] = "http://example.com/doc/trees"
+        form["labels"] = json.dumps({"key1": "value1"})
+
         form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(JSON_SCHEMA)
 
@@ -59,10 +70,18 @@ class AdminAddTests(WebTest):
         self.assertEqual(object_type.name, "boom")
         self.assertEqual(object_type.name_plural, "bomen")
         self.assertEqual(object_type.description, "some object type description")
-        self.assertEqual(object_type.public_data, False)
+        self.assertEqual(
+            object_type.data_classification, DataClassificationChoices.intern
+        )
         self.assertEqual(object_type.maintainer_organization, "tree municipality")
-        self.assertEqual(object_type.maintainer_contact_email, "John Smith")
-        self.assertEqual(object_type.domain, "object types department")
+        self.assertEqual(object_type.maintainer_department, "object types department")
+        self.assertEqual(object_type.contact_person, "John Smith")
+        self.assertEqual(object_type.contact_email, "John.Smith@objecttypes.nl")
+        self.assertEqual(object_type.source, "tree system")
+        self.assertEqual(object_type.update_frequency, UpdateFrequencyChoices.monthly)
+        self.assertEqual(object_type.provider_organization, "tree provider")
+        self.assertEqual(object_type.documentation_url, "http://example.com/doc/trees")
+        self.assertEqual(object_type.labels, {"key1": "value1"})
         self.assertEqual(object_type.versions.count(), 1)
 
         object_version = object_type.last_version
@@ -79,10 +98,7 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public_data"] = False
         form["maintainer_organization"] = "tree municipality"
-        form["maintainer_contact_email"] = "John Smith"
-        form["domain"] = "object types department"
 
         response = form.submit()
 
@@ -96,10 +112,7 @@ class AdminAddTests(WebTest):
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
-        form["public_data"] = False
         form["maintainer_organization"] = "tree municipality"
-        form["maintainer_contact_email"] = "John Smith"
-        form["domain"] = "object types department"
         form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(
             {
