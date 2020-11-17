@@ -1,26 +1,45 @@
 from rest_framework import serializers
+from rest_framework_nested.relations import NestedHyperlinkedRelatedField
+from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
 
 from objecttypes.core.models import ObjectType, ObjectVersion
 
 
-class ObjectVersionSerializer(serializers.ModelSerializer):
+class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
+    parent_lookup_kwargs = {"objecttype_uuid": "object_type__uuid"}
+
     class Meta:
         model = ObjectVersion
         fields = (
+            "url",
             "version",
+            "objectType",
             "publicationDate",
             "status",
             "jsonSchema",
         )
         extra_kwargs = {
-            "publicationDate": {"source": "publication_date"},
+            "url": {"lookup_field": "version"},
+            "version": {"read_only": True},
+            "objectType": {
+                "source": "object_type",
+                "lookup_field": "uuid",
+                "read_only": True,
+            },
+            "publicationDate": {"source": "publication_date", "read_only": True},
             "jsonSchema": {"source": "json_schema"},
             "status": {"read_only": True},
         }
 
 
 class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
-    versions = ObjectVersionSerializer(many=True)
+    versions = NestedHyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        lookup_field="version",
+        view_name="objectversion-detail",
+        parent_lookup_kwargs={"objecttype_uuid": "object_type__uuid"},
+    )
 
     class Meta:
         model = ObjectType

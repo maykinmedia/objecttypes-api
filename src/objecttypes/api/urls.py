@@ -1,13 +1,17 @@
 from django.conf.urls import include
 from django.urls import path, re_path
 
-from rest_framework import routers
+from vng_api_common import routers
 from vng_api_common.schema import SchemaView
 
-from .views import ObjectTypeViewSet
+from .views import ObjectTypeViewSet, ObjectVersionViewSet
 
-router = routers.DefaultRouter(trailing_slash=False)
-router.register(r"objecttypes", ObjectTypeViewSet)
+router = routers.DefaultRouter()
+router.register(
+    r"objecttypes",
+    ObjectTypeViewSet,
+    [routers.nested("versions", ObjectVersionViewSet)],
+)
 
 
 urlpatterns = [
