@@ -18,9 +18,9 @@
     ],
     "securityDefinitions": {
         "Token": {
-            "in": "header",
+            "type": "apiKey",
             "name": "Authorization",
-            "type": "apiKey"
+            "in": "header"
         }
     },
     "security": [
@@ -35,11 +35,17 @@
                 "description": "",
                 "parameters": [
                     {
-                        "name": "publicData",
+                        "name": "dataClassification",
                         "in": "query",
-                        "description": "Indicates whether this data is accessible without any specific authorizations",
+                        "description": "Confidential level of the object type",
                         "required": false,
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "open",
+                            "intern",
+                            "confidential",
+                            "strictly_confidential"
+                        ]
                     }
                 ],
                 "responses": {
@@ -205,13 +211,13 @@
                         "required": false,
                         "type": "string",
                         "examples": {
-                            "multipleValues": {
-                                "summary": "Meerdere ETag-waardes",
-                                "value": "\"79054025255fb1a26e4bc422aef54eb4\", \"e4d909c290d0fb1ca068ffaddf22cbd0\""
-                            },
                             "oneValue": {
                                 "summary": "E\u00e9n ETag-waarde",
                                 "value": "\"79054025255fb1a26e4bc422aef54eb4\""
+                            },
+                            "multipleValues": {
+                                "summary": "Meerdere ETag-waardes",
+                                "value": "\"79054025255fb1a26e4bc422aef54eb4\", \"e4d909c290d0fb1ca068ffaddf22cbd0\""
                             }
                         }
                     }
@@ -450,10 +456,16 @@
                     "type": "string",
                     "maxLength": 1000
                 },
-                "publicData": {
-                    "title": "Publicdata",
-                    "description": "Indicates whether this data is accessible without any specific authorizations",
-                    "type": "boolean"
+                "dataClassification": {
+                    "title": "Dataclassification",
+                    "description": "Confidential level of the object type",
+                    "type": "string",
+                    "enum": [
+                        "open",
+                        "intern",
+                        "confidential",
+                        "strictly_confidential"
+                    ]
                 },
                 "maintainerOrganization": {
                     "title": "Maintainerorganization",
@@ -461,17 +473,61 @@
                     "type": "string",
                     "maxLength": 200
                 },
-                "maintainerContactEmail": {
-                    "title": "Maintainercontactemail",
-                    "description": "Person in the organization who can provide information about the object type",
-                    "type": "string",
-                    "maxLength": 200
-                },
-                "domain": {
-                    "title": "Domain",
+                "maintainerDepartment": {
+                    "title": "Maintainerdepartment",
                     "description": "Business department which is responsible for the object type",
                     "type": "string",
                     "maxLength": 200
+                },
+                "contactPerson": {
+                    "title": "Contactperson",
+                    "description": "Name of the person in the organization who can provide information about the object type",
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "contactEmail": {
+                    "title": "Contactemail",
+                    "description": "Email of the person in the organization who can provide information about the object type",
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "source": {
+                    "title": "Source",
+                    "description": "Name of the system from which the object type originates",
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "updateFrequency": {
+                    "title": "Updatefrequency",
+                    "description": "Indicates how often the object type is updated",
+                    "type": "string",
+                    "enum": [
+                        "real_time",
+                        "hourly",
+                        "daily",
+                        "weekly",
+                        "monthly",
+                        "yearly",
+                        "unknown"
+                    ]
+                },
+                "providerOrganization": {
+                    "title": "Providerorganization",
+                    "description": "Organization which is responsible for publication of the object type",
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "documentationUrl": {
+                    "title": "Documentationurl",
+                    "description": "Link to the documentation for the object type",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 200
+                },
+                "labels": {
+                    "title": "Labels",
+                    "description": "Key-value pairs of keywords related for the object type",
+                    "type": "object"
                 },
                 "versions": {
                     "type": "array",

@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from objecttypes.core.constants import DataClassificationChoices
 from objecttypes.core.tests.factories import ObjectTypeFactory
 from objecttypes.utils.test import TokenAuthMixin
 
@@ -11,10 +12,16 @@ class FilterTests(TokenAuthMixin, APITestCase):
     url = reverse_lazy("objecttype-list")
 
     def test_filter_public_data(self):
-        object_type_1 = ObjectTypeFactory.create(public_data=True)
-        object_type_2 = ObjectTypeFactory.create(public_data=False)
+        object_type_1 = ObjectTypeFactory.create(
+            data_classification=DataClassificationChoices.open
+        )
+        object_type_2 = ObjectTypeFactory.create(
+            data_classification=DataClassificationChoices.intern
+        )
 
-        response = self.client.get(self.url, {"publicData": True})
+        response = self.client.get(
+            self.url, {"dataClassification": DataClassificationChoices.open}
+        )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
