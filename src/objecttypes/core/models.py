@@ -120,7 +120,7 @@ class ObjectVersion(models.Model):
         ObjectType, on_delete=models.CASCADE, related_name="versions"
     )
     version = models.PositiveSmallIntegerField(
-        _("version"), help_text=_("Integer version of the OBJECTTYPE"), default=1
+        _("version"), help_text=_("Integer version of the OBJECTTYPE")
     )
     publication_date = models.DateField(
         _("publication date"),
@@ -152,3 +152,21 @@ class ObjectVersion(models.Model):
             schema_validator.check_schema(self.json_schema)
         except SchemaError as exc:
             raise ValidationError(exc.args[0]) from exc
+
+    def save(self, *args, **kwargs):
+        if not self.version:
+            self.version = self.generate_version_number()
+
+        super().save(*args, **kwargs)
+
+    def generate_version_number(self) -> int:
+        existed_versions = ObjectVersion.objects.filter(object_type=self.object_type)
+
+        max_version = 0
+        if existed_versions.exists():
+            max_version = existed_versions.aggregate(models.Max("version"))[
+                "version__max"
+            ]
+
+        version_number = max_version + 1
+        return version_number
