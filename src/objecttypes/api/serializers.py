@@ -31,6 +31,13 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
             "status": {"read_only": True},
         }
 
+    def create(self, validated_data):
+        kwargs = self.context["request"].resolver_match.kwargs
+        object_type = ObjectType.objects.get(uuid=kwargs["objecttype_uuid"])
+        validated_data["object_type"] = object_type
+
+        return super().create(validated_data)
+
 
 class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
     versions = NestedHyperlinkedRelatedField(
