@@ -4,6 +4,8 @@ from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
 
 from objecttypes.core.models import ObjectType, ObjectVersion
 
+from .validators import JsonSchemaValidator, VersionUpdateValidator
+
 
 class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
     parent_lookup_kwargs = {"objecttype_uuid": "object_type__uuid"}
@@ -27,9 +29,13 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
                 "read_only": True,
             },
             "publicationDate": {"source": "publication_date", "read_only": True},
-            "jsonSchema": {"source": "json_schema"},
+            "jsonSchema": {
+                "source": "json_schema",
+                "validators": [JsonSchemaValidator()],
+            },
             "status": {"read_only": True},
         }
+        validators = [VersionUpdateValidator()]
 
     def create(self, validated_data):
         kwargs = self.context["request"].resolver_match.kwargs
