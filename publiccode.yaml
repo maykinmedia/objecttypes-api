@@ -1,0 +1,107 @@
+# This repository adheres to the publiccode.yml standard by including this
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+
+name: Objecttypes API
+url: 'http://github.com/maykinmedia/objecttypes-api.git'
+softwareType: standalone/backend
+softwareVersion: 0.1.0
+releaseDate: '2020-11-27'
+logo: 'https://github.com/maykinmedia/objects-api/blob/master/docs/logo.png'
+platforms:
+  - web
+  - linux
+  - windows
+  - mac
+
+categories:
+  - data-collection
+  - it-development
+
+developmentStatus: beta
+
+description:
+  nl:
+    shortDescription: API voor het beheren van objecttypen
+    documentation: 'https://objects-and-objecttypes-api.readthedocs.io/'
+    apiDocumentation: 'https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/openapi.yaml'
+    features:
+      - Objecttypen API
+      - Minimalistische objecttypen beheerinterface
+    genericName: API component
+    longDescription: >
+      De **Objecttypen API** heeft als doel om uiteenlopende typen objecten op een
+      dynamische wijze te standaardiseren op landelijk niveau en om te voorkomen dat
+      voor elk (eenvoudig) object een volledige API wordt opgezet.
+
+      Deze landelijke Objecttypen API is noodzakelijk voor het registreren van
+      objecten in lokale [Objecten API's](http://github.com/maykinmedia/objects-api). Organisaties kunnen lokaal ook een
+      Objecttypen API draaien en zo landelijke als lokale definities van objecten
+      hanteren.
+
+  en:
+    shortDescription: API to manage objecttypes
+    documentation: 'https://objects-and-objecttypes-api.readthedocs.io/'
+    apiDocumentation: 'https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/openapi.yaml'
+    features:
+      - Objecttypes API
+      - Minimalistic objecttypes beheerinterface
+    genericName: API component
+    longDescription: >
+      The **Objecttypes API** aims to standardize various types of objects, on a national
+      level, in an accessible way and without the need to create a whole new API for
+      each (simple) object.
+
+      This national Objecttypes API is required for registering objects in local
+      [Objects APIs](http://github.com/maykinmedia/objects-api). Organisations can also run an Objecttypes API locally, to use both national and local definitions of objects.
+
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Maykin Media
+  repoOwner: Maykin Media
+
+dependsOn:
+  open:
+    - name: Objects API
+      optional: true
+      versionMin: '1.0'
+    - name: PostgreSQL
+      optional: false
+      versionMin: '11.0'
+    - name: Kubernetes
+      optional: true
+      versionMin: '1.12'
+    - name: Docker
+      optional: true
+      versionMin: '18.0'
+
+inputTypes:
+  - application/json
+
+outputTypes:
+  - application/json
+  - text/html
+
+intendedAudience:
+  countries:
+    - nl
+  scope:
+    - government
+
+localisation:
+  availableLanguages:
+    - nl
+    - en
+  localisationReady: false
+
+maintenance:
+  type: contract
+  contractors:
+  - name: Maykin Media
+    email: info@maykinmedia.nl
+    website: https://www.maykinmedia.nl/
+  contacts:
+  - name: Joeri Bekker
+    affiliation: Maykin Media
