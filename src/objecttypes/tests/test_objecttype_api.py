@@ -41,6 +41,29 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
             },
         )
 
+    def test_get_objecttypes_with_versions(self):
+        object_types = ObjectTypeFactory.create_batch(2)
+        object_versions = [
+            ObjectVersionFactory.create(object_type=object_type)
+            for object_type in object_types
+        ]
+        for i, object_type in enumerate(object_types):
+            with self.subTest(object_type=object_type):
+                url = reverse("objecttype-detail", args=[object_type.uuid])
+
+                response = self.client.get(url)
+
+                self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+                data = response.json()
+                self.assertEqual(len(data["versions"]), 1)
+                self.assertEqual(
+                    data["versions"],
+                    [
+                        f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_versions[i].version])}"
+                    ],
+                )
+
     def test_create_objecttype(self):
         url = reverse("objecttype-list")
         data = {
@@ -100,10 +123,11 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
             object_type.data_classification, DataClassificationChoices.open
         )
 
-    def test_delete_objecttype_not_supported(self):
+    def test_delete_objecttype(self):
         object_type = ObjectTypeFactory.create()
         url = reverse("objecttype-detail", args=[object_type.uuid])
 
         response = self.client.delete(url)
 
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(ObjectType.objects.count(), 0)

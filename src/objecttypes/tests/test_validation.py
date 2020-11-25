@@ -8,6 +8,25 @@ from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFac
 from objecttypes.utils.test import TokenAuthMixin
 
 
+class ObjectTypeValidationTests(TokenAuthMixin, APITestCase):
+    def test_delete_objecttype_with_versions_fail(self):
+        object_type = ObjectTypeFactory.create()
+        ObjectVersionFactory.create(object_type=object_type)
+        url = reverse("objecttype-detail", args=[object_type.uuid])
+
+        response = self.client.delete(url)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        data = response.json()
+        self.assertEqual(
+            data["non_field_errors"],
+            [
+                "All related versions should be destroyed before destroying the objecttype"
+            ],
+        )
+
+
 class ObjectVersionValidationTests(TokenAuthMixin, APITestCase):
     def test_create_version_with_incorrect_schema_fail(self):
         object_type = ObjectTypeFactory.create()
@@ -48,4 +67,22 @@ class ObjectVersionValidationTests(TokenAuthMixin, APITestCase):
         data = response.json()
         self.assertEqual(
             data["non_field_errors"], ["Only draft versions can be changed"]
+        )
+
+    def test_delete_puclished_version_fail(self):
+        object_type = ObjectTypeFactory.create()
+        object_version = ObjectVersionFactory.create(
+            object_type=object_type, status=ObjectVersionStatus.published
+        )
+        url = reverse(
+            "objectversion-detail", args=[object_type.uuid, object_version.version]
+        )
+
+        response = self.client.delete(url)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        data = response.json()
+        self.assertEqual(
+            data["non_field_errors"], ["Only draft versions can be destroyed"]
         )

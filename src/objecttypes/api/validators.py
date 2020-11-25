@@ -9,7 +9,7 @@ from objecttypes.core.utils import check_json_schema
 
 class VersionUpdateValidator:
     message = _("Only draft versions can be changed")
-    code = "non-draft-object"
+    code = "non-draft-version-update"
 
     def set_context(self, serializer):
         """
