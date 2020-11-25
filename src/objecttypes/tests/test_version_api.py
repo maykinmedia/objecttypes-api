@@ -44,7 +44,7 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
 
     def test_create_version(self):
         object_type = ObjectTypeFactory.create()
-        data = {"jsonSchema": JSON_SCHEMA}
+        data = {"jsonSchema": JSON_SCHEMA, "status": ObjectVersionStatus.published}
         url = reverse("objectversion-list", args=[object_type.uuid])
 
         response = self.client.post(url, data)
@@ -58,7 +58,7 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
         self.assertEqual(object_version.version, 1)
         self.assertEqual(object_version.publication_date, date.today())
-        self.assertEqual(object_version.status, ObjectVersionStatus.draft)
+        self.assertEqual(object_version.status, ObjectVersionStatus.published)
 
     def test_update_version(self):
         object_type = ObjectTypeFactory.create()
@@ -74,9 +74,17 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
             "properties": {"diameter": {"type": "number"}},
         }
 
-        response = self.client.put(url, {"jsonSchema": new_json_schema})
+        response = self.client.put(
+            url,
+            {"jsonSchema": new_json_schema, "status": ObjectVersionStatus.published},
+        )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        object_version.refresh_from_db()
+
+        self.assertEqual(object_version.json_schema, new_json_schema)
+        self.assertEqual(object_version.status, ObjectVersionStatus.published)
 
     def test_delete_version_not_supported(self):
         object_type = ObjectTypeFactory.create()
@@ -88,18 +96,3 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def test_publish_version(self):
-        object_type = ObjectTypeFactory.create()
-        object_version = ObjectVersionFactory.create(object_type=object_type)
-        url = reverse(
-            "objectversion-publish", args=[object_type.uuid, object_version.version]
-        )
-
-        response = self.client.post(url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        object_version.refresh_from_db()
-
-        self.assertEqual(object_version.status, ObjectVersionStatus.published)

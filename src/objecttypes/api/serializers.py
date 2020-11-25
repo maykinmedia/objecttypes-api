@@ -33,7 +33,6 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
                 "source": "json_schema",
                 "validators": [JsonSchemaValidator()],
             },
-            "status": {"read_only": True},
         }
         validators = [VersionUpdateValidator()]
 

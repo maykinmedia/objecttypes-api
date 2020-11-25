@@ -29,14 +29,3 @@ class ObjectVersionViewSet(
     queryset = ObjectVersion.objects.order_by("object_type", "-version")
     serializer_class = ObjectVersionSerializer
     lookup_field = "version"
-
-    @swagger_auto_schema(request_body=no_body)
-    @action(detail=True, methods=["post"])
-    def publish(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.status = ObjectVersionStatus.published
-        instance.save()
-
-        serializer = self.get_serializer(instance)
-
-        return Response(serializer.data)
