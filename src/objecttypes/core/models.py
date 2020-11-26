@@ -96,6 +96,16 @@ class ObjectType(models.Model):
         default=dict,
         blank=True,
     )
+    created_at = models.DateField(
+        _("created at"),
+        auto_now_add=True,
+        help_text=_("Date when the object type was created"),
+    )
+    modified_at = models.DateField(
+        _("modified at"),
+        auto_now=True,
+        help_text=_("Last date when the object type was modified"),
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -119,10 +129,18 @@ class ObjectVersion(models.Model):
     version = models.PositiveSmallIntegerField(
         _("version"), help_text=_("Integer version of the OBJECTTYPE")
     )
-    publication_date = models.DateField(
-        _("publication date"),
-        default=date.today,
-        help_text=_("Date of Version publication"),
+    created_at = models.DateField(
+        _("created at"),
+        auto_now_add=True,
+        help_text=_("Date when the version was created"),
+    )
+    modified_at = models.DateField(
+        _("modified at"),
+        auto_now=True,
+        help_text=_("Last date when the version was modified"),
+    )
+    published_at = models.DateField(
+        _("published_at"), null=True, help_text=_("Date when the version was published")
     )
     json_schema = JSONField(
         _("JSON schema"), help_text=_("JSON schema for Object validation"), default=dict

@@ -95,6 +95,7 @@ class ObjectTypeAdmin(admin.ModelAdmin):
     def publish(self, request, obj):
         last_version = obj.last_version
         last_version.status = ObjectVersionStatus.published
+        last_version.published_at = date.today()
         last_version.save()
 
         msg = format_html(
@@ -110,7 +111,6 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         new_version.pk = None
         new_version.version = new_version.version + 1
         new_version.status = ObjectVersionStatus.draft
-        new_version.publication_date = date.today()
         new_version.save()
 
         msg = format_html(
