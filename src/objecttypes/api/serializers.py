@@ -16,9 +16,11 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
             "url",
             "version",
             "objectType",
-            "publicationDate",
             "status",
             "jsonSchema",
+            "createdAt",
+            "modifiedAt",
+            "publishedAt",
         )
         extra_kwargs = {
             "url": {"lookup_field": "version"},
@@ -28,11 +30,13 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
                 "lookup_field": "uuid",
                 "read_only": True,
             },
-            "publicationDate": {"source": "publication_date", "read_only": True},
             "jsonSchema": {
                 "source": "json_schema",
                 "validators": [JsonSchemaValidator()],
             },
+            "createdAt": {"source": "created_at", "read_only": True},
+            "modifiedAt": {"source": "modified_at", "read_only": True},
+            "publishedAt": {"source": "published_at", "read_only": True},
         }
         validators = [VersionUpdateValidator()]
 
@@ -70,6 +74,8 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "providerOrganization",
             "documentationUrl",
             "labels",
+            "createdAt",
+            "modifiedAt",
             "versions",
         )
         extra_kwargs = {
@@ -83,4 +89,6 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "updateFrequency": {"source": "update_frequency"},
             "providerOrganization": {"source": "provider_organization"},
             "documentationUrl": {"source": "documentation_url"},
+            "createdAt": {"source": "created_at", "read_only": True},
+            "modifiedAt": {"source": "modified_at", "read_only": True},
         }
