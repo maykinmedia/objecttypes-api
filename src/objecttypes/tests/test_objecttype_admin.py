@@ -24,6 +24,7 @@ JSON_SCHEMA = {
 }
 
 
+@freeze_time("2020-01-01")
 class AdminAddTests(WebTest):
     url = reverse_lazy("admin:core_objecttype_add")
 
@@ -55,8 +56,6 @@ class AdminAddTests(WebTest):
         form["provider_organization"] = "tree provider"
         form["documentation_url"] = "http://example.com/doc/trees"
         form["labels"] = json.dumps({"key1": "value1"})
-
-        form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(JSON_SCHEMA)
 
         response = form.submit()
@@ -82,14 +81,18 @@ class AdminAddTests(WebTest):
         self.assertEqual(object_type.provider_organization, "tree provider")
         self.assertEqual(object_type.documentation_url, "http://example.com/doc/trees")
         self.assertEqual(object_type.labels, {"key1": "value1"})
+        self.assertEqual(object_type.created_at, date(2020, 1, 1))
+        self.assertEqual(object_type.modified_at, date(2020, 1, 1))
         self.assertEqual(object_type.versions.count(), 1)
 
         object_version = object_type.last_version
 
         self.assertEqual(object_version.version, 1)
-        self.assertEqual(object_version.publication_date, date(2020, 1, 1))
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
         self.assertEqual(object_version.status, ObjectVersionStatus.draft)
+        self.assertEqual(object_version.created_at, date(2020, 1, 1))
+        self.assertEqual(object_version.modified_at, date(2020, 1, 1))
+        self.assertIsNone(object_version.published_at)
 
     def test_create_objecttype_without_version_fail(self):
         get_response = self.app.get(self.url)
@@ -113,7 +116,6 @@ class AdminAddTests(WebTest):
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
         form["maintainer_organization"] = "tree municipality"
-        form["versions-0-publication_date"] = date(2020, 1, 1)
         form["versions-0-json_schema"] = json.dumps(
             {
                 "title": "Tree",
@@ -152,8 +154,18 @@ class AdminDetailTests(WebTest):
         self.assertEqual(int(form["versions-0-id"].value), object_type.last_version.id)
 
     def test_update_draft(self):
+        old_schema = {
+            "type": "object",
+            "title": "Tree",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+                "diameter": {"type": "integer", "description": "size in cm."}
+            },
+        }
         object_type = ObjectTypeFactory.create()
-        object_version = ObjectVersionFactory.create(object_type=object_type)
+        object_version = ObjectVersionFactory.create(
+            object_type=object_type, json_schema=old_schema
+        )
         url = reverse("admin:core_objecttype_change", args=[object_type.id])
 
         get_response = self.app.get(url)
@@ -162,13 +174,13 @@ class AdminDetailTests(WebTest):
         self.assertIsNotNone(save_button)
 
         form = get_response.form
-        form["versions-0-publication_date"] = date(2020, 1, 1)
+        form["versions-0-json_schema"] = json.dumps(JSON_SCHEMA)
         response = form.submit()
 
         self.assertEqual(response.status_code, 302)
 
         object_version.refresh_from_db()
-        self.assertEqual(object_version.publication_date, date(2020, 1, 1))
+        self.assertEqual(object_version.json_schema, JSON_SCHEMA)
 
     def test_update_published_no_buttons(self):
         object_type = ObjectTypeFactory.create()
@@ -199,6 +211,7 @@ class AdminDetailTests(WebTest):
 
         object_version.refresh_from_db()
         self.assertEqual(object_version.status, ObjectVersionStatus.published)
+        self.assertEqual(object_version.published_at, date.today())
 
     def test_publish_published_no_button(self):
         object_type = ObjectTypeFactory.create()
@@ -247,7 +260,6 @@ class AdminDetailTests(WebTest):
         self.assertNotEqual(last_version, object_version)
         self.assertEqual(last_version.version, object_version.version + 1)
         self.assertEqual(last_version.json_schema, object_version.json_schema)
-        self.assertEqual(last_version.publication_date, date(2020, 2, 2))
         self.assertEqual(last_version.status, ObjectVersionStatus.draft)
 
     def test_display_all_versions_in_history(self):
@@ -256,6 +268,7 @@ class AdminDetailTests(WebTest):
         url = reverse("admin:core_objecttype_history", args=[object_type.id])
 
         response = self.app.get(url)
+        object_type = response.context["object"]
 
         self.assertEqual(response.status_code, 200)
 
@@ -265,10 +278,5 @@ class AdminDetailTests(WebTest):
         self.assertEqual(len(table_rows), 3)
 
         for object_version, row in zip(object_type.ordered_versions, table_rows):
-            row_version, row_status, row_schema = row.find_all("td")
+            row_version = row.find("td")
             self.assertEqual(int(row_version.text), object_version.version)
-            self.assertEqual(row_status.text, object_version.get_status_display())
-            self.assertEqual(
-                json.loads(row_schema.text.replace("'", '"')),
-                object_version.json_schema,
-            )

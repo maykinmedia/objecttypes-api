@@ -2,6 +2,7 @@ from datetime import date
 
 from django.urls import reverse
 
+from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -19,6 +20,7 @@ JSON_SCHEMA = {
 }
 
 
+@freeze_time("2020-01-01")
 class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
     def test_get_versions(self):
         object_type = ObjectTypeFactory.create()
@@ -35,8 +37,10 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
                     "url": f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}",
                     "version": object_version.version,
                     "objectType": f"http://testserver{reverse('objecttype-detail', args=[object_version.object_type.uuid])}",
-                    "publicationDate": object_version.publication_date.isoformat(),
                     "status": object_version.status,
+                    "createdAt": "2020-01-01",
+                    "modifiedAt": "2020-01-01",
+                    "publishedAt": None,
                     "jsonSchema": JSON_SCHEMA,
                 }
             ],
@@ -57,8 +61,10 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
         self.assertEqual(object_version.object_type, object_type)
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
         self.assertEqual(object_version.version, 1)
-        self.assertEqual(object_version.publication_date, date.today())
         self.assertEqual(object_version.status, ObjectVersionStatus.published)
+        self.assertEqual(object_version.created_at, date(2020, 1, 1))
+        self.assertEqual(object_version.modified_at, date(2020, 1, 1))
+        self.assertEqual(object_version.published_at, date(2020, 1, 1))
 
     def test_update_version(self):
         object_type = ObjectTypeFactory.create()
@@ -85,6 +91,7 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
 
         self.assertEqual(object_version.json_schema, new_json_schema)
         self.assertEqual(object_version.status, ObjectVersionStatus.published)
+        self.assertEqual(object_version.published_at, date(2020, 1, 1))
 
     def test_delete_version(self):
         object_type = ObjectTypeFactory.create()
