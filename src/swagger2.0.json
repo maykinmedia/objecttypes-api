@@ -2214,6 +2214,20 @@
                     "description": "Key-value pairs of keywords related for the object type",
                     "type": "object"
                 },
+                "createdAt": {
+                    "title": "Createdat",
+                    "description": "Date when the object type was created",
+                    "type": "string",
+                    "format": "date",
+                    "readOnly": true
+                },
+                "modifiedAt": {
+                    "title": "Modifiedat",
+                    "description": "Last date when the object type was modified",
+                    "type": "string",
+                    "format": "date",
+                    "readOnly": true
+                },
                 "versions": {
                     "type": "array",
                     "items": {
@@ -2373,13 +2387,6 @@
                     "format": "uri",
                     "readOnly": true
                 },
-                "publicationDate": {
-                    "title": "Publicationdate",
-                    "description": "Date of Version publication",
-                    "type": "string",
-                    "format": "date",
-                    "readOnly": true
-                },
                 "status": {
                     "title": "Status",
                     "description": "Status of the object type version",
@@ -2394,6 +2401,27 @@
                     "title": "JSON schema",
                     "description": "JSON schema for Object validation",
                     "type": "object"
+                },
+                "createdAt": {
+                    "title": "Createdat",
+                    "description": "Date when the version was created",
+                    "type": "string",
+                    "format": "date",
+                    "readOnly": true
+                },
+                "modifiedAt": {
+                    "title": "Modifiedat",
+                    "description": "Last date when the version was modified",
+                    "type": "string",
+                    "format": "date",
+                    "readOnly": true
+                },
+                "publishedAt": {
+                    "title": "Published_at",
+                    "description": "Date when the version was published",
+                    "type": "string",
+                    "format": "date",
+                    "readOnly": true
                 }
             }
         }
