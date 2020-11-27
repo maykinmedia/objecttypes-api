@@ -46,6 +46,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 help_text="Date when the version was published",
                 null=True,
+                blank=True,
                 verbose_name="published_at",
             ),
         ),

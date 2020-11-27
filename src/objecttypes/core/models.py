@@ -140,7 +140,10 @@ class ObjectVersion(models.Model):
         help_text=_("Last date when the version was modified"),
     )
     published_at = models.DateField(
-        _("published_at"), null=True, help_text=_("Date when the version was published")
+        _("published_at"),
+        null=True,
+        blank=True,
+        help_text=_("Date when the version was published"),
     )
     json_schema = JSONField(
         _("JSON schema"), help_text=_("JSON schema for Object validation"), default=dict
@@ -167,6 +170,16 @@ class ObjectVersion(models.Model):
     def save(self, *args, **kwargs):
         if not self.version:
             self.version = self.generate_version_number()
+
+        # save published_at
+        previous_status = (
+            ObjectVersion.objects.get(id=self.id).status if self.id else None
+        )
+        if (
+            self.status == ObjectVersionStatus.published
+            and previous_status != self.status
+        ):
+            self.published_at = date.today()
 
         super().save(*args, **kwargs)
 

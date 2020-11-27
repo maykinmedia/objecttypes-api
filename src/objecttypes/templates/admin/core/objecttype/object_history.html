@@ -8,18 +8,22 @@
         <table id="change-history">
             <thead>
                 <tr>
-                    <th scope="col">{% trans 'Publication date' %}</th>
                     <th scope="col">{% trans 'Version' %}</th>
                     <th scope="col">{% trans 'Status' %}</th>
+                    <th scope="col">{% trans 'Created at' %}</th>
+                    <th scope="col">{% trans 'Modified at' %}</th>
+                    <th scope="col">{% trans 'Published at' %}</th>
                     <th scope="col">{% trans 'JSON schema' %}</th>
                 </tr>
             </thead>
             <tbody>
             {% for version in object.ordered_versions %}
                 <tr>
-                    <th scope="row">{{ version.publication_date }}</th>
                     <td>{{ version.version }}</td>
                     <td>{{ version.get_status_display }}</td>
+                    <td>{{ version.created_at }}</td>
+                    <td>{{ version.modified_at }}</td>
+                    <td>{{ version.published_at }}</td>
                     <td>{{ version.json_schema }}</td>
                 </tr>
             {% endfor %}
