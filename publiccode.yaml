@@ -47,7 +47,7 @@ description:
     apiDocumentation: 'https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/openapi.yaml'
     features:
       - Objecttypes API
-      - Minimalistic objecttypes beheerinterface
+      - Minimalistic objecttypes management interface
     genericName: API component
     longDescription: >
       The **Objecttypes API** aims to standardize various types of objects, on a national
