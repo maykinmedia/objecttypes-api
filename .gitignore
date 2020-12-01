@@ -13,6 +13,10 @@ __pycache__
 # Javascript libraries
 /node_modules/
 
+# Generated files
+src/objecttypes/static/bundles/
+/volumes/
+
 # Coverage reports
 /reports/
 /htmlcov/
@@ -38,3 +42,7 @@ src/objecttypes/static/js/
 /tests/postman
 /sdks/
 openapitools.json
+
+# Auto generated files
+src/resources.md
+src/swagger2.0.json
