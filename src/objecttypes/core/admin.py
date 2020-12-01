@@ -1,5 +1,4 @@
 import json
-from datetime import date
 
 from django.contrib import admin, messages
 from django.contrib.postgres.fields import JSONField
@@ -29,7 +28,7 @@ class ObjectVersionInline(admin.StackedInline):
     extra = 0
     max_num = 1
     min_num = 1
-    readonly_fields = ("version", "status")
+    readonly_fields = ("version", "status", "published_at")
     formfield_overrides = {JSONField: {"widget": JSONSuit}}
 
     def get_queryset(self, request):
@@ -110,7 +109,6 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         new_version.pk = None
         new_version.version = new_version.version + 1
         new_version.status = ObjectVersionStatus.draft
-        new_version.publication_date = date.today()
         new_version.save()
 
         msg = format_html(

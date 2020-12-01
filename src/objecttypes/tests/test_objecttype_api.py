@@ -1,5 +1,8 @@
+from datetime import date
+
 from django.urls import reverse
 
+from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -9,6 +12,7 @@ from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFac
 from objecttypes.utils.test import TokenAuthMixin
 
 
+@freeze_time("2020-01-01")
 class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
     def test_get_objecttypes(self):
         object_type = ObjectTypeFactory.create()
@@ -35,6 +39,8 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 "providerOrganization": object_type.provider_organization,
                 "documentationUrl": object_type.documentation_url,
                 "labels": object_type.labels,
+                "createdAt": "2020-01-01",
+                "modifiedAt": "2020-01-01",
                 "versions": [
                     f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}"
                 ],
@@ -104,6 +110,8 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
         self.assertEqual(object_type.provider_organization, "tree provider")
         self.assertEqual(object_type.documentation_url, "http://example.com/doc/trees")
         self.assertEqual(object_type.labels, {"key1": "value1"})
+        self.assertEqual(object_type.created_at, date(2020, 1, 1))
+        self.assertEqual(object_type.modified_at, date(2020, 1, 1))
 
     def test_update_objecttype(self):
         object_type = ObjectTypeFactory.create(
