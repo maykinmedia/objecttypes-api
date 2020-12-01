@@ -1,0 +1,80 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+  <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{{ settings.PROJECT_NAME }} API</h1>
+    <p class="lead">{{ settings.SITE_TITLE }}</p>
+  </div>
+
+  <div class="container text-center">
+
+    <ul class="nav nav-tabs justify-content-center" id="languageChoice" role="tablist">
+      <li class="nav-item ">
+        <a class="nav-link active text-info" id="en-tab" data-toggle="tab" href="#en" role="tab" aria-controls="en" aria-selected="true">English</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-info" id="nl-tab" data-toggle="tab" href="#nl" role="tab" aria-controls="nl" aria-selected="false">Nederlands</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="description">
+      <div class="tab-pane fade show active" id="en" role="tabpanel" aria-labelledby="en-tab">
+
+        <br>
+        <p>
+          The Objecttypes API aims to standardize various types of objects, on a national
+          level, in an accessible way and without the need to create a whole new API for
+          each (simple) object.
+
+
+        </p>
+        <p>
+          This national Objecttypes API is required for registering objects in local
+          <a class="text-info" href="https://github.com/maykinmedia/objects-api">
+            Objects API</a>. Organisations can also run an Objecttypes API locally, to use
+          both national and local definitions of objects.
+        </p>
+
+      </div>
+      <div class="tab-pane fade" id="nl" role="tabpanel" aria-labelledby="nl-tab">
+
+        <br>
+        <p>
+          De Objecttypen API heeft als doel om uiteenlopende typen objecten op een
+          dynamische wijze te standaardiseren op landelijk niveau en om te voorkomen dat
+          voor elk (eenvoudig) object een volledige API wordt opgezet.
+          
+          
+
+        </p>
+        <p>
+          Deze landelijke Objecttypen API is noodzakelijk voor het registreren van
+          objecten in lokale 
+          <a class="text-info" href="https://github.com/maykinmedia/objecttypes-api">
+            Objecttypen API</a>. Organisaties kunnen lokaal ook een
+          Objecttypen API draaien en zo landelijke als lokale definities van objecten
+          hanteren.
+        </p>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <p>
+      <b>Licensed under the <a class="text-info" href="https://github.com/maykinmedia/objects-api/blob/master/LICENSE.md">
+        European Union Public License (EUPL) 1.2</a></b>
+    </p>
+
+    <p>
+      <a href="{% url 'schema-redoc' %}" class="btn btn-sm btn-info"><i class="fas fa-file-alt"></i> Open API specification</a>
+      <a href="{% url 'api-root' %}" class="btn btn-sm btn-info"><i class="fas fa-wifi"></i> API root</a>
+    </p>
+
+    <p>
+      <a href="{% url 'admin:index' %}" class="btn btn-sm btn-danger"><i class="fas fa-lock"></i> Administration</a>
+    </p>
+
+  </div>
+
+{% endblock %}
