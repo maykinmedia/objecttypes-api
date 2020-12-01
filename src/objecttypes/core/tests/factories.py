@@ -14,7 +14,6 @@ class ObjectTypeFactory(factory.django.DjangoModelFactory):
 
 class ObjectVersionFactory(factory.django.DjangoModelFactory):
     object_type = factory.SubFactory(ObjectTypeFactory)
-    version = factory.Sequence(lambda n: n)
     json_schema = {
         "type": "object",
         "title": "Tree",
