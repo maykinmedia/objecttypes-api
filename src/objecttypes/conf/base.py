@@ -114,8 +114,6 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "objecttypes.utils.context_processors.settings",
-                # REQUIRED FOR ADMIN INDEX
-                "django_admin_index.context_processors.dashboard",
             ],
             "loaders": RAW_TEMPLATE_LOADERS,
         },
@@ -149,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = "nl-nl"
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Europe/Amsterdam"
 
@@ -285,7 +283,8 @@ AUTHENTICATION_BACKENDS = [
 #
 # Custom settings
 #
-PROJECT_NAME = "objecttypes"
+PROJECT_NAME = "Objecttypes"
+SITE_TITLE = "Starting point"
 ENVIRONMENT = None
 SHOW_ALERT = True
 
@@ -295,8 +294,7 @@ SHOW_ALERT = True
 
 
 # Django-Admin-Index
-ADMIN_INDEX_SHOW_REMAINING_APPS = True
-ADMIN_INDEX_AUTO_CREATE_APP_GROUP = True
+ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS = False
 
 # Django-Axes (4.0+)
 #
