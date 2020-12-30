@@ -4,7 +4,7 @@
 # overwrites the existing one.
 #
 # You can load this fixture with:
-# $ src/manage.py loaddata src/openzaak/fixtures/default_admin_index.json
+# $ src/manage.py loaddata default_admin_index
 #
 # Run this script from the root of the repository
 
