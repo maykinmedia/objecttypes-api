@@ -142,6 +142,18 @@ class AdminDetailTests(WebTest):
 
         self.app.set_user(self.user)
 
+    def test_display_successfully_without_versions(self):
+        object_type = ObjectTypeFactory.create()
+        url = reverse("admin:core_objecttype_change", args=[object_type.id])
+
+        get_response = self.app.get(url)
+
+        self.assertEqual(get_response.status_code, 200)
+
+        form = get_response.form
+
+        self.assertEqual(form["versions-0-id"].value, "")
+
     def test_display_only_last_version(self):
         object_type = ObjectTypeFactory.create()
         ObjectVersionFactory.create_batch(3, object_type=object_type)
