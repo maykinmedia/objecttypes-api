@@ -16,6 +16,9 @@ def can_change(obj) -> bool:
     if not obj:
         return True
 
+    if not obj.last_version:
+        return True
+
     if obj.last_version.status == ObjectVersionStatus.draft:
         return True
 
@@ -40,6 +43,8 @@ class ObjectVersionInline(admin.StackedInline):
         last_version = (
             queryset.filter(object_type_id=parent_id).order_by("-version").first()
         )
+        if not last_version:
+            return queryset.none()
         return queryset.filter(id=last_version.id)
 
     def has_delete_permission(self, request, obj=None):
