@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext_lazy as _
+
 from rest_framework import serializers
 from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
@@ -39,6 +41,17 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
             "publishedAt": {"source": "published_at", "read_only": True},
         }
         validators = [VersionUpdateValidator()]
+
+    def validate(self, attrs):
+        valid_attrs = super().validate(attrs)
+
+        # check parent url
+        kwargs = self.context["request"].resolver_match.kwargs
+        if not ObjectType.objects.filter(uuid=kwargs["objecttype_uuid"]).exists():
+            msg = _("Objecttype url is invalid")
+            raise serializers.ValidationError(msg, code="invalid-objecttype")
+
+        return valid_attrs
 
     def create(self, validated_data):
         kwargs = self.context["request"].resolver_match.kwargs

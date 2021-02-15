@@ -1,3 +1,5 @@
+import uuid
+
 from django.urls import reverse
 
 from rest_framework import status
@@ -43,6 +45,25 @@ class ObjectVersionValidationTests(TokenAuthMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertTrue("jsonSchema" in response.json())
+
+    def test_create_version_with_incorrect_objecttype_fail(self):
+        url = reverse("objectversion-list", args=[uuid.uuid4()])
+        data = {
+            "jsonSchema": {
+                "title": "Tree",
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "properties": {
+                    "diameter": {"type": "integer", "description": "size in cm."}
+                },
+            }
+        }
+
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(
+            response.json()["non_field_errors"], ["Objecttype url is invalid"]
+        )
 
     def test_update_published_version_fail(self):
         object_type = ObjectTypeFactory.create()
