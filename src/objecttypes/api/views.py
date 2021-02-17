@@ -38,6 +38,7 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = ObjectVersion.objects.order_by("object_type", "-version")
     serializer_class = ObjectVersionSerializer
     lookup_field = "version"
+    pagination_class = None
 
     def perform_destroy(self, instance):
         if instance.status != ObjectVersionStatus.draft:

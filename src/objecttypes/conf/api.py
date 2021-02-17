@@ -14,6 +14,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "objecttypes.token.permissions.IsTokenAuthenticated"
     ],
+    "DEFAULT_PAGINATION_CLASS": "objecttypes.api.pagination.DynamicPageSizePagination",
     # test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
