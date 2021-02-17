@@ -1,6 +1,4 @@
-from rest_framework.authtoken.models import Token
-
-from objecttypes.accounts.models import User
+from objecttypes.token.models import TokenAuth
 
 
 class TokenAuthMixin:
@@ -8,10 +6,11 @@ class TokenAuthMixin:
     def setUpTestData(cls):
         super().setUpTestData()
 
-        test_user = User.objects.create(username="testsuite", password="letmein")
-        cls.token = Token.objects.create(user=test_user)
+        cls.token_auth = TokenAuth.objects.create(
+            contact_person="testsuite", email="test@letmein.nl"
+        )
 
     def setUp(self):
         super().setUp()
 
-        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.token}")
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {self.token_auth.token}")
