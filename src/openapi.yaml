@@ -22,6 +22,18 @@ paths:
           - intern
           - confidential
           - strictly_confidential
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        description: Number of results to return per page.
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: OK
@@ -34,9 +46,25 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ObjectType'
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                    format: uri
+                    nullable: true
+                  previous:
+                    type: string
+                    format: uri
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectType'
         '400':
           description: Bad request
           headers:
@@ -571,12 +599,12 @@ paths:
           for details.
         required: false
         examples:
-          multipleValues:
-            summary: Multiple ETag values
-            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
           oneValue:
             summary: One ETag value
             value: '"79054025255fb1a26e4bc422aef54eb4"'
+          multipleValues:
+            summary: Multiple ETag values
+            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
         schema:
           type: string
       responses:
@@ -1156,12 +1184,12 @@ paths:
           for details.
         required: false
         examples:
-          multipleValues:
-            summary: Multiple ETag values
-            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
           oneValue:
             summary: One ETag value
             value: '"79054025255fb1a26e4bc422aef54eb4"'
+          multipleValues:
+            summary: Multiple ETag values
+            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
         schema:
           type: string
       responses:
@@ -1742,9 +1770,9 @@ components:
       required: true
   securitySchemes:
     Token:
-      in: header
-      name: Authorization
       type: apiKey
+      name: Authorization
+      in: header
   schemas:
     ObjectType:
       required:
