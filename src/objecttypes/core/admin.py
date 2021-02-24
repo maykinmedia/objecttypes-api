@@ -6,7 +6,11 @@ from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from jsonsuit.widgets import JSONSuit
+from jsonsuit.widgets import (
+    READONLY_WIDGET_MEDIA_CSS,
+    READONLY_WIDGET_MEDIA_JS,
+    JSONSuit,
+)
 
 from .constants import ObjectVersionStatus
 from .models import ObjectType, ObjectVersion
@@ -68,11 +72,15 @@ class ObjectVersionInline(admin.StackedInline):
 
     def json_schema_readonly(self, obj):
         return format_html(
-            '<pre><code class="language-json">{}</code></pre>',
+            '<div class="suit"><pre><code class="language-json">{}</code></pre></div>',
             json.dumps(obj.json_schema, indent=2),
         )
 
     json_schema_readonly.short_description = "JSON schema"
+
+    class Media:
+        js = READONLY_WIDGET_MEDIA_JS
+        css = READONLY_WIDGET_MEDIA_CSS
 
 
 @admin.register(ObjectType)
