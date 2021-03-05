@@ -68,6 +68,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
         lookup_field="version",
         view_name="objectversion-detail",
         parent_lookup_kwargs={"objecttype_uuid": "object_type__uuid"},
+        help_text=_("list of URLs for the OBJECTTYPE versions"),
     )
 
     class Meta:

@@ -1,7 +1,22 @@
 openapi: 3.0.0
 info:
   title: Objecttypes API
-  description: An API to access Object types
+  description: "An API to manage Object types.\n\n# Introduction\n\nAn OBJECTTYPE\
+    \ represents a collection of objects of similar form and/or function.\nAn OBJECTTYPE\
+    \ includes a definition of an object, represented as a JSON schema, and\nmetadata\
+    \ attributes. Metadata is stored on the top level and the JSON schema itself is\
+    \ stored\nin VERSIONs because the definition of an object can change over time.\n\
+    \n## Versions\n\nOver time, an OBJECTTYPE can also change. This is reflected with\
+    \ VERSIONs. \n\nA VERSION contains the JSON schema of an OBJECTTYPE at a certain\
+    \ time. Each\nOBJECTTYPE can have several VERSIONs. A VERSION can have the `status`\
+    \ \"draft\" or \"published\".\nOnly draft VERSIONs are allowed to be changed.\
+    \ Once a VERSION is published\nit becomes immutable, and if changes are still\
+    \ required a new VERSION should be created.\n\n## JSON schema validation\n\nOBJECTTYPEs\
+    \ are created to ensure that OBJECTs in the Objects API have the same\nwell defined\
+    \ structure. The JSON schema makes this possible.\nThe Objects API retrieves the\
+    \ related OBJECTTYPE and validates the object data against\nthe JSON schema in\
+    \ the appropriate VERSION of the OBJECTTYPE.\n\n**Useful links**\n\n* [JSON schema](https://json-schema.org/)\n\
+    \n"
   version: 1.0.0
 security:
 - Token: []
@@ -571,12 +586,12 @@ paths:
           for details.
         required: false
         examples:
-          multipleValues:
-            summary: Multiple ETag values
-            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
           oneValue:
             summary: One ETag value
             value: '"79054025255fb1a26e4bc422aef54eb4"'
+          multipleValues:
+            summary: Multiple ETag values
+            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
         schema:
           type: string
       responses:
@@ -1156,12 +1171,12 @@ paths:
           for details.
         required: false
         examples:
-          multipleValues:
-            summary: Multiple ETag values
-            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
           oneValue:
             summary: One ETag value
             value: '"79054025255fb1a26e4bc422aef54eb4"'
+          multipleValues:
+            summary: Multiple ETag values
+            value: '"79054025255fb1a26e4bc422aef54eb4", "e4d909c290d0fb1ca068ffaddf22cbd0"'
         schema:
           type: string
       responses:
@@ -1742,9 +1757,9 @@ components:
       required: true
   securitySchemes:
     Token:
-      in: header
-      name: Authorization
       type: apiKey
+      name: Authorization
+      in: header
   schemas:
     ObjectType:
       required:
@@ -1855,8 +1870,10 @@ components:
           format: date
           readOnly: true
         versions:
+          description: list of URLs for the OBJECTTYPE versions
           type: array
           items:
+            description: list of URLs for the OBJECTTYPE versions
             type: string
             format: uri
           readOnly: true
