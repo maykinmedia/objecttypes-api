@@ -7,23 +7,25 @@ description = """An API to manage Object types.
 # Introduction
 
 An OBJECTTYPE represents a collection of objects of similar form and/or function.
-An OBJECTTYPE includes a definition of objects, represented as a JSON-schema, and
-metadata attributes. Metadata are stores on the high level, JSON schema is prone
-to changes and is stored in VERSIONs (see below).
+An OBJECTTYPE includes a definition of an object, represented as a JSON schema, and
+metadata attributes. Metadata is stored on the top level and the JSON schema itself is stored
+in VERSIONs because the definition of an object can change over time.
 
 ## Versions
 
+Over time, an OBJECTTYPE can also change. This is reflected with VERSIONs. 
+
 A VERSION contains the JSON schema of an OBJECTTYPE at a certain time. Each
-OBJECTTYPE can have several VERSIONs. VERSIONs can be `draft` and `published`.
+OBJECTTYPE can have several VERSIONs. A VERSION can have the `status` "draft" or "published".
 Only draft VERSIONs are allowed to be changed. Once a VERSION is published
 it becomes immutable, and if changes are still required a new VERSION should be created.
 
 ## JSON schema validation
 
-OBJECTTYPEs are created to ensure that OBJECTs in Objects API have the same
-well defined structure. To serve this purpose JSON schemas are used.
-Every time an OBJECT is created or updated in Objects API its `data` in JSON form
-are validated against JSON schema in the related OBJECTTYPE VERSION.
+OBJECTTYPEs are created to ensure that OBJECTs in the Objects API have the same
+well defined structure. The JSON schema makes this possible.
+The Objects API retrieves the related OBJECTTYPE and validates the object data against
+the JSON schema in the appropriate VERSION of the OBJECTTYPE.
 
 **Useful links**
 
