@@ -85,7 +85,12 @@ class ObjectVersionInline(admin.StackedInline):
 
 @admin.register(ObjectType)
 class ObjectTypeAdmin(admin.ModelAdmin):
-    list_display = ("name", "name_plural")
+    list_display = (
+        "name",
+        "uuid",
+        "data_classification",
+    )
+    list_filder = ("data_classification",)
     search_fields = ("uuid",)
     readonly_fields = ("uuid",)
     inlines = [ObjectVersionInline]
