@@ -1776,6 +1776,11 @@ components:
           readOnly: true
           maxLength: 1000
           minLength: 1
+        uuid:
+          title: Uuid
+          description: Unique identifier (UUID4)
+          type: string
+          format: uuid
         name:
           title: Name
           description: Name of the object type
