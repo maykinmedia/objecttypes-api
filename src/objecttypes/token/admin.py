@@ -5,4 +5,11 @@ from .models import TokenAuth
 
 @admin.register(TokenAuth)
 class TokenAuthAdmin(admin.ModelAdmin):
-    list_display = ("token", "contact_person", "email", "created")
+    readonly_fields = ("token",)
+    list_display = (
+        "token",
+        "contact_person",
+        "organization",
+        "administration",
+        "application",
+    )
