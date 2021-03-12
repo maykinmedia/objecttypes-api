@@ -6,7 +6,11 @@ from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
 
 from objecttypes.core.models import ObjectType, ObjectVersion
 
-from .validators import JsonSchemaValidator, VersionUpdateValidator
+from .validators import (
+    IsImmutableValidator,
+    JsonSchemaValidator,
+    VersionUpdateValidator,
+)
 
 
 class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
@@ -75,6 +79,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
         model = ObjectType
         fields = (
             "url",
+            "uuid",
             "name",
             "namePlural",
             "description",
@@ -94,6 +99,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
         )
         extra_kwargs = {
             "url": {"lookup_field": "uuid"},
+            "uuid": {"validators": [IsImmutableValidator()]},
             "namePlural": {"source": "name_plural"},
             "dataClassification": {"source": "data_classification"},
             "maintainerOrganization": {"source": "maintainer_organization"},
