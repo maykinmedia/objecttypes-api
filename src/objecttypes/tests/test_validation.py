@@ -11,6 +11,17 @@ from objecttypes.utils.test import TokenAuthMixin
 
 
 class ObjectTypeValidationTests(TokenAuthMixin, APITestCase):
+    def test_patch_objecttype_with_uuid_fail(self):
+        object_type = ObjectTypeFactory.create()
+        url = reverse("objecttype-detail", args=[object_type.uuid])
+
+        response = self.client.patch(url, {"uuid": uuid.uuid4()})
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        data = response.json()
+        self.assertEqual(data["uuid"], ["This field can't be changed"])
+
     def test_delete_objecttype_with_versions_fail(self):
         object_type = ObjectTypeFactory.create()
         ObjectVersionFactory.create(object_type=object_type)

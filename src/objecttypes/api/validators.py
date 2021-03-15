@@ -36,3 +36,31 @@ class JsonSchemaValidator:
             check_json_schema(value)
         except ValidationError as exc:
             raise serializers.ValidationError(exc.args[0], code=self.code) from exc
+
+
+class IsImmutableValidator:
+    """
+    Validate that the field should not be changed in update action
+    """
+
+    message = _("This field can't be changed")
+    code = "immutable-field"
+
+    def set_context(self, serializer_field):
+        """
+        This hook is called by the serializer instance,
+        prior to the validation call being made.
+        """
+        # Determine the existing instance, if this is an update operation.
+        self.serializer_field = serializer_field
+        self.instance = getattr(serializer_field.parent, "instance", None)
+
+    def __call__(self, new_value):
+        # no instance -> it's not an update
+        if not self.instance:
+            return
+
+        current_value = getattr(self.instance, self.serializer_field.source)
+
+        if new_value != current_value:
+            raise serializers.ValidationError(self.message, code=self.code)

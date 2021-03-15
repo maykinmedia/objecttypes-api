@@ -26,6 +26,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
             response.json(),
             {
                 "url": f"http://testserver{url}",
+                "uuid": str(object_type.uuid),
                 "name": object_type.name,
                 "namePlural": object_type.name_plural,
                 "description": object_type.description,
