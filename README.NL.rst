@@ -41,6 +41,8 @@ latest          n.v.t.          `ReDoc <https://redocly.github.io/redoc/?url=htt
                                 `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/1.0.0/src/openapi.yaml>`_
 ==============  ==============  =============================
 
+Vorige versies worden nog 6 maanden ondersteund nadat de volgende versie is uitgebracht.
+
 Zie: `Alle versies en wijzigingen <https://github.com/maykinmedia/objecttypes-api/blob/master/CHANGELOG.rst>`_
 
 
