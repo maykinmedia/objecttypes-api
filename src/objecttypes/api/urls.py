@@ -1,8 +1,9 @@
 from django.conf.urls import include
 from django.urls import path, re_path
 
+from drf_yasg.renderers import SwaggerJSONRenderer
 from vng_api_common import routers
-from vng_api_common.schema import SchemaView
+from vng_api_common.schema import SPEC_RENDERERS, SchemaView
 
 from .views import ObjectTypeViewSet, ObjectVersionViewSet
 
@@ -14,6 +15,21 @@ router.register(
 )
 
 
+class JsonSchemaView(SchemaView):
+    @property
+    def _is_openapi_v2(self) -> bool:
+        return False
+
+    def get_renderers(self):
+        # only json renderers
+        renderers = [
+            renderer()
+            for renderer in SPEC_RENDERERS
+            if isinstance(renderer(), SwaggerJSONRenderer)
+        ]
+        return renderers
+
+
 urlpatterns = [
     path("v1/", include(router.urls)),
     path(
@@ -23,7 +39,7 @@ urlpatterns = [
                 re_path(
                     r"^schema/openapi(?P<format>\.json|\.yaml)$",
                     SchemaView.without_ui(cache_timeout=0),
-                    name="schema-json",
+                    name="schema-yaml",
                 ),
                 re_path(
                     r"^schema/$",
@@ -32,5 +48,10 @@ urlpatterns = [
                 ),
             ]
         ),
+    ),
+    path(
+        "v1",
+        JsonSchemaView.without_ui(cache_timeout=0),
+        name="schema-json",
     ),
 ]
