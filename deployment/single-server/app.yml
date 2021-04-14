@@ -5,7 +5,7 @@
 #     ansible-playbook app.yml --become --ask-become-pass
 #
 
-- name: Catalogi Importer
+- name: Objecttypes API
   hosts: all
 
   collections:
@@ -29,7 +29,7 @@
     django_app_docker_version: latest
     django_app_docker_image_name: maykinmedia/objecttypes-api
     django_app_docker_replicas: 1
-    django_app_docker_port_start: 12000
+    django_app_docker_port_start: 12001
 
     django_app_docker_volumes:
       - name: "{{ django_app_docker_name_prefix }}-media"
