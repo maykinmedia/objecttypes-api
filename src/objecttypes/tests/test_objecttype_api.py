@@ -14,6 +14,43 @@ from objecttypes.utils.test import TokenAuthMixin
 
 @freeze_time("2020-01-01")
 class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
+    def test_list_objecttypes(self):
+        object_type = ObjectTypeFactory.create()
+        url = reverse("objecttype-list")
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.json(),
+            {
+                "count": 1,
+                "next": None,
+                "previous": None,
+                "results": [
+                    {
+                        "url": f"http://testserver{reverse('objecttype-detail', args=[object_type.uuid])}",
+                        "name": object_type.name,
+                        "namePlural": object_type.name_plural,
+                        "description": object_type.description,
+                        "dataClassification": object_type.data_classification,
+                        "maintainerOrganization": object_type.maintainer_organization,
+                        "maintainerDepartment": object_type.maintainer_department,
+                        "contactPerson": object_type.contact_person,
+                        "contactEmail": object_type.contact_email,
+                        "source": object_type.source,
+                        "updateFrequency": object_type.update_frequency,
+                        "providerOrganization": object_type.provider_organization,
+                        "documentationUrl": object_type.documentation_url,
+                        "labels": object_type.labels,
+                        "createdAt": "2020-01-01",
+                        "modifiedAt": "2020-01-01",
+                        "versions": [],
+                    },
+                ],
+            },
+        )
+
     def test_get_objecttypes(self):
         object_type = ObjectTypeFactory.create()
         object_version = ObjectVersionFactory.create(object_type=object_type)
