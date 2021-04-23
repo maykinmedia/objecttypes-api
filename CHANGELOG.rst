@@ -12,8 +12,8 @@ Change history
 * Adhered the Objecttypes API to API principles API-18, API-19, API-51 defined in API Design Rules of Nederlandse API Strategie (maykinmedia/objects-api#46)
 * Improved the Admin UI:
 
-    * Prettify `json_schema` field on the "object type" page (maykinmedia/objects-api#117)
-    * Inlcude `uuid` field to "object type" page (maykinmedia/objects-api#156)
+  * Prettify `json_schema` field on the "object type" page (maykinmedia/objects-api#117)
+  * Include `uuid` field to "object type" page (maykinmedia/objects-api#156)
 
 **Bugfixes**
 
