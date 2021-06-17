@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.settings import api_settings

@@ -63,4 +63,5 @@ SPECTACULAR_SETTINGS = {
         "url": "https://objects-and-objecttypes-api.readthedocs.io/",
     },
     "VERSION": "1.1.0",
+    "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
 }

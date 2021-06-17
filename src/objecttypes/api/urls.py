@@ -1,12 +1,13 @@
 from django.conf.urls import include
 from django.urls import path
 
-from vng_api_common import routers
 from drf_spectacular.views import (
     SpectacularJSONAPIView,
     SpectacularRedocView,
     SpectacularYAMLAPIView,
 )
+from vng_api_common import routers
+
 from .views import ObjectTypeViewSet, ObjectVersionViewSet
 
 router = routers.DefaultRouter()
