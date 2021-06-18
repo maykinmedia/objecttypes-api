@@ -48,6 +48,13 @@ RUN mkdir /app/log /app/config
 COPY --from=frontend-build /app/src/objecttypes/static/css /app/src/objecttypes/static/css
 COPY --from=frontend-build /app/src/objecttypes/static/js /app/src/objecttypes/static/js
 COPY ./src /app/src
+
+RUN useradd -M -u 1000 user
+RUN chown -R user /app
+
+# drop privileges
+USER user
+
 ARG COMMIT_HASH
 ARG RELEASE
 ENV GIT_SHA=${COMMIT_HASH}
