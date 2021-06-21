@@ -64,4 +64,5 @@ SPECTACULAR_SETTINGS = {
     },
     "VERSION": "1.1.0",
     "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
+    "COMPONENT_NO_READ_ONLY_REQUIRED": True,
 }

@@ -156,7 +156,7 @@ paths:
           description: Created
   /api/v1/objecttypes/{objecttype_uuid}/versions/{version}:
     get:
-      operationId: objectversion_retrieve
+      operationId: objectversion_read
       description: ''
       parameters:
       - in: path
@@ -269,7 +269,7 @@ paths:
                 $ref: '#/components/schemas/ObjectVersion'
           description: OK
     delete:
-      operationId: objectversion_destroy
+      operationId: objectversion_delete
       description: ''
       parameters:
       - in: path
@@ -295,7 +295,7 @@ paths:
           description: No response body
   /api/v1/objecttypes/{uuid}:
     get:
-      operationId: objecttype_retrieve
+      operationId: objecttype_read
       description: ''
       parameters:
       - in: path
@@ -388,7 +388,7 @@ paths:
                 $ref: '#/components/schemas/ObjectType'
           description: OK
     delete:
-      operationId: objecttype_destroy
+      operationId: objecttype_delete
       description: ''
       parameters:
       - in: path
@@ -503,12 +503,8 @@ components:
           readOnly: true
           description: list of URLs for the OBJECTTYPE versions
       required:
-      - createdAt
-      - modifiedAt
       - name
       - namePlural
-      - url
-      - versions
     ObjectVersion:
       type: object
       description: |-
@@ -557,13 +553,6 @@ components:
           readOnly: true
           title: Published_at
           description: Date when the version was published
-      required:
-      - createdAt
-      - modifiedAt
-      - objectType
-      - publishedAt
-      - url
-      - version
     PatchedObjectType:
       type: object
       properties:
