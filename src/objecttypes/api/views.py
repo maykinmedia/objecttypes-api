@@ -13,6 +13,10 @@ from .filters import ObjectTypeFilterSet
 from .serializers import ObjectTypeSerializer, ObjectVersionSerializer
 
 
+@extend_schema_view(
+    retrieve=extend_schema(operation_id="objecttype_read"),
+    destroy=extend_schema(operation_id="objecttype_delete"),
+)
 class ObjectTypeViewSet(viewsets.ModelViewSet):
     queryset = ObjectType.objects.prefetch_related("versions").order_by("-pk")
     serializer_class = ObjectTypeSerializer
@@ -35,6 +39,10 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
         super().perform_destroy(instance)
 
 
+@extend_schema_view(
+    retrieve=extend_schema(operation_id="objectversion_read"),
+    destroy=extend_schema(operation_id="objectversion_delete"),
+)
 class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = ObjectVersion.objects.order_by("object_type", "-version")
     serializer_class = ObjectVersionSerializer
