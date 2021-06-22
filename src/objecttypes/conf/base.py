@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     "compat",  # Part of hijack
     "hijack_admin",
     "rest_framework",
-    "drf_yasg",
+    "drf_spectacular",
     "vng_api_common",
     # Project applications.
     "objecttypes.accounts",

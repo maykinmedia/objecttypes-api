@@ -21,9 +21,9 @@ django-sniplates
 # API libraries
 djangorestframework
 # django-extra-fields
-# django-filter
+django-filter
 drf-nested-routers
-drf-yasg  # api documentation
+drf-spectacular
 
 # WSGI servers & monitoring - production oriented
 uwsgi
