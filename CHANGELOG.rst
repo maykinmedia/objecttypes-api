@@ -2,6 +2,14 @@
 Change history
 ==============
 
+1.1.1 (2022-06-22)
+------------------
+
+**Bugfixes and QOL**
+
+* Fixed OAS generation: remove unrelated error response bodies and headers (#56)
+
+
 1.1.0 (2021-04-21)
 ------------------
 
