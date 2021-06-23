@@ -9,8 +9,8 @@ from vng_api_common.viewsets import NestedViewSetMixin
 from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectType, ObjectVersion
 
-from .filters import ObjectTypeFilterSet
-from .serializers import ObjectTypeSerializer, ObjectVersionSerializer
+from ..filters import ObjectTypeFilterSet
+from ..serializers import ObjectTypeSerializer, ObjectVersionSerializer
 
 
 @extend_schema_view(
