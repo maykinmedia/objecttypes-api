@@ -1,11 +1,11 @@
-from django.urls import reverse, reverse_lazy
-
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from objecttypes.core.constants import DataClassificationChoices
 from objecttypes.core.tests.factories import ObjectTypeFactory
 from objecttypes.utils.test import TokenAuthMixin
+
+from .utils import reverse, reverse_lazy
 
 
 class FilterTests(TokenAuthMixin, APITestCase):

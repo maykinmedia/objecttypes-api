@@ -1,7 +1,5 @@
 from datetime import date
 
-from django.urls import reverse
-
 from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -10,6 +8,8 @@ from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectVersion
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 from objecttypes.utils.test import TokenAuthMixin
+
+from .utils import reverse
 
 JSON_SCHEMA = {
     "type": "object",

@@ -1,10 +1,10 @@
-from django.urls import reverse
-
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from objecttypes.core.tests.factories import ObjectTypeFactory
 from objecttypes.token.models import TokenAuth
+
+from .utils import reverse
 
 
 class AuthTests(APITestCase):
