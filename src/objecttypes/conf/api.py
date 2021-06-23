@@ -15,6 +15,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "objecttypes.token.permissions.IsTokenAuthenticated"
     ],
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
+    "DEFAULT_VERSION": "v1",  # NOT to be confused with API_VERSION - it's the major version part
+    "ALLOWED_VERSIONS": ("v1", "v2"),
+    "VERSION_PARAM": "version",
     # test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
@@ -51,8 +55,7 @@ the JSON schema in the appropriate VERSION of the OBJECTTYPE.
 """
 
 SPECTACULAR_SETTINGS = {
-    "SCHEMA_PATH_PREFIX": r"/api/v1",
-    "TITLE": "Objects API",
+    "TITLE": "Objecttypes API",
     "DESCRIPTION": description,
     "SERVE_INCLUDE_SCHEMA": False,
     "CONTACT": {
@@ -62,7 +65,7 @@ SPECTACULAR_SETTINGS = {
     "EXTERNAL_DOCS": {
         "url": "https://objects-and-objecttypes-api.readthedocs.io/",
     },
-    "VERSION": "1.1.0",
+    "VERSION": None,
     "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
     "COMPONENT_NO_READ_ONLY_REQUIRED": True,
 }

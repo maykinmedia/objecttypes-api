@@ -43,13 +43,13 @@
           De Objecttypen API heeft als doel om uiteenlopende typen objecten op een
           dynamische wijze te standaardiseren op landelijk niveau en om te voorkomen dat
           voor elk (eenvoudig) object een volledige API wordt opgezet.
-          
-          
+
+
 
         </p>
         <p>
           Deze landelijke Objecttypen API is noodzakelijk voor het registreren van
-          objecten in lokale 
+          objecten in lokale
           <a class="text-info" href="https://github.com/maykinmedia/objecttypes-api">
             Objecttypen API</a>. Organisaties kunnen lokaal ook een
           Objecttypen API draaien en zo landelijke als lokale definities van objecten
@@ -66,10 +66,12 @@
         European Union Public License (EUPL) 1.2</a></b>
     </p>
 
+    {% with schema_view=version|add:":schema-redoc" api_root_view=version|add:":api-root" %}
     <p>
-      <a href="{% url 'schema-redoc' %}" class="btn btn-sm btn-info"><i class="fas fa-file-alt"></i> Open API specification</a>
-      <a href="{% url 'api-root' %}" class="btn btn-sm btn-info"><i class="fas fa-wifi"></i> API root</a>
+      <a href="{% url schema_view %}" class="btn btn-sm btn-info"><i class="fas fa-file-alt"></i> Open API specification</a>
+      <a href="{% url api_root_view %}" class="btn btn-sm btn-info"><i class="fas fa-wifi"></i> API root</a>
     </p>
+    {% endwith %}
 
     <p>
       <a href="{% url 'admin:index' %}" class="btn btn-sm btn-danger"><i class="fas fa-lock"></i> Administration</a>
