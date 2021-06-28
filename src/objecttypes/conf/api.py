@@ -1,6 +1,7 @@
 from vng_api_common.conf.api import *  # noqa - imports white-listed
 
 API_VERSION = "1.1.0"
+VERSIONS = {"v1": "1.1.0", "v2": "2.0.0"}
 
 
 # api settings
@@ -68,4 +69,8 @@ SPECTACULAR_SETTINGS = {
     "VERSION": None,
     "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
     "COMPONENT_NO_READ_ONLY_REQUIRED": True,
+    "POSTPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.postprocess_schema_enums",
+        "objecttypes.utils.hooks.postprocess_versions",
+    ],
 }

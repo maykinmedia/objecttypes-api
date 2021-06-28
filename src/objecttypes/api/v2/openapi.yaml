@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Objecttypes API
-  version: v1
+  version: 2.0.0 (v2)
   description: |+
     An API to manage Object types.
 
@@ -37,7 +37,7 @@ info:
   license:
     name: EUPL-1.2
 paths:
-  /api/v1/objecttypes:
+  /api/v2/objecttypes:
     get:
       operationId: objecttype_list
       description: ''
@@ -52,6 +52,18 @@ paths:
           - open
           - strictly_confidential
         description: Confidential level of the object type
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: pageSize
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
       tags:
       - Objecttypes
       security:
@@ -61,9 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ObjectType'
+                $ref: '#/components/schemas/PaginatedObjectTypeList'
           description: OK
     post:
       operationId: objecttype_create
@@ -94,7 +104,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ObjectType'
           description: Created
-  /api/v1/objecttypes/{objecttype_uuid}/versions:
+  /api/v2/objecttypes/{objecttype_uuid}/versions:
     get:
       operationId: objectversion_list
       description: ''
@@ -106,6 +116,18 @@ paths:
           format: uuid
         description: Unique identifier (UUID4)
         required: true
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: pageSize
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
       tags:
       - Objecttypes
       security:
@@ -115,9 +137,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ObjectVersion'
+                $ref: '#/components/schemas/PaginatedObjectVersionList'
           description: OK
     post:
       operationId: objectversion_create
@@ -154,7 +174,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ObjectVersion'
           description: Created
-  /api/v1/objecttypes/{objecttype_uuid}/versions/{version}:
+  /api/v2/objecttypes/{objecttype_uuid}/versions/{version}:
     get:
       operationId: objectversion_read
       description: ''
@@ -293,7 +313,7 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/v1/objecttypes/{uuid}:
+  /api/v2/objecttypes/{uuid}:
     get:
       operationId: objecttype_read
       description: ''
@@ -553,6 +573,46 @@ components:
           readOnly: true
           title: Published_at
           description: Date when the version was published
+    PaginatedObjectTypeList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectType'
+    PaginatedObjectVersionList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectVersion'
     PatchedObjectType:
       type: object
       properties:
