@@ -1,13 +1,13 @@
 import uuid
 
-from django.urls import reverse
-
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 from objecttypes.utils.test import TokenAuthMixin
+
+from .utils import reverse
 
 
 class ObjectTypeValidationTests(TokenAuthMixin, APITestCase):

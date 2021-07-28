@@ -68,6 +68,9 @@ class AutoSchema(_AutoSchema):
             for path_param in path_params
         ]
 
+    def get_tags(self):
+        return ["Objecttypes"]
+
 
 def build_mock_request(method, path, view, original_request, **kwargs):
     """ NestedViewSetMixin requires some tweaking in schema generation """

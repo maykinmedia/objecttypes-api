@@ -1,7 +1,5 @@
 from datetime import date
 
-from django.urls import reverse
-
 from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -10,6 +8,8 @@ from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectVersion
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 from objecttypes.utils.test import TokenAuthMixin
+
+from .utils import reverse
 
 JSON_SCHEMA = {
     "type": "object",
@@ -32,18 +32,23 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
             response.json(),
-            [
-                {
-                    "url": f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}",
-                    "version": object_version.version,
-                    "objectType": f"http://testserver{reverse('objecttype-detail', args=[object_version.object_type.uuid])}",
-                    "status": object_version.status,
-                    "createdAt": "2020-01-01",
-                    "modifiedAt": "2020-01-01",
-                    "publishedAt": None,
-                    "jsonSchema": JSON_SCHEMA,
-                }
-            ],
+            {
+                "count": 1,
+                "next": None,
+                "previous": None,
+                "results": [
+                    {
+                        "url": f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}",
+                        "version": object_version.version,
+                        "objectType": f"http://testserver{reverse('objecttype-detail', args=[object_version.object_type.uuid])}",
+                        "status": object_version.status,
+                        "createdAt": "2020-01-01",
+                        "modifiedAt": "2020-01-01",
+                        "publishedAt": None,
+                        "jsonSchema": JSON_SCHEMA,
+                    }
+                ],
+            },
         )
 
     def test_create_version(self):

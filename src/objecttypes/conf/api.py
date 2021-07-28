@@ -1,6 +1,7 @@
 from vng_api_common.conf.api import *  # noqa - imports white-listed
 
 API_VERSION = "1.1.0"
+VERSIONS = {"v1": "1.1.0", "v2": "2.0.0"}
 
 
 # api settings
@@ -15,6 +16,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "objecttypes.token.permissions.IsTokenAuthenticated"
     ],
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
+    "DEFAULT_VERSION": "v1",  # NOT to be confused with API_VERSION - it's the major version part
+    "ALLOWED_VERSIONS": ("v1", "v2"),
+    "VERSION_PARAM": "version",
     # test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
@@ -51,8 +56,9 @@ the JSON schema in the appropriate VERSION of the OBJECTTYPE.
 """
 
 SPECTACULAR_SETTINGS = {
-    "SCHEMA_PATH_PREFIX": r"/api/v1",
-    "TITLE": "Objects API",
+    "SCHEMA_PATH_PREFIX": r"/api/v[1-9]+",
+    "SCHEMA_PATH_PREFIX_TRIM": True,
+    "TITLE": "Objecttypes API",
     "DESCRIPTION": description,
     "SERVE_INCLUDE_SCHEMA": False,
     "CONTACT": {
@@ -62,7 +68,15 @@ SPECTACULAR_SETTINGS = {
     "EXTERNAL_DOCS": {
         "url": "https://objects-and-objecttypes-api.readthedocs.io/",
     },
-    "VERSION": "1.1.0",
+    "VERSION": None,
     "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
     "COMPONENT_NO_READ_ONLY_REQUIRED": True,
+    "POSTPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.postprocess_schema_enums",
+        "objecttypes.utils.hooks.postprocess_servers",
+        "objecttypes.utils.hooks.postprocess_versions",
+    ],
+    "TAGS": [{"name": "Objecttypes"}],
 }
+
+OAS_SERVERS = {"v1": [{"url": "/api/v1"}], "v2": [{"url": "/api/v2"}]}
