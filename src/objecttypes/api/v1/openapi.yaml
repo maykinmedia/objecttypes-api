@@ -37,7 +37,7 @@ info:
   license:
     name: EUPL-1.2
 paths:
-  /api/v1/objecttypes:
+  /objecttypes:
     get:
       operationId: objecttype_list
       description: ''
@@ -94,7 +94,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ObjectType'
           description: Created
-  /api/v1/objecttypes/{objecttype_uuid}/versions:
+  /objecttypes/{objecttype_uuid}/versions:
     get:
       operationId: objectversion_list
       description: ''
@@ -154,7 +154,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ObjectVersion'
           description: Created
-  /api/v1/objecttypes/{objecttype_uuid}/versions/{version}:
+  /objecttypes/{objecttype_uuid}/versions/{version}:
     get:
       operationId: objectversion_read
       description: ''
@@ -293,7 +293,7 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/v1/objecttypes/{uuid}:
+  /objecttypes/{uuid}:
     get:
       operationId: objecttype_read
       description: ''
@@ -711,5 +711,9 @@ components:
       in: header
       name: Authorization
       description: Token-based authentication with required prefix "Token"
+tags:
+- name: Objecttypes
 externalDocs:
   url: https://objects-and-objecttypes-api.readthedocs.io/
+servers:
+- url: /api/v1
