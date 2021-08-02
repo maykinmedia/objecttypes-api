@@ -27,6 +27,7 @@ JSON_SCHEMA = {
 @freeze_time("2020-01-01")
 class AdminAddTests(WebTest):
     url = reverse_lazy("admin:core_objecttype_add")
+    import_from_url = reverse_lazy("admin:import_from_url")
 
     @classmethod
     def setUpTestData(cls):
@@ -128,6 +129,44 @@ class AdminAddTests(WebTest):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(ObjectType.objects.count(), 0)
+
+    def test_create_objecttype_from_github_url(self):
+        get_response = self.app.get(self.import_from_url)
+
+        form = get_response.form
+        form[
+            "github_url"
+        ] = "https://raw.githubusercontent.com/open-objecten/objecttypes/39d628613b378286cc0b083773df49d9eb55294e/community-concepts/boom/boom-delft.json"
+        # TODO: Use official standard from main branch
+
+        response = form.submit()
+
+        # redirect on successful create, 200 on validation errors, 500 on db errors
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(ObjectType.objects.count(), 1)
+
+        object_type = ObjectType.objects.get()
+
+        self.assertEqual(object_type.name, "Boom")
+        self.assertEqual(object_type.name_plural, "Bomen")
+        self.assertEqual(
+            object_type.description,
+            "Een houtachtig gewas (loofboom of conifeer) met een wortelgestel en een enkele, stevige, houtige stam, die zich boven de grond vertakt.\nToelichting: Een houtachtig gewas (loofboom of conifeer) met een wortelgestel en een enkele, stevige, houtige stam, die zich boven de grond vertakt.",
+        )
+        self.assertEqual(
+            object_type.data_classification, DataClassificationChoices.open
+        )
+        self.assertEqual(object_type.created_at, date(2020, 1, 1))
+        self.assertEqual(object_type.modified_at, date(2020, 1, 1))
+        self.assertEqual(object_type.versions.count(), 1)
+
+        object_version = object_type.last_version
+
+        self.assertEqual(object_version.version, 1)
+        self.assertEqual(object_version.status, ObjectVersionStatus.draft)
+        self.assertEqual(object_version.created_at, date(2020, 1, 1))
+        self.assertEqual(object_version.modified_at, date(2020, 1, 1))
+        self.assertIsNone(object_version.published_at)
 
 
 class AdminDetailTests(WebTest):
