@@ -83,7 +83,7 @@ django-solo==1.1.5
     #   vng-api-common
 django-webtest==1.9.7
     # via -r requirements/test-tools.in
-django==2.2.20
+django==2.2.24
     # via
     #   -r requirements/base.txt
     #   django-axes
@@ -274,7 +274,7 @@ uritemplate==3.0.1
     #   coreapi
     #   drf-spectacular
     #   drf-yasg
-urllib3==1.26.4
+urllib3==1.26.6
     # via
     #   -r requirements/base.txt
     #   elastic-apm
