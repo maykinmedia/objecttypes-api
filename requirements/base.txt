@@ -55,7 +55,7 @@ django-sniplates==0.7.0
     # via -r requirements/base.in
 django-solo==1.1.5
     # via vng-api-common
-django==2.2.20
+django==2.2.24
     # via
     #   -r requirements/base.in
     #   django-axes
@@ -175,7 +175,7 @@ uritemplate==3.0.1
     #   coreapi
     #   drf-spectacular
     #   drf-yasg
-urllib3==1.26.4
+urllib3==1.26.6
     # via
     #   elastic-apm
     #   requests
