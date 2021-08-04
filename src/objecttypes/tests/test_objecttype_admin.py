@@ -194,6 +194,30 @@ class AdminDetailTests(WebTest):
         object_version.refresh_from_db()
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
 
+    def test_update_draft_save_button(self):
+        object_type = ObjectTypeFactory.create()
+        ObjectVersionFactory.create(
+            object_type=object_type, status=ObjectVersionStatus.draft
+        )
+        url = reverse("admin:core_objecttype_change", args=[object_type.id])
+
+        get_response = self.app.get(url)
+
+        save_button = get_response.html.find("input", {"name": "_save"})
+        self.assertIsNotNone(save_button)
+
+    def test_update_published_save_button(self):
+        object_type = ObjectTypeFactory.create()
+        ObjectVersionFactory.create(
+            object_type=object_type, status=ObjectVersionStatus.published
+        )
+        url = reverse("admin:core_objecttype_change", args=[object_type.id])
+
+        get_response = self.app.get(url)
+
+        save_button = get_response.html.find("input", {"name": "_save"})
+        self.assertIsNotNone(save_button)
+
     def test_publish_draft(self):
         object_type = ObjectTypeFactory.create()
         object_version = ObjectVersionFactory.create(object_type=object_type)
