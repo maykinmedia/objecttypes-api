@@ -90,18 +90,12 @@ class ObjectTypeAdmin(admin.ModelAdmin):
     inlines = [ObjectVersionInline]
 
     def get_readonly_fields(self, request, obj=None):
-        if not obj:
-            return super().get_readonly_fields(request, obj)
+        readonly_fields = super().get_readonly_fields(request, obj)
 
-        # make all meta fields read_only when changing the existing object type
-        field_names = [field.name for field in self.opts.local_fields]
-        return field_names
+        if obj:
+            readonly_fields = ("uuid",) + readonly_fields
 
-    def has_change_permission(self, request, obj=None):
-        if not can_change(obj) and "_newversion" not in request.POST:
-            return False
-
-        return super().has_change_permission(request, obj)
+        return readonly_fields
 
     def publish(self, request, obj):
         last_version = obj.last_version
