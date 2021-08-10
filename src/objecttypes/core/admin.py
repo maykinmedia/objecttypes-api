@@ -157,7 +157,7 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         if request.method == "POST":
             form = UrlImportForm(request.POST)
             if form.is_valid():
-                url = form.data.get("github_url")
+                url = form.data.get("objecttype_url")
                 content = requests.get(url).json()
 
                 object_type = ObjectType.objects.create(

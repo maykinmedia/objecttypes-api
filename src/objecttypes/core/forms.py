@@ -1,9 +1,10 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 
 class UrlImportForm(forms.Form):
-    github_url = forms.URLField(
-        label="GitHub URL",
+    objecttype_url = forms.URLField(
+        label="Objecttype URL",
         widget=forms.TextInput(
             attrs={
                 "placeholder": "https://example.com/boom.json",
@@ -11,4 +12,7 @@ class UrlImportForm(forms.Form):
             }
         ),
     )
-    name_plural = forms.CharField(max_length=100)
+    name_plural = forms.CharField(
+        label=_("Plural name"),
+        max_length=100,
+    )
