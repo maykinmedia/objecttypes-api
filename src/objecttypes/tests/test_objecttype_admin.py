@@ -1,5 +1,6 @@
 import json
 from datetime import date
+from json import JSONDecodeError
 
 from django.urls import reverse, reverse_lazy
 
@@ -135,6 +136,7 @@ class AdminAddTests(WebTest):
     @requests_mock.Mocker()
     def test_create_objecttype_from_url(self, m):
         get_response = self.app.get(self.import_from_url)
+
         m.get("https://example.com/tree.json", json=JSON_SCHEMA)
 
         form = get_response.form
@@ -170,6 +172,42 @@ class AdminAddTests(WebTest):
         self.assertEqual(object_version.modified_at, date(2020, 1, 1))
         self.assertIsNone(object_version.published_at)
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
+
+    @requests_mock.Mocker()
+    def test_create_objecttype_from_url_with_invalid_schema(self, m):
+        get_response = self.app.get(self.import_from_url)
+
+        m.get(
+            "https://example.com/tree.json",
+            json={
+                "title": "Tree",
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "any",
+            },
+        )
+
+        form = get_response.form
+        form["objecttype_url"] = "https://example.com/tree.json"
+        form["name_plural"] = "bomen"
+
+        response = form.submit()
+
+        self.assertIn("Invalid JSON schema.", response.text)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(ObjectType.objects.count(), 0)
+
+    def test_create_objecttype_from_url_with_nonexistent_url(self):
+        get_response = self.app.get(self.import_from_url)
+
+        form = get_response.form
+        form["objecttype_url"] = "https://random-url123.com"
+        form["name_plural"] = "bomen"
+
+        response = form.submit()
+
+        self.assertIn("The Objecttype URL does not exist.", response.text)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(ObjectType.objects.count(), 0)
 
 
 class AdminDetailTests(WebTest):

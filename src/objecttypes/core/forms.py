@@ -26,15 +26,19 @@ class UrlImportForm(forms.Form):
 
     def clean_objecttype_url(self):
         url = self.cleaned_data['objecttype_url']
-        response = requests.get(url)
+
+        try:
+            response = requests.get(url)
+        except requests.exceptions.RequestException:
+            raise ValidationError("The Objecttype URL does not exist.")
 
         if response.status_code != requests.codes.ok:
-            raise ValidationError("The URL does not exist.")
+            raise ValidationError("Objecttype URL returned non OK status.")
 
         try:
             response_json = response.json()
         except JSONDecodeError:
-            raise ValidationError("Could not parse JSON from url.")
+            raise ValidationError("Could not parse JSON from Objecttype URL.")
 
         json_schema_validator = JsonSchemaValidator()
 
