@@ -98,7 +98,11 @@ class ObjectTypeAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super().get_urls()
         my_urls = [
-            path("import-from-url/", self.admin_site.admin_view(self.import_from_url_view), name="import_from_url"),
+            path(
+                "import-from-url/",
+                self.admin_site.admin_view(self.import_from_url_view),
+                name="import_from_url",
+            ),
         ]
         return my_urls + urls
 
@@ -157,21 +161,20 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         if request.method == "POST":
             form = UrlImportForm(request.POST)
             if form.is_valid():
-                url = form.data.get("objecttype_url")
-                content = requests.get(url).json()
+                form_json = form.cleaned_data.get("json")
 
                 object_type = ObjectType.objects.create(
-                    name=content["title"].title(),
+                    name=form_json["title"].title(),
                     name_plural=form.data.get("name_plural").title(),
-                    description=content["description"],
+                    description=form_json.get("description", ""),
                 )
                 ObjectVersion.objects.create(
-                    object_type=object_type,
-                    json_schema=content,
+                    object_type=object_type, json_schema=form_json,
                 )
                 return redirect(reverse("admin:core_objecttype_changelist"))
         else:
             form = UrlImportForm()
+
         return render(
             request, "admin/core/objecttype/object_github_form.html", {"form": form}
         )
