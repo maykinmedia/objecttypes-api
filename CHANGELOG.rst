@@ -2,6 +2,19 @@
 Change history
 ==============
 
+1.1.1 (2021-08-17)
+------------------
+
+**New features**
+
+* Supported editing metadata for published object types in the admin (maykinmedia/objects-api#118)
+
+**Bugfixes and QOL**
+
+* Fixed OAS generation: remove unrelated error response bodies and headers (#56)
+* Bumped to newer versions of Django, urllib3, Django Debut Toolbar including security fixes (#61)
+
+
 1.1.0 (2021-04-21)
 ------------------
 
