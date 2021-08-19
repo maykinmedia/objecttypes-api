@@ -169,7 +169,8 @@ class ObjectTypeAdmin(admin.ModelAdmin):
                     description=form_json.get("description", ""),
                 )
                 ObjectVersion.objects.create(
-                    object_type=object_type, json_schema=form_json,
+                    object_type=object_type,
+                    json_schema=form_json,
                 )
                 return redirect(reverse("admin:core_objecttype_changelist"))
         else:

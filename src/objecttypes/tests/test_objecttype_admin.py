@@ -4,10 +4,10 @@ from json import JSONDecodeError
 
 from django.urls import reverse, reverse_lazy
 
+import requests_mock
 from django_webtest import WebTest
 from freezegun import freeze_time
 
-import requests_mock
 from objecttypes.accounts.tests.factories import SuperUserFactory
 from objecttypes.core.constants import (
     DataClassificationChoices,

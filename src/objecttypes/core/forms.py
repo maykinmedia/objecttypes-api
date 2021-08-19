@@ -1,12 +1,13 @@
-from ..api.validators import JsonSchemaValidator
-
 from json.decoder import JSONDecodeError
+
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 import requests
 from rest_framework import exceptions
-from django import forms
-from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
+
+from ..api.validators import JsonSchemaValidator
 
 
 class UrlImportForm(forms.Form):
@@ -29,7 +30,7 @@ class UrlImportForm(forms.Form):
     )
 
     def clean_objecttype_url(self):
-        url = self.cleaned_data['objecttype_url']
+        url = self.cleaned_data["objecttype_url"]
 
         try:
             response = requests.get(url)
@@ -49,6 +50,8 @@ class UrlImportForm(forms.Form):
         try:
             json_schema_validator(response_json)
         except exceptions.ValidationError as e:
-            raise ValidationError(f"Invalid JSON schema. {e.detail[0]}.", code=e.detail[0].code)
+            raise ValidationError(
+                f"Invalid JSON schema. {e.detail[0]}.", code=e.detail[0].code
+            )
 
-        self.cleaned_data['json'] = response_json
+        self.cleaned_data["json"] = response_json
