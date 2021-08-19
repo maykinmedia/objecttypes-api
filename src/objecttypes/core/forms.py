@@ -18,10 +18,14 @@ class UrlImportForm(forms.Form):
                 "size": 100,
             }
         ),
+        required=True,
+        help_text=_("The direct URL for a given objecttype file (JSON)."),
     )
     name_plural = forms.CharField(
         label=_("Plural name"),
         max_length=100,
+        required=True,
+        help_text=_("The plural name variant of the objecttype."),
     )
 
     def clean_objecttype_url(self):

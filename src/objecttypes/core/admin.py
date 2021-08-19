@@ -176,5 +176,5 @@ class ObjectTypeAdmin(admin.ModelAdmin):
             form = UrlImportForm()
 
         return render(
-            request, "admin/core/objecttype/object_github_form.html", {"form": form}
+            request, "admin/core/objecttype/object_import_form.html", {"form": form}
         )

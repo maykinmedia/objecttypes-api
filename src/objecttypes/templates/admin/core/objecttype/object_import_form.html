@@ -1,0 +1,37 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n admin_urls static %}
+
+{% block title %} {% trans "Import objecttype" %} {{ block.super }} {% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:core_objecttype_changelist' %}">{% trans 'Objecttypes' %}</a>
+        &rsaquo; {% trans 'Import from URL' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Import from URL' %}</h1>
+    <div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="module aligned">
+                {% for field in form %}
+                    <div class="form-row">
+                        <label class="{% if field.field.required %}required{% endif %}">{{ field.label|capfirst }}:</label>
+                        {{ field }}
+                        {% if field.field.help_text %}&nbsp;
+                            <img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10"
+                                 height="10" alt="({{ field.field.help_text|striptags }})"
+                                 title="{{ field.field.help_text|striptags }}">{% endif %}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <div class="submit-row">
+                <input type="submit" class="default" value="{% trans 'Import' %}">
+            </div>
+        </form>
+    </div>
+    <br/>
+{% endblock %}
