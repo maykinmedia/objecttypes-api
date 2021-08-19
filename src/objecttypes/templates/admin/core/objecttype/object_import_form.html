@@ -19,6 +19,7 @@
             <fieldset class="module aligned">
                 {% for field in form %}
                     <div class="form-row">
+                        {{ field.errors }}
                         <label class="{% if field.field.required %}required{% endif %}">{{ field.label|capfirst }}:</label>
                         {{ field }}
                         {% if field.field.help_text %}&nbsp;
