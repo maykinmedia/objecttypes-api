@@ -71,6 +71,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "vng_api_common",
+    # 2fa apps
+    "django_otp",
+    "django_otp.plugins.otp_static",
+    "django_otp.plugins.otp_totp",
+    "two_factor",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
@@ -89,6 +94,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
+    "django_otp.middleware.OTPMiddleware",
 ]
 
 ROOT_URLCONF = "objecttypes.urls"
