@@ -302,7 +302,7 @@ SHOW_ALERT = True
 # Django-Admin-Index
 ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS = False
 ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
-    "objecttypess.utils.admin_index.should_display_dropdown_menu"
+    "objecttypes.utils.admin_index.should_display_dropdown_menu"
 )
 
 # Django-Axes (4.0+)
