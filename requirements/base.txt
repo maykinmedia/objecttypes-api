@@ -123,7 +123,7 @@ jsonschema==3.2.0
     #   drf-spectacular
 markupsafe==1.1.1
     # via jinja2
-maykin-django-two-factor-auth[phonenumbers]==2.0.2
+maykin-django-two-factor-auth[phonenumbers]==2.0.3
     # via -r requirements/base.in
 oyaml==1.0
     # via vng-api-common
