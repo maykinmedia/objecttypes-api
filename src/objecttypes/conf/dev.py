@@ -1,4 +1,5 @@
 import os
+import sys
 import warnings
 
 os.environ.setdefault(
@@ -119,6 +120,9 @@ warnings.filterwarnings(
     RuntimeWarning,
     r"django\.db\.models\.fields",
 )
+
+if "test" in sys.argv:
+    TWO_FACTOR_FORCE_OTP_ADMIN = False
 
 # Override settings with local settings.
 try:
