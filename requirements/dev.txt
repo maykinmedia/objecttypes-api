@@ -65,7 +65,7 @@ django-compat==1.0.15
     # via
     #   -r requirements/ci.txt
     #   django-hijack-admin
-django-debug-toolbar==3.2
+django-debug-toolbar==3.2.2
     # via -r requirements/dev.in
 django-extensions==3.1.2
     # via -r requirements/dev.in
@@ -249,7 +249,7 @@ phonenumbers==8.12.31
     # via
     #   -r requirements/ci.txt
     #   maykin-django-two-factor-auth
-pillow==8.2.0
+pillow==8.3.2
     # via -r requirements/ci.txt
 pip-tools==6.1.0
     # via -r requirements/dev.in
@@ -368,7 +368,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via
     #   -r requirements/ci.txt
     #   django
