@@ -131,7 +131,7 @@ packaging==20.9
     # via drf-yasg
 phonenumbers==8.12.31
     # via maykin-django-two-factor-auth
-pillow==8.2.0
+pillow==8.3.2
     # via -r requirements/base.in
 polib==1.1.1
     # via django-rosetta
@@ -183,7 +183,7 @@ six==1.15.0
     #   isodate
     #   jsonschema
     #   qrcode
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via django
 unidecode==1.2.0
     # via vng-api-common
