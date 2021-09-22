@@ -1,8 +1,10 @@
 import json
 from datetime import date
+from json import JSONDecodeError
 
 from django.urls import reverse, reverse_lazy
 
+import requests_mock
 from django_webtest import WebTest
 from freezegun import freeze_time
 
@@ -16,9 +18,10 @@ from objecttypes.core.models import ObjectType
 from objecttypes.core.tests.factories import ObjectTypeFactory, ObjectVersionFactory
 
 JSON_SCHEMA = {
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Tree",
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "description": "A woody plant (deciduous or coniferous) with a root system and a single, sturdy, woody stem, branching above the ground.",
     "required": ["diameter"],
     "properties": {"diameter": {"type": "integer", "description": "size in cm."}},
 }
@@ -27,6 +30,7 @@ JSON_SCHEMA = {
 @freeze_time("2020-01-01")
 class AdminAddTests(WebTest):
     url = reverse_lazy("admin:core_objecttype_add")
+    import_from_url = reverse_lazy("admin:import_from_url")
 
     @classmethod
     def setUpTestData(cls):
@@ -126,6 +130,82 @@ class AdminAddTests(WebTest):
 
         response = form.submit()
 
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(ObjectType.objects.count(), 0)
+
+    @requests_mock.Mocker()
+    def test_create_objecttype_from_url(self, m):
+        get_response = self.app.get(self.import_from_url)
+
+        m.get("https://example.com/tree.json", json=JSON_SCHEMA)
+
+        form = get_response.form
+        form["objecttype_url"] = "https://example.com/tree.json"
+        form["name_plural"] = "Trees"
+
+        response = form.submit()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(ObjectType.objects.count(), 1)
+
+        object_type = ObjectType.objects.get()
+
+        self.assertEqual(object_type.name, "Tree")
+        self.assertEqual(object_type.name_plural, "Trees")
+        self.assertEqual(
+            object_type.description,
+            "A woody plant (deciduous or coniferous) with a root system and a single, sturdy, woody stem, branching "
+            "above the ground.",
+        )
+        self.assertEqual(
+            object_type.data_classification, DataClassificationChoices.open
+        )
+        self.assertEqual(object_type.created_at, date(2020, 1, 1))
+        self.assertEqual(object_type.modified_at, date(2020, 1, 1))
+        self.assertEqual(object_type.versions.count(), 1)
+
+        object_version = object_type.last_version
+
+        self.assertEqual(object_version.version, 1)
+        self.assertEqual(object_version.status, ObjectVersionStatus.draft)
+        self.assertEqual(object_version.created_at, date(2020, 1, 1))
+        self.assertEqual(object_version.modified_at, date(2020, 1, 1))
+        self.assertIsNone(object_version.published_at)
+        self.assertEqual(object_version.json_schema, JSON_SCHEMA)
+
+    @requests_mock.Mocker()
+    def test_create_objecttype_from_url_with_invalid_schema(self, m):
+        get_response = self.app.get(self.import_from_url)
+
+        m.get(
+            "https://example.com/tree.json",
+            json={
+                "title": "Tree",
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "any",
+            },
+        )
+
+        form = get_response.form
+        form["objecttype_url"] = "https://example.com/tree.json"
+        form["name_plural"] = "bomen"
+
+        response = form.submit()
+
+        self.assertIn("Invalid JSON schema.", response.text)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(ObjectType.objects.count(), 0)
+
+    def test_create_objecttype_from_url_with_nonexistent_url(self):
+        get_response = self.app.get(self.import_from_url)
+
+        form = get_response.form
+        form["objecttype_url"] = "https://random-url123.com"
+        form["name_plural"] = "bomen"
+
+        response = form.submit()
+
+        self.assertIn("The Objecttype URL does not exist.", response.text)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(ObjectType.objects.count(), 0)
 

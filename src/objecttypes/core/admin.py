@@ -3,9 +3,12 @@ import json
 from django.contrib import admin, messages
 from django.contrib.postgres.fields import JSONField
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
+import requests
 from jsonsuit.widgets import (
     READONLY_WIDGET_MEDIA_CSS,
     READONLY_WIDGET_MEDIA_JS,
@@ -13,6 +16,7 @@ from jsonsuit.widgets import (
 )
 
 from .constants import ObjectVersionStatus
+from .forms import UrlImportForm
 from .models import ObjectType, ObjectVersion
 
 
@@ -89,6 +93,19 @@ class ObjectTypeAdmin(admin.ModelAdmin):
     search_fields = ("uuid",)
     inlines = [ObjectVersionInline]
 
+    change_list_template = "admin/core/objecttype/object_list.html"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        my_urls = [
+            path(
+                "import-from-url/",
+                self.admin_site.admin_view(self.import_from_url_view),
+                name="import_from_url",
+            ),
+        ]
+        return my_urls + urls
+
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = super().get_readonly_fields(request, obj)
 
@@ -133,3 +150,26 @@ class ObjectTypeAdmin(admin.ModelAdmin):
             return self.add_new_version(request, obj)
 
         return super().response_change(request, obj)
+
+    def import_from_url_view(self, request):
+        if request.method == "POST":
+            form = UrlImportForm(request.POST)
+            if form.is_valid():
+                form_json = form.cleaned_data.get("json")
+
+                object_type = ObjectType.objects.create(
+                    name=form_json["title"].title(),
+                    name_plural=form.data.get("name_plural").title(),
+                    description=form_json.get("description", ""),
+                )
+                ObjectVersion.objects.create(
+                    object_type=object_type,
+                    json_schema=form_json,
+                )
+                return redirect(reverse("admin:core_objecttype_changelist"))
+        else:
+            form = UrlImportForm()
+
+        return render(
+            request, "admin/core/objecttype/object_import_form.html", {"form": form}
+        )
