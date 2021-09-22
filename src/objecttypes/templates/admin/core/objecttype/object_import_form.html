@@ -23,9 +23,8 @@
                         <label class="{% if field.field.required %}required{% endif %}">{{ field.label|capfirst }}:</label>
                         {{ field }}
                         {% if field.field.help_text %}&nbsp;
-                            <img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10"
-                                 height="10" alt="({{ field.field.help_text|striptags }})"
-                                 title="{{ field.field.help_text|striptags }}">{% endif %}
+                            <div class="help">{{ field.field.help_text }}</div>
+                                 {% endif %}
                     </div>
                 {% endfor %}
             </fieldset>
