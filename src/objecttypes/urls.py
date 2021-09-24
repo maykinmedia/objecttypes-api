@@ -45,6 +45,7 @@ urlpatterns = [
             extra_context={"version": api_settings.DEFAULT_VERSION},
         ),
     ),
+    path("oidc/", include("mozilla_django_oidc.urls")),
     path("api/", include("objecttypes.api.urls")),
 ]
 
