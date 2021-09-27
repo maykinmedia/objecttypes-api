@@ -378,3 +378,17 @@ ELASTIC_APM = {
 }
 
 SITE_ID = os.getenv("SITE_ID", 1)
+
+#
+# Maykin fork of DJANGO-TWO-FACTOR-AUTH
+#
+TWO_FACTOR_FORCE_OTP_ADMIN = os.getenv("TWO_FACTOR_FORCE_OTP_ADMIN", "True") in [
+    "True",
+    "true",
+    "yes",
+]
+TWO_FACTOR_PATCH_ADMIN = os.getenv("TWO_FACTOR_PATCH_ADMIN", "True") in [
+    "True",
+    "true",
+    "yes",
+]
