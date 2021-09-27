@@ -8,6 +8,7 @@ import requests
 from rest_framework import exceptions
 
 from ..api.validators import JsonSchemaValidator
+from .models import ObjectVersion
 
 
 class UrlImportForm(forms.Form):
@@ -55,3 +56,17 @@ class UrlImportForm(forms.Form):
             )
 
         self.cleaned_data["json"] = response_json
+
+
+class ObjectVersionForm(forms.ModelForm):
+    class Meta:
+        model = ObjectVersion
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Pass the initial value to the widget, this value is used in case
+        # the new value is invalid JSON which causes the widget to break
+        if "json_schema" in self.initial:
+            self.fields["json_schema"].widget.initial = self.initial["json_schema"]

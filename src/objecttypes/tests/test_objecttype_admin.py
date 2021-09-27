@@ -98,6 +98,41 @@ class AdminAddTests(WebTest):
         self.assertEqual(object_version.modified_at, date(2020, 1, 1))
         self.assertIsNone(object_version.published_at)
 
+    def test_create_objecttype_invalid_json_schema(self):
+        get_response = self.app.get(self.url)
+
+        form = get_response.form
+        form["name"] = "boom"
+        form["name_plural"] = "bomen"
+        form["description"] = "some object type description"
+        form["data_classification"] = DataClassificationChoices.intern
+        form["maintainer_organization"] = "tree municipality"
+        form["maintainer_department"] = "object types department"
+        form["contact_person"] = "John Smith"
+        form["contact_email"] = "John.Smith@objecttypes.nl"
+        form["source"] = "tree system"
+        form["update_frequency"] = UpdateFrequencyChoices.monthly
+        form["provider_organization"] = "tree provider"
+        form["documentation_url"] = "http://example.com/doc/trees"
+        form["labels"] = json.dumps({"key1": "value1"})
+        form["versions-0-json_schema"] = "{}{"
+
+        response = form.submit()
+
+        # redirect on successful create, 200 on validation errors, 500 on db errors
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(ObjectType.objects.count(), 0)
+
+        error_list = response.html.find("ul", {"class": "errorlist"})
+
+        # The submitted value is shown in the error
+        self.assertIn("{}{", error_list.text)
+
+        json_schema_field = response.form.fields["versions-0-json_schema"][0]
+
+        # Verify that the value of the JSON schema field is the fallback value
+        self.assertEqual(json_schema_field.value, "{}")
+
     def test_create_objecttype_without_version_fail(self):
         get_response = self.app.get(self.url)
 
@@ -273,6 +308,45 @@ class AdminDetailTests(WebTest):
 
         object_version.refresh_from_db()
         self.assertEqual(object_version.json_schema, JSON_SCHEMA)
+
+    def test_update_draft_invalid_json_schema(self):
+        old_schema = {
+            "type": "object",
+            "title": "Tree",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+                "diameter": {"type": "integer", "description": "size in cm."}
+            },
+        }
+        object_type = ObjectTypeFactory.create()
+        object_version = ObjectVersionFactory.create(
+            object_type=object_type, json_schema=old_schema
+        )
+        url = reverse("admin:core_objecttype_change", args=[object_type.id])
+
+        get_response = self.app.get(url)
+
+        save_button = get_response.html.find("input", {"name": "_save"})
+        self.assertIsNotNone(save_button)
+
+        form = get_response.form
+        form["versions-0-json_schema"] = "{}{"
+        response = form.submit()
+
+        self.assertEqual(response.status_code, 200)
+
+        object_version.refresh_from_db()
+        self.assertEqual(object_version.json_schema, old_schema)
+
+        error_list = response.html.find("ul", {"class": "errorlist"})
+
+        # The submitted value is shown in the error
+        self.assertIn("{}{", error_list.text)
+
+        json_schema_field = response.form.fields["versions-0-json_schema"][0]
+
+        # Verify that the value of the JSON schema field is the fallback value
+        self.assertEqual(json_schema_field.value, json.dumps(old_schema))
 
     def test_update_draft_save_button(self):
         object_type = ObjectTypeFactory.create()

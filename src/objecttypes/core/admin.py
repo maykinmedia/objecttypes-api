@@ -9,15 +9,12 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 import requests
-from jsonsuit.widgets import (
-    READONLY_WIDGET_MEDIA_CSS,
-    READONLY_WIDGET_MEDIA_JS,
-    JSONSuit,
-)
+from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
 
 from .constants import ObjectVersionStatus
-from .forms import UrlImportForm
+from .forms import ObjectVersionForm, UrlImportForm
 from .models import ObjectType, ObjectVersion
+from .widgets import JSONSuit
 
 
 def can_change(obj) -> bool:
@@ -36,6 +33,7 @@ def can_change(obj) -> bool:
 class ObjectVersionInline(admin.StackedInline):
     verbose_name_plural = _("last version")
     model = ObjectVersion
+    form = ObjectVersionForm
     extra = 0
     max_num = 1
     min_num = 1
