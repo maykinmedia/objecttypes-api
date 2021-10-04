@@ -1,6 +1,6 @@
 from vng_api_common.conf.api import *  # noqa - imports white-listed
 
-API_VERSION = "1.2.0"
+API_VERSION = "2.0.0"
 VERSIONS = {"v1": "1.2.0", "v2": "2.0.0"}
 
 
@@ -17,7 +17,7 @@ REST_FRAMEWORK = {
         "objecttypes.token.permissions.IsTokenAuthenticated"
     ],
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
-    "DEFAULT_VERSION": "v1",  # NOT to be confused with API_VERSION - it's the major version part
+    "DEFAULT_VERSION": "v2",  # NOT to be confused with API_VERSION - it's the major version part
     "ALLOWED_VERSIONS": ("v1", "v2"),
     "VERSION_PARAM": "version",
     # test
