@@ -59,6 +59,10 @@
             [
                 "sites",
                 "site"
+            ],
+            [
+                "mozilla_django_oidc_db",
+                "openidconnectconfig"
             ]
         ]
     }
