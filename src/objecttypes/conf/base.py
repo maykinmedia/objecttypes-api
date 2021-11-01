@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     "objecttypes.accounts",
     "objecttypes.api",
     "objecttypes.core",
+    "objecttypes.github",
     "objecttypes.token",
     "objecttypes.utils",
 ]
