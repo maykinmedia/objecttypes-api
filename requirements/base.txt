@@ -12,7 +12,9 @@ certifi==2020.12.5
     #   requests
     #   sentry-sdk
 cffi==1.14.6
-    # via cryptography
+    # via
+    #   cryptography
+    #   pynacl
 chardet==4.0.0
     # via requests
 coreapi==2.3.3
@@ -26,6 +28,8 @@ cryptography==3.4.8
     #   josepy
     #   mozilla-django-oidc
     #   pyopenssl
+deprecated==1.2.13
+    # via pygithub
 django-admin-index==1.5.0
     # via -r requirements/base.in
 django-axes==5.14.0
@@ -118,8 +122,6 @@ gemma-zds-client==1.0.0
     # via vng-api-common
 idna==2.10
     # via requests
-importlib-metadata==4.8.1
-    # via jsonschema
 inflection==0.5.1
     # via
     #   drf-spectacular
@@ -162,10 +164,15 @@ psycopg2==2.8.6
     #   mozilla-django-oidc-db
 pycparser==2.20
     # via cffi
+pygithub==1.55
+    # via -r requirements/base.in
 pyjwt==2.0.1
     # via
     #   gemma-zds-client
+    #   pygithub
     #   vng-api-common
+pynacl==1.4.0
+    # via pygithub
 pyopenssl==20.0.1
     # via josepy
 pyparsing==2.4.7
@@ -196,6 +203,7 @@ requests==2.25.1
     #   django-rosetta
     #   gemma-zds-client
     #   mozilla-django-oidc
+    #   pygithub
     #   vng-api-common
 ruamel.yaml.clib==0.2.2
     # via ruamel.yaml
@@ -211,12 +219,11 @@ six==1.15.0
     #   isodate
     #   jsonschema
     #   mozilla-django-oidc
+    #   pynacl
     #   pyopenssl
     #   qrcode
 sqlparse==0.4.2
     # via django
-typing-extensions==3.10.0.2
-    # via importlib-metadata
 unidecode==1.2.0
     # via vng-api-common
 uritemplate==3.0.1
@@ -233,8 +240,8 @@ uwsgi==2.0.19.1
     # via -r requirements/base.in
 vng-api-common==1.6.2
     # via -r requirements/base.in
-zipp==3.5.0
-    # via importlib-metadata
+wrapt==1.13.3
+    # via deprecated
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

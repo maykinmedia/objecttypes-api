@@ -34,6 +34,7 @@ cffi==1.14.6
     # via
     #   -r requirements/ci.txt
     #   cryptography
+    #   pynacl
 chardet==4.0.0
     # via
     #   -r requirements/ci.txt
@@ -63,6 +64,10 @@ cssselect==1.1.0
     # via
     #   -r requirements/ci.txt
     #   pyquery
+deprecated==1.2.13
+    # via
+    #   -r requirements/ci.txt
+    #   pygithub
 django-admin-index==1.5.0
     # via -r requirements/ci.txt
 django-axes==5.14.0
@@ -207,12 +212,6 @@ idna==2.10
     #   requests
 imagesize==1.2.0
     # via sphinx
-importlib-metadata==4.8.1
-    # via
-    #   -r requirements/ci.txt
-    #   flake8
-    #   jsonschema
-    #   pep517
 inflection==0.5.1
     # via
     #   -r requirements/ci.txt
@@ -302,13 +301,20 @@ pycparser==2.20
     #   cffi
 pyflakes==2.3.1
     # via flake8
+pygithub==1.55
+    # via -r requirements/ci.txt
 pygments==2.8.1
     # via sphinx
 pyjwt==2.0.1
     # via
     #   -r requirements/ci.txt
     #   gemma-zds-client
+    #   pygithub
     #   vng-api-common
+pynacl==1.4.0
+    # via
+    #   -r requirements/ci.txt
+    #   pygithub
 pyopenssl==20.0.1
     # via
     #   -r requirements/ci.txt
@@ -363,6 +369,7 @@ requests==2.25.1
     #   django-rosetta
     #   gemma-zds-client
     #   mozilla-django-oidc
+    #   pygithub
     #   requests-mock
     #   sphinx
     #   vng-api-common
@@ -385,6 +392,7 @@ six==1.15.0
     #   isodate
     #   jsonschema
     #   mozilla-django-oidc
+    #   pynacl
     #   pyopenssl
     #   python-dateutil
     #   qrcode
@@ -432,10 +440,7 @@ toml==0.10.2
 typed-ast==1.4.3
     # via black
 typing-extensions==3.10.0.2
-    # via
-    #   -r requirements/ci.txt
-    #   black
-    #   importlib-metadata
+    # via black
 unidecode==1.2.0
     # via
     #   -r requirements/ci.txt
@@ -468,11 +473,10 @@ webtest==2.0.35
     # via
     #   -r requirements/ci.txt
     #   django-webtest
-zipp==3.5.0
+wrapt==1.13.3
     # via
     #   -r requirements/ci.txt
-    #   importlib-metadata
-    #   pep517
+    #   deprecated
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

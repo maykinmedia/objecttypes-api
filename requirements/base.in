@@ -5,6 +5,7 @@ pytz  # handle timezones
 python-dotenv  # environment variables for secrets
 python-decouple  # processing of envvar configs
 jsonschema
+PyGithub # client for GitHub API
 
 # Framework libraries
 django < 3.0
