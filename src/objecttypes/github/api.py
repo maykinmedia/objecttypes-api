@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import List
 
 from github import Commit, ContentFile, Github

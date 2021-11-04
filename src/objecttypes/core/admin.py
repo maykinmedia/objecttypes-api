@@ -8,11 +8,10 @@ from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-import requests
 from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
 
 from .constants import ObjectVersionStatus
-from .forms import ObjectVersionForm, UrlImportForm
+from .forms import GithubImportForm, ObjectVersionForm, UrlImportForm
 from .models import ObjectType, ObjectVersion
 from .widgets import JSONSuit
 
@@ -101,6 +100,11 @@ class ObjectTypeAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.import_from_url_view),
                 name="import_from_url",
             ),
+            path(
+                "import-from-github/",
+                self.admin_site.admin_view(self.import_from_github_view),
+                name="import_from_github",
+            ),
         ]
         return my_urls + urls
 
@@ -153,21 +157,29 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         if request.method == "POST":
             form = UrlImportForm(request.POST)
             if form.is_valid():
-                form_json = form.cleaned_data.get("json")
-
-                object_type = ObjectType.objects.create(
-                    name=form_json["title"].title(),
-                    name_plural=form.data.get("name_plural").title(),
-                    description=form_json.get("description", ""),
-                )
-                ObjectVersion.objects.create(
-                    object_type=object_type,
-                    json_schema=form_json,
-                )
+                form.save()
                 return redirect(reverse("admin:core_objecttype_changelist"))
         else:
             form = UrlImportForm()
 
         return render(
             request, "admin/core/objecttype/object_import_form.html", {"form": form}
+        )
+
+    def import_from_github_view(self, request):
+        if request.method == "POST":
+            form = GithubImportForm(request.POST)
+            if form.is_valid():
+                object_type = form.save()
+                msg = format_html(
+                    _("The object type {object_type} has been imported successfully!"),
+                    object_type=object_type,
+                )
+                self.message_user(request, msg, level=messages.SUCCESS)
+                return redirect(reverse("admin:core_objecttype_changelist"))
+        else:
+            form = GithubImportForm()
+
+        return render(
+            request, "admin/core/objecttype/import_from_github.html", {"form": form}
         )

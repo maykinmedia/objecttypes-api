@@ -1,14 +1,11 @@
-from json.decoder import JSONDecodeError
-
 from django import forms
-from django.core.exceptions import ValidationError
+from django.db import transaction
 from django.utils.translation import ugettext_lazy as _
 
-import requests
-from rest_framework import exceptions
+from objecttypes.github.forms import GitHubFileField
 
-from ..api.validators import JsonSchemaValidator
 from .models import ObjectVersion
+from .utils import download_json_schema, import_json_schema
 
 
 class UrlImportForm(forms.Form):
@@ -32,30 +29,38 @@ class UrlImportForm(forms.Form):
 
     def clean_objecttype_url(self):
         url = self.cleaned_data["objecttype_url"]
+        self.cleaned_data["json"] = download_json_schema(url)
 
-        try:
-            response = requests.get(url)
-        except requests.exceptions.RequestException:
-            raise ValidationError("The Objecttype URL does not exist.")
+    @transaction.atomic()
+    def save(self):
+        form_json = self.cleaned_data.get("json")
+        name_plural = self.data.get("name_plural").title()
 
-        if response.status_code != requests.codes.ok:
-            raise ValidationError("Objecttype URL returned non OK status.")
+        return import_json_schema(json_schema=form_json, name_plural=name_plural)
 
-        try:
-            response_json = response.json()
-        except JSONDecodeError:
-            raise ValidationError("Could not parse JSON from Objecttype URL.")
 
-        json_schema_validator = JsonSchemaValidator()
+class GithubImportForm(forms.Form):
+    file_path = GitHubFileField(
+        label=_("GitHub file"),
+        widget=forms.RadioSelect,
+    )
+    name_plural = forms.CharField(
+        label=_("Plural name"),
+        max_length=100,
+        required=True,
+        help_text=_("The plural name variant of the objecttype."),
+    )
 
-        try:
-            json_schema_validator(response_json)
-        except exceptions.ValidationError as e:
-            raise ValidationError(
-                f"Invalid JSON schema. {e.detail[0]}.", code=e.detail[0].code
-            )
+    def clean_file_path(self):
+        url = self.cleaned_data["file_path"]
+        self.cleaned_data["json"] = download_json_schema(url)
 
-        self.cleaned_data["json"] = response_json
+    @transaction.atomic()
+    def save(self):
+        form_json = self.cleaned_data.get("json")
+        name_plural = self.data.get("name_plural").title()
+
+        return import_json_schema(json_schema=form_json, name_plural=name_plural)
 
 
 class ObjectVersionForm(forms.ModelForm):
