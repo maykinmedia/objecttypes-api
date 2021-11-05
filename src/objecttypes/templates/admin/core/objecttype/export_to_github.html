@@ -2,18 +2,21 @@
 {% load i18n admin_urls static %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
-        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-        &rsaquo; <a href="{% url 'admin:core_objecttype_changelist' %}">{% trans 'Objecttypes' %}</a>
-        &rsaquo; {% trans 'Import from Community' %}
-    </div>
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:core_objecttype_changelist' %}">{% trans 'Objecttypes' %}</a>
+    &rsaquo; <a href="{% url 'admin:core_objecttype_change' object.pk|admin_urlquote %}">{{ object|truncatewords:"18" }}</a>
+    &rsaquo; {% trans 'Export to Community' %}
+</div>
 {% endblock %}
 
+
 {% block content %}
-    <h1>{% trans 'Import from Community' %}</h1>
+    <h1>{% trans 'Export JSON schema to Community' %}</h1>
     <div>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+{#            {{ form.as_p }}#}
             <fieldset class="module aligned">
                 {% for field in form %}
                     <div class="form-row">
@@ -27,7 +30,7 @@
                 {% endfor %}
             </fieldset>
             <div class="submit-row">
-                <input type="submit" class="default" value="{% trans 'Import' %}">
+                <input type="submit" class="default" value="{% trans 'Export' %}">
             </div>
         </form>
     </div>
