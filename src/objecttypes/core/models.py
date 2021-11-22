@@ -106,6 +106,11 @@ class ObjectType(models.Model):
         auto_now=True,
         help_text=_("Last date when the object type was modified"),
     )
+    has_geometry = models.BooleanField(
+        _("has geometry"),
+        default=True,
+        help_text=_("Shows whether the related objects have geographic coordinates"),
+    )
 
     def __str__(self):
         return f"{self.name}"

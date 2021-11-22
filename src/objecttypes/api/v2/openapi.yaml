@@ -515,6 +515,9 @@ components:
           format: date
           readOnly: true
           description: Last date when the object type was modified
+        hasGeometry:
+          type: boolean
+          description: Shows whether the related objects have geographic coordinates
         versions:
           type: array
           items:
@@ -694,6 +697,9 @@ components:
           format: date
           readOnly: true
           description: Last date when the object type was modified
+        hasGeometry:
+          type: boolean
+          description: Shows whether the related objects have geographic coordinates
         versions:
           type: array
           items:
