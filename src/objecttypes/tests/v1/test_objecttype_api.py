@@ -42,6 +42,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 "labels": object_type.labels,
                 "createdAt": "2020-01-01",
                 "modifiedAt": "2020-01-01",
+                "hasGeometry": object_type.has_geometry,
                 "versions": [
                     f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}"
                 ],
@@ -87,6 +88,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
             "providerOrganization": "tree provider",
             "documentationUrl": "http://example.com/doc/trees",
             "labels": {"key1": "value1"},
+            "hasGeometry": False,
         }
 
         response = self.client.post(url, data)
@@ -113,6 +115,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
         self.assertEqual(object_type.labels, {"key1": "value1"})
         self.assertEqual(object_type.created_at, date(2020, 1, 1))
         self.assertEqual(object_type.modified_at, date(2020, 1, 1))
+        self.assertEqual(object_type.has_geometry, False)
 
     def test_update_objecttype(self):
         object_type = ObjectTypeFactory.create(
