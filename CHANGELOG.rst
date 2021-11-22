@@ -2,6 +2,30 @@
 Change history
 ==============
 
+2.0.0 (2021-10-04)
+------------------
+
+**Component changes**
+
+* Supports API 2.0.0 and API 1.1.1
+
+* **New features**
+
+  * supported importing of objecttypes from the url in the Objecttypes Admin (#63)
+  * added two-factor authentication for the Objecttypes Admin (maykinmedia/objects-api#232)
+
+* **Bugfixes and QOL**
+
+  * bumped to newer versions of django, django-debug-toolbar, sqlparse, pillow (#65)
+  * fixed widget for JSON schema in the Objecttypes Admin (maykinmedia/objects-api#253)
+
+**API 2.0.0 changes**
+
+* **Breaking features**
+
+  * paginated API responses (maykinmedia/objects-api#148)
+
+
 1.1.1 (2021-08-17)
 ------------------
 
