@@ -109,7 +109,12 @@ class ObjectType(models.Model):
     has_geometry = models.BooleanField(
         _("has geometry"),
         default=True,
-        help_text=_("Shows whether the related objects have geographic coordinates"),
+        help_text=_(
+            "Shows whether the related objects have geographic coordinates. "
+            "If the value is 'false' the related objects are not allowed to "
+            "have coordinates and the creation/update of objects with "
+            "`geometry` property will raise an error "
+        ),
     )
 
     def __str__(self):
