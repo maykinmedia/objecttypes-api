@@ -495,9 +495,9 @@ components:
           format: date
           readOnly: true
           description: Last date when the object type was modified
-        hasGeometry:
+        allowGeometry:
           type: boolean
-          description: 'Shows whether the related objects have geographic coordinates.
+          description: 'Shows whether the related objects can have geographic coordinates.
             If the value is ''false'' the related objects are not allowed to have
             coordinates and the creation/update of objects with `geometry` property
             will raise an error '
@@ -640,9 +640,9 @@ components:
           format: date
           readOnly: true
           description: Last date when the object type was modified
-        hasGeometry:
+        allowGeometry:
           type: boolean
-          description: 'Shows whether the related objects have geographic coordinates.
+          description: 'Shows whether the related objects can have geographic coordinates.
             If the value is ''false'' the related objects are not allowed to have
             coordinates and the creation/update of objects with `geometry` property
             will raise an error '

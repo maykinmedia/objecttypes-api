@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="objecttype",
-            name="can_have_geometry",
+            name="allow_geometry",
             field=models.BooleanField(
                 default=True,
                 help_text="Shows whether the related objects can have geographic coordinates. If the value is 'false' the related objects are not allowed to have coordinates and the creation/update of objects with `geometry` property will raise an error ",
-                verbose_name="can have geometry",
+                verbose_name="allow geometry",
             ),
         ),
     ]
