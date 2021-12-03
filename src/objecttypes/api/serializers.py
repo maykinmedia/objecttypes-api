@@ -95,7 +95,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "labels",
             "createdAt",
             "modifiedAt",
-            "hasGeometry",
+            "canHaveGeometry",
             "versions",
         )
         extra_kwargs = {
@@ -110,7 +110,7 @@ class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
             "updateFrequency": {"source": "update_frequency"},
             "providerOrganization": {"source": "provider_organization"},
             "documentationUrl": {"source": "documentation_url"},
-            "hasGeometry": {"source": "has_geometry"},
+            "canHaveGeometry": {"source": "can_have_geometry"},
             "createdAt": {"source": "created_at", "read_only": True},
             "modifiedAt": {"source": "modified_at", "read_only": True},
         }

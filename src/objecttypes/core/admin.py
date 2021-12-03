@@ -87,7 +87,7 @@ class ObjectVersionInline(admin.StackedInline):
 
 @admin.register(ObjectType)
 class ObjectTypeAdmin(admin.ModelAdmin):
-    list_display = ("name", "name_plural", "has_geometry")
+    list_display = ("name", "name_plural", "can_have_geometry")
     search_fields = ("uuid",)
     inlines = [ObjectVersionInline]
 

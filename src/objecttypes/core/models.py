@@ -106,11 +106,11 @@ class ObjectType(models.Model):
         auto_now=True,
         help_text=_("Last date when the object type was modified"),
     )
-    has_geometry = models.BooleanField(
-        _("has geometry"),
+    can_have_geometry = models.BooleanField(
+        _("can have geometry"),
         default=True,
         help_text=_(
-            "Shows whether the related objects have geographic coordinates. "
+            "Shows whether the related objects can have geographic coordinates. "
             "If the value is 'false' the related objects are not allowed to "
             "have coordinates and the creation/update of objects with "
             "`geometry` property will raise an error "
