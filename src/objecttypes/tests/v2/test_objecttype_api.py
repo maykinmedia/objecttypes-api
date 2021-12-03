@@ -42,6 +42,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 "labels": object_type.labels,
                 "createdAt": "2020-01-01",
                 "modifiedAt": "2020-01-01",
+                "allowGeometry": object_type.allow_geometry,
                 "versions": [
                     f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}"
                 ],
