@@ -80,6 +80,11 @@ affinity: {}
 settings:
   secretKey: NOT-SO-SECRET
   allowedHosts: "*"
+  admins: ""
+  siteId: ""
+  subPath: ""
+  twoFactorForceOtpAdmin: "True"
+  twoFactorPatchAdmin: "False"
 
   database:
     host: objecttypes-postgresql
@@ -91,6 +96,9 @@ settings:
   cache:
     default: open-zaak-redis-master:6379/0
     axes: open-zaak-redis-master:6379/0
+  
+  sentry:
+    dsn: ""
 
 
 #########################
