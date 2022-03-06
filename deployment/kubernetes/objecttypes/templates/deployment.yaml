@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
-                name: {{ include "objecttypes.fullname" . }}
+                name: {{ .Values.existingSecret | default (include "objecttypes.fullname" .) }}
             - configMapRef:
                 name: {{ include "objecttypes.fullname" . }}
           ports:
