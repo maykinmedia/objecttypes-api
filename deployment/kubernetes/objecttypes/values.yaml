@@ -92,6 +92,7 @@ settings:
     username: objecttypes
     password: objecttypes
     name: objecttypes
+    sslmode: prefer
 
   cache:
     default: open-zaak-redis-master:6379/0
