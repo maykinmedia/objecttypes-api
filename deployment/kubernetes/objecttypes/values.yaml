@@ -79,7 +79,7 @@ affinity: {}
 
 settings:
   secretKey: NOT-SO-SECRET
-  allowedHosts: "*"
+  allowedHosts: "objecttypes"
   admins: ""
   siteId: ""
   subPath: ""
