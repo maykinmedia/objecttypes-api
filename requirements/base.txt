@@ -118,8 +118,6 @@ gemma-zds-client==1.0.0
     # via vng-api-common
 idna==2.10
     # via requests
-importlib-metadata==4.8.1
-    # via jsonschema
 inflection==0.5.1
     # via
     #   drf-spectacular
@@ -152,7 +150,7 @@ packaging==20.9
     # via drf-yasg
 phonenumbers==8.12.31
     # via maykin-django-two-factor-auth
-pillow==8.3.2
+pillow==9.0.1
     # via -r requirements/base.in
 polib==1.1.1
     # via django-rosetta
@@ -215,8 +213,6 @@ six==1.15.0
     #   qrcode
 sqlparse==0.4.2
     # via django
-typing-extensions==3.10.0.2
-    # via importlib-metadata
 unidecode==1.2.0
     # via vng-api-common
 uritemplate==3.0.1
@@ -233,8 +229,6 @@ uwsgi==2.0.19.1
     # via -r requirements/base.in
 vng-api-common==1.6.2
     # via -r requirements/base.in
-zipp==3.5.0
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

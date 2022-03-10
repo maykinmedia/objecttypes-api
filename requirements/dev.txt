@@ -207,12 +207,6 @@ idna==2.10
     #   requests
 imagesize==1.2.0
     # via sphinx
-importlib-metadata==4.8.1
-    # via
-    #   -r requirements/ci.txt
-    #   flake8
-    #   jsonschema
-    #   pep517
 inflection==0.5.1
     # via
     #   -r requirements/ci.txt
@@ -282,7 +276,7 @@ phonenumbers==8.12.31
     # via
     #   -r requirements/ci.txt
     #   maykin-django-two-factor-auth
-pillow==8.3.2
+pillow==9.0.1
     # via -r requirements/ci.txt
 pip-tools==6.1.0
     # via -r requirements/dev.in
@@ -432,10 +426,7 @@ toml==0.10.2
 typed-ast==1.4.3
     # via black
 typing-extensions==3.10.0.2
-    # via
-    #   -r requirements/ci.txt
-    #   black
-    #   importlib-metadata
+    # via black
 unidecode==1.2.0
     # via
     #   -r requirements/ci.txt
@@ -468,11 +459,6 @@ webtest==2.0.35
     # via
     #   -r requirements/ci.txt
     #   django-webtest
-zipp==3.5.0
-    # via
-    #   -r requirements/ci.txt
-    #   importlib-metadata
-    #   pep517
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
