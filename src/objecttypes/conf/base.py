@@ -296,6 +296,8 @@ AUTHENTICATION_BACKENDS = [
     "mozilla_django_oidc_db.backends.OIDCAuthenticationBackend",
 ]
 
+SESSION_COOKIE_NAME = "objecttypes_sessionid"
+
 LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
 LOGOUT_REDIRECT_URL = reverse_lazy("admin:index")
 
