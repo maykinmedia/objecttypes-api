@@ -9,15 +9,14 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp build",
-    "watch": "gulp watch",
-    "convert": "swagger2openapi src/swagger2.0.json -o src/openapi.yaml"
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/maykinmedia/objecttypes.git"
+    "url": "git+ssh://git@github.com/maykinmedia/objecttypes.git"
   },
   "author": "Maykin Media",
-  "license": "UNLICENSED",
+  "license": "EUPL",
   "homepage": "https://maykinmedia.nl",
   "dependencies": {
     "microscope-sass": "latest"
@@ -61,7 +60,6 @@
     "sass-loader": "latest",
     "simulant": "latest",
     "sinon": "latest",
-    "swagger2openapi": "^7.0.2",
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-dev-server": "latest",
