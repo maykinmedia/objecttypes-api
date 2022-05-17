@@ -20,6 +20,7 @@ django-sniplates
 maykin-django-two-factor-auth
 maykin-django-two-factor-auth[phonenumbers]
 mozilla-django-oidc-db
+sharing-configs
 
 # API libraries
 djangorestframework

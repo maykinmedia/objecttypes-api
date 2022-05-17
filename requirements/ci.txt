@@ -107,6 +107,7 @@ django-solo==1.1.5
     # via
     #   -r requirements/base.txt
     #   mozilla-django-oidc-db
+    #   sharing-configs
     #   vng-api-common
 django-webtest==1.9.7
     # via -r requirements/test-tools.in
@@ -133,6 +134,7 @@ django==2.2.28
     #   maykin-django-two-factor-auth
     #   mozilla-django-oidc
     #   mozilla-django-oidc-db
+    #   sharing-configs
     #   vng-api-common
 djangorestframework-camel-case==1.2.0
     # via
@@ -296,6 +298,7 @@ requests==2.25.1
     #   gemma-zds-client
     #   mozilla-django-oidc
     #   requests-mock
+    #   sharing-configs
     #   vng-api-common
 ruamel.yaml.clib==0.2.2
     # via
@@ -306,6 +309,8 @@ ruamel.yaml==0.17.4
     #   -r requirements/base.txt
     #   drf-yasg
 sentry-sdk==1.0.0
+    # via -r requirements/base.txt
+sharing-configs==0.1.0
     # via -r requirements/base.txt
 six==1.15.0
     # via

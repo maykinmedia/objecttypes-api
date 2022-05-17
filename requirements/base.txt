@@ -71,6 +71,7 @@ django-sniplates==0.7.0
 django-solo==1.1.5
     # via
     #   mozilla-django-oidc-db
+    #   sharing-configs
     #   vng-api-common
 django==2.2.28
     # via
@@ -94,6 +95,7 @@ django==2.2.28
     #   maykin-django-two-factor-auth
     #   mozilla-django-oidc
     #   mozilla-django-oidc-db
+    #   sharing-configs
     #   vng-api-common
 djangorestframework-camel-case==1.2.0
     # via vng-api-common
@@ -194,12 +196,15 @@ requests==2.25.1
     #   django-rosetta
     #   gemma-zds-client
     #   mozilla-django-oidc
+    #   sharing-configs
     #   vng-api-common
 ruamel.yaml.clib==0.2.2
     # via ruamel.yaml
 ruamel.yaml==0.17.4
     # via drf-yasg
 sentry-sdk==1.0.0
+    # via -r requirements/base.in
+sharing-configs==0.1.0
     # via -r requirements/base.in
 six==1.15.0
     # via
