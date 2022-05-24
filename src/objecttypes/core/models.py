@@ -10,6 +10,7 @@ from .constants import (
     ObjectVersionStatus,
     UpdateFrequencyChoices,
 )
+from .query import ObjectTypeQuerySet
 from .utils import check_json_schema
 
 
@@ -116,6 +117,8 @@ class ObjectType(models.Model):
             "`geometry` property will raise an error "
         ),
     )
+
+    objects = ObjectTypeQuerySet.as_manager()
 
     def __str__(self):
         return f"{self.name}"
