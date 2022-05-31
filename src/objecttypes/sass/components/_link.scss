@@ -1,0 +1,18 @@
+.link {
+  text-decoration: none;
+  color: #17a2b8;
+
+  &:hover {
+    text-decoration: underline;
+    color: #0f6674;
+  }
+
+  &--muted {
+    color: #6c757d;
+
+    &:hover {
+      color: #6c757d;
+    }
+  }
+
+}

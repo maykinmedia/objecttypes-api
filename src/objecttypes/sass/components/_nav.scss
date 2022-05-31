@@ -1,0 +1,16 @@
+.nav {
+  &__list {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #dee2e6;
+    list-style: none;
+  }
+
+  &__item {
+    border: 1px solid transparent;
+
+    &--active {
+      border-color: #dee2e6 #dee2e6 #fff;
+    }
+  }
+}
