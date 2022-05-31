@@ -1,6 +1,5 @@
 import json
 from datetime import date
-from json import JSONDecodeError
 
 from django.urls import reverse, reverse_lazy
 
