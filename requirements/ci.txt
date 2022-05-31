@@ -310,7 +310,7 @@ ruamel.yaml==0.17.4
     #   drf-yasg
 sentry-sdk==1.0.0
     # via -r requirements/base.txt
-sharing-configs==0.1.0
+sharing-configs==0.1.1
     # via -r requirements/base.txt
 six==1.15.0
     # via
