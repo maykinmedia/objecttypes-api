@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     "django_otp.plugins.otp_static",
     "django_otp.plugins.otp_totp",
     "two_factor",
+    "sharing_configs",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",

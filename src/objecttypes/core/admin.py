@@ -8,12 +8,13 @@ from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-import requests
 from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
+from sharing_configs.admin import SharingConfigsExportMixin, SharingConfigsImportMixin
 
 from .constants import ObjectVersionStatus
 from .forms import ObjectVersionForm, UrlImportForm
 from .models import ObjectType, ObjectVersion
+from .utils import check_json_schema
 from .widgets import JSONSuit
 
 
@@ -86,7 +87,9 @@ class ObjectVersionInline(admin.StackedInline):
 
 
 @admin.register(ObjectType)
-class ObjectTypeAdmin(admin.ModelAdmin):
+class ObjectTypeAdmin(
+    SharingConfigsImportMixin, SharingConfigsExportMixin, admin.ModelAdmin
+):
     list_display = ("name", "name_plural", "allow_geometry")
     search_fields = ("uuid",)
     inlines = [ObjectVersionInline]
@@ -155,14 +158,9 @@ class ObjectTypeAdmin(admin.ModelAdmin):
             if form.is_valid():
                 form_json = form.cleaned_data.get("json")
 
-                object_type = ObjectType.objects.create(
-                    name=form_json["title"].title(),
-                    name_plural=form.data.get("name_plural").title(),
-                    description=form_json.get("description", ""),
-                )
-                ObjectVersion.objects.create(
-                    object_type=object_type,
+                ObjectType.objects.create_from_schema(
                     json_schema=form_json,
+                    name_plural=form.data.get("name_plural", "").title(),
                 )
                 return redirect(reverse("admin:core_objecttype_changelist"))
         else:
@@ -171,3 +169,13 @@ class ObjectTypeAdmin(admin.ModelAdmin):
         return render(
             request, "admin/core/objecttype/object_import_form.html", {"form": form}
         )
+
+    def get_sharing_configs_import_data(self, content: bytes) -> ObjectType:
+        json_schema = json.loads(content.decode())
+        check_json_schema(json_schema)
+
+        return ObjectType.objects.create_from_schema(json_schema)
+
+    def get_sharing_configs_export_data(self, obj: ObjectType) -> bytes:
+        json_schema_str = json.dumps(obj.last_version.json_schema)
+        return json_schema_str.encode()
