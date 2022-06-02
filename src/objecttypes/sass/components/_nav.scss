@@ -1,8 +1,11 @@
 .nav {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+
   &__list {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--color-border);
     list-style: none;
   }
 
@@ -10,16 +13,18 @@
     display: block;
     padding: 0.5rem 1rem;
     border: 1px solid transparent;
-    color: #17a2b8;
+    color: var(--color_link);
     cursor: pointer;
 
     &:hover {
-      border-color: #e9ecef #e9ecef #dee2e6;
-      color: #0f6674;
+      border-color: var(--color_secondary) var(--color_secondary)
+        var(--color-border);
+      color: var(--color_link_hover);
     }
 
     &--active {
-      border-color: #dee2e6 #dee2e6 #fff;
+      border-color: var(--color-border) var(--color-border)
+        var(--color_lightest) !important;
       margin-bottom: -1px;
     }
   }

@@ -2,23 +2,23 @@
   display: inline-block;
   padding: 0.25rem 0.5rem;
   text-decoration: none;
-  background-color: #17a2b8;
-  border: 1px solid #17a2b8;
+  background-color: var(--color_primary);
+  border: 1px solid var(--color_primary);
   border-radius: 0.2rem;
-  color: #fff;
+  color: var(--color_lightest);
 
   &:hover {
-    background-color: #138496;
-    border-color: #117a8b;
+    background-color: var(--color_primary_dark);
+    border-color: var(--color_primary_dark);
   }
 
   &--alert {
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: var(--color_alert);
+    border-color: var(--color_alert);
 
     &:hover {
-      background-color: #c82333;
-      border-color: #bd2130;
+      background-color: var(--color_alert_dark);
+      border-color: var(--color_alert_dark);
     }
   }
 }
