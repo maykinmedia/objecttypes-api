@@ -16,10 +16,8 @@
 
     {% if not settings.SITE_TITLE or not settings.PROJECT_NAME %}
       <div class="container">
-        <div class="alert alert-danger">
-          Please add the variables <em>SITE_TITLE</em> and <em>PROJECT_NAME</em> to your <em>settings.py</em> and make
-          sure they are available via <em>context processors</em>.
-        </div>
+        Please add the variables <em>SITE_TITLE</em> and <em>PROJECT_NAME</em> to your <em>settings.py</em> and make
+        sure they are available via <em>context processors</em>.
       </div>
     {% endif %}
 
