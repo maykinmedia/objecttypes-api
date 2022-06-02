@@ -7,10 +7,28 @@
   }
 
   &__item {
+    display: block;
+    padding: 0.5rem 1rem;
     border: 1px solid transparent;
+    color: #17a2b8;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #e9ecef #e9ecef #dee2e6;
+      color: #0f6674;
+    }
 
     &--active {
       border-color: #dee2e6 #dee2e6 #fff;
+      margin-bottom: -1px;
+    }
+  }
+
+  &__pane {
+    display: none;
+
+    &--active {
+      display: block;
     }
   }
 }

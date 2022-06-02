@@ -9,53 +9,44 @@
 
   <div class="container container--center">
 
-  <nav class="nav">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item" data-id="en">English</li>
+        <li class="nav__item" data-id="nl">Nederlands</li>
+      </ul>
 
-    <ul class="nav__list" id="languageChoice">
-      <li class="nav__item nav__item--active" aria-controls="en" aria-selected="true">
-        <a class="link" id="en-tab" data-toggle="tab" href="#en">English</a>
-      </li>
-      <li class="nav-item" aria-controls="nl" aria-selected="false">
-        <a class="link" id="nl-tab" data-toggle="tab" href="#nl">Nederlands</a>
-      </li>
-    </ul>
-
-    <div class="nav__content" id="description">
-      <div class="tab-pane fade show active" id="en" role="tabpanel" aria-labelledby="en-tab">
-        <br>
-        <p>
+      <div class="nav__content">
+        <div class="nav__pane" id="en">
+          <p>
           The Objecttypes API aims to standardize various types of objects, on a national
           level, in an accessible way and without the need to create a whole new API for
           each (simple) object.
-        </p>
-        <p>
+          </p>
+          <p>
           This national Objecttypes API is required for registering objects in local
-          <a class="link" href="https://github.com/maykinmedia/objects-api">
+            <a class="link" href="https://github.com/maykinmedia/objects-api">
             Objects API</a>. Organisations can also run an Objecttypes API locally, to use
           both national and local definitions of objects.
-        </p>
+          </p>
+        </div>
 
-      </div>
-      <div class="tab-pane fade" id="nl" role="tabpanel" aria-labelledby="nl-tab">
-        <br>
-        <p>
+        <div class="nav__pane" id="nl">
+          <p>
           De Objecttypen API heeft als doel om uiteenlopende typen objecten op een
           dynamische wijze te standaardiseren op landelijk niveau en om te voorkomen dat
           voor elk (eenvoudig) object een volledige API wordt opgezet.
-        </p>
-        <p>
+          </p>
+          <p>
           Deze landelijke Objecttypen API is noodzakelijk voor het registreren van
           objecten in lokale
-          <a class="link" href="https://github.com/maykinmedia/objects-api">
+            <a class="link" href="https://github.com/maykinmedia/objects-api">
             Objecten API</a>. Organisaties kunnen lokaal ook een
           Objecttypen API draaien en zo landelijke als lokale definities van objecten
           hanteren.
-        </p>
-
+          </p>
+        </div>
       </div>
-    </div>
-
-  </nav>
+    </nav>
 
     <p>
       <b>Licensed under the <a class="link" href="https://github.com/maykinmedia/objects-api/blob/master/LICENSE.md">
