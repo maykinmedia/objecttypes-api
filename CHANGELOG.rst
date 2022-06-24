@@ -2,6 +2,36 @@
 Change history
 ==============
 
+2.1.0 (2022-06-24)
+------------------
+
+**Component changes**
+
+* **New features**
+
+  * supported exchange of Objecttypes with Sharing Configs Lib in the Objecttypes Admin (maykinmedia/sharing-configs#32)
+
+* **Bugfixes and QOL**
+
+  * removed boostrap from the landing page (maykinmedia/objects-api#294)
+  * bumped to newer versions of pyjwt (#84), babel, lxml, waitress (#80), django (#79), mozilla-django-oidc-db (#74), pillow (#77)
+  * remove swagger2openapi from dependencies (#79)
+  * fixed Elastic APM configuration (#82)
+  * fixed session key name (#78)
+
+**API 1.2.0 changes**
+
+* **New features**
+
+  * added `allowGeometry` field (maykinmedia/objects-api#263)
+
+**API 2.1.0 changes**
+
+* **New features**
+
+  * added `allowGeometry` field (maykinmedia/objects-api#263)
+
+
 2.0.0 (2021-10-04)
 ------------------
 
