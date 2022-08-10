@@ -45,7 +45,7 @@ development machine.
    .. code-block:: bash
 
        $ git clone git@github.com:maykinmedia/objecttypes-api.git
-       $ cd objecttypes
+       $ cd objecttypes-api
 
 3. Install all required libraries.
 
@@ -111,7 +111,7 @@ When updating an existing installation:
 
    .. code-block:: bash
 
-       $ cd objecttypes
+       $ cd objecttypes-api
        $ source env/bin/activate
 
 2. Update the code and libraries:
@@ -170,10 +170,10 @@ The easiest way to get the project started is by using `Docker Compose`_.
    .. code-block:: bash
 
        $ git clone git@github.com:maykinmedia/objecttypes-api.git
-       Cloning into 'objecttypes'...
+       Cloning into 'objecttypes-api'...
        ...
 
-       $ cd objecttypes
+       $ cd objecttypes-api
 
 2. Start the database and web services:
 
