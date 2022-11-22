@@ -5,6 +5,7 @@ import logging
 import os
 
 os.environ.setdefault("SECRET_KEY", "dummy")
+os.environ.setdefault("ENVIRONMENT", "ci")
 
 from .base import *  # noqa isort:skip
 
@@ -19,8 +20,6 @@ CACHES = {
 
 LOGGING = None  # Quiet is nice
 logging.disable(logging.CRITICAL)
-
-ENVIRONMENT = "ci"
 
 #
 # Django-axes

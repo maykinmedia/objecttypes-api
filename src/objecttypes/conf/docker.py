@@ -4,6 +4,7 @@ os.environ.setdefault("DB_USER", os.getenv("DB_USER", "objecttypes"))
 os.environ.setdefault("DB_NAME", os.getenv("DB_NAME", "objecttypes"))
 os.environ.setdefault("DB_PASSWORD", os.getenv("DB_PASSWORD", "objecttypes"))
 os.environ.setdefault("DB_HOST", os.getenv("DB_HOST", "db"))
+os.environ.setdefault("ENVIRONMENT", "docker")
 
 from .base import *  # noqa isort:skip
 from .utils import config  # noqa isort:skip
@@ -43,13 +44,6 @@ SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", False)
 SESSION_COOKIE_HTTPONLY = config("SESSION_COOKIE_HTTPONLY", False)
 CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", False)
 
-#
-# Custom settings
-#
-ENVIRONMENT = "docker"
-
-ELASTIC_APM["SERVICE_NAME"] += " " + ENVIRONMENT
-
 
 #
 # Library settings
@@ -58,3 +52,6 @@ ELASTIC_APM["SERVICE_NAME"] += " " + ENVIRONMENT
 # django-axes
 AXES_BEHIND_REVERSE_PROXY = False
 AXES_CACHE = "axes_cache"
+
+# Elastic APM
+ELASTIC_APM["SERVICE_NAME"] += " " + ENVIRONMENT

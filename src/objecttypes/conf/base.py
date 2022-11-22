@@ -310,7 +310,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy("admin:index")
 #
 PROJECT_NAME = "Objecttypes"
 SITE_TITLE = "Starting point"
-ENVIRONMENT = None
+ENVIRONMENT = config("ENVIRONMENT", "")
 SHOW_ALERT = True
 
 #
@@ -382,6 +382,7 @@ if SENTRY_DSN:
     SENTRY_CONFIG = {
         "dsn": SENTRY_DSN,
         "release": config("VERSION_TAG", "VERSION_TAG not set"),
+        "environment": ENVIRONMENT,
     }
 
     sentry_sdk.init(

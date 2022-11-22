@@ -159,6 +159,10 @@ file or as part of the ``(post)activate`` of your virtualenv.
   logger and will send errors/logging to Sentry. If unset, Sentry SDK will be
   disabled.
 
+* ``ENVIRONMENT``: An identifier for the environment, displayed in the admin depending on
+  the settings module used and included in the error monitoring (see ``SENTRY_DSN``).
+  The default is set according to ``DJANGO_SETTINGS_MODULE``.
+
 Docker
 ======
 
