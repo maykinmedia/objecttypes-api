@@ -1,7 +1,9 @@
 # Stage 1 - Compile needed python dependencies
-FROM python:3.7-buster AS build
+FROM python:3.9-slim-bullseye AS build
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+        pkg-config \
+        build-essential \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -29,15 +31,25 @@ RUN npm run build
 
 
 # Stage 3 - Build docker image suitable for execution and deployment
-FROM python:3.7-buster AS production
+FROM python:3.9-slim-bullseye AS production
 
 # Stage 3.1 - Set up the needed production dependencies
 # install all the dependencies for GeoDjango
 RUN apt-get update && apt-get install -y --no-install-recommends \
+        # bare minimum to debug live containers
+        procps \
+        vim \
+        # serve correct Content-Type headers
+        mime-support \
+        # (geo) django dependencies
         postgresql-client \
+        gettext \
+        binutils \
+        libproj-dev \
+        gdal-bin \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /usr/local/lib/python3.7 /usr/local/lib/python3.7
+COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
 COPY --from=build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
 # Stage 3.2 - Copy source code
