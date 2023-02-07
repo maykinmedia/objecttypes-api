@@ -26,6 +26,8 @@ BASE_DIR = os.path.abspath(
 #
 SITE_ID = config("SITE_ID", 1)
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 

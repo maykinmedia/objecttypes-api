@@ -1,7 +1,6 @@
 import uuid
 from datetime import date
 
-from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -91,7 +90,7 @@ class ObjectType(models.Model):
         blank=True,
         help_text=_("Link to the documentation for the object type"),
     )
-    labels = JSONField(
+    labels = models.JSONField(
         _("labels"),
         help_text=_("Key-value pairs of keywords related for the object type"),
         default=dict,
@@ -158,7 +157,7 @@ class ObjectVersion(models.Model):
         blank=True,
         help_text=_("Date when the version was published"),
     )
-    json_schema = JSONField(
+    json_schema = models.JSONField(
         _("JSON schema"), help_text=_("JSON schema for Object validation"), default=dict
     )
     status = models.CharField(
