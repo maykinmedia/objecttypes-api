@@ -31,7 +31,7 @@ class ObjectType(models.Model):
     )
     data_classification = models.CharField(
         _("data classification"),
-        max_length=20,
+        max_length=50,
         choices=DataClassificationChoices.choices,
         default=DataClassificationChoices.open,
         help_text=_("Confidential level of the object type"),
