@@ -7,7 +7,7 @@ python-decouple  # processing of envvar configs
 jsonschema
 
 # Framework libraries
-django < 3.0
+django
 django-admin-index
 django-axes
 django-choices
