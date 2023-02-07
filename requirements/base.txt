@@ -101,8 +101,6 @@ django-choices==1.7.2
     #   commonground-api-common
     #   django-simple-certmanager
     #   zgw-consumers
-django-compat==1.0.15
-    # via django-hijack-admin
 django-filter==22.1
     # via
     #   -r requirements/base.in
@@ -110,10 +108,6 @@ django-filter==22.1
 django-formtools==2.4
     # via maykin-django-two-factor-auth
 django-hijack==3.2.6
-    # via
-    #   -r requirements/base.in
-    #   django-hijack-admin
-django-hijack-admin==2.1.10
     # via -r requirements/base.in
 django-ipware==4.0.2
     # via django-axes
@@ -288,7 +282,6 @@ six==1.16.0
     # via
     #   click-repl
     #   django-choices
-    #   django-compat
     #   isodate
     #   python-dateutil
     #   qrcode

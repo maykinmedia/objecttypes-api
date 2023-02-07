@@ -12,7 +12,6 @@ django-admin-index
 django-axes
 django-choices
 django-hijack
-django-hijack-admin
 django-jsonsuit
 django-redis
 django-rosetta
