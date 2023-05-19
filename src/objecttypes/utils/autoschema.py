@@ -25,7 +25,7 @@ class AutoSchema(_AutoSchema):
         return content_type_headers + parent_path_headers
 
     def _get_response_for_code(self, serializer, status_code, media_types=None):
-        """ add default description to the response """
+        """add default description to the response"""
         response = super()._get_response_for_code(serializer, status_code, media_types)
 
         if not response.get("description"):
@@ -48,7 +48,7 @@ class AutoSchema(_AutoSchema):
         ]
 
     def get_parent_path_headers(self) -> list:
-        """ for nested viewsets """
+        """for nested viewsets"""
         if not isinstance(self.view, NestedViewSetMixin):
             return []
 
@@ -73,7 +73,7 @@ class AutoSchema(_AutoSchema):
 
 
 def build_mock_request(method, path, view, original_request, **kwargs):
-    """ NestedViewSetMixin requires some tweaking in schema generation """
+    """NestedViewSetMixin requires some tweaking in schema generation"""
 
     request = getattr(APIRequestFactory(), method.lower())(path=path)
     if isinstance(view, NestedViewSetMixin):

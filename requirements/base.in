@@ -7,12 +7,11 @@ python-decouple  # processing of envvar configs
 jsonschema
 
 # Framework libraries
-django < 3.0
+django
 django-admin-index
 django-axes
 django-choices
 django-hijack
-django-hijack-admin
 django-jsonsuit
 django-redis
 django-rosetta
@@ -35,4 +34,4 @@ sentry-sdk  # error monitoring
 elastic-apm  # Elastic APM integration
 
 # Common ground libraries
-vng_api_common
+commonground-api-common

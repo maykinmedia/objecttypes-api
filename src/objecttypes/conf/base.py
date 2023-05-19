@@ -26,6 +26,8 @@ BASE_DIR = os.path.abspath(
 #
 SITE_ID = config("SITE_ID", 1)
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 
@@ -70,8 +72,7 @@ INSTALLED_APPS = [
     "jsonsuit.apps.JSONSuitConfig",
     "sniplates",
     "hijack",
-    "compat",  # Part of hijack
-    "hijack_admin",
+    "hijack.contrib.admin",
     "mozilla_django_oidc",
     "mozilla_django_oidc_db",
     "rest_framework",
@@ -103,6 +104,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
+    "hijack.middleware.HijackUserMiddleware",
     "django_otp.middleware.OTPMiddleware",
 ]
 

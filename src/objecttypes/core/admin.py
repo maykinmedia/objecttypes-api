@@ -1,7 +1,7 @@
 import json
 
 from django.contrib import admin, messages
-from django.contrib.postgres.fields import JSONField
+from django.db import models
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import path, reverse
@@ -39,7 +39,14 @@ class ObjectVersionInline(admin.StackedInline):
     max_num = 1
     min_num = 1
     readonly_fields = ("version", "status", "published_at")
-    formfield_overrides = {JSONField: {"widget": JSONSuit}}
+    formfield_overrides = {
+        models.JSONField: {
+            "widget": JSONSuit,
+            "error_messages": {
+                "invalid": _("'%(value)s' value must be valid JSON"),
+            },
+        }
+    }
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
