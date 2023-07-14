@@ -438,7 +438,7 @@ redis==4.5.5
     # via
     #   -r requirements/ci.txt
     #   django-redis
-requests==2.30.0
+requests==2.31.0
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common

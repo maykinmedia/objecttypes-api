@@ -254,7 +254,7 @@ qrcode==6.1
     # via maykin-django-two-factor-auth
 redis==4.5.5
     # via django-redis
-requests==2.30.0
+requests==2.31.0
     # via
     #   commonground-api-common
     #   coreapi
