@@ -37,6 +37,18 @@ if [ -d $fixtures_dir ]; then
     done
 fi
 
+# Create superuser
+# specify password by setting DJANGO_SUPERUSER_PASSWORD in the env
+# specify username by setting DJANGO_SUPERUSER_USERNAME in the env
+# specify email by setting DJANGO_SUPERUSER_EMAIL in the env
+if [ -n "${DJANGO_SUPERUSER_USERNAME}" ]; then
+    python src/manage.py createsuperuser \
+        --no-input \
+        --username "${DJANGO_SUPERUSER_USERNAME}" \
+        --email "${DJANGO_SUPERUSER_EMAIL:-admin@admin.org}"
+    unset DJANGO_SUPERUSER_USERNAME DJANGO_SUPERUSER_EMAIL DJANGO_SUPERUSER_PASSWORD
+fi
+
 # Start server
 >&2 echo "Starting server"
 uwsgi \
