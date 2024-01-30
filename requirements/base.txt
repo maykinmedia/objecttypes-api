@@ -68,6 +68,7 @@ django==3.2.20
     #   django-filter
     #   django-formtools
     #   django-hijack
+    #   django-jsonform
     #   django-jsonsuit
     #   django-otp
     #   django-phonenumber-field
@@ -93,8 +94,6 @@ django-admin-index==3.0.0
     # via -r requirements/base.in
 django-axes==6.0.1
     # via -r requirements/base.in
-django-better-admin-arrayfield==1.4.2
-    # via mozilla-django-oidc-db
 django-choices==1.7.2
     # via
     #   -r requirements/base.in
@@ -107,6 +106,8 @@ django-formtools==2.4.1
     # via maykin-django-two-factor-auth
 django-hijack==3.3.0
     # via -r requirements/base.in
+django-jsonform==2.21.5
+    # via mozilla-django-oidc-db
 django-jsonsuit==0.5.0
     # via -r requirements/base.in
 django-ordered-model==3.7.4
@@ -197,9 +198,9 @@ markupsafe==2.1.2
     # via jinja2
 maykin-django-two-factor-auth[phonenumbers]==2.0.4
     # via -r requirements/base.in
-mozilla-django-oidc==2.0.0
+mozilla-django-oidc==4.0.0
     # via mozilla-django-oidc-db
-mozilla-django-oidc-db==0.12.0
+mozilla-django-oidc-db==0.14.1
     # via -r requirements/base.in
 notifications-api-common==0.2.2
     # via commonground-api-common

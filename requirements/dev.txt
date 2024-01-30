@@ -123,6 +123,7 @@ django==3.2.20
     #   django-formtools
     #   django-hijack
     #   django-jenkins
+    #   django-jsonform
     #   django-jsonsuit
     #   django-otp
     #   django-phonenumber-field
@@ -149,10 +150,6 @@ django-admin-index==3.0.0
     # via -r requirements/ci.txt
 django-axes==6.0.1
     # via -r requirements/ci.txt
-django-better-admin-arrayfield==1.4.2
-    # via
-    #   -r requirements/ci.txt
-    #   mozilla-django-oidc-db
 django-choices==1.7.2
     # via
     #   -r requirements/ci.txt
@@ -173,6 +170,10 @@ django-hijack==3.3.0
     # via -r requirements/ci.txt
 django-jenkins==0.110.0
     # via -r requirements/ci.txt
+django-jsonform==2.21.5
+    # via
+    #   -r requirements/ci.txt
+    #   mozilla-django-oidc-db
 django-jsonsuit==0.5.0
     # via -r requirements/ci.txt
 django-ordered-model==3.7.4
@@ -331,11 +332,11 @@ maykin-django-two-factor-auth[phonenumbers]==2.0.4
     # via -r requirements/ci.txt
 mccabe==0.7.0
     # via flake8
-mozilla-django-oidc==2.0.0
+mozilla-django-oidc==4.0.0
     # via
     #   -r requirements/ci.txt
     #   mozilla-django-oidc-db
-mozilla-django-oidc-db==0.12.0
+mozilla-django-oidc-db==0.14.1
     # via -r requirements/ci.txt
 mypy-extensions==1.0.0
     # via black
