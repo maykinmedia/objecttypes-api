@@ -1,5 +1,5 @@
 # Stage 1 - Compile needed python dependencies
-FROM python:3.9-slim-bullseye AS build
+FROM python:3.10-slim-bullseye AS build
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
@@ -10,28 +10,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 COPY ./requirements /app/requirements
-RUN pip install pip 'setuptools<59.0' -U
+RUN pip install pip -U
 RUN pip install -r requirements/production.txt
 
 
 # Stage 2 - build frontend
-FROM mhart/alpine-node:12 AS frontend-build
+FROM node:18-alpine AS frontend-build
 
 WORKDIR /app
 
 COPY ./*.json /app/
 RUN npm ci
 
-COPY ./gulpfile.js ./webpack.config.js ./.babelrc /app/
+COPY ./webpack.config.js ./.babelrc /app/
 COPY ./build /app/build/
 
-COPY src/objecttypes/sass/ /app/src/objecttypes/sass/
+COPY src/objecttypes/scss/ /app/src/objecttypes/scss/
 COPY src/objecttypes/js/ /app/src/objecttypes/js/
 RUN npm run build
 
 
 # Stage 3 - Build docker image suitable for execution and deployment
-FROM python:3.9-slim-bullseye AS production
+FROM python:3.10-slim-bullseye AS production
 
 # Stage 3.1 - Set up the needed production dependencies
 # install all the dependencies for GeoDjango
@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gdal-bin \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
+COPY --from=build /usr/local/lib/python3.10 /usr/local/lib/python3.10
 COPY --from=build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
 # Stage 3.2 - Copy source code
@@ -57,8 +57,7 @@ WORKDIR /app
 COPY ./bin/docker_start.sh /start.sh
 RUN mkdir /app/log /app/config
 
-COPY --from=frontend-build /app/src/objecttypes/static/css /app/src/objecttypes/static/css
-COPY --from=frontend-build /app/src/objecttypes/static/js /app/src/objecttypes/static/js
+COPY --from=frontend-build /app/src/objecttypes/static /app/src/objecttypes/static
 COPY ./src /app/src
 
 RUN useradd -M -u 1000 user
