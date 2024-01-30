@@ -128,7 +128,7 @@ django==3.2.20
     #   zgw-consumers
 django-admin-index==3.0.0
     # via -r requirements/base.txt
-django-axes==6.0.1
+django-axes==5.41.1
     # via -r requirements/base.txt
 django-choices==1.7.2
     # via
@@ -144,6 +144,10 @@ django-formtools==2.4.1
     #   maykin-django-two-factor-auth
 django-hijack==3.3.0
     # via -r requirements/base.txt
+django-ipware==6.0.3
+    # via
+    #   -r requirements/base.txt
+    #   django-axes
 django-jenkins==0.110.0
     # via -r requirements/test-tools.in
 django-jsonform==2.21.5
@@ -217,7 +221,7 @@ drf-nested-routers==0.93.4
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
-drf-spectacular==0.26.2
+drf-spectacular==0.16.0
     # via -r requirements/base.txt
 drf-yasg==1.21.5
     # via
@@ -358,6 +362,10 @@ python-decouple==3.8
     # via -r requirements/base.txt
 python-dotenv==1.0.0
     # via -r requirements/base.txt
+python-ipware==2.0.1
+    # via
+    #   -r requirements/base.txt
+    #   django-ipware
 pytz==2023.3
     # via
     #   -r requirements/base.txt
