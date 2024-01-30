@@ -68,7 +68,6 @@ INSTALLED_APPS = [
     # 'django.contrib.sitemaps',
     # External applications.
     "axes",
-    "django_better_admin_arrayfield",
     "jsonsuit.apps.JSONSuitConfig",
     "sniplates",
     "hijack",
