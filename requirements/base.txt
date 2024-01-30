@@ -164,7 +164,7 @@ face==20.1.1
     # via glom
 faker==18.9.0
     # via zgw-consumers
-gemma-zds-client==2.0.0
+gemma-zds-client==1.0.1
     # via
     #   commonground-api-common
     #   notifications-api-common

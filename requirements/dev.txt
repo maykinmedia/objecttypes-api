@@ -267,7 +267,7 @@ flake8==6.0.0
     # via -r requirements/dev.in
 freezegun==1.2.2
     # via -r requirements/ci.txt
-gemma-zds-client==2.0.0
+gemma-zds-client==1.0.1
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
