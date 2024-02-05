@@ -5,7 +5,7 @@ from objecttypes.core.models import ObjectType, ObjectVersion
 
 class ObjectTypeFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("word")
-    name_plural = factory.LazyAttribute(lambda x: "{}s".format(x.name))
+    name_plural = factory.LazyAttribute(lambda x: f"{x.name}s")
     description = factory.Faker("bs")
 
     class Meta:
