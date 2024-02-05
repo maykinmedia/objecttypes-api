@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "hijack.contrib.admin",
     "mozilla_django_oidc",
     "mozilla_django_oidc_db",
+    "django_jsonform",
     "rest_framework",
     "solo",
     "drf_spectacular",
