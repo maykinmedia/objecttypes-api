@@ -121,7 +121,6 @@ django==3.2.20
     #   django-extensions
     #   django-filter
     #   django-formtools
-    #   django-hijack
     #   django-jenkins
     #   django-jsonform
     #   django-jsonsuit
@@ -131,10 +130,8 @@ django==3.2.20
     #   django-redis
     #   django-relativedelta
     #   django-rest-framework-condition
-    #   django-rosetta
     #   django-sendfile2
     #   django-simple-certmanager
-    #   django-sniplates
     #   django-solo
     #   djangorestframework
     #   drf-nested-routers
@@ -166,8 +163,6 @@ django-formtools==2.4.1
     # via
     #   -r requirements/ci.txt
     #   maykin-django-two-factor-auth
-django-hijack==3.3.0
-    # via -r requirements/ci.txt
 django-ipware==6.0.3
     # via
     #   -r requirements/ci.txt
@@ -206,8 +201,6 @@ django-rest-framework-condition==0.1.1
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
-django-rosetta==0.9.9
-    # via -r requirements/ci.txt
 django-sendfile2==0.7.0
     # via
     #   -r requirements/ci.txt
@@ -216,8 +209,6 @@ django-simple-certmanager==1.3.0
     # via
     #   -r requirements/ci.txt
     #   zgw-consumers
-django-sniplates==0.7.1
-    # via -r requirements/ci.txt
 django-solo==2.0.0
     # via
     #   -r requirements/ci.txt
@@ -365,16 +356,10 @@ phonenumbers==8.13.11
     # via
     #   -r requirements/ci.txt
     #   maykin-django-two-factor-auth
-pillow==9.5.0
-    # via -r requirements/ci.txt
 pip-tools==6.13.0
     # via -r requirements/dev.in
 platformdirs==3.5.1
     # via black
-polib==1.2.0
-    # via
-    #   -r requirements/ci.txt
-    #   django-rosetta
 prompt-toolkit==3.0.38
     # via
     #   -r requirements/ci.txt
@@ -450,7 +435,6 @@ requests==2.31.0
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   coreapi
-    #   django-rosetta
     #   gemma-zds-client
     #   mozilla-django-oidc
     #   requests-mock

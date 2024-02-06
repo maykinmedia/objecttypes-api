@@ -1,7 +1,5 @@
 # Core python libraries
-Pillow  # handle images
 psycopg2  # database driver
-pytz  # handle timezones
 python-dotenv  # environment variables for secrets
 python-decouple  # processing of envvar configs
 jsonschema
@@ -10,12 +8,8 @@ jsonschema
 django
 django-admin-index
 django-axes
-django-choices
-django-hijack
 django-jsonsuit
 django-redis
-django-rosetta
-django-sniplates
 maykin-django-two-factor-auth
 maykin-django-two-factor-auth[phonenumbers]
 mozilla-django-oidc-db
@@ -23,7 +17,6 @@ sharing-configs
 
 # API libraries
 djangorestframework
-# django-extra-fields
 django-filter
 drf-nested-routers
 drf-spectacular
