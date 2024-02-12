@@ -1,6 +1,5 @@
 import os
 
-# Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
 from sentry_sdk.integrations import django, redis
@@ -69,9 +68,6 @@ INSTALLED_APPS = [
     # External applications.
     "axes",
     "jsonsuit.apps.JSONSuitConfig",
-    "sniplates",
-    "hijack",
-    "hijack.contrib.admin",
     "mozilla_django_oidc",
     "mozilla_django_oidc_db",
     "django_jsonform",
@@ -104,7 +100,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
-    "hijack.middleware.HijackUserMiddleware",
     "django_otp.middleware.OTPMiddleware",
 ]
 
@@ -335,15 +330,10 @@ AXES_FAILURE_LIMIT = 10
 # will be forgotten. Can be set to a python timedelta object or an integer. If
 # an integer, will be interpreted as a number of hours. Default: None
 AXES_COOLOFF_TIME = 1
-# If True only locks based on user id and never locks by IP if attempts limit
-# exceed, otherwise utilize the existing IP and user locking logic Default:
-# False
-AXES_ONLY_USER_FAILURES = True
 # If set, specifies a template to render when a user is locked out. Template
 # receives cooloff_time and failure_limit as context variables. Default: None
 AXES_LOCKOUT_TEMPLATE = "account_blocked.html"
-AXES_USE_USER_AGENT = True  # Default: False
-AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True  # Default: False
+AXES_LOCKOUT_PARAMETERS = [["ip_address", "user_agent", "username"]]
 
 # The default meta precedence order
 IPWARE_META_PRECEDENCE_ORDER = (
@@ -358,15 +348,6 @@ IPWARE_META_PRECEDENCE_ORDER = (
     "HTTP_VIA",
     "REMOTE_ADDR",
 )
-
-# Django-Hijack
-HIJACK_LOGIN_REDIRECT_URL = "/"
-HIJACK_LOGOUT_REDIRECT_URL = reverse_lazy("admin:accounts_user_changelist")
-# The Admin mixin is used because we use a custom User-model.
-HIJACK_REGISTER_ADMIN = False
-# This is a CSRF-security risk.
-# See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
-HIJACK_ALLOW_GET_REQUESTS = True
 
 # Sentry SDK
 SENTRY_DSN = config("SENTRY_DSN", None)
