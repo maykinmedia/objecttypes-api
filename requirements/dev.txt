@@ -86,17 +86,16 @@ click-repl==0.2.0
     # via
     #   -r requirements/ci.txt
     #   celery
-commonground-api-common==1.10.2
+commonground-api-common==1.12.1
     # via -r requirements/ci.txt
 coreapi==2.3.3
     # via
     #   -r requirements/ci.txt
-    #   drf-yasg
+    #   commonground-api-common
 coreschema==0.0.4
     # via
     #   -r requirements/ci.txt
     #   coreapi
-    #   drf-yasg
 coverage==4.5.4
     # via -r requirements/ci.txt
 cryptography==40.0.2
@@ -116,7 +115,6 @@ django==3.2.20
     #   commonground-api-common
     #   django-admin-index
     #   django-axes
-    #   django-choices
     #   django-debug-toolbar
     #   django-extensions
     #   django-filter
@@ -148,10 +146,6 @@ django-admin-index==3.0.0
     # via -r requirements/ci.txt
 django-axes==5.41.1
     # via -r requirements/ci.txt
-django-choices==1.7.2
-    # via
-    #   -r requirements/ci.txt
-    #   commonground-api-common
 django-debug-toolbar==4.1.0
     # via -r requirements/dev.in
 django-extensions==3.2.1
@@ -245,7 +239,7 @@ drf-nested-routers==0.93.4
     #   commonground-api-common
 drf-spectacular==0.16.0
     # via -r requirements/ci.txt
-drf-yasg==1.21.5
+drf-yasg==1.21.7
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
@@ -429,6 +423,7 @@ pyyaml==6.0
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   drf-spectacular
+    #   drf-yasg
     #   gemma-zds-client
     #   oyaml
 qrcode==6.1
@@ -455,14 +450,6 @@ requests-mock==1.10.0
     # via
     #   -r requirements/ci.txt
     #   zgw-consumers
-ruamel-yaml==0.17.26
-    # via
-    #   -r requirements/ci.txt
-    #   drf-yasg
-ruamel-yaml-clib==0.2.7
-    # via
-    #   -r requirements/ci.txt
-    #   ruamel-yaml
 sentry-sdk==1.23.1
     # via -r requirements/ci.txt
 sharing-configs==0.1.2
@@ -471,7 +458,6 @@ six==1.16.0
     # via
     #   -r requirements/ci.txt
     #   click-repl
-    #   django-choices
     #   isodate
     #   python-dateutil
     #   qrcode
