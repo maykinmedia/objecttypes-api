@@ -95,9 +95,7 @@ django-admin-index==3.0.0
 django-axes==5.41.1
     # via -r requirements/base.in
 django-choices==1.7.2
-    # via
-    #   -r requirements/base.in
-    #   commonground-api-common
+    # via commonground-api-common
 django-filter==23.2
     # via
     #   -r requirements/base.in
