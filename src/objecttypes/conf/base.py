@@ -1,6 +1,5 @@
 import os
 
-# Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
 from sentry_sdk.integrations import django, redis
@@ -71,9 +70,6 @@ INSTALLED_APPS = [
     # External applications.
     "axes",
     "jsonsuit.apps.JSONSuitConfig",
-    "sniplates",
-    "hijack",
-    "hijack.contrib.admin",
     "mozilla_django_oidc",
     "mozilla_django_oidc_db",
     "django_jsonform",
@@ -106,7 +102,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
-    "hijack.middleware.HijackUserMiddleware",
     "django_otp.middleware.OTPMiddleware",
 ]
 
@@ -358,22 +353,12 @@ IPWARE_META_PRECEDENCE_ORDER = (
     "REMOTE_ADDR",
 )
 
-# Django-Hijack
-HIJACK_LOGIN_REDIRECT_URL = "/"
-HIJACK_LOGOUT_REDIRECT_URL = reverse_lazy("admin:accounts_user_changelist")
-# The Admin mixin is used because we use a custom User-model.
-HIJACK_REGISTER_ADMIN = False
-# This is a CSRF-security risk.
-# See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
-HIJACK_ALLOW_GET_REQUESTS = True
-
 #
 # Sending EMAIL
 #
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
-EMAIL_PORT = config(
-    "EMAIL_PORT", default=25
-)  # disabled on Google Cloud, use 487 instead
+# disabled on Google Cloud, use 487 instead:
+EMAIL_PORT = config("EMAIL_PORT", default=25)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False)
