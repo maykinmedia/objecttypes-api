@@ -322,7 +322,7 @@ jsonschema==4.17.3
     # via
     #   -r requirements/ci.txt
     #   drf-spectacular
-kombu==5.2.4
+kombu==5.3.5
     # via
     #   -r requirements/ci.txt
     #   celery
