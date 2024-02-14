@@ -10,7 +10,6 @@ jsonschema
 django
 django-admin-index
 django-axes
-django-choices
 django-hijack
 django-jsonsuit
 django-redis
