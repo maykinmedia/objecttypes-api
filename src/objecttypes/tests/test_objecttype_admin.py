@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 import requests_mock
 from django_webtest import WebTest
 from freezegun import freeze_time
+from maykin_2fa.test import disable_admin_mfa
 
 from objecttypes.accounts.tests.factories import SuperUserFactory
 from objecttypes.core.constants import (
@@ -27,6 +28,7 @@ JSON_SCHEMA = {
 
 
 @freeze_time("2020-01-01")
+@disable_admin_mfa()
 class AdminAddTests(WebTest):
     url = reverse_lazy("admin:core_objecttype_add")
     import_from_url = reverse_lazy("admin:import_from_url")
@@ -244,6 +246,7 @@ class AdminAddTests(WebTest):
         self.assertEqual(ObjectType.objects.count(), 0)
 
 
+@disable_admin_mfa()
 class AdminDetailTests(WebTest):
     @classmethod
     def setUpTestData(cls):

@@ -14,6 +14,10 @@ asgiref==3.6.0
     # via
     #   -r requirements/ci.txt
     #   django
+asn1crypto==1.5.1
+    # via
+    #   -r requirements/ci.txt
+    #   webauthn
 async-timeout==4.0.2
     # via
     #   -r requirements/ci.txt
@@ -46,6 +50,10 @@ bump2version==1.0.1
     # via bumpversion
 bumpversion==0.6.0
     # via -r requirements/dev.in
+cbor2==5.6.1
+    # via
+    #   -r requirements/ci.txt
+    #   webauthn
 celery==5.2.7
     # via
     #   -r requirements/ci.txt
@@ -98,13 +106,14 @@ coreschema==0.0.4
     #   coreapi
 coverage==4.5.4
     # via -r requirements/ci.txt
-cryptography==40.0.2
+cryptography==42.0.2
     # via
     #   -r requirements/ci.txt
     #   django-simple-certmanager
     #   josepy
     #   mozilla-django-oidc
     #   pyopenssl
+    #   webauthn
 cssselect==1.2.0
     # via
     #   -r requirements/ci.txt
@@ -132,11 +141,12 @@ django==3.2.20
     #   django-sendfile2
     #   django-simple-certmanager
     #   django-solo
+    #   django-two-factor-auth
     #   djangorestframework
     #   drf-nested-routers
     #   drf-spectacular
     #   drf-yasg
-    #   maykin-django-two-factor-auth
+    #   maykin-2fa
     #   mozilla-django-oidc
     #   mozilla-django-oidc-db
     #   notifications-api-common
@@ -157,7 +167,7 @@ django-filter==23.2
 django-formtools==2.4.1
     # via
     #   -r requirements/ci.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 django-ipware==6.0.3
     # via
     #   -r requirements/ci.txt
@@ -177,11 +187,11 @@ django-ordered-model==3.7.4
 django-otp==1.2.0
     # via
     #   -r requirements/ci.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 django-phonenumber-field==5.2.0
     # via
     #   -r requirements/ci.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 django-privates==2.0.0.post0
     # via
     #   -r requirements/ci.txt
@@ -214,6 +224,10 @@ django-solo==2.0.0
     #   notifications-api-common
     #   sharing-configs
     #   zgw-consumers
+django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
+    # via
+    #   -r requirements/ci.txt
+    #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/ci.txt
 djangorestframework==3.12.4
@@ -320,7 +334,7 @@ markupsafe==2.1.2
     # via
     #   -r requirements/ci.txt
     #   jinja2
-maykin-django-two-factor-auth[phonenumbers]==2.0.4
+maykin-2fa==1.0.0
     # via -r requirements/ci.txt
 mccabe==0.7.0
     # via flake8
@@ -349,10 +363,10 @@ packaging==23.1
     #   sphinx
 pathspec==0.11.1
     # via black
-phonenumbers==8.13.11
+phonenumberslite==8.13.30
     # via
     #   -r requirements/ci.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 pillow==9.5.0
     # via -r requirements/ci.txt
 pip-tools==6.13.0
@@ -384,11 +398,12 @@ pyjwt==2.7.0
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   gemma-zds-client
-pyopenssl==23.1.1
+pyopenssl==24.0.0
     # via
     #   -r requirements/ci.txt
     #   django-simple-certmanager
     #   josepy
+    #   webauthn
     #   zgw-consumers
 pyproject-hooks==1.0.0
     # via build
@@ -429,7 +444,7 @@ pyyaml==6.0
 qrcode==6.1
     # via
     #   -r requirements/ci.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 redis==4.5.5
     # via
     #   -r requirements/ci.txt
@@ -528,6 +543,10 @@ wcwidth==0.2.6
     # via
     #   -r requirements/ci.txt
     #   prompt-toolkit
+webauthn==2.0.0
+    # via
+    #   -r requirements/ci.txt
+    #   django-two-factor-auth
 webob==1.8.7
     # via
     #   -r requirements/ci.txt

@@ -107,8 +107,9 @@ warnings.filterwarnings(
     r"django\.db\.models\.fields",
 )
 
-if "test" in sys.argv:
-    TWO_FACTOR_FORCE_OTP_ADMIN = False
+# None of the authentication backends require two-factor authentication.
+if config("DISABLE_2FA", default=True):  # pragma: no cover
+    MAYKIN_2FA_ALLOW_MFA_BYPASS_BACKENDS = AUTHENTICATION_BACKENDS
 
 # Override settings with local settings.
 try:
