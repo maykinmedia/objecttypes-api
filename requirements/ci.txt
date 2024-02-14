@@ -101,7 +101,6 @@ django==3.2.20
     #   django-choices
     #   django-filter
     #   django-formtools
-    #   django-hijack
     #   django-jenkins
     #   django-jsonform
     #   django-jsonsuit
@@ -114,7 +113,6 @@ django==3.2.20
     #   django-rosetta
     #   django-sendfile2
     #   django-simple-certmanager
-    #   django-sniplates
     #   django-solo
     #   djangorestframework
     #   drf-nested-routers
@@ -142,8 +140,6 @@ django-formtools==2.4.1
     # via
     #   -r requirements/base.txt
     #   maykin-django-two-factor-auth
-django-hijack==3.3.0
-    # via -r requirements/base.txt
 django-ipware==6.0.3
     # via
     #   -r requirements/base.txt
@@ -192,8 +188,6 @@ django-simple-certmanager==1.3.0
     # via
     #   -r requirements/base.txt
     #   zgw-consumers
-django-sniplates==0.7.1
-    # via -r requirements/base.txt
 django-solo==2.0.0
     # via
     #   -r requirements/base.txt
