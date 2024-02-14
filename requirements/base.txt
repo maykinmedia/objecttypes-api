@@ -44,14 +44,12 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-commonground-api-common==1.10.2
+commonground-api-common==1.12.1
     # via -r requirements/base.in
 coreapi==2.3.3
-    # via drf-yasg
+    # via commonground-api-common
 coreschema==0.0.4
-    # via
-    #   coreapi
-    #   drf-yasg
+    # via coreapi
 cryptography==40.0.2
     # via
     #   django-simple-certmanager
@@ -64,7 +62,6 @@ django==3.2.20
     #   commonground-api-common
     #   django-admin-index
     #   django-axes
-    #   django-choices
     #   django-filter
     #   django-formtools
     #   django-jsonform
@@ -92,8 +89,6 @@ django-admin-index==3.0.0
     # via -r requirements/base.in
 django-axes==5.41.1
     # via -r requirements/base.in
-django-choices==1.7.2
-    # via commonground-api-common
 django-filter==23.2
     # via
     #   -r requirements/base.in
@@ -151,7 +146,7 @@ drf-nested-routers==0.93.4
     #   commonground-api-common
 drf-spectacular==0.16.0
     # via -r requirements/base.in
-drf-yasg==1.21.5
+drf-yasg==1.21.7
     # via commonground-api-common
 elastic-apm==6.15.1
     # via -r requirements/base.in
@@ -245,6 +240,7 @@ pyyaml==6.0
     # via
     #   commonground-api-common
     #   drf-spectacular
+    #   drf-yasg
     #   gemma-zds-client
     #   oyaml
 qrcode==6.1
@@ -263,10 +259,6 @@ requests==2.31.0
     #   zgw-consumers
 requests-mock==1.10.0
     # via zgw-consumers
-ruamel-yaml==0.17.26
-    # via drf-yasg
-ruamel-yaml-clib==0.2.7
-    # via ruamel-yaml
 sentry-sdk==1.23.1
     # via -r requirements/base.in
 sharing-configs==0.1.2
@@ -274,7 +266,6 @@ sharing-configs==0.1.2
 six==1.16.0
     # via
     #   click-repl
-    #   django-choices
     #   isodate
     #   python-dateutil
     #   qrcode
