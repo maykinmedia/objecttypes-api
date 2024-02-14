@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import path, reverse
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
 from sharing_configs.admin import SharingConfigsExportMixin, SharingConfigsImportMixin
