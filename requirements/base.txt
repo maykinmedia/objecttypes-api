@@ -8,6 +8,8 @@ amqp==5.1.1
     # via kombu
 asgiref==3.6.0
     # via django
+asn1crypto==1.5.1
+    # via webauthn
 async-timeout==4.0.2
     # via redis
 attrs==23.1.0
@@ -20,6 +22,8 @@ boltons==23.0.0
     # via
     #   face
     #   glom
+cbor2==5.6.1
+    # via webauthn
 celery==5.2.7
     # via notifications-api-common
 certifi==2023.5.7
@@ -50,12 +54,13 @@ coreapi==2.3.3
     # via commonground-api-common
 coreschema==0.0.4
     # via coreapi
-cryptography==40.0.2
+cryptography==42.0.2
     # via
     #   django-simple-certmanager
     #   josepy
     #   mozilla-django-oidc
     #   pyopenssl
+    #   webauthn
 django==3.2.20
     # via
     #   -r requirements/base.in
@@ -75,11 +80,12 @@ django==3.2.20
     #   django-rosetta
     #   django-simple-certmanager
     #   django-solo
+    #   django-two-factor-auth
     #   djangorestframework
     #   drf-nested-routers
     #   drf-spectacular
     #   drf-yasg
-    #   maykin-django-two-factor-auth
+    #   maykin-2fa
     #   mozilla-django-oidc
     #   mozilla-django-oidc-db
     #   notifications-api-common
@@ -94,7 +100,7 @@ django-filter==23.2
     #   -r requirements/base.in
     #   commonground-api-common
 django-formtools==2.4.1
-    # via maykin-django-two-factor-auth
+    # via django-two-factor-auth
 django-ipware==6.0.3
     # via django-axes
 django-jsonform==2.21.5
@@ -104,9 +110,9 @@ django-jsonsuit==0.5.0
 django-ordered-model==3.7.4
     # via django-admin-index
 django-otp==1.2.0
-    # via maykin-django-two-factor-auth
+    # via django-two-factor-auth
 django-phonenumber-field==5.2.0
-    # via maykin-django-two-factor-auth
+    # via django-two-factor-auth
 django-privates==2.0.0.post0
     # via django-simple-certmanager
 django-redis==5.2.0
@@ -128,6 +134,8 @@ django-solo==2.0.0
     #   notifications-api-common
     #   sharing-configs
     #   zgw-consumers
+django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
+    # via maykin-2fa
 djangorestframework==3.12.4
     # via
     #   -r requirements/base.in
@@ -185,7 +193,7 @@ kombu==5.2.4
     # via celery
 markupsafe==2.1.2
     # via jinja2
-maykin-django-two-factor-auth[phonenumbers]==2.0.4
+maykin-2fa==1.0.0
     # via -r requirements/base.in
 mozilla-django-oidc==4.0.0
     # via mozilla-django-oidc-db
@@ -197,8 +205,8 @@ oyaml==1.0
     # via commonground-api-common
 packaging==23.1
     # via drf-yasg
-phonenumbers==8.13.11
-    # via maykin-django-two-factor-auth
+phonenumberslite==8.13.30
+    # via django-two-factor-auth
 pillow==9.5.0
     # via -r requirements/base.in
 polib==1.2.0
@@ -213,10 +221,11 @@ pyjwt==2.7.0
     # via
     #   commonground-api-common
     #   gemma-zds-client
-pyopenssl==23.1.1
+pyopenssl==24.0.0
     # via
     #   django-simple-certmanager
     #   josepy
+    #   webauthn
     #   zgw-consumers
 pyrsistent==0.19.3
     # via jsonschema
@@ -244,7 +253,7 @@ pyyaml==6.0
     #   gemma-zds-client
     #   oyaml
 qrcode==6.1
-    # via maykin-django-two-factor-auth
+    # via django-two-factor-auth
 redis==4.5.5
     # via django-redis
 requests==2.31.0
@@ -291,6 +300,8 @@ vine==5.0.0
     #   kombu
 wcwidth==0.2.6
     # via prompt-toolkit
+webauthn==2.0.0
+    # via django-two-factor-auth
 wrapt==1.15.0
     # via elastic-apm
 zgw-consumers==0.26.1

@@ -13,8 +13,7 @@ django-axes
 django-jsonsuit
 django-redis
 django-rosetta
-maykin-django-two-factor-auth
-maykin-django-two-factor-auth[phonenumbers]
+maykin-2fa
 mozilla-django-oidc-db
 sharing-configs
 

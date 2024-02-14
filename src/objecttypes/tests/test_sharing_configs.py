@@ -8,6 +8,7 @@ from django.urls import reverse
 import requests_mock
 from django_webtest import WebTest
 from freezegun import freeze_time
+from maykin_2fa.test import disable_admin_mfa
 from sharing_configs.models import SharingConfigsConfig
 
 from objecttypes.accounts.tests.factories import SuperUserFactory
@@ -19,6 +20,7 @@ JSON_SCHEMA = {"title": "Tree"}
 SHARING_CONFIGS_API_ROOT = "https://sharing-configs-api.example.org/api/v1/"
 
 
+@disable_admin_mfa()
 @freeze_time("2020-01-01")
 class SharingConfigsTests(WebTest):
     def setUp(self) -> None:
