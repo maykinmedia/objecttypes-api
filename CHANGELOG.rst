@@ -2,6 +2,20 @@
 Change history
 ==============
 
+2.1.1 (2024-02-06)
+------------------
+
+**Bugfixes and QOL**
+
+* added ``ENVIRONMENT`` environment variable (maykinmedia/objects-api#310)
+* updated python to 3.10 (#94)
+* bumped Django to 3.2 (#88)
+* removed hijack library (#88)
+* replaced vng-api-common with commonground-api-common library (#88)
+* updated base for docker image from Debian 10 to Debian 12 (#94)
+* bumped python libraries mozilla-django-oidc, mozilla-django-oidc-db (#94)
+* fixed name of the folder in INSTALL.rst (#86)
+
 2.1.0 (2022-06-24)
 ------------------
 
