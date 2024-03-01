@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     "solo",
     "drf_spectacular",
     "vng_api_common",
+    "django_setup_configuration",
     # 2fa apps
     "django_otp",
     "django_otp.plugins.otp_static",
