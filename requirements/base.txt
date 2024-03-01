@@ -140,6 +140,8 @@ django-sendfile2==0.7.0
     # via django-privates
 django-simple-certmanager==2.0.0
     # via zgw-consumers
+django_setup_configuration @ git+https://github.com/maykinmedia/django-setup-configuration.git@feature/1-config-command
+    # via -r requirements/base.in
 django-solo==2.0.0
     # via
     #   commonground-api-common

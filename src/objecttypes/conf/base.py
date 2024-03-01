@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     "solo",
     "drf_spectacular",
     "vng_api_common",
+    "django_setup_configuration",
     # Two-factor authentication in the Django admin, enforced.
     "django_otp",
     "django_otp.plugins.otp_static",

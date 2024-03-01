@@ -2,10 +2,12 @@ open-api-framework
 
 # Core python libraries
 jsonschema
+furl
 
 # Framework libraries
 django-jsonsuit
 sharing-configs
+git+https://github.com/maykinmedia/django-setup-configuration.git@feature/1-config-command
 
 # API libraries
 drf-nested-routers
