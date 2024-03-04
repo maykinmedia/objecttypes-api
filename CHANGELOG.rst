@@ -2,6 +2,15 @@
 Change history
 ==============
 
+2.1.2 (2024-02-06)
+------------------
+
+**Bugfixes and QOL**
+
+* added ``USE_X_FORWARDED_HOST`` environment variable (#353)
+* added email environment variables (#366)
+
+
 2.1.1 (2024-02-06)
 ------------------
 
