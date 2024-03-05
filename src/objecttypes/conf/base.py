@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
+    "objecttypes.config",
     "objecttypes.core",
     "objecttypes.token",
     "objecttypes.utils",
