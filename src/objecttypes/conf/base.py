@@ -425,3 +425,29 @@ MOZILLA_DJANGO_OIDC_DB_CACHE_TIMEOUT = 5 * 60
 
 if config("DISABLE_2FA", default=False):  # pragma: no cover
     MAYKIN_2FA_ALLOW_MFA_BYPASS_BACKENDS = AUTHENTICATION_BACKENDS
+
+#
+# Django setup configuration
+#
+SETUP_CONFIGURATION_STEPS = [
+    "objecttypes.config.site.SiteConfigurationStep",
+    "objecttypes.config.objects.ObjectsAuthStep",
+]
+
+
+#
+# Objecttypes settings
+#
+
+# setup_configuration command
+# sites config
+SITES_CONFIG_ENABLE = config("SITES_CONFIG_ENABLE", default=True)
+OBJECTTYPES_DOMAIN = config("OBJECTTYPES_DOMAIN", "")
+OBJECTTYPES_ORGANIZATION = config("OBJECTTYPES_ORGANIZATION", "")
+# objects auth config
+OBJECTS_OBJECTTYPES_CONFIG_ENABLE = config(
+    "OBJECTS_OBJECTTYPES_CONFIG_ENABLE", default=True
+)
+OBJECTS_OBJECTTYPES_TOKEN = config("OBJECTS_OBJECTTYPES_TOKEN", "")
+OBJECTS_OBJECTTYPES_PERSON = config("OBJECTS_OBJECTTYPES_PERSON", "")
+OBJECTS_OBJECTTYPES_EMAIL = config("OBJECTS_OBJECTTYPES_EMAIL", "")
