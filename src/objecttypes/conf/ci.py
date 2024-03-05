@@ -6,6 +6,7 @@ import os
 
 os.environ.setdefault("SECRET_KEY", "dummy")
 os.environ.setdefault("ENVIRONMENT", "ci")
+os.environ.setdefault("IS_HTTPS", "no")
 
 from .base import *  # noqa isort:skip
 
