@@ -48,7 +48,7 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-commonground-api-common==1.12.1
+commonground-api-common==1.13.0
     # via -r requirements/base.in
 coreapi==2.3.3
     # via commonground-api-common
@@ -61,7 +61,7 @@ cryptography==42.0.2
     #   mozilla-django-oidc
     #   pyopenssl
     #   webauthn
-django==3.2.20
+django==4.2.11
     # via
     #   -r requirements/base.in
     #   commonground-api-common
@@ -136,7 +136,7 @@ django-solo==2.0.0
     #   zgw-consumers
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via maykin-2fa
-djangorestframework==3.12.4
+djangorestframework==3.14.0
     # via
     #   -r requirements/base.in
     #   commonground-api-common
@@ -243,11 +243,10 @@ pytz==2023.3
     # via
     #   -r requirements/base.in
     #   celery
-    #   django
+    #   djangorestframework
     #   drf-yasg
 pyyaml==6.0
     # via
-    #   commonground-api-common
     #   drf-spectacular
     #   drf-yasg
     #   gemma-zds-client
