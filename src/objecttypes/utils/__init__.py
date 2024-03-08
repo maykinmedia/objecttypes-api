@@ -6,7 +6,7 @@ from furl import furl
 
 def get_domain() -> str:
     """
-    Obtain the domain/netloc of Open Notificaties according to settings or configuration.
+    Obtain the domain/netloc according to settings or configuration.
     """
     from django.contrib.sites.models import Site
 

@@ -44,9 +44,6 @@ class ObjectsAuthStep(BaseConfigurationStep):
             token_auth.save(update_fields=["contact_person", "email"])
 
     def test_configuration(self):
-        """
-        This check depends on the configuration  of permissions in Open Zaak
-        """
         endpoint = reverse("v2:objecttype-list")
         full_url = build_absolute_url(endpoint, request=None)
 
