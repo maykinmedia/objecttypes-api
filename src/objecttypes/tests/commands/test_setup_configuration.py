@@ -1,4 +1,3 @@
-import uuid
 from io import StringIO
 
 from django.contrib.sites.models import Site
@@ -9,6 +8,7 @@ from django.urls import reverse
 import requests_mock
 from rest_framework import status
 
+from objecttypes.config.demo import DemoUserStep
 from objecttypes.config.objects import ObjectsAuthStep
 from objecttypes.config.site import SiteConfigurationStep
 
@@ -19,6 +19,10 @@ from objecttypes.config.site import SiteConfigurationStep
     OBJECTS_OBJECTTYPES_TOKEN="some-random-string",
     OBJECTS_OBJECTTYPES_PERSON="Some Person",
     OBJECTS_OBJECTTYPES_EMAIL="objects@objects.local",
+    DEMO_CONFIG_ENABLE=True,
+    DEMO_TOKEN="demo-random-string",
+    DEMO_PERSON="Demo",
+    DEMO_EMAIL="demo@demo.local",
 )
 class SetupConfigurationTests(TestCase):
     def setUp(self):
@@ -39,11 +43,13 @@ class SetupConfigurationTests(TestCase):
             command_output = stdout.getvalue().splitlines()
             expected_output = [
                 f"Configuration will be set up with following steps: [{SiteConfigurationStep()}, "
-                f"{ObjectsAuthStep()}]",
+                f"{ObjectsAuthStep()}, {DemoUserStep()}]",
                 f"Configuring {SiteConfigurationStep()}...",
                 f"{SiteConfigurationStep()} is successfully configured",
                 f"Configuring {ObjectsAuthStep()}...",
                 f"{ObjectsAuthStep()} is successfully configured",
+                f"Configuring {DemoUserStep()}...",
+                f"{DemoUserStep()} is successfully configured",
                 "Instance configuration completed.",
             ]
 
@@ -58,6 +64,14 @@ class SetupConfigurationTests(TestCase):
             response = self.client.get(
                 reverse("v2:objecttype-list"),
                 HTTP_AUTHORIZATION="Token some-random-string",
+            )
+
+            self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        with self.subTest("Demo user configured correctly"):
+            response = self.client.get(
+                reverse("v2:objecttype-list"),
+                HTTP_AUTHORIZATION="Token demo-random-string",
             )
 
             self.assertEqual(response.status_code, status.HTTP_200_OK)
