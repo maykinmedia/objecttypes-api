@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
         build-essential \
         libpq-dev \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -54,7 +55,9 @@ COPY --from=build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
 # Stage 3.2 - Copy source code
 WORKDIR /app
+COPY ./bin/wait_for_db.sh /wait_for_db.sh
 COPY ./bin/docker_start.sh /start.sh
+COPY ./bin/setup_configuration.sh /setup_configuration.sh
 RUN mkdir /app/log /app/config
 
 COPY --from=frontend-build /app/src/objecttypes/static /app/src/objecttypes/static

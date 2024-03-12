@@ -35,6 +35,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", split=True)
+IS_HTTPS = config("IS_HTTPS", default=not DEBUG)
 
 USE_X_FORWARDED_HOST = config("USE_X_FORWARDED_HOST", default=False)
 
@@ -81,6 +82,7 @@ INSTALLED_APPS = [
     "solo",
     "drf_spectacular",
     "vng_api_common",
+    "django_setup_configuration",
     # 2fa apps
     "django_otp",
     "django_otp.plugins.otp_static",
@@ -90,6 +92,7 @@ INSTALLED_APPS = [
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
+    "objecttypes.config",
     "objecttypes.core",
     "objecttypes.token",
     "objecttypes.utils",
@@ -433,3 +436,36 @@ TWO_FACTOR_PATCH_ADMIN = config("TWO_FACTOR_PATCH_ADMIN", True)
 OIDC_AUTHENTICATE_CLASS = "mozilla_django_oidc_db.views.OIDCAuthenticationRequestView"
 MOZILLA_DJANGO_OIDC_DB_CACHE = "oidc"
 MOZILLA_DJANGO_OIDC_DB_CACHE_TIMEOUT = 5 * 60
+
+
+#
+# Django setup configuration
+#
+SETUP_CONFIGURATION_STEPS = [
+    "objecttypes.config.site.SiteConfigurationStep",
+    "objecttypes.config.objects.ObjectsAuthStep",
+    "objecttypes.config.demo.DemoUserStep",
+]
+
+
+#
+# Objecttypes settings
+#
+
+# setup_configuration command
+# sites config
+SITES_CONFIG_ENABLE = config("SITES_CONFIG_ENABLE", default=True)
+OBJECTTYPES_DOMAIN = config("OBJECTTYPES_DOMAIN", "")
+OBJECTTYPES_ORGANIZATION = config("OBJECTTYPES_ORGANIZATION", "")
+# objects auth config
+OBJECTS_OBJECTTYPES_CONFIG_ENABLE = config(
+    "OBJECTS_OBJECTTYPES_CONFIG_ENABLE", default=True
+)
+OBJECTS_OBJECTTYPES_TOKEN = config("OBJECTS_OBJECTTYPES_TOKEN", "")
+OBJECTS_OBJECTTYPES_PERSON = config("OBJECTS_OBJECTTYPES_PERSON", "")
+OBJECTS_OBJECTTYPES_EMAIL = config("OBJECTS_OBJECTTYPES_EMAIL", "")
+# Demo User Configuration
+DEMO_CONFIG_ENABLE = config("DEMO_CONFIG_ENABLE", default=DEBUG)
+DEMO_TOKEN = config("DEMO_TOKEN", "")
+DEMO_PERSON = config("DEMO_PERSON", "")
+DEMO_EMAIL = config("DEMO_EMAIL", "")
