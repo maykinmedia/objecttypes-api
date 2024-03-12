@@ -433,6 +433,7 @@ if config("DISABLE_2FA", default=False):  # pragma: no cover
 SETUP_CONFIGURATION_STEPS = [
     "objecttypes.config.site.SiteConfigurationStep",
     "objecttypes.config.objects.ObjectsAuthStep",
+    "objecttypes.config.demo.DemoUserStep",
 ]
 
 
@@ -452,3 +453,8 @@ OBJECTS_OBJECTTYPES_CONFIG_ENABLE = config(
 OBJECTS_OBJECTTYPES_TOKEN = config("OBJECTS_OBJECTTYPES_TOKEN", "")
 OBJECTS_OBJECTTYPES_PERSON = config("OBJECTS_OBJECTTYPES_PERSON", "")
 OBJECTS_OBJECTTYPES_EMAIL = config("OBJECTS_OBJECTTYPES_EMAIL", "")
+# Demo User Configuration
+DEMO_CONFIG_ENABLE = config("DEMO_CONFIG_ENABLE", default=DEBUG)
+DEMO_TOKEN = config("DEMO_TOKEN", "")
+DEMO_PERSON = config("DEMO_PERSON", "")
+DEMO_EMAIL = config("DEMO_EMAIL", "")
