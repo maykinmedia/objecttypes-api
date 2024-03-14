@@ -7,17 +7,13 @@ python-decouple  # processing of envvar configs
 jsonschema
 
 # Framework libraries
-django
+django~=4.2
 django-admin-index
 django-axes
-django-choices
-django-hijack
 django-jsonsuit
 django-redis
 django-rosetta
-django-sniplates
-maykin-django-two-factor-auth
-maykin-django-two-factor-auth[phonenumbers]
+maykin-2fa
 mozilla-django-oidc-db
 sharing-configs
 

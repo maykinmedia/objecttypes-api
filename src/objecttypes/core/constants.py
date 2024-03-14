@@ -1,28 +1,25 @@
-from django.utils.translation import ugettext_lazy as _
-
-from djchoices import ChoiceItem, DjangoChoices
-
-
-class ObjectVersionStatus(DjangoChoices):
-    published = ChoiceItem("published", _("Published"))
-    draft = ChoiceItem("draft", _("Draft"))
-    deprecated = ChoiceItem("deprecated", _("Deprecated"))
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
-class DataClassificationChoices(DjangoChoices):
-    open = ChoiceItem("open", _("Open"))
-    intern = ChoiceItem("intern", _("Intern"))
-    confidential = ChoiceItem("confidential", _("Confidential"))
-    strictly_confidential = ChoiceItem(
-        "strictly_confidential", _("Strictly confidential")
-    )
+class ObjectVersionStatus(models.TextChoices):
+    published = "published", _("Published")
+    draft = "draft", _("Draft")
+    deprecated = "deprecated", _("Deprecated")
 
 
-class UpdateFrequencyChoices(DjangoChoices):
-    real_time = ChoiceItem("real_time", _("Real-time"))
-    hourly = ChoiceItem("hourly", _("Hourly"))
-    daily = ChoiceItem("daily", _("Daily"))
-    weekly = ChoiceItem("weekly", _("Weekly"))
-    monthly = ChoiceItem("monthly", _("Monthly"))
-    yearly = ChoiceItem("yearly", _("Yearly"))
-    unknown = ChoiceItem("unknown", _("Unknown"))
+class DataClassificationChoices(models.TextChoices):
+    open = "open", _("Open")
+    intern = "intern", _("Intern")
+    confidential = "confidential", _("Confidential")
+    strictly_confidential = "strictly_confidential", _("Strictly confidential")
+
+
+class UpdateFrequencyChoices(models.TextChoices):
+    real_time = "real_time", _("Real-time")
+    hourly = "hourly", _("Hourly")
+    daily = "daily", _("Daily")
+    weekly = "weekly", _("Weekly")
+    monthly = "monthly", _("Monthly")
+    yearly = "yearly", _("Yearly")
+    unknown = "unknown", _("Unknown")

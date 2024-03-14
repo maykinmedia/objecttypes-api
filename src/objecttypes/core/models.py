@@ -2,7 +2,7 @@ import uuid
 from datetime import date
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .constants import (
     DataClassificationChoices,

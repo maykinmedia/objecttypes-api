@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from rest_framework import serializers
 
@@ -10,21 +10,14 @@ from objecttypes.core.utils import check_json_schema
 class VersionUpdateValidator:
     message = _("Only draft versions can be changed")
     code = "non-draft-version-update"
+    requires_context = True
 
-    def set_context(self, serializer):
-        """
-        This hook is called by the serializer instance,
-        prior to the validation call being made.
-        """
-        # Determine the existing instance, if this is an update operation.
-        self.instance = getattr(serializer, "instance", None)
-        self.request = serializer.context["request"]
-
-    def __call__(self, attrs):
-        if not self.instance:
+    def __call__(self, attrs, serializer):
+        instance = getattr(serializer, "instance", None)
+        if not instance:
             return
 
-        if self.instance.status != ObjectVersionStatus.draft:
+        if instance.status != ObjectVersionStatus.draft:
             raise serializers.ValidationError(self.message, code=self.code)
 
 
@@ -45,22 +38,15 @@ class IsImmutableValidator:
 
     message = _("This field can't be changed")
     code = "immutable-field"
+    requires_context = True
 
-    def set_context(self, serializer_field):
-        """
-        This hook is called by the serializer instance,
-        prior to the validation call being made.
-        """
-        # Determine the existing instance, if this is an update operation.
-        self.serializer_field = serializer_field
-        self.instance = getattr(serializer_field.parent, "instance", None)
-
-    def __call__(self, new_value):
+    def __call__(self, new_value, serializer_field):
         # no instance -> it's not an update
-        if not self.instance:
+        instance = getattr(serializer_field.parent, "instance", None)
+        if not instance:
             return
 
-        current_value = getattr(self.instance, self.serializer_field.source)
+        current_value = getattr(instance, serializer_field.source)
 
         if new_value != current_value:
             raise serializers.ValidationError(self.message, code=self.code)

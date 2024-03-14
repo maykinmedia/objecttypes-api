@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from drf_spectacular.openapi import AutoSchema as _AutoSchema
 from drf_spectacular.utils import OpenApiParameter
