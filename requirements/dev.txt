@@ -227,6 +227,7 @@ django-solo==2.0.0
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via
     #   -r requirements/ci.txt
+    #   django-two-factor-auth
     #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/ci.txt
@@ -251,7 +252,7 @@ drf-nested-routers==0.93.4
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
-drf-spectacular==0.16.0
+drf-spectacular==0.26.5
     # via -r requirements/ci.txt
 drf-yasg==1.21.7
     # via
@@ -514,6 +515,7 @@ tomli==2.0.1
     # via
     #   black
     #   build
+    #   pyproject-hooks
 uritemplate==4.1.1
     # via
     #   -r requirements/ci.txt
