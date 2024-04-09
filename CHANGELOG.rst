@@ -2,6 +2,18 @@
 Change history
 ==============
 
+2.2.0 (WIP)
+-----------
+
+**Bugfixes and QOL**
+
+* updated to Django 4.2 (objects-api#385)
+
+.. warning::
+
+   Two-factor authentication is enabled by default. The ``DISABLE_2FA`` environment variable
+   can be used to disable it if needed.
+
 2.1.2 (2024-02-06)
 ------------------
 
@@ -9,7 +21,6 @@ Change history
 
 * added ``USE_X_FORWARDED_HOST`` environment variable (#353)
 * added email environment variables (#366)
-
 
 2.1.1 (2024-02-06)
 ------------------
