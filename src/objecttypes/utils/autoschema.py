@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from drf_spectacular.openapi import AutoSchema as _AutoSchema
 from drf_spectacular.utils import OpenApiParameter
@@ -24,9 +24,13 @@ class AutoSchema(_AutoSchema):
         parent_path_headers = self.get_parent_path_headers()
         return content_type_headers + parent_path_headers
 
-    def _get_response_for_code(self, serializer, status_code, media_types=None):
+    def _get_response_for_code(
+        self, serializer, status_code, media_types=None, direction="response"
+    ):
         """add default description to the response"""
-        response = super()._get_response_for_code(serializer, status_code, media_types)
+        response = super()._get_response_for_code(
+            serializer, status_code, media_types, direction
+        )
 
         if not response.get("description"):
             response["description"] = HTTP_STATUS_CODE_TITLES.get(int(status_code))

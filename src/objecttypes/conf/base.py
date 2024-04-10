@@ -1,6 +1,5 @@
 import os
 
-# Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
 from sentry_sdk.integrations import django, redis
@@ -71,9 +70,6 @@ INSTALLED_APPS = [
     # External applications.
     "axes",
     "jsonsuit.apps.JSONSuitConfig",
-    "sniplates",
-    "hijack",
-    "hijack.contrib.admin",
     "mozilla_django_oidc",
     "mozilla_django_oidc_db",
     "django_jsonform",
@@ -81,11 +77,12 @@ INSTALLED_APPS = [
     "solo",
     "drf_spectacular",
     "vng_api_common",
-    # 2fa apps
+    # Two-factor authentication in the Django admin, enforced.
     "django_otp",
     "django_otp.plugins.otp_static",
     "django_otp.plugins.otp_totp",
     "two_factor",
+    "maykin_2fa",
     "sharing_configs",
     # Project applications.
     "objecttypes.accounts",
@@ -102,12 +99,11 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "maykin_2fa.middleware.OTPMiddleware",
     "mozilla_django_oidc_db.middleware.SessionRefresh",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
-    "hijack.middleware.HijackUserMiddleware",
-    "django_otp.middleware.OTPMiddleware",
 ]
 
 ROOT_URLCONF = "objecttypes.urls"
@@ -171,8 +167,6 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Europe/Amsterdam"
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
@@ -358,22 +352,12 @@ IPWARE_META_PRECEDENCE_ORDER = (
     "REMOTE_ADDR",
 )
 
-# Django-Hijack
-HIJACK_LOGIN_REDIRECT_URL = "/"
-HIJACK_LOGOUT_REDIRECT_URL = reverse_lazy("admin:accounts_user_changelist")
-# The Admin mixin is used because we use a custom User-model.
-HIJACK_REGISTER_ADMIN = False
-# This is a CSRF-security risk.
-# See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
-HIJACK_ALLOW_GET_REQUESTS = True
-
 #
 # Sending EMAIL
 #
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
-EMAIL_PORT = config(
-    "EMAIL_PORT", default=25
-)  # disabled on Google Cloud, use 487 instead
+# disabled on Google Cloud, use 487 instead:
+EMAIL_PORT = config("EMAIL_PORT", default=25)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False)
@@ -422,10 +406,18 @@ if ELASTIC_APM_SERVER_URL:
 
 
 #
-# Maykin fork of DJANGO-TWO-FACTOR-AUTH
+# MAYKIN-2FA
+# Uses django-two-factor-auth under the hood, so relevant upstream package settings
+# apply too.
 #
-TWO_FACTOR_FORCE_OTP_ADMIN = config("TWO_FACTOR_FORCE_OTP_ADMIN", not DEBUG)
-TWO_FACTOR_PATCH_ADMIN = config("TWO_FACTOR_PATCH_ADMIN", True)
+
+# we run the admin site monkeypatch instead.
+TWO_FACTOR_PATCH_ADMIN = False
+# add entries from AUTHENTICATION_BACKENDS that already enforce their own two-factor
+# auth, avoiding having some set up MFA again in the project.
+MAYKIN_2FA_ALLOW_MFA_BYPASS_BACKENDS = [
+    "mozilla_django_oidc_db.backends.OIDCAuthenticationBackend",
+]
 
 #
 # Mozilla Django OIDC DB settings
@@ -433,3 +425,6 @@ TWO_FACTOR_PATCH_ADMIN = config("TWO_FACTOR_PATCH_ADMIN", True)
 OIDC_AUTHENTICATE_CLASS = "mozilla_django_oidc_db.views.OIDCAuthenticationRequestView"
 MOZILLA_DJANGO_OIDC_DB_CACHE = "oidc"
 MOZILLA_DJANGO_OIDC_DB_CACHE_TIMEOUT = 5 * 60
+
+if config("DISABLE_2FA", default=False):  # pragma: no cover
+    MAYKIN_2FA_ALLOW_MFA_BYPASS_BACKENDS = AUTHENTICATION_BACKENDS

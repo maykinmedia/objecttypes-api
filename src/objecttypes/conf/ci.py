@@ -25,6 +25,3 @@ logging.disable(logging.CRITICAL)
 # Django-axes
 #
 AXES_BEHIND_REVERSE_PROXY = False
-
-# Maykin fork of DJANGO-TWO-FACTOR-AUTH
-TWO_FACTOR_FORCE_OTP_ADMIN = False

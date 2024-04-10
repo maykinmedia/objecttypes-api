@@ -12,6 +12,10 @@ asgiref==3.6.0
     # via
     #   -r requirements/base.txt
     #   django
+asn1crypto==1.5.1
+    # via
+    #   -r requirements/base.txt
+    #   webauthn
 async-timeout==4.0.2
     # via
     #   -r requirements/base.txt
@@ -32,6 +36,10 @@ boltons==23.0.0
     #   -r requirements/base.txt
     #   face
     #   glom
+cbor2==5.6.1
+    # via
+    #   -r requirements/base.txt
+    #   webauthn
 celery==5.2.7
     # via
     #   -r requirements/base.txt
@@ -70,38 +78,36 @@ click-repl==0.2.0
     # via
     #   -r requirements/base.txt
     #   celery
-commonground-api-common==1.10.2
+commonground-api-common==1.13.0
     # via -r requirements/base.txt
 coreapi==2.3.3
     # via
     #   -r requirements/base.txt
-    #   drf-yasg
+    #   commonground-api-common
 coreschema==0.0.4
     # via
     #   -r requirements/base.txt
     #   coreapi
-    #   drf-yasg
 coverage==4.5.4
     # via -r requirements/test-tools.in
-cryptography==40.0.2
+cryptography==42.0.2
     # via
     #   -r requirements/base.txt
     #   django-simple-certmanager
     #   josepy
     #   mozilla-django-oidc
     #   pyopenssl
+    #   webauthn
 cssselect==1.2.0
     # via pyquery
-django==3.2.20
+django==4.2.11
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
     #   django-admin-index
     #   django-axes
-    #   django-choices
     #   django-filter
     #   django-formtools
-    #   django-hijack
     #   django-jenkins
     #   django-jsonform
     #   django-jsonsuit
@@ -114,13 +120,13 @@ django==3.2.20
     #   django-rosetta
     #   django-sendfile2
     #   django-simple-certmanager
-    #   django-sniplates
     #   django-solo
+    #   django-two-factor-auth
     #   djangorestframework
     #   drf-nested-routers
     #   drf-spectacular
     #   drf-yasg
-    #   maykin-django-two-factor-auth
+    #   maykin-2fa
     #   mozilla-django-oidc
     #   mozilla-django-oidc-db
     #   notifications-api-common
@@ -130,10 +136,6 @@ django-admin-index==3.0.0
     # via -r requirements/base.txt
 django-axes==5.41.1
     # via -r requirements/base.txt
-django-choices==1.7.2
-    # via
-    #   -r requirements/base.txt
-    #   commonground-api-common
 django-filter==23.2
     # via
     #   -r requirements/base.txt
@@ -141,9 +143,7 @@ django-filter==23.2
 django-formtools==2.4.1
     # via
     #   -r requirements/base.txt
-    #   maykin-django-two-factor-auth
-django-hijack==3.3.0
-    # via -r requirements/base.txt
+    #   django-two-factor-auth
 django-ipware==6.0.3
     # via
     #   -r requirements/base.txt
@@ -163,11 +163,11 @@ django-ordered-model==3.7.4
 django-otp==1.2.0
     # via
     #   -r requirements/base.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 django-phonenumber-field==5.2.0
     # via
     #   -r requirements/base.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 django-privates==2.0.0.post0
     # via
     #   -r requirements/base.txt
@@ -192,8 +192,6 @@ django-simple-certmanager==1.3.0
     # via
     #   -r requirements/base.txt
     #   zgw-consumers
-django-sniplates==0.7.1
-    # via -r requirements/base.txt
 django-solo==2.0.0
     # via
     #   -r requirements/base.txt
@@ -202,9 +200,14 @@ django-solo==2.0.0
     #   notifications-api-common
     #   sharing-configs
     #   zgw-consumers
+django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
+    # via
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
+    #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/test-tools.in
-djangorestframework==3.12.4
+djangorestframework==3.14.0
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
@@ -221,9 +224,9 @@ drf-nested-routers==0.93.4
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
-drf-spectacular==0.16.0
+drf-spectacular==0.26.5
     # via -r requirements/base.txt
-drf-yasg==1.21.5
+drf-yasg==1.21.7
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
@@ -285,7 +288,7 @@ jsonschema==4.17.3
     # via
     #   -r requirements/base.txt
     #   drf-spectacular
-kombu==5.2.4
+kombu==5.3.5
     # via
     #   -r requirements/base.txt
     #   celery
@@ -295,7 +298,7 @@ markupsafe==2.1.2
     # via
     #   -r requirements/base.txt
     #   jinja2
-maykin-django-two-factor-auth[phonenumbers]==2.0.4
+maykin-2fa==1.0.0
     # via -r requirements/base.txt
 mozilla-django-oidc==4.0.0
     # via
@@ -315,10 +318,10 @@ packaging==23.1
     # via
     #   -r requirements/base.txt
     #   drf-yasg
-phonenumbers==8.13.11
+phonenumberslite==8.13.30
     # via
     #   -r requirements/base.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 pillow==9.5.0
     # via -r requirements/base.txt
 polib==1.2.0
@@ -340,11 +343,12 @@ pyjwt==2.7.0
     #   -r requirements/base.txt
     #   commonground-api-common
     #   gemma-zds-client
-pyopenssl==23.1.1
+pyopenssl==24.0.0
     # via
     #   -r requirements/base.txt
     #   django-simple-certmanager
     #   josepy
+    #   webauthn
     #   zgw-consumers
 pyquery==2.0.0
     # via -r requirements/test-tools.in
@@ -370,19 +374,19 @@ pytz==2023.3
     # via
     #   -r requirements/base.txt
     #   celery
-    #   django
+    #   djangorestframework
     #   drf-yasg
 pyyaml==6.0
     # via
     #   -r requirements/base.txt
-    #   commonground-api-common
     #   drf-spectacular
+    #   drf-yasg
     #   gemma-zds-client
     #   oyaml
 qrcode==6.1
     # via
     #   -r requirements/base.txt
-    #   maykin-django-two-factor-auth
+    #   django-two-factor-auth
 redis==4.5.5
     # via
     #   -r requirements/base.txt
@@ -403,14 +407,6 @@ requests-mock==1.10.0
     #   -r requirements/base.txt
     #   -r requirements/test-tools.in
     #   zgw-consumers
-ruamel-yaml==0.17.26
-    # via
-    #   -r requirements/base.txt
-    #   drf-yasg
-ruamel-yaml-clib==0.2.7
-    # via
-    #   -r requirements/base.txt
-    #   ruamel-yaml
 sentry-sdk==1.23.1
     # via -r requirements/base.txt
 sharing-configs==0.1.2
@@ -419,7 +415,6 @@ six==1.16.0
     # via
     #   -r requirements/base.txt
     #   click-repl
-    #   django-choices
     #   isodate
     #   python-dateutil
     #   qrcode
@@ -458,6 +453,10 @@ wcwidth==0.2.6
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
+webauthn==2.0.0
+    # via
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 webob==1.8.7
     # via webtest
 webtest==3.0.0
