@@ -1,29 +1,11 @@
+open-api-framework
+
 # Core python libraries
-psycopg2  # database driver
-python-dotenv  # environment variables for secrets
-python-decouple  # processing of envvar configs
 jsonschema
 
 # Framework libraries
-django~=4.2
-django-admin-index
-django-axes
 django-jsonsuit
-django-redis
-maykin-2fa
-mozilla-django-oidc-db
 sharing-configs
 
 # API libraries
-djangorestframework
-django-filter
 drf-nested-routers
-drf-spectacular
-
-# WSGI servers & monitoring - production oriented
-uwsgi
-sentry-sdk  # error monitoring
-elastic-apm  # Elastic APM integration
-
-# Common ground libraries
-commonground-api-common
