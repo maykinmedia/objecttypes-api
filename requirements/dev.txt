@@ -137,7 +137,6 @@ django==4.2.11
     #   django-redis
     #   django-relativedelta
     #   django-rest-framework-condition
-    #   django-rosetta
     #   django-sendfile2
     #   django-simple-certmanager
     #   django-solo
@@ -206,8 +205,6 @@ django-rest-framework-condition==0.1.1
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
-django-rosetta==0.9.9
-    # via -r requirements/ci.txt
 django-sendfile2==0.7.0
     # via
     #   -r requirements/ci.txt
@@ -227,7 +224,6 @@ django-solo==2.0.0
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via
     #   -r requirements/ci.txt
-    #   django-two-factor-auth
     #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/ci.txt
@@ -368,16 +364,10 @@ phonenumberslite==8.13.30
     # via
     #   -r requirements/ci.txt
     #   django-two-factor-auth
-pillow==9.5.0
-    # via -r requirements/ci.txt
 pip-tools==6.13.0
     # via -r requirements/dev.in
 platformdirs==3.5.1
     # via black
-polib==1.2.0
-    # via
-    #   -r requirements/ci.txt
-    #   django-rosetta
 prompt-toolkit==3.0.38
     # via
     #   -r requirements/ci.txt
@@ -454,7 +444,6 @@ requests==2.31.0
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   coreapi
-    #   django-rosetta
     #   gemma-zds-client
     #   mozilla-django-oidc
     #   requests-mock
@@ -515,7 +504,6 @@ tomli==2.0.1
     # via
     #   black
     #   build
-    #   pyproject-hooks
 uritemplate==4.1.1
     # via
     #   -r requirements/ci.txt
