@@ -26,20 +26,13 @@ class DemoUserStep(BaseConfigurationStep):
         return TokenAuth.objects.filter(token=settings.DEMO_TOKEN).exists()
 
     def configure(self):
-        token_auth, created = TokenAuth.objects.get_or_create(
+        TokenAuth.objects.update_or_create(
             token=settings.DEMO_TOKEN,
             defaults={
                 "contact_person": settings.DEMO_PERSON,
                 "email": settings.DEMO_EMAIL,
             },
         )
-        if (
-            token_auth.contact_person != settings.DEMO_PERSON
-            or token_auth.email != settings.DEMO_EMAIL
-        ):
-            token_auth.contact_person = settings.DEMO_PERSON
-            token_auth.email = settings.DEMO_EMAIL
-            token_auth.save(update_fields=["contact_person", "email"])
 
     def test_configuration(self):
         endpoint = reverse("v2:objecttype-list")
