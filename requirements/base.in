@@ -7,7 +7,7 @@ furl
 # Framework libraries
 django-jsonsuit
 sharing-configs
-git+https://github.com/maykinmedia/django-setup-configuration.git@feature/1-config-command
+django-setup-configuration
 
 # API libraries
 drf-nested-routers
