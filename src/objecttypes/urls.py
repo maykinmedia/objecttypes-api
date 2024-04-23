@@ -48,6 +48,7 @@ urlpatterns = [
             template_name="index.html",
             extra_context={"version": api_settings.DEFAULT_VERSION},
         ),
+        name="home",
     ),
     path("oidc/", include("mozilla_django_oidc.urls")),
     path("api/", include("objecttypes.api.urls")),

@@ -132,6 +132,7 @@ django==4.2.11
     #   django-relativedelta
     #   django-rest-framework-condition
     #   django-sendfile2
+    #   django-setup-configuration
     #   django-simple-certmanager
     #   django-solo
     #   django-two-factor-auth
@@ -213,6 +214,8 @@ django-sendfile2==0.7.0
     # via
     #   -r requirements/base.txt
     #   django-privates
+django-setup-configuration==0.1.0
+    # via -r requirements/base.txt
 django-simple-certmanager==2.0.0
     # via
     #   -r requirements/base.txt

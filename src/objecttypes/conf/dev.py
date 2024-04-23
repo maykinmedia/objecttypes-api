@@ -3,6 +3,7 @@ import sys
 import warnings
 
 os.environ.setdefault("DEBUG", "yes")
+os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("ALLOWED_HOSTS", "*")
 os.environ.setdefault(
     "SECRET_KEY", "fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cy$15d"
