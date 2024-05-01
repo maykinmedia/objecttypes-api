@@ -135,6 +135,7 @@ django==4.2.11
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   django-admin-index
+    #   django-appconf
     #   django-axes
     #   django-cors-headers
     #   django-debug-toolbar
@@ -144,6 +145,7 @@ django==4.2.11
     #   django-jenkins
     #   django-jsonform
     #   django-jsonsuit
+    #   django-log-outgoing-requests
     #   django-markup
     #   django-otp
     #   django-phonenumber-field
@@ -172,6 +174,10 @@ django-admin-index==3.1.1
     # via
     #   -r requirements/ci.txt
     #   open-api-framework
+django-appconf==1.0.6
+    # via
+    #   -r requirements/ci.txt
+    #   django-log-outgoing-requests
 django-axes==6.4.0
     # via
     #   -r requirements/ci.txt
@@ -202,6 +208,10 @@ django-jsonform==2.21.5
     #   open-api-framework
 django-jsonsuit==0.5.0
     # via -r requirements/ci.txt
+django-log-outgoing-requests==0.6.1
+    # via
+    #   -r requirements/ci.txt
+    #   open-api-framework
 django-markup==1.8.1
     # via
     #   -r requirements/ci.txt
@@ -248,6 +258,7 @@ django-solo==2.0.0
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
+    #   django-log-outgoing-requests
     #   mozilla-django-oidc-db
     #   notifications-api-common
     #   sharing-configs
@@ -411,7 +422,7 @@ notifications-api-common==0.2.2
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
-open-api-framework==0.2.0
+open_api_framework @ git+https://github.com/maykinmedia/open-api-framework.git@feature/django-settings
     # via -r requirements/ci.txt
 orderedmultidict==1.0.1
     # via
@@ -521,6 +532,7 @@ requests==2.31.0
     #   ape-pie
     #   commonground-api-common
     #   coreapi
+    #   django-log-outgoing-requests
     #   gemma-zds-client
     #   mozilla-django-oidc
     #   open-api-framework
