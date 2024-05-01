@@ -14,7 +14,7 @@ services:
     build: .
     environment: &app-env
       - DJANGO_SETTINGS_MODULE=objecttypes.conf.docker
-      - SECRET_KEY=${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cy$15d}
+      - SECRET_KEY=${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cyf15d}
       - ALLOWED_HOSTS=*
       - TWO_FACTOR_FORCE_OTP_ADMIN=no
       - TWO_FACTOR_PATCH_ADMIN=no
