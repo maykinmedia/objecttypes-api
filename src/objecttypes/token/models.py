@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class TokenAuth(models.Model):
-    token = models.CharField(_("token"), max_length=40, primary_key=True)
+    token = models.CharField(_("token"), max_length=40, db_index=True)
     contact_person = models.CharField(
         _("contact person"),
         max_length=200,
