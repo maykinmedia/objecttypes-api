@@ -33,6 +33,18 @@ if [ -d $fixtures_dir ]; then
     done
 fi
 
+# Create superuser
+# specify password by setting OBJECTTYPE_SUPERUSER_PASSWORD in the env
+# specify username by setting OBJECTTYPE_SUPERUSER_USERNAME in the env
+# specify email by setting OBJECTTYPE_SUPERUSER_EMAIL in the env
+if [ -n "${OBJECTTYPE_SUPERUSER_USERNAME}" ]; then
+    python src/manage.py createinitialsuperuser \
+        --no-input \
+        --username "${OBJECTTYPE_SUPERUSER_USERNAME}" \
+        --email "${OBJECTTYPE_SUPERUSER_EMAIL:-admin@admin.org}"
+    unset OBJECTTYPE_SUPERUSER_USERNAME OBJECTTYPE_SUPERUSER_EMAIL OBJECTTYPE_SUPERUSER_PASSWORD
+fi
+
 # Start server
 >&2 echo "Starting server"
 uwsgi \
