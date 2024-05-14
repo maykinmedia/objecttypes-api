@@ -38,7 +38,6 @@ TIME_ZONE = "Europe/Amsterdam"  # FIXME should this be "UTC"?
 #
 PROJECT_NAME = "Objecttypes"
 SITE_TITLE = "Starting point"
-SHOW_ALERT = True  # FIXME this doesn't seem to be used anywhere?
 
 
 ##############################
