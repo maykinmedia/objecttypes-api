@@ -422,7 +422,7 @@ notifications-api-common==0.2.2
     # via
     #   -r requirements/ci.txt
     #   commonground-api-common
-open_api_framework @ git+https://github.com/maykinmedia/open-api-framework.git@feature/django-settings
+open-api-framework==0.3.0
     # via -r requirements/ci.txt
 orderedmultidict==1.0.1
     # via

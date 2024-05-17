@@ -1,4 +1,4 @@
-git+https://github.com/maykinmedia/open-api-framework.git@feature/django-settings
+open-api-framework
 
 # Core python libraries
 jsonschema
