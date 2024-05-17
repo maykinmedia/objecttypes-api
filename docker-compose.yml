@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres:11-alpine
+    image: postgres:12-alpine
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
@@ -10,14 +10,18 @@ services:
 #      - db:/var/lib/postgresql/data
     command: postgres -c max_connections=300 -c log_min_messages=LOG
 
+  redis:
+    image: redis
+
   web:
     build: .
     environment: &app-env
       - DJANGO_SETTINGS_MODULE=objecttypes.conf.docker
-      - SECRET_KEY=${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cy$15d}
+      - SECRET_KEY=${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cyf15d}
       - ALLOWED_HOSTS=*
-      - TWO_FACTOR_FORCE_OTP_ADMIN=no
-      - TWO_FACTOR_PATCH_ADMIN=no
+      - CACHE_DEFAULT=redis:6379/0
+      - CACHE_AXES=redis:6379/0
+      - DISABLE_2FA=yes
       # setup_configuration env vars
       - OBJECTTYPES_DOMAIN=web:8000
       - OBJECTTYPES_ORGANIZATION=ObjectTypes

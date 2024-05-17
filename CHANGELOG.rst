@@ -8,11 +8,18 @@ Change history
 **Bugfixes and QOL**
 
 * updated to Django 4.2 (objects-api#385)
+* changed caching backend from LocMem to Redis
 
 .. warning::
 
    Two-factor authentication is enabled by default. The ``DISABLE_2FA`` environment variable
    can be used to disable it if needed.
+
+.. warning::
+
+    Because the caching barefer to env config for envvarsckend was changed to Redis,
+    existing deployments must add a Redis container or Redis instance
+    (see ``Installation > Environment configuration reference`` in the documentation on how to configure) the connection with Redis
 
 2.1.2 (2024-02-06)
 ------------------
