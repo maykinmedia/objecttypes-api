@@ -21,6 +21,7 @@ services:
       - CACHE_DEFAULT=redis:6379/0
       - CACHE_AXES=redis:6379/0
       - DISABLE_2FA=yes
+      - SUBPATH=${SUBPATH:-/}
       # setup_configuration env vars
       - OBJECTTYPES_DOMAIN=web:8000
       - OBJECTTYPES_ORGANIZATION=ObjectTypes
