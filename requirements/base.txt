@@ -28,14 +28,14 @@ boltons==23.0.0
     # via
     #   face
     #   glom
-cbor2==5.6.1
+cbor2==5.6.3
     # via webauthn
 celery==5.2.7
     # via
     #   flower
     #   notifications-api-common
     #   open-api-framework
-certifi==2023.5.7
+certifi==2024.2.2
     # via
     #   elastic-apm
     #   requests
@@ -62,7 +62,7 @@ coreapi==2.3.3
     # via commonground-api-common
 coreschema==0.0.4
     # via coreapi
-cryptography==42.0.2
+cryptography==42.0.7
     # via
     #   django-simple-certmanager
     #   josepy
@@ -205,7 +205,7 @@ glom==23.3.0
     # via mozilla-django-oidc-db
 humanize==4.9.0
     # via flower
-idna==3.4
+idna==3.7
     # via requests
 inflection==0.5.1
     # via
@@ -217,7 +217,7 @@ isodate==0.6.1
     # via commonground-api-common
 itypes==1.2.0
     # via coreapi
-jinja2==3.1.2
+jinja2==3.1.4
     # via coreschema
 josepy==1.13.0
     # via mozilla-django-oidc
@@ -312,7 +312,7 @@ six==1.16.0
     #   orderedmultidict
     #   python-dateutil
     #   qrcode
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via django
 tornado==6.4
     # via flower
@@ -323,7 +323,7 @@ uritemplate==4.1.1
     #   coreapi
     #   drf-spectacular
     #   drf-yasg
-urllib3==1.26.15
+urllib3==2.2.1
     # via
     #   elastic-apm
     #   requests

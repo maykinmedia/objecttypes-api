@@ -42,7 +42,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/ci.txt
     #   celery
-black==23.3.0
+black==24.4.2
     # via -r requirements/dev.in
 bleach==6.1.0
     # via
@@ -59,7 +59,7 @@ bump2version==1.0.1
     # via bumpversion
 bumpversion==0.6.0
     # via -r requirements/dev.in
-cbor2==5.6.1
+cbor2==5.6.3
     # via
     #   -r requirements/ci.txt
     #   webauthn
@@ -69,7 +69,7 @@ celery==5.2.7
     #   flower
     #   notifications-api-common
     #   open-api-framework
-certifi==2023.5.7
+certifi==2024.2.2
     # via
     #   -r requirements/ci.txt
     #   elastic-apm
@@ -118,7 +118,7 @@ coreschema==0.0.4
     #   coreapi
 coverage==4.5.4
     # via -r requirements/ci.txt
-cryptography==42.0.2
+cryptography==42.0.7
     # via
     #   -r requirements/ci.txt
     #   django-simple-certmanager
@@ -352,7 +352,7 @@ humanize==4.9.0
     # via
     #   -r requirements/ci.txt
     #   flower
-idna==3.4
+idna==3.7
     # via
     #   -r requirements/ci.txt
     #   requests
@@ -377,7 +377,7 @@ itypes==1.2.0
     # via
     #   -r requirements/ci.txt
     #   coreapi
-jinja2==3.1.2
+jinja2==3.1.4
     # via
     #   -r requirements/ci.txt
     #   coreschema
@@ -586,7 +586,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via
     #   -r requirements/ci.txt
     #   django
@@ -604,6 +604,7 @@ tornado==6.4
 typing-extensions==4.11.0
     # via
     #   -r requirements/ci.txt
+    #   black
     #   zgw-consumers
 uritemplate==4.1.1
     # via
@@ -611,7 +612,7 @@ uritemplate==4.1.1
     #   coreapi
     #   drf-spectacular
     #   drf-yasg
-urllib3==1.26.15
+urllib3==2.2.1
     # via
     #   -r requirements/ci.txt
     #   elastic-apm
