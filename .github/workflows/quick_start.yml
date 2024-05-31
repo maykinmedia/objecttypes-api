@@ -11,8 +11,6 @@ jobs:
         run: wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/feature/merge-docker-composes/docker-compose.yml
       - name: Start docker containers
         run: docker compose up -d --no-build
-      - name: Wait until DB container starts
-        run: sleep 10
       - name: Load fixtures
         run: docker compose exec -T web src/manage.py loaddata demodata
       - name: Create superuser
