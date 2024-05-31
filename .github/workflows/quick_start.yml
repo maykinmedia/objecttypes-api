@@ -17,7 +17,7 @@ jobs:
         run: docker-compose exec -T web src/manage.py createsuperuser --username admin --email admin@admin.nl --no-input
       - name: Check main page
         run: |
-          curl_status=$(curl -w '%{http_code}' -o /dev/null  -s http://localhost:8001/)
+          curl_status=$(curl -w '%{http_code}' -o /dev/null  -s http://localhost:8000/)
           if [[ $curl_status != 200 ]]; then
             printf "index page responds with $curl_status status" >&2
             exit 1
