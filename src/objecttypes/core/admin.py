@@ -98,7 +98,7 @@ class ObjectTypeAdmin(
     SharingConfigsImportMixin, SharingConfigsExportMixin, admin.ModelAdmin
 ):
     list_display = ("name", "name_plural", "allow_geometry")
-    search_fields = ("uuid",)
+    search_fields = ("name", "name_plural", "uuid")
     inlines = [ObjectVersionInline]
 
     change_list_template = "admin/core/objecttype/object_list.html"
