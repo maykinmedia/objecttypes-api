@@ -146,7 +146,9 @@ django-rest-framework-condition==0.1.1
 django-sendfile2==0.7.0
     # via django-privates
 django-setup-configuration==0.1.0
-    # via -r requirements/base.in
+    # via
+    #   -r requirements/base.in
+    #   open-api-framework
 django-simple-certmanager==2.0.0
     # via zgw-consumers
 django-solo==2.0.0
@@ -237,7 +239,7 @@ mozilla-django-oidc-db==0.16.0
     # via open-api-framework
 notifications-api-common==0.2.2
     # via commonground-api-common
-open-api-framework==0.3.0
+open_api_framework @ git+https://github.com/maykinmedia/open-api-framework.git@feature/autodoc
     # via -r requirements/base.in
 orderedmultidict==1.0.1
     # via furl
