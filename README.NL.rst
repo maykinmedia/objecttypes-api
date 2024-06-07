@@ -77,10 +77,10 @@ Quickstart
 
    .. code:: bash
 
-      $ wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/docker-compose.yml
-      $ docker compose up -d --no-build
-      $ docker compose exec -T web src/manage.py loaddata demodata
-      $ docker compose exec web src/manage.py createsuperuser
+      wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/docker-compose.yml
+      docker compose up -d --no-build
+      docker compose exec -T web src/manage.py loaddata demodata
+      docker compose exec web src/manage.py createsuperuser
 
 2. In de browser, navigeer naar ``http://localhost:8000/`` om de admin en de
    API te benaderen.
