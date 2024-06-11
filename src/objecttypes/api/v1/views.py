@@ -4,12 +4,12 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.settings import api_settings
-from vng_api_common.viewsets import NestedViewSetMixin
 
 from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectType, ObjectVersion
 
 from ..filters import ObjectTypeFilterSet
+from ..mixins import NestedViewSetMixin
 from ..serializers import ObjectTypeSerializer, ObjectVersionSerializer
 
 
