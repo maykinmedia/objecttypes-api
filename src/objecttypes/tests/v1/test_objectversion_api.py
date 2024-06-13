@@ -46,6 +46,16 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
             ],
         )
 
+    def test_get_versions_incorrect_format_uuid(self):
+        """
+        Regression test for https://github.com/maykinmedia/objects-api/issues/361
+        """
+        url = reverse("objectversion-list", args=["aaa"])
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
     def test_create_version(self):
         object_type = ObjectTypeFactory.create()
         data = {"jsonSchema": JSON_SCHEMA, "status": ObjectVersionStatus.published}
