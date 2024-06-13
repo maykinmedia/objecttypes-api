@@ -21,6 +21,18 @@ Change history
     existing deployments must add a Redis container or Redis instance
     (see ``Installation > Environment configuration reference`` in the documentation on how to configure) the connection with Redis
 
+.. warning::
+
+    The service name for Elastic APM is now configurable via the ``ELASTIC_APM_SERVICE_NAME`` environment variable.
+    The default value changed from ``Objecttypes API`` to ``objecttypes - <ENVIRONMENT>``
+
+.. warning::
+
+    The following defaults for environment variables changed for the docker settings, be sure to override them:
+      * ``DB_NAME``: ``objecttypes`` -> ``postgres``
+      * ``DB_USER``: ``objecttypes`` -> ``postgres``
+      * ``DB_PASSWORD``: ``objecttypes`` -> ``""``
+
 2.1.2 (2024-02-06)
 ------------------
 
