@@ -65,9 +65,11 @@ class AutoSchema(_AutoSchema):
                 type=UUID if "uuid" in path_param else str,
                 location=OpenApiParameter.PATH,
                 required=True,
-                description=_("Unique identifier (UUID4)")
-                if "uuid" in path_param
-                else _("Unique identifier"),
+                description=(
+                    _("Unique identifier (UUID4)")
+                    if "uuid" in path_param
+                    else _("Unique identifier")
+                ),
             )
             for path_param in path_params
         ]
