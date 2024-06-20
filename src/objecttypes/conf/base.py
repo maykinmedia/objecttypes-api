@@ -10,7 +10,6 @@ init_sentry()
 #
 
 # Application definition
-# TODO: include `open_api_framework` by default (through open_api_framework)?
 INSTALLED_APPS = INSTALLED_APPS + [
     # External applications.
     "jsonsuit.apps.JSONSuitConfig",
@@ -25,6 +24,14 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "objecttypes.token",
     "objecttypes.utils",
 ]
+
+INSTALLED_APPS.pop(
+    next(
+        index
+        for index, app in enumerate(INSTALLED_APPS)
+        if app == "two_factor.plugins.webauthn"
+    )
+)
 
 TEMPLATES = [
     {
