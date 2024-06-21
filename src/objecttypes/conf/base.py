@@ -13,7 +13,6 @@ init_sentry()
 INSTALLED_APPS = INSTALLED_APPS + [
     # External applications.
     "jsonsuit.apps.JSONSuitConfig",
-    "open_api_framework",
     # Two-factor authentication in the Django admin, enforced.
     "sharing_configs",
     # Project applications.
@@ -24,35 +23,6 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "objecttypes.token",
     "objecttypes.utils",
 ]
-
-INSTALLED_APPS.pop(
-    next(
-        index
-        for index, app in enumerate(INSTALLED_APPS)
-        if app == "two_factor.plugins.webauthn"
-    )
-)
-
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [Path(DJANGO_PROJECT_DIR) / "templates"],
-        "APP_DIRS": False,  # conflicts with explicity specifying the loaders
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-                "django.contrib.messages.context_processors.messages",
-                "open_api_framework.context_processors.project",
-                f"{PROJECT_DIRNAME}.utils.context_processors.settings",
-            ],
-            "loaders": TEMPLATE_LOADERS,
-        },
-    }
-]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
