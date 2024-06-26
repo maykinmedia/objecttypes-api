@@ -2,13 +2,27 @@
 Change history
 ==============
 
-2.2.0 (WIP)
+2.2.0 (2024-06-26)
 -----------
 
 **Bugfixes and QOL**
 
 * updated to Django 4.2 (objects-api#385)
+* updated python to 3.11 (#117)
 * changed caching backend from LocMem to Redis
+* fixed ``Application groups`` admin changelist page (#116)
+* upgraded open-api-framework to ``0.4.2`` (#116)
+* upgraded various python libraries due to security issues (#109)
+* added `name` and `name_plural` fields to objecttype admin list view (#111)
+* fixed objecttype admin searching with invalid UUIDs (objects-api#361)
+* added ``SUBPATH`` environment variable to the docker compose setup (#108)
+* updated changelog regarding ``ELASTIC_AP_SERVICE_NAME`` and changes to default values (#113)
+* merged the ``docker-compose-quickstart.yml`` with ``docker-compose.yml`` (#110)
+* refactored various settings and configurations (#102)
+* added the ``createinitialsuperuser`` command (#92)
+* added Trivy image scanning and add ``publish`` CI step (#107)
+* fixed CodeQL CI action (#106)
+* fixed the styling for OIDC login (#105)
 
 .. warning::
 
