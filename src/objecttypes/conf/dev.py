@@ -9,6 +9,7 @@ os.environ.setdefault(
     "SECRET_KEY", "fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cy$15d"
 )
 os.environ.setdefault("ENVIRONMENT", "development")
+os.environ.setdefault("RELEASE", "dev")
 
 os.environ.setdefault("DB_NAME", "objecttypes"),
 os.environ.setdefault("DB_USER", "objecttypes"),

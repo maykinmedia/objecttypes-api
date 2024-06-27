@@ -10,7 +10,6 @@ init_sentry()
 #
 
 # Application definition
-
 INSTALLED_APPS = INSTALLED_APPS + [
     # External applications.
     "jsonsuit.apps.JSONSuitConfig",
@@ -24,7 +23,6 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "objecttypes.token",
     "objecttypes.utils",
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
