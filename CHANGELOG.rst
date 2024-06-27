@@ -53,6 +53,15 @@ Change history
 * fixed CodeQL CI action (#106)
 * fixed the styling for OIDC login (#105)
 
+2.1.3 (2024-05-03)
+------------------
+
+Bugfix release
+
+This release addresses a security weakness.
+
+* [GHSA-3wcp-29hm-g82c] replaced PK for Token model.
+
 2.1.2 (2024-02-06)
 ------------------
 
