@@ -2,36 +2,65 @@
 Change history
 ==============
 
-2.2.0 (WIP)
------------
+2.2.0 (2024-06-27)
+------------------
+
+**New features**
+
+* added `name` and `name_plural` fields to objecttype admin list view (#111)
+* added the ``createinitialsuperuser`` command (#92)
+* added ``SUBPATH`` environment variable to the docker compose setup (#108)
+
+.. warning::
+
+   Two-factor authentication is enabled by default. The ``DISABLE_2FA``
+   environment variable can be used to disable it if needed.
+
+.. warning::
+
+    Because the caching backend was changed to Redis, existing deployments must
+    add a Redis container or Redis instance (see ``Installation > Environment
+    configuration reference`` in the documentation on how to configure) the
+    connection with Redis.
+
+.. warning::
+
+    The service name for Elastic APM is now configurable via the
+    ``ELASTIC_APM_SERVICE_NAME`` environment variable. The default value changed
+    from ``Objecttypes API`` to ``objecttypes - <ENVIRONMENT>``.
+
+.. warning::
+
+    The following defaults for environment variables changed for the docker
+    settings, be sure to override them:
+      * ``DB_NAME``: ``objecttypes`` -> ``postgres``
+      * ``DB_USER``: ``objecttypes`` -> ``postgres``
+      * ``DB_PASSWORD``: ``objecttypes`` -> ``""``
 
 **Bugfixes and QOL**
 
 * updated to Django 4.2 (objects-api#385)
+* updated python to 3.11 (#117)
 * changed caching backend from LocMem to Redis
+* fixed ``Application groups`` admin changelist page (#116)
+* upgraded open-api-framework to ``0.4.2`` (#116)
+* upgraded various python libraries due to security issues (#109)
+* fixed objecttype admin searching with invalid UUIDs (objects-api#361)
+* updated changelog regarding ``ELASTIC_AP_SERVICE_NAME`` and changes to default values (#113)
+* merged the ``docker-compose-quickstart.yml`` with ``docker-compose.yml`` (#110)
+* refactored various settings and configurations (#102)
+* added Trivy image scanning and add ``publish`` CI step (#107)
+* fixed CodeQL CI action (#106)
+* fixed the styling for OIDC login (#105)
 
-.. warning::
+2.1.3 (2024-05-03)
+------------------
 
-   Two-factor authentication is enabled by default. The ``DISABLE_2FA`` environment variable
-   can be used to disable it if needed.
+Bugfix release
 
-.. warning::
+This release addresses a security weakness.
 
-    Because the caching barefer to env config for envvarsckend was changed to Redis,
-    existing deployments must add a Redis container or Redis instance
-    (see ``Installation > Environment configuration reference`` in the documentation on how to configure) the connection with Redis
-
-.. warning::
-
-    The service name for Elastic APM is now configurable via the ``ELASTIC_APM_SERVICE_NAME`` environment variable.
-    The default value changed from ``Objecttypes API`` to ``objecttypes - <ENVIRONMENT>``
-
-.. warning::
-
-    The following defaults for environment variables changed for the docker settings, be sure to override them:
-      * ``DB_NAME``: ``objecttypes`` -> ``postgres``
-      * ``DB_USER``: ``objecttypes`` -> ``postgres``
-      * ``DB_PASSWORD``: ``objecttypes`` -> ``""``
+* [GHSA-3wcp-29hm-g82c] replaced PK for Token model.
 
 2.1.2 (2024-02-06)
 ------------------
