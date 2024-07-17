@@ -34,8 +34,8 @@ jobs:
         run: |
           black --check src
 
-  generate-oas-files:
-    name: Generate and upload OAS files for all versions
+  oas-up-to-date:
+    name: Check for unexepected OAS changes
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -64,26 +64,6 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: objecttypes.conf.ci
 
-      - name: Store generated OAS files
-        uses: actions/upload-artifact@v4
-        with:
-          name: objecttypes-api-${{ matrix.version }}-oas
-          path: openapi-${{ matrix.version }}.yaml
-          retention-days: 1
-
-  oas-up-to-date:
-    name: Check for unexepected OAS changes
-    needs: generate-oas-files
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version: ['v1', 'v2']
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download generated OAS
-        uses: actions/download-artifact@v4
-        with:
-          name: objecttypes-api-${{ matrix.version }}-oas
       - name: Check for OAS changes
         run: |
           diff openapi-${{ matrix.version }}.yaml src/objecttypes/api/${{ matrix.version }}/openapi.yaml
