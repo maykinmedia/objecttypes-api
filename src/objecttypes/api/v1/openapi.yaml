@@ -40,7 +40,6 @@ paths:
   /objecttypes:
     get:
       operationId: objecttype_list
-      description: ''
       parameters:
       - in: query
         name: dataClassification
@@ -51,7 +50,13 @@ paths:
           - intern
           - open
           - strictly_confidential
-        description: Confidential level of the object type
+        description: |-
+          Confidential level of the object type
+
+          * `open` - Open
+          * `intern` - Intern
+          * `confidential` - Confidential
+          * `strictly_confidential` - Strictly confidential
       tags:
       - Objecttypes
       security:
@@ -67,7 +72,6 @@ paths:
           description: OK
     post:
       operationId: objecttype_create
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -97,7 +101,6 @@ paths:
   /objecttypes/{objecttype_uuid}/versions:
     get:
       operationId: objectversion_list
-      description: ''
       parameters:
       - in: path
         name: objecttype_uuid
@@ -121,7 +124,6 @@ paths:
           description: OK
     post:
       operationId: objectversion_create
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -157,7 +159,6 @@ paths:
   /objecttypes/{objecttype_uuid}/versions/{version}:
     get:
       operationId: objectversion_read
-      description: ''
       parameters:
       - in: path
         name: objecttype_uuid
@@ -171,6 +172,7 @@ paths:
         schema:
           type: integer
           maximum: 32767
+          minimum: 0
           description: Integer version of the OBJECTTYPE
         required: true
       tags:
@@ -186,7 +188,6 @@ paths:
           description: OK
     put:
       operationId: objectversion_update
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -208,6 +209,7 @@ paths:
         schema:
           type: integer
           maximum: 32767
+          minimum: 0
           description: Integer version of the OBJECTTYPE
         required: true
       tags:
@@ -228,7 +230,6 @@ paths:
           description: OK
     patch:
       operationId: objectversion_partial_update
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -250,6 +251,7 @@ paths:
         schema:
           type: integer
           maximum: 32767
+          minimum: 0
           description: Integer version of the OBJECTTYPE
         required: true
       tags:
@@ -270,7 +272,6 @@ paths:
           description: OK
     delete:
       operationId: objectversion_delete
-      description: ''
       parameters:
       - in: path
         name: objecttype_uuid
@@ -284,6 +285,7 @@ paths:
         schema:
           type: integer
           maximum: 32767
+          minimum: 0
           description: Integer version of the OBJECTTYPE
         required: true
       tags:
@@ -296,7 +298,6 @@ paths:
   /objecttypes/{uuid}:
     get:
       operationId: objecttype_read
-      description: ''
       parameters:
       - in: path
         name: uuid
@@ -318,7 +319,6 @@ paths:
           description: OK
     put:
       operationId: objecttype_update
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -354,7 +354,6 @@ paths:
           description: OK
     patch:
       operationId: objecttype_partial_update
-      description: ''
       parameters:
       - in: header
         name: Content-Type
@@ -389,7 +388,6 @@ paths:
           description: OK
     delete:
       operationId: objecttype_delete
-      description: ''
       parameters:
       - in: path
         name: uuid
@@ -414,6 +412,11 @@ components:
       - confidential
       - strictly_confidential
       type: string
+      description: |-
+        * `open` - Open
+        * `intern` - Intern
+        * `confidential` - Confidential
+        * `strictly_confidential` - Strictly confidential
     ObjectType:
       type: object
       properties:
@@ -444,7 +447,13 @@ components:
         dataClassification:
           allOf:
           - $ref: '#/components/schemas/DataClassificationEnum'
-          description: Confidential level of the object type
+          description: |-
+            Confidential level of the object type
+
+            * `open` - Open
+            * `intern` - Intern
+            * `confidential` - Confidential
+            * `strictly_confidential` - Strictly confidential
         maintainerOrganization:
           type: string
           description: Organization which is responsible for the object type
@@ -470,7 +479,16 @@ components:
         updateFrequency:
           allOf:
           - $ref: '#/components/schemas/UpdateFrequencyEnum'
-          description: Indicates how often the object type is updated
+          description: |-
+            Indicates how often the object type is updated
+
+            * `real_time` - Real-time
+            * `hourly` - Hourly
+            * `daily` - Daily
+            * `weekly` - Weekly
+            * `monthly` - Monthly
+            * `yearly` - Yearly
+            * `unknown` - Unknown
         providerOrganization:
           type: string
           description: Organization which is responsible for publication of the object
@@ -482,8 +500,6 @@ components:
           description: Link to the documentation for the object type
           maxLength: 200
         labels:
-          type: object
-          additionalProperties: {}
           description: Key-value pairs of keywords related for the object type
         createdAt:
           type: string
@@ -537,10 +553,13 @@ components:
         status:
           allOf:
           - $ref: '#/components/schemas/StatusEnum'
-          description: Status of the object type version
+          description: |-
+            Status of the object type version
+
+            * `published` - Published
+            * `draft` - Draft
+            * `deprecated` - Deprecated
         jsonSchema:
-          type: object
-          additionalProperties: {}
           title: JSON schema
           description: JSON schema for Object validation
         createdAt:
@@ -557,6 +576,7 @@ components:
           type: string
           format: date
           readOnly: true
+          nullable: true
           title: Published_at
           description: Date when the version was published
     PatchedObjectType:
@@ -589,7 +609,13 @@ components:
         dataClassification:
           allOf:
           - $ref: '#/components/schemas/DataClassificationEnum'
-          description: Confidential level of the object type
+          description: |-
+            Confidential level of the object type
+
+            * `open` - Open
+            * `intern` - Intern
+            * `confidential` - Confidential
+            * `strictly_confidential` - Strictly confidential
         maintainerOrganization:
           type: string
           description: Organization which is responsible for the object type
@@ -615,7 +641,16 @@ components:
         updateFrequency:
           allOf:
           - $ref: '#/components/schemas/UpdateFrequencyEnum'
-          description: Indicates how often the object type is updated
+          description: |-
+            Indicates how often the object type is updated
+
+            * `real_time` - Real-time
+            * `hourly` - Hourly
+            * `daily` - Daily
+            * `weekly` - Weekly
+            * `monthly` - Monthly
+            * `yearly` - Yearly
+            * `unknown` - Unknown
         providerOrganization:
           type: string
           description: Organization which is responsible for publication of the object
@@ -627,8 +662,6 @@ components:
           description: Link to the documentation for the object type
           maxLength: 200
         labels:
-          type: object
-          additionalProperties: {}
           description: Key-value pairs of keywords related for the object type
         createdAt:
           type: string
@@ -679,10 +712,13 @@ components:
         status:
           allOf:
           - $ref: '#/components/schemas/StatusEnum'
-          description: Status of the object type version
+          description: |-
+            Status of the object type version
+
+            * `published` - Published
+            * `draft` - Draft
+            * `deprecated` - Deprecated
         jsonSchema:
-          type: object
-          additionalProperties: {}
           title: JSON schema
           description: JSON schema for Object validation
         createdAt:
@@ -699,6 +735,7 @@ components:
           type: string
           format: date
           readOnly: true
+          nullable: true
           title: Published_at
           description: Date when the version was published
     StatusEnum:
@@ -707,6 +744,10 @@ components:
       - draft
       - deprecated
       type: string
+      description: |-
+        * `published` - Published
+        * `draft` - Draft
+        * `deprecated` - Deprecated
     UpdateFrequencyEnum:
       enum:
       - real_time
@@ -717,6 +758,14 @@ components:
       - yearly
       - unknown
       type: string
+      description: |-
+        * `real_time` - Real-time
+        * `hourly` - Hourly
+        * `daily` - Daily
+        * `weekly` - Weekly
+        * `monthly` - Monthly
+        * `yearly` - Yearly
+        * `unknown` - Unknown
   securitySchemes:
     tokenAuth:
       type: apiKey
