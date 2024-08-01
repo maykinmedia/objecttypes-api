@@ -58,7 +58,6 @@ var configuration = function (config) {
           useBrowserName: false,
         },
 
-        // browsers: ['Chromium', 'Firefox', 'PhantomJS'],
         browsers: ['Chromium'],
     });
 };
