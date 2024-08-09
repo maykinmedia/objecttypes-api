@@ -20,6 +20,7 @@
   "license": "EUPL",
   "homepage": "https://maykinmedia.nl",
   "dependencies": {
+    "fix": "^0.0.6",
     "microscope-sass": "latest"
   },
   "devDependencies": {
