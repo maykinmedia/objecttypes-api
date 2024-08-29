@@ -2,16 +2,32 @@
 Change history
 ==============
 
-2.x (TBD)
+2.2.1 (2024-08-29)
 ------------------
 
 **New features**
 
-* made user emails unique to prevent two users logging in with the same email, causing an error
+* made user emails unique to prevent two users logging in with the same email, causing an error (maykinmedia/open-api-framework#39)
+* updated open-api-framework to 0.8.0, which includes adding CSRF, CSP and HSTS settings (#124).
+  All new environment variables are added to the `documentation <https://objects-and-objecttypes-api.readthedocs.io/en/latest/installation/config.html>`_
 
 .. warning::
     User email addresses will now be unique on a database level. The database migration will fail if there are already
     two or more users with the same email address. You must ensure this is not the case before upgrading.
+
+.. warning::
+
+    SECURE_HSTS_SECONDS has been added with a default of 31536000 seconds, ensure that
+    before upgrading to this version of open-api-framework, your entire application is served
+    over HTTPS, otherwise this setting can break parts of your application (see https://docs.djangoproject.com/en/4.2/ref/middleware/#http-strict-transport-security)
+
+
+**Bugfixes and QOL**
+
+* fixed CSS style of help-text icon in the Admin (open-zaak/open-notificaties#150)
+* bumped python dependencies due to security issues: django, celery, certifi, maykin-2fa, mozilla-django-oidc-db,
+  sentry-sdk, webob and others (#122, #123)
+
 
 2.2.0 (2024-06-27)
 ------------------
