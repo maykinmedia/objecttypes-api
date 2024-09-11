@@ -23,8 +23,10 @@ services:
       - DISABLE_2FA=yes
       - SUBPATH=${SUBPATH:-/}
       # setup_configuration env vars
+      - SITES_CONFIG_ENABLE=yes
       - OBJECTTYPES_DOMAIN=web:8000
       - OBJECTTYPES_ORGANIZATION=ObjectTypes
+      - OBJECTS_OBJECTTYPES_CONFIG_ENABLE=yes
       - OBJECTS_OBJECTTYPES_TOKEN=some-random-string
       - OBJECTS_OBJECTTYPES_PERSON=Some Person
       - OBJECTS_OBJECTTYPES_EMAIL=objects@objects.local
