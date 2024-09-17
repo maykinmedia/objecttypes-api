@@ -44,7 +44,12 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 "modifiedAt": "2020-01-01",
                 "allowGeometry": object_type.allow_geometry,
                 "versions": [
-                    f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}"
+                    "http://testserver{url}".format(
+                        url=reverse(
+                            "objectversion-detail",
+                            args=[object_type.uuid, object_version.version],
+                        )
+                    ),
                 ],
             },
         )
@@ -68,7 +73,12 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 self.assertEqual(
                     data["versions"],
                     [
-                        f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_versions[i].version])}"
+                        "http://testserver{url}".format(
+                            url=reverse(
+                                "objectversion-detail",
+                                args=[object_type.uuid, object_versions[i].version],
+                            )
+                        ),
                     ],
                 )
 

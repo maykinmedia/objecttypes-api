@@ -1,5 +1,4 @@
 import os
-import sys
 import warnings
 
 os.environ.setdefault("DEBUG", "yes")

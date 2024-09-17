@@ -15,7 +15,7 @@ class FilterTests(TokenAuthMixin, APITestCase):
         object_type_1 = ObjectTypeFactory.create(
             data_classification=DataClassificationChoices.open
         )
-        object_type_2 = ObjectTypeFactory.create(
+        ObjectTypeFactory.create(
             data_classification=DataClassificationChoices.intern
         )
 
