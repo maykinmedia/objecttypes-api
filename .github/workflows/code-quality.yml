@@ -22,5 +22,7 @@ jobs:
       node-version: '18'
       postgres-image: 'postgres:12'
 
+      black-src-pattern: 'src'
+
       django-settings-module: 'objecttypes.conf.ci'
       django-secret-key: dummy
