@@ -23,5 +23,6 @@ pip-compile^
     --no-emit-index-url^
     --output-file requirements/dev.txt^
     %*^
-    requirements/ci.txt^
+    requirements/base.txt^
+    requirements/test-tools.in^
     requirements/dev.in
