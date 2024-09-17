@@ -13,9 +13,34 @@ env:
   IMAGE_NAME: maykinmedia/objecttypes-api
 
 jobs:
+  changed-files:
+    runs-on: ubuntu-latest
+    name: Determine changed files
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed PY files
+        id: changed-py-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: src/{,**/}*.py
+
+      - name: Get changed requirements files
+        id: changed-requirements
+        uses: tj-actions/changed-files@v45
+        with:
+          files: requirements/*.txt
+
+    outputs:
+      changed-py-files: ${{ steps.changed-py-files.outputs.any_changed }}
+      changed-requirements: ${{ steps.changed-requirements.outputs.any_changed }}
+
   tests:
     name: Run the Django test suite
     runs-on: ubuntu-latest
+    if: ${{ needs.changed-files.outputs.changed-py-files == 'true'|| needs.changed-files.outputs.changed-requirements == 'true'|| github.event_name == 'push' }}
 
     services:
       postgres:
@@ -29,26 +54,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Set up backend environment
+        uses: maykinmedia/setup-django-backend@v1.3
         with:
+          apt-packages: 'libgdal-dev gdal-bin'
           python-version: '3.11'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install system packages
-        run: |
-          sudo apt-get update \
-          && sudo apt-get install -y --no-install-recommends \
-            libgdal-dev \
-            gdal-bin
-
-      - name: Install dependencies
-        run: pip install -r requirements/ci.txt
-      - name: Build frontend
-        run: |
-          npm ci
-          npm run build
+          setup-node: true
 
       - name: Run tests
         run: |
@@ -63,81 +74,27 @@ jobs:
       - name: Publish coverage report
         uses: codecov/codecov-action@v4
 
-  docker:
-    needs: tests
-
-    name: Build Docker image
+  store-reusable-workflow-vars:
+    name: create values which can be passed through a reusable workflow
     runs-on: ubuntu-latest
+    outputs:
+      image-name: ${{ steps.image-name.outputs.image-name }}
 
     steps:
-      - uses: actions/checkout@v4
+      - run: echo "image-name=$IMAGE_NAME" >> $GITHUB_OUTPUT
+        name: 'Store the docker image name'
+        id: image-name
 
-      - name: Set tag
-        id: vars
-        run: |
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name (if present at all)
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-
-          echo ::set-output name=tag::${VERSION}
-
-      - name: Build the Docker image
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: docker build . --tag $IMAGE_NAME:$RELEASE_VERSION
-
-      - run: docker image save -o image.tar $IMAGE_NAME:${{ steps.vars.outputs.tag }}
-
-      - name: Store image artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: docker-image
-          path: image.tar
-          retention-days: 1
-
-  publish:
+  open-api-ci:
+    uses: maykinmedia/open-api-workflows/.github/workflows/ci.yml@initial-setup
     needs:
       - tests
-      - docker
-
-    name: Push Docker image
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'  # exclude PRs
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download built image
-        uses: actions/download-artifact@v3
-        with:
-          name: docker-image
-
-      - name: Determine tag
-        id: vars
-        run: |
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name (if present at all)
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-
-          echo ::set-output name=tag::${VERSION}
-
-      - name: Load image
-        run: |
-          docker image load -i image.tar
-
-      - name: Log into registry
-        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
-      - name: Push the Docker image
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: docker push $IMAGE_NAME:$RELEASE_VERSION
+      - store-reusable-workflow-vars
+    with:
+      main-branch: 'master'
+      python-version: '3.11'
+      docker-image-name: ${{ needs.store-reusable-workflow-vars.outputs.image-name }}
+      repository-owner: 'objecttypes'
+    secrets:
+      docker-username: ${{ secrets.DOCKER_USERNAME }}
+      docker-token: ${{ secrets.DOCKER_TOKEN }}
