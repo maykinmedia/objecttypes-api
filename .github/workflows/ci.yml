@@ -96,7 +96,7 @@ jobs:
       main-branch: 'master'
       python-version: '3.11'
       docker-image-name: ${{ needs.store-reusable-workflow-vars.outputs.image-name }}
-      repository-owner: 'objecttypes'
+      repository-owner: 'maykinmedia'
     secrets:
       docker-username: ${{ secrets.DOCKER_USERNAME }}
       docker-token: ${{ secrets.DOCKER_TOKEN }}
