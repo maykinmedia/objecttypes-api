@@ -14,8 +14,10 @@ from objecttypes.config.site import SiteConfigurationStep
 
 
 @override_settings(
+    SITES_CONFIG_ENABLE=True,
     OBJECTTYPES_DOMAIN="objecttypes.example.com",
     OBJECTTYPES_ORGANIZATION="ACME",
+    OBJECTS_OBJECTTYPES_CONFIG_ENABLE=True,
     OBJECTS_OBJECTTYPES_TOKEN="some-random-string",
     OBJECTS_OBJECTTYPES_PERSON="Some Person",
     OBJECTS_OBJECTTYPES_EMAIL="objects@objects.local",
