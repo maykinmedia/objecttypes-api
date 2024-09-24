@@ -24,10 +24,6 @@ asn1crypto==1.5.1
     # via
     #   -r requirements/base.txt
     #   webauthn
-async-timeout==4.0.3
-    # via
-    #   -r requirements/base.txt
-    #   redis
 attrs==23.1.0
     # via
     #   -r requirements/base.txt
@@ -41,7 +37,7 @@ billiard==4.2.0
     # via
     #   -r requirements/base.txt
     #   celery
-black==24.8.0
+black==24.4.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/test-tools.in
@@ -273,6 +269,7 @@ django-solo==2.0.0
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via
     #   -r requirements/base.txt
+    #   django-two-factor-auth
     #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/test-tools.in
@@ -337,7 +334,7 @@ factory-boy==3.2.1
     # via -r requirements/test-tools.in
 faker==18.9.0
     # via factory-boy
-flake8==7.1.1
+flake8==6.0.0
     # via
     #   -r requirements/dev.in
     #   -r requirements/test-tools.in
@@ -384,7 +381,7 @@ isodate==0.6.1
     # via
     #   -r requirements/base.txt
     #   commonground-api-common
-isort==5.13.2
+isort==5.12.0
     # via
     #   -r requirements/dev.in
     #   -r requirements/test-tools.in
@@ -454,7 +451,7 @@ packaging==23.1
     #   build
     #   drf-yasg
     #   sphinx
-pathspec==0.12.1
+pathspec==0.11.1
     # via black
 phonenumberslite==8.13.30
     # via
@@ -462,7 +459,7 @@ phonenumberslite==8.13.30
     #   django-two-factor-auth
 pip-tools==7.3.0
     # via -r requirements/dev.in
-platformdirs==4.3.3
+platformdirs==3.5.1
     # via black
 prometheus-client==0.20.0
     # via
@@ -476,13 +473,13 @@ psycopg2==2.9.9
     # via
     #   -r requirements/base.txt
     #   open-api-framework
-pycodestyle==2.12.1
+pycodestyle==2.10.0
     # via flake8
 pycparser==2.21
     # via
     #   -r requirements/base.txt
     #   cffi
-pyflakes==3.2.0
+pyflakes==3.0.1
     # via flake8
 pygments==2.15.1
     # via sphinx
