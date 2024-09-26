@@ -75,5 +75,5 @@ SPECTACULAR_SETTINGS = {
         "drf_spectacular.hooks.postprocess_schema_enums",
     ],
     "TAGS": [{"name": "Objecttypes"}],
-    "SERVERS": [{"url": "/api/v2"}]
+    "SERVERS": [{"url": "/api/v2"}],
 }
