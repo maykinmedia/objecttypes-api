@@ -1,7 +1,6 @@
 from vng_api_common.conf.api import *  # noqa - imports white-listed
 
 API_VERSION = "2.2.2"
-VERSIONS = {"v1": "1.2.0", "v2": "2.2.2"}
 
 
 # api settings
@@ -18,7 +17,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_VERSION": "v2",  # NOT to be confused with API_VERSION - it's the major version part
-    "ALLOWED_VERSIONS": ("v1", "v2"),
+    "ALLOWED_VERSIONS": ("v2",),
     "VERSION_PARAM": "version",
     # test
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
@@ -69,15 +68,12 @@ SPECTACULAR_SETTINGS = {
     "EXTERNAL_DOCS": {
         "url": "https://objects-and-objecttypes-api.readthedocs.io/",
     },
-    "VERSION": None,
+    "VERSION": API_VERSION,
     "GET_MOCK_REQUEST": "objecttypes.utils.autoschema.build_mock_request",
     "COMPONENT_NO_READ_ONLY_REQUIRED": True,
     "POSTPROCESSING_HOOKS": [
         "drf_spectacular.hooks.postprocess_schema_enums",
-        "objecttypes.utils.hooks.postprocess_servers",
-        "objecttypes.utils.hooks.postprocess_versions",
     ],
     "TAGS": [{"name": "Objecttypes"}],
+    "SERVERS": [{"url": "/api/v2"}]
 }
-
-OAS_SERVERS = {"v1": [{"url": "/api/v1"}], "v2": [{"url": "/api/v2"}]}
