@@ -56,6 +56,7 @@ the JSON schema in the appropriate VERSION of the OBJECTTYPE.
 """
 
 SPECTACULAR_SETTINGS = {
+    "REDOC_DIST": "SIDECAR",
     "SCHEMA_PATH_PREFIX": r"/api/v[1-9]+",
     "SCHEMA_PATH_PREFIX_TRIM": True,
     "TITLE": "Objecttypes API",
