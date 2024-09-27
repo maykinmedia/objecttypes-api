@@ -111,8 +111,6 @@ coreschema==0.0.4
     # via
     #   -r requirements/base.txt
     #   coreapi
-coverage==4.5.4
-    # via -r requirements/test-tools.in
 cryptography==42.0.7
     # via
     #   -r requirements/base.txt
@@ -136,7 +134,6 @@ django==4.2.15
     #   django-extensions
     #   django-filter
     #   django-formtools
-    #   django-jenkins
     #   django-jsonform
     #   django-jsonsuit
     #   django-log-outgoing-requests
@@ -198,8 +195,6 @@ django-formtools==2.4.1
     # via
     #   -r requirements/base.txt
     #   django-two-factor-auth
-django-jenkins==0.110.0
-    # via -r requirements/test-tools.in
 django-jsonform==2.22.0
     # via
     #   -r requirements/base.txt
