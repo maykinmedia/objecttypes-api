@@ -2,6 +2,16 @@
 Change history
 ==============
 
+2.2.2 (2024-10-01)
+------------------
+
+**Bugfixes and QOL**
+
+* [#131] Fix API schema not showing caused by CSP errors
+* [#131] Change SameSite session cookie  to lax to fix OIDC login not working
+* [#127] Remove the need to manually configure Site.domain for the 2FA app title
+* [#128] Change all setup configuration to disabled by default
+
 2.2.1 (2024-08-29)
 ------------------
 
