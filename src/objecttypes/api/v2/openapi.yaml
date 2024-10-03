@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Objecttypes API
-  version: 2.2.2 (v2)
+  version: 2.2.2
   description: |+
     An API to manage Object types.
 
@@ -838,9 +838,9 @@ components:
       in: header
       name: Authorization
       description: Token-based authentication with required prefix "Token"
+servers:
+- url: /api/v2
 tags:
 - name: Objecttypes
 externalDocs:
   url: https://objects-and-objecttypes-api.readthedocs.io/
-servers:
-- url: /api/v2
