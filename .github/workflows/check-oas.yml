@@ -18,7 +18,6 @@ jobs:
           - v2
     with:
       schema-path: 'src/objecttypes/api/${{ matrix.version }}/openapi.yaml'
-      schema-options: "--api-version ${{ matrix.version }}"
       python-version: '3.11'
       django-settings-module: 'objecttypes.conf.ci'
       apt-packages: 'libgdal-dev gdal-bin'
