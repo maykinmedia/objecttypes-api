@@ -21,7 +21,10 @@ JSON_SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Tree",
-    "description": "A woody plant (deciduous or coniferous) with a root system and a single, sturdy, woody stem, branching above the ground.",
+    "description": (
+        "A woody plant (deciduous or coniferous) with a root system and a "
+        "single, sturdy, woody stem, branching above the ground."
+    ),
     "required": ["diameter"],
     "properties": {"diameter": {"type": "integer", "description": "size in cm."}},
 }
