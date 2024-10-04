@@ -25,7 +25,7 @@ pip-compile \
     "$@" \
     requirements/base.in
 
-# Dependencies for testing
+# Dependencies for CI
 pip-compile \
     --no-emit-index-url \
     --output-file requirements/ci.txt \
@@ -34,7 +34,7 @@ pip-compile \
     requirements/test-tools.in \
     requirements/ci.in
 
-# Dev dependencies - exact same set as CI + some extra tooling
+# Dependencies for development
 pip-compile \
     --no-emit-index-url \
     --output-file requirements/dev.txt \
