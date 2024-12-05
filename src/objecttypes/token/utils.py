@@ -13,5 +13,3 @@ def get_token(existing_tokens: Iterable[str]) -> str:
         token = _generate_token()
 
     return token
-
-

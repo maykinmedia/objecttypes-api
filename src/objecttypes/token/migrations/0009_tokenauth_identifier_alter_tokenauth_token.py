@@ -59,6 +59,7 @@ def _generate_unique_tokens(apps: StateApps, schema_editor) -> None:
 
         existing_tokens.add(token)
 
+
 class Migration(migrations.Migration):
     dependencies = [
         ("token", "0008_alter_tokenauth_token"),

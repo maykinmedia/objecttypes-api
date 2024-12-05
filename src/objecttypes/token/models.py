@@ -6,11 +6,15 @@ from objecttypes.token.validators import validate_whitespace
 
 class TokenAuth(models.Model):
     identifier = models.SlugField(
-        unique=True, help_text=_("A human-friendly label to refer to this token"),
+        unique=True,
+        help_text=_("A human-friendly label to refer to this token"),
     )
 
     token = models.CharField(
-        _("token"), max_length=40, unique=True, validators=[validate_whitespace],
+        _("token"),
+        max_length=40,
+        unique=True,
+        validators=[validate_whitespace],
     )
 
     contact_person = models.CharField(
@@ -19,7 +23,8 @@ class TokenAuth(models.Model):
         help_text=_("Name of the person in the organization who can access the API"),
     )
     email = models.EmailField(
-        _("email"), help_text=_("Email of the person, who can access the API"),
+        _("email"),
+        help_text=_("Email of the person, who can access the API"),
     )
     organization = models.CharField(
         _("organization"),
@@ -33,7 +38,9 @@ class TokenAuth(models.Model):
         help_text=_("Last date when the token was modified"),
     )
     created = models.DateTimeField(
-        _("created"), auto_now_add=True, help_text=_("Date when the token was created"),
+        _("created"),
+        auto_now_add=True,
+        help_text=_("Date when the token was created"),
     )
     application = models.CharField(
         _("application"),
