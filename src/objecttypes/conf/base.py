@@ -18,7 +18,6 @@ INSTALLED_APPS = INSTALLED_APPS + [
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
-    "objecttypes.config",
     "objecttypes.core",
     "objecttypes.token",
     "objecttypes.utils",
@@ -53,9 +52,10 @@ ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
 # Django setup configuration
 #
 SETUP_CONFIGURATION_STEPS = [
-    "objecttypes.config.site.SiteConfigurationStep",
-    "objecttypes.config.objects.ObjectsAuthStep",
-    "objecttypes.config.demo.DemoUserStep",
+    #"objecttypes.config.site.SiteConfigurationStep",
+    #"objecttypes.config.objects.ObjectsAuthStep",
+    #"objecttypes.config.demo.DemoUserStep",
+    "objecttypes.setup_configuration.steps.TokenAuthConfigurationStep",
 ]
 
 
