@@ -4,11 +4,8 @@ import logging
 
 from django.db import migrations, models
 from django.db.migrations.state import StateApps
-from django.db.models.aggregates import Count
 
 import objecttypes.token.validators
-
-from objecttypes.token.utils import get_token
 
 logger = logging.getLogger(__name__)
 
@@ -29,37 +26,6 @@ def _generate_unique_identifiers(apps: StateApps, schema_editor) -> None:
         token.save(update_fields=("identifier",))
 
 
-def _generate_unique_tokens(apps: StateApps, schema_editor) -> None:
-    TokenAuth = apps.get_model("token", "TokenAuth")
-
-    duplicate_token_values = (
-        TokenAuth.objects.values("token")
-        .annotate(Count("id"))
-        .order_by()
-        .filter(id__count__gt=1)
-    )
-
-    duplicate_tokens = TokenAuth.objects.filter(
-        token__in=[item["token"] for item in duplicate_token_values]
-    )
-
-    existing_tokens = set(
-        TokenAuth.objects.exclude(
-            id__in=[token.id for token in duplicate_tokens]
-        ).values_list("token", flat=True)
-    )
-
-    for token in duplicate_tokens:
-        _token: str = get_token(existing_tokens=existing_tokens)
-
-        logger.debug(f"Generated a new token for {token.pk}")
-
-        token.token = _token
-        token.save(update_fields=("token",))
-
-        existing_tokens.add(token)
-
-
 class Migration(migrations.Migration):
     dependencies = [
         ("token", "0008_alter_tokenauth_token"),
@@ -74,15 +40,6 @@ class Migration(migrations.Migration):
         migrations.RunPython(
             code=_generate_unique_identifiers,
             reverse_code=migrations.RunPython.noop,
-        ),
-        migrations.RunPython(
-            code=_generate_unique_tokens,
-            reverse_code=migrations.RunPython.noop,
-        ),
-        migrations.AlterField(
-            model_name="tokenauth",
-            name="token",
-            field=models.CharField(max_length=40, unique=True, verbose_name="token"),
         ),
         migrations.AlterField(
             model_name="tokenauth",

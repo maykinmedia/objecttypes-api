@@ -1,6 +1,8 @@
+import secrets
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from objecttypes.token.utils import get_token
+
 from objecttypes.token.validators import validate_whitespace
 
 
@@ -59,12 +61,10 @@ class TokenAuth(models.Model):
         verbose_name = _("token authorization")
         verbose_name_plural = _("token authorizations")
 
-    def __str__(self):
-        return self.contact_person
-
     def save(self, *args, **kwargs):
         if not self.token:
-            existing_tokens = TokenAuth.objects.values_list("token", flat=True)
-            self.token = get_token(existing_tokens=existing_tokens)
-
+            self.token = self.generate_token()
         return super().save(*args, **kwargs)
+
+    def generate_token(self):
+        return secrets.token_hex(20)
