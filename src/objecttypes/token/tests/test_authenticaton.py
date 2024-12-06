@@ -9,8 +9,8 @@ from objecttypes.token.models import TokenAuth
 class TestTokenAuthAuthorization(APITestCase):
     def test_valid_token(self):
         token_auth = TokenAuth.objects.create(
-            contact_person="test_person",
-            email="test_person@gmail.nl",
+            contact_person="contact_person",
+            email="contact_person@gmail.nl",
             identifier="token-1",
         )
         response = self.client.get(
