@@ -1,5 +1,4 @@
 from open_api_framework.conf.base import *  # noqa
-from open_api_framework.conf.utils import config
 
 from .api import *  # noqa
 

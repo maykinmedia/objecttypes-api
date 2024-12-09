@@ -3,10 +3,7 @@ from pathlib import Path
 from django.contrib.sites.models import Site
 from django.test import TestCase
 
-from django_setup_configuration.exceptions import (
-    ConfigurationRunFailed,
-    PrerequisiteFailed,
-)
+from django_setup_configuration.exceptions import PrerequisiteFailed
 from django_setup_configuration.test_utils import build_step_config_from_sources
 
 from objecttypes.setup_configuration.steps import SitesConfigurationStep

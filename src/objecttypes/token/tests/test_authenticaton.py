@@ -22,13 +22,13 @@ class TestTokenAuthAuthorization(APITestCase):
     def test_invalid_token(self):
         response = self.client.get(
             reverse("v2:objecttype-list"),
-            HTTP_AUTHORIZATION=f"Token 1234-Token-5678",
+            HTTP_AUTHORIZATION="Token 1234-Token-5678",
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_empty_token(self):
         response = self.client.get(
-            reverse("v2:objecttype-list"), HTTP_AUTHORIZATION=f"Token"
+            reverse("v2:objecttype-list"), HTTP_AUTHORIZATION="Token"
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
