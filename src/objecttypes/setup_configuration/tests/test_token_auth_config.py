@@ -1,5 +1,7 @@
+from io import StringIO
 from pathlib import Path
 
+from django.core.management import CommandError, call_command
 from django.test import TestCase
 
 from django_setup_configuration.exceptions import (
@@ -325,7 +327,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertTrue(
             "Failed configuring token token-2" in str(command_error.exception)
         )
-        self.assertEqual(TokenAuth.objects.count(), 0)
+        self.assertEqual(TokenAuth.objects.count(), 1)
 
     def test_invalid_setup_contact_person(self):
         object_source = {
@@ -383,6 +385,57 @@ class TokenAuthConfigurationStepTests(TestCase):
             step.execute(setup_config)
         self.assertTrue(
             "Validation error(s) occured for invalid identifier"
+            in str(command_error.exception)
+        )
+        self.assertEqual(TokenAuth.objects.count(), 0)
+
+    def test_valid_call_command(self):
+        stdout = StringIO()
+        self.assertEqual(TokenAuth.objects.count(), 0)
+        call_command(
+            "setup_configuration",
+            "--yaml-file",
+            str(DIR_FILES / "valid_setup_default.yaml"),
+            stdout=stdout,
+        )
+        self.assertTrue(
+            "Successfully executed step: Configuration to set up authentication tokens for ObjectTypes"
+            in stdout.getvalue()
+        )
+        self.assertEqual(TokenAuth.objects.count(), 2)
+
+        tokens = TokenAuth.objects.order_by("created")
+        self.assertEqual(tokens.count(), 2)
+
+        token = tokens[0]
+        self.assertEqual(token.identifier, "token-1")
+        self.assertEqual(token.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
+        self.assertEqual(token.contact_person, "Person 1")
+        self.assertEqual(token.email, "person-1@example.com")
+        self.assertEqual(token.organization, "")
+        self.assertEqual(token.application, "")
+        self.assertEqual(token.administration, "")
+
+        token = tokens[1]
+        self.assertEqual(token.identifier, "token-2")
+        self.assertEqual(token.contact_person, "Person 2")
+        self.assertEqual(token.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
+        self.assertEqual(token.email, "person-2@example.com")
+        self.assertEqual(token.organization, "")
+        self.assertEqual(token.application, "")
+        self.assertEqual(token.administration, "")
+
+    def test_invalid_call_command(self):
+        self.assertEqual(TokenAuth.objects.count(), 0)
+        with self.assertRaises(CommandError) as command_error:
+            call_command(
+                "setup_configuration",
+                "--yaml-file",
+                str(DIR_FILES / "invalid_setup_empty.yaml"),
+            )
+
+        self.assertTrue(
+            "Failed to load config model for Configuration to set up authentication tokens for ObjectTypes"
             in str(command_error.exception)
         )
         self.assertEqual(TokenAuth.objects.count(), 0)
