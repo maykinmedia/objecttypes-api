@@ -52,11 +52,6 @@ ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
 # Django setup configuration
 #
 SETUP_CONFIGURATION_STEPS = [
-    "objecttypes.setup_configuration.steps.SiteConfigurationStep",
+    "objecttypes.setup_configuration.steps.SitesConfigurationStep",
     "objecttypes.setup_configuration.steps.TokenAuthConfigurationStep",
 ]
-
-
-#
-# Objecttypes settings
-#
