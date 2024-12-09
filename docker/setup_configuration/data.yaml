@@ -8,3 +8,9 @@ objecttypes_tokens:
       organization: Organization 1
       application: Application 1
       administration: Administration 1
+
+objecttypes_site_config_enable: true
+objecttypes_sites:
+  items:
+    - domain: example-1.com
+      name: example-1
