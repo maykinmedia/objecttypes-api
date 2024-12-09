@@ -12,7 +12,7 @@ from objecttypes.setup_configuration.steps import TokenAuthConfigurationStep
 from objecttypes.token.models import TokenAuth
 from objecttypes.token.tests.factories.token import TokenAuthFactory
 
-DIR_FILES = (Path(__file__).parent / "files").resolve()
+DIR_FILES = (Path(__file__).parent / "files/token_auth").resolve()
 
 
 class TokenAuthConfigurationStepTests(TestCase):
@@ -286,6 +286,45 @@ class TokenAuthConfigurationStepTests(TestCase):
             step.execute(setup_config)
 
         self.assertTrue("Field required" in str(command_error.exception))
+        self.assertEqual(TokenAuth.objects.count(), 0)
+
+    def test_invalid_setup_token_unique(self):
+        object_source = {
+            "objecttypes_tokens_config_enable": True,
+            "objecttypes_tokens": {
+                "items": [
+                    {
+                        "identifier": "token-1",
+                        "contact_person": "Person 1",
+                        "token": "ba9d233e95e04c4a8a661a27daffe7c9bd019067",
+                        "email": "person-1@example.com",
+                        "organization": "Organization 1",
+                        "application": "Application 1",
+                        "administration": "Administration 1",
+                    },
+                    {
+                        "identifier": "token-2",
+                        "contact_person": "Person 2",
+                        "token": "ba9d233e95e04c4a8a661a27daffe7c9bd019067",
+                        "email": "person-2@example.com",
+                        "organization": "Organization 2",
+                        "application": "Application 2",
+                        "administration": "Administration 2",
+                    },
+                ],
+            },
+        }
+        with self.assertRaises(ConfigurationRunFailed) as command_error:
+            setup_config = build_step_config_from_sources(
+                TokenAuthConfigurationStep,
+                object_source=object_source,
+            )
+            step = TokenAuthConfigurationStep()
+            step.execute(setup_config)
+
+        self.assertTrue(
+            "Failed configuring token token-2" in str(command_error.exception)
+        )
         self.assertEqual(TokenAuth.objects.count(), 0)
 
     def test_invalid_setup_contact_person(self):
