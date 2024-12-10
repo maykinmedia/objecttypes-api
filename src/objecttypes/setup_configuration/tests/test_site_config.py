@@ -13,9 +13,9 @@ DIR_FILES = (Path(__file__).parent / "files/sites").resolve()
 
 class SitesConfigurationStepTests(TestCase):
     def test_valid_setup_default(self):
-        sites = Site.objects.order_by("pk")
-        site = sites[0]
-        self.assertEqual(sites.count(), 1)
+        self.assertEqual(Site.objects.count(), 1)
+        
+        site = Site.objects.get(name="example.com")
         self.assertEqual(site.domain, "example.com")
         self.assertEqual(site.name, "example.com")
 
@@ -26,18 +26,18 @@ class SitesConfigurationStepTests(TestCase):
         sites = Site.objects.order_by("pk")
         self.assertEqual(sites.count(), 3)
 
-        site = sites[1]
+        site = sites.get(name="example-1")
         self.assertEqual(site.domain, "example-1.com")
         self.assertEqual(site.name, "example-1")
 
-        site = sites[2]
+        site = sites.get(name="example-2")
         self.assertEqual(site.domain, "example-2.com")
         self.assertEqual(site.name, "example-2")
 
     def test_valid_update_existing_sites(self):
-        sites = Site.objects.order_by("pk")
-        site = sites[0]
-        self.assertEqual(sites.count(), 1)
+        self.assertEqual(Site.objects.count(), 1)
+
+        site = Site.objects.get(name="example.com")
         self.assertEqual(site.domain, "example.com")
         self.assertEqual(site.name, "example.com")
 
@@ -52,18 +52,18 @@ class SitesConfigurationStepTests(TestCase):
         sites = Site.objects.order_by("pk")
         self.assertEqual(sites.count(), 3)
 
-        site = sites[1]
+        site = sites.get(name="example-2")
         self.assertEqual(site.domain, "example-2.com")
         self.assertEqual(site.name, "example-2")
 
-        site = sites[2]
+        site = sites.get(name="example-1")
         self.assertEqual(site.domain, "example-1.com")
         self.assertEqual(site.name, "example-1")
 
     def test_invalid_setup_empty(self):
-        sites = Site.objects.order_by("pk")
-        site = sites[0]
-        self.assertEqual(sites.count(), 1)
+        self.assertEqual(Site.objects.count(), 1)
+        
+        site = Site.objects.get(name="example.com")
         self.assertEqual(site.domain, "example.com")
         self.assertEqual(site.name, "example.com")
 
@@ -75,8 +75,8 @@ class SitesConfigurationStepTests(TestCase):
 
         self.assertTrue("Input should be a valid list" in str(command_error.exception))
 
-        sites = Site.objects.order_by("pk")
-        site = sites[0]
-        self.assertEqual(sites.count(), 1)
+        self.assertEqual(Site.objects.count(), 1)
+        
+        site = Site.objects.get(name="example.com")
         self.assertEqual(site.domain, "example.com")
         self.assertEqual(site.name, "example.com")
