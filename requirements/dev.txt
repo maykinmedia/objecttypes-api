@@ -30,10 +30,6 @@ asn1crypto==1.5.1
     # via
     #   -r requirements/base.txt
     #   webauthn
-async-timeout==5.0.1
-    # via
-    #   -r requirements/base.txt
-    #   redis
 attrs==23.1.0
     # via
     #   -r requirements/base.txt
@@ -277,7 +273,6 @@ django-solo==2.0.0
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via
     #   -r requirements/base.txt
-    #   django-two-factor-auth
     #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/test-tools.in
@@ -316,7 +311,6 @@ drf-nested-routers==0.94.1
 drf-spectacular[sidecar]==0.27.2
     # via
     #   -r requirements/base.txt
-    #   drf-spectacular
     #   open-api-framework
 drf-spectacular-sidecar==2024.7.1
     # via
@@ -491,7 +485,6 @@ pydantic-settings[yaml]==2.6.1
     # via
     #   -r requirements/base.txt
     #   django-setup-configuration
-    #   pydantic-settings
 pyflakes==3.0.1
     # via flake8
 pygments==2.15.1
@@ -617,12 +610,6 @@ sqlparse==0.5.0
     #   django-debug-toolbar
 tblib==1.7.0
     # via -r requirements/test-tools.in
-tomli==2.2.1
-    # via
-    #   black
-    #   build
-    #   pip-tools
-    #   pyproject-hooks
 tornado==6.4.1
     # via
     #   -r requirements/base.txt
@@ -630,7 +617,6 @@ tornado==6.4.1
 typing-extensions==4.11.0
     # via
     #   -r requirements/base.txt
-    #   black
     #   mozilla-django-oidc-db
     #   pydantic
     #   pydantic-core
