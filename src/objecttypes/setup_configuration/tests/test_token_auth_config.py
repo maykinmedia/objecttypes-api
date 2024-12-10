@@ -8,7 +8,7 @@ from django_setup_configuration.exceptions import (
     ConfigurationRunFailed,
     PrerequisiteFailed,
 )
-from django_setup_configuration.test_utils import build_step_config_from_sources
+from django_setup_configuration.test_utils import execute_single_step
 
 from objecttypes.setup_configuration.steps import TokenAuthConfigurationStep
 from objecttypes.token.models import TokenAuth
@@ -19,12 +19,10 @@ DIR_FILES = (Path(__file__).parent / "files/token_auth").resolve()
 
 class TokenAuthConfigurationStepTests(TestCase):
     def test_valid_setup_default(self):
-        setup_config = build_step_config_from_sources(
+        execute_single_step(
             TokenAuthConfigurationStep,
-            str(DIR_FILES / "valid_setup_default.yaml"),
+            yaml_source=str(DIR_FILES / "valid_setup_default.yaml"),
         )
-        step = TokenAuthConfigurationStep()
-        step.execute(setup_config)
 
         tokens = TokenAuth.objects.order_by("created")
         self.assertEqual(tokens.count(), 2)
@@ -48,12 +46,10 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(token.administration, "")
 
     def test_valid_setup_complete(self):
-        setup_config = build_step_config_from_sources(
+        execute_single_step(
             TokenAuthConfigurationStep,
-            str(DIR_FILES / "valid_setup_complete.yaml"),
+            yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
-        step = TokenAuthConfigurationStep()
-        step.execute(setup_config)
 
         tokens = TokenAuth.objects.order_by("created")
         self.assertEqual(tokens.count(), 2)
@@ -99,13 +95,10 @@ class TokenAuthConfigurationStepTests(TestCase):
             contact_person="Person 3",
             email="person-3@example.com",
         )
-
-        setup_config = build_step_config_from_sources(
+        execute_single_step(
             TokenAuthConfigurationStep,
-            str(DIR_FILES / "valid_setup_complete.yaml"),
+            yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
-        step = TokenAuthConfigurationStep()
-        step.execute(setup_config)
 
         tokens = TokenAuth.objects.order_by("created")
         self.assertEqual(tokens.count(), 2)
@@ -135,12 +128,10 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertNotEqual(token.email, "person-3@example.com")
 
     def test_valid_idempotent_step(self):
-        setup_config = build_step_config_from_sources(
+        execute_single_step(
             TokenAuthConfigurationStep,
-            str(DIR_FILES / "valid_setup_complete.yaml"),
+            yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
-        step = TokenAuthConfigurationStep()
-        step.execute(setup_config)
 
         tokens = TokenAuth.objects.order_by("created")
         self.assertEqual(tokens.count(), 2)
@@ -163,12 +154,10 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(old_token_b.application, "Application 2")
         self.assertEqual(old_token_b.administration, "Administration 2")
 
-        setup_config = build_step_config_from_sources(
+        execute_single_step(
             TokenAuthConfigurationStep,
-            str(DIR_FILES / "valid_setup_complete.yaml"),
+            yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
-        step = TokenAuthConfigurationStep()
-        step.execute(setup_config)
 
         self.assertEqual(tokens.count(), 2)
         tokens = TokenAuth.objects.order_by("created")
@@ -193,12 +182,10 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_empty(self):
         with self.assertRaises(PrerequisiteFailed) as command_error:
-            setup_config = build_step_config_from_sources(
+            execute_single_step(
                 TokenAuthConfigurationStep,
-                str(DIR_FILES / "invalid_setup_empty.yaml"),
+                yaml_source=str(DIR_FILES / "invalid_setup_empty.yaml"),
             )
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
 
         self.assertTrue("Input should be a valid list" in str(command_error.exception))
         self.assertEqual(TokenAuth.objects.count(), 0)
@@ -220,13 +207,8 @@ class TokenAuthConfigurationStepTests(TestCase):
                 ],
             },
         }
-        setup_config = build_step_config_from_sources(
-            TokenAuthConfigurationStep,
-            object_source=object_source,
-        )
         with self.assertRaises(ConfigurationRunFailed) as command_error:
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
 
         self.assertTrue(
             "Validation error(s) occured for token-1" in str(command_error.exception)
@@ -250,13 +232,8 @@ class TokenAuthConfigurationStepTests(TestCase):
                 ],
             },
         }
-        setup_config = build_step_config_from_sources(
-            TokenAuthConfigurationStep,
-            object_source=object_source,
-        )
         with self.assertRaises(ConfigurationRunFailed) as command_error:
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
 
         self.assertTrue(
             "Validation error(s) occured for token-1" in str(command_error.exception)
@@ -280,12 +257,7 @@ class TokenAuthConfigurationStepTests(TestCase):
             },
         }
         with self.assertRaises(PrerequisiteFailed) as command_error:
-            setup_config = build_step_config_from_sources(
-                TokenAuthConfigurationStep,
-                object_source=object_source,
-            )
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
 
         self.assertTrue("Field required" in str(command_error.exception))
         self.assertEqual(TokenAuth.objects.count(), 0)
@@ -317,12 +289,7 @@ class TokenAuthConfigurationStepTests(TestCase):
             },
         }
         with self.assertRaises(ConfigurationRunFailed) as command_error:
-            setup_config = build_step_config_from_sources(
-                TokenAuthConfigurationStep,
-                object_source=object_source,
-            )
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
 
         self.assertTrue(
             "Failed configuring token token-2" in str(command_error.exception)
@@ -346,13 +313,8 @@ class TokenAuthConfigurationStepTests(TestCase):
                 ],
             },
         }
-        setup_config = build_step_config_from_sources(
-            TokenAuthConfigurationStep,
-            object_source=object_source,
-        )
         with self.assertRaises(ConfigurationRunFailed) as command_error:
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
 
         self.assertTrue(
             "Validation error(s) occured for token-1" in str(command_error.exception)
@@ -376,13 +338,9 @@ class TokenAuthConfigurationStepTests(TestCase):
                 ],
             },
         }
-        setup_config = build_step_config_from_sources(
-            TokenAuthConfigurationStep,
-            object_source=object_source,
-        )
         with self.assertRaises(ConfigurationRunFailed) as command_error:
-            step = TokenAuthConfigurationStep()
-            step.execute(setup_config)
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
+
         self.assertTrue(
             "Validation error(s) occured for invalid identifier"
             in str(command_error.exception)

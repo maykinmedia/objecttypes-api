@@ -4,7 +4,7 @@ from django.contrib.sites.models import Site
 from django.test import TestCase
 
 from django_setup_configuration.exceptions import PrerequisiteFailed
-from django_setup_configuration.test_utils import build_step_config_from_sources
+from django_setup_configuration.test_utils import execute_single_step
 
 from objecttypes.setup_configuration.steps import SitesConfigurationStep
 
@@ -19,12 +19,9 @@ class SitesConfigurationStepTests(TestCase):
         self.assertEqual(site.domain, "example.com")
         self.assertEqual(site.name, "example.com")
 
-        setup_config = build_step_config_from_sources(
-            SitesConfigurationStep,
-            str(DIR_FILES / "valid_setup.yaml"),
+        execute_single_step(
+            SitesConfigurationStep, yaml_source=str(DIR_FILES / "valid_setup.yaml")
         )
-        step = SitesConfigurationStep()
-        step.execute(setup_config)
 
         sites = Site.objects.order_by("pk")
         self.assertEqual(sites.count(), 3)
@@ -48,12 +45,9 @@ class SitesConfigurationStepTests(TestCase):
         sites = Site.objects.order_by("pk")
         self.assertEqual(sites.count(), 2)
 
-        setup_config = build_step_config_from_sources(
-            SitesConfigurationStep,
-            str(DIR_FILES / "valid_setup.yaml"),
+        execute_single_step(
+            SitesConfigurationStep, yaml_source=str(DIR_FILES / "valid_setup.yaml")
         )
-        step = SitesConfigurationStep()
-        step.execute(setup_config)
 
         sites = Site.objects.order_by("pk")
         self.assertEqual(sites.count(), 3)
@@ -74,12 +68,10 @@ class SitesConfigurationStepTests(TestCase):
         self.assertEqual(site.name, "example.com")
 
         with self.assertRaises(PrerequisiteFailed) as command_error:
-            setup_config = build_step_config_from_sources(
+            execute_single_step(
                 SitesConfigurationStep,
-                str(DIR_FILES / "invalid_setup.yaml"),
+                yaml_source=str(DIR_FILES / "invalid_setup.yaml"),
             )
-            step = SitesConfigurationStep()
-            step.execute(setup_config)
 
         self.assertTrue("Input should be a valid list" in str(command_error.exception))
 
