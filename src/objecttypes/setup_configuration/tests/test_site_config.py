@@ -13,7 +13,9 @@ DIR_FILES = (Path(__file__).parent / "files/sites").resolve()
 
 class SitesConfigurationStepTests(TestCase):
     def test_valid_setup_default(self):
-        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
+        self.assertTrue(
+            Site.objects.filter(domain="example.com", name="example.com").exists()
+        )
 
         execute_single_step(
             SitesConfigurationStep, yaml_source=str(DIR_FILES / "valid_setup.yaml")
@@ -25,7 +27,9 @@ class SitesConfigurationStepTests(TestCase):
         self.assertTrue(sites.filter(domain="example-2.com", name="example-2").exists())
 
     def test_valid_update_existing_sites(self):
-        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
+        self.assertTrue(
+            Site.objects.filter(domain="example.com", name="example.com").exists()
+        )
 
         Site.objects.create(domain="example-2.com", name="example-3")
         self.assertEqual(Site.objects.count(), 2)
@@ -40,7 +44,9 @@ class SitesConfigurationStepTests(TestCase):
         self.assertTrue(sites.filter(domain="example-1.com", name="example-1").exists())
 
     def test_invalid_setup_empty(self):
-        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
+        self.assertTrue(
+            Site.objects.filter(domain="example.com", name="example.com").exists()
+        )
 
         with self.assertRaises(PrerequisiteFailed) as command_error:
             execute_single_step(
