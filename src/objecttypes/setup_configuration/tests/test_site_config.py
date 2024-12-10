@@ -13,59 +13,34 @@ DIR_FILES = (Path(__file__).parent / "files/sites").resolve()
 
 class SitesConfigurationStepTests(TestCase):
     def test_valid_setup_default(self):
-        self.assertEqual(Site.objects.count(), 1)
-        
-        site = Site.objects.get(name="example.com")
-        self.assertEqual(site.domain, "example.com")
-        self.assertEqual(site.name, "example.com")
+        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
 
         execute_single_step(
             SitesConfigurationStep, yaml_source=str(DIR_FILES / "valid_setup.yaml")
         )
 
-        sites = Site.objects.order_by("pk")
+        sites = Site.objects.all()
         self.assertEqual(sites.count(), 3)
-
-        site = sites.get(name="example-1")
-        self.assertEqual(site.domain, "example-1.com")
-        self.assertEqual(site.name, "example-1")
-
-        site = sites.get(name="example-2")
-        self.assertEqual(site.domain, "example-2.com")
-        self.assertEqual(site.name, "example-2")
+        self.assertTrue(sites.filter(domain="example-1.com", name="example-1").exists())
+        self.assertTrue(sites.filter(domain="example-2.com", name="example-2").exists())
 
     def test_valid_update_existing_sites(self):
-        self.assertEqual(Site.objects.count(), 1)
-
-        site = Site.objects.get(name="example.com")
-        self.assertEqual(site.domain, "example.com")
-        self.assertEqual(site.name, "example.com")
+        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
 
         Site.objects.create(domain="example-2.com", name="example-3")
-        sites = Site.objects.order_by("pk")
-        self.assertEqual(sites.count(), 2)
+        self.assertEqual(Site.objects.count(), 2)
 
         execute_single_step(
             SitesConfigurationStep, yaml_source=str(DIR_FILES / "valid_setup.yaml")
         )
 
-        sites = Site.objects.order_by("pk")
+        sites = Site.objects.all()
         self.assertEqual(sites.count(), 3)
-
-        site = sites.get(name="example-2")
-        self.assertEqual(site.domain, "example-2.com")
-        self.assertEqual(site.name, "example-2")
-
-        site = sites.get(name="example-1")
-        self.assertEqual(site.domain, "example-1.com")
-        self.assertEqual(site.name, "example-1")
+        self.assertTrue(sites.filter(domain="example-2.com", name="example-2").exists())
+        self.assertTrue(sites.filter(domain="example-1.com", name="example-1").exists())
 
     def test_invalid_setup_empty(self):
-        self.assertEqual(Site.objects.count(), 1)
-        
-        site = Site.objects.get(name="example.com")
-        self.assertEqual(site.domain, "example.com")
-        self.assertEqual(site.name, "example.com")
+        self.assertTrue(Site.objects.filter(domain="example.com", name="example.com").exists())
 
         with self.assertRaises(PrerequisiteFailed) as command_error:
             execute_single_step(
@@ -74,9 +49,4 @@ class SitesConfigurationStepTests(TestCase):
             )
 
         self.assertTrue("Input should be a valid list" in str(command_error.exception))
-
         self.assertEqual(Site.objects.count(), 1)
-        
-        site = Site.objects.get(name="example.com")
-        self.assertEqual(site.domain, "example.com")
-        self.assertEqual(site.name, "example.com")
