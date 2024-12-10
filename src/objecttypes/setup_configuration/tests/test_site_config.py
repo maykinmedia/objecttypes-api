@@ -43,7 +43,7 @@ class SitesConfigurationStepTests(TestCase):
         self.assertTrue(sites.filter(domain="example-2.com", name="example-2").exists())
         self.assertTrue(sites.filter(domain="example-1.com", name="example-1").exists())
 
-    def test_invalid_setup_empty(self):
+    def test_invalid_setup(self):
         self.assertTrue(
             Site.objects.filter(domain="example.com", name="example.com").exists()
         )

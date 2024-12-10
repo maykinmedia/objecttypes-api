@@ -174,11 +174,11 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(new_token_b.application, old_token_b.application)
         self.assertEqual(new_token_b.administration, old_token_b.administration)
 
-    def test_invalid_setup_empty(self):
+    def test_invalid_setup(self):
         with self.assertRaises(PrerequisiteFailed) as command_error:
             execute_single_step(
                 TokenAuthConfigurationStep,
-                yaml_source=str(DIR_FILES / "invalid_setup_empty.yaml"),
+                yaml_source=str(DIR_FILES / "invalid_setup.yaml"),
             )
 
         self.assertTrue("Input should be a valid list" in str(command_error.exception))
@@ -404,7 +404,7 @@ class TokenAuthConfigurationStepTests(TestCase):
             call_command(
                 "setup_configuration",
                 "--yaml-file",
-                str(DIR_FILES / "invalid_setup_empty.yaml"),
+                str(DIR_FILES / "invalid_setup.yaml"),
             )
 
         self.assertTrue(
