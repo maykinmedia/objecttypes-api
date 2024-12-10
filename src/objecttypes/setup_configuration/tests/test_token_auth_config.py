@@ -24,11 +24,10 @@ class TokenAuthConfigurationStepTests(TestCase):
             yaml_source=str(DIR_FILES / "valid_setup_default.yaml"),
         )
 
-        tokens = TokenAuth.objects.order_by("created")
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
 
-        token = tokens[0]
-        self.assertEqual(token.identifier, "token-1")
+        token = tokens.get(identifier="token-1")
         self.assertEqual(token.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
         self.assertEqual(token.contact_person, "Person 1")
         self.assertEqual(token.email, "person-1@example.com")
@@ -36,8 +35,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(token.application, "")
         self.assertEqual(token.administration, "")
 
-        token = tokens[1]
-        self.assertEqual(token.identifier, "token-2")
+        token = tokens.get(identifier="token-2")
         self.assertEqual(token.contact_person, "Person 2")
         self.assertEqual(token.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
         self.assertEqual(token.email, "person-2@example.com")
@@ -51,12 +49,11 @@ class TokenAuthConfigurationStepTests(TestCase):
             yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
 
-        tokens = TokenAuth.objects.order_by("created")
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
 
         # Same as configuration
-        token = tokens[0]
-        self.assertEqual(token.identifier, "token-1")
+        token = tokens.get(identifier="token-1")
         self.assertEqual(token.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
         self.assertEqual(token.contact_person, "Person 1")
         self.assertEqual(token.email, "person-1@example.com")
@@ -65,8 +62,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(token.administration, "Administration 1")
 
         # Token data updated
-        token = tokens[1]
-        self.assertEqual(token.identifier, "token-2")
+        token = tokens.get(identifier="token-2")
         self.assertEqual(token.contact_person, "Person 2")
         self.assertEqual(token.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
         self.assertEqual(token.email, "person-2@example.com")
@@ -100,12 +96,11 @@ class TokenAuthConfigurationStepTests(TestCase):
             yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
 
-        tokens = TokenAuth.objects.order_by("created")
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
 
         # Same as configuration
-        token = tokens[0]
-        self.assertEqual(token.identifier, "token-1")
+        token = tokens.get(identifier="token-1")
         self.assertEqual(token.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
         self.assertEqual(token.contact_person, "Person 1")
         self.assertEqual(token.email, "person-1@example.com")
@@ -114,8 +109,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(token.administration, "Administration 1")
 
         # Token data updated
-        token = tokens[1]
-        self.assertEqual(token.identifier, "token-2")
+        token = tokens.get(identifier="token-2")
         self.assertEqual(token.contact_person, "Person 2")
         self.assertEqual(token.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
         self.assertEqual(token.email, "person-2@example.com")
@@ -133,10 +127,10 @@ class TokenAuthConfigurationStepTests(TestCase):
             yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
 
-        tokens = TokenAuth.objects.order_by("created")
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
 
-        old_token_a = tokens[0]
+        old_token_a = tokens.get(identifier="token-1")
         self.assertEqual(old_token_a.identifier, "token-1")
         self.assertEqual(old_token_a.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
         self.assertEqual(old_token_a.contact_person, "Person 1")
@@ -145,7 +139,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(old_token_a.application, "Application 1")
         self.assertEqual(old_token_a.administration, "Administration 1")
 
-        old_token_b = tokens[1]
+        old_token_b = tokens.get(identifier="token-2")
         self.assertEqual(old_token_b.identifier, "token-2")
         self.assertEqual(old_token_b.contact_person, "Person 2")
         self.assertEqual(old_token_b.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
@@ -159,10 +153,10 @@ class TokenAuthConfigurationStepTests(TestCase):
             yaml_source=str(DIR_FILES / "valid_setup_complete.yaml"),
         )
 
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
-        tokens = TokenAuth.objects.order_by("created")
 
-        new_token_a = tokens[0]
+        new_token_a = tokens.get(identifier="token-1")
         self.assertEqual(new_token_a.identifier, old_token_a.identifier)
         self.assertEqual(new_token_a.token, old_token_a.token)
         self.assertEqual(new_token_a.contact_person, old_token_a.contact_person)
@@ -171,7 +165,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(new_token_a.application, old_token_a.application)
         self.assertEqual(new_token_a.administration, old_token_a.administration)
 
-        new_token_b = tokens[1]
+        new_token_b = tokens.get(identifier="token-2")
         self.assertEqual(new_token_b.identifier, old_token_b.identifier)
         self.assertEqual(new_token_b.contact_person, old_token_b.contact_person)
         self.assertEqual(new_token_b.token, old_token_b.token)
@@ -360,13 +354,10 @@ class TokenAuthConfigurationStepTests(TestCase):
             "Successfully executed step: Configuration to set up authentication tokens for ObjectTypes"
             in stdout.getvalue()
         )
-        self.assertEqual(TokenAuth.objects.count(), 2)
-
-        tokens = TokenAuth.objects.order_by("created")
+        tokens = TokenAuth.objects.all()
         self.assertEqual(tokens.count(), 2)
 
-        token = tokens[0]
-        self.assertEqual(token.identifier, "token-1")
+        token = tokens.get(identifier="token-1")
         self.assertEqual(token.token, "18b2b74ef994314b84021d47b9422e82b685d82f")
         self.assertEqual(token.contact_person, "Person 1")
         self.assertEqual(token.email, "person-1@example.com")
@@ -374,8 +365,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(token.application, "")
         self.assertEqual(token.administration, "")
 
-        token = tokens[1]
-        self.assertEqual(token.identifier, "token-2")
+        token = tokens.get(identifier="token-2")
         self.assertEqual(token.contact_person, "Person 2")
         self.assertEqual(token.token, "e882642bd0ec2482adcdc97258c2e6f98cb06d85")
         self.assertEqual(token.email, "person-2@example.com")
