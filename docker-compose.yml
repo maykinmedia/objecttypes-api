@@ -13,18 +13,19 @@ services:
     image: maykinmedia/objecttypes-api:latest
     build: .
     environment: &app-env
-      - DB_USER=objecttypes
-      - DB_PASSWORD=objecttypes
-      - DJANGO_SETTINGS_MODULE=objecttypes.conf.docker
-      - SECRET_KEY=${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cyf15d}
-      - ALLOWED_HOSTS=*
-      - CACHE_DEFAULT=redis:6379/0
-      - CACHE_AXES=redis:6379/0
-      - DISABLE_2FA=yes
-      - SUBPATH=${SUBPATH:-/}
-      - RUN_SETUP_CONFIG=${RUN_SETUP_CONFIG:-true}
-    volumes: &web-volumes
-      - ./docker/setup_configuration:/app/setup_configuration
+      DB_USER: objecttypes
+      DB_PASSWORD: objecttypes
+      DJANGO_SETTINGS_MODULE: objecttypes.conf.docker
+      SECRET_KEY: ${SECRET_KEY:-fgv=c0hz&tl*8*3m3893@m+1pstrvidc9e^5@fpspmg%cyf15d}
+      ALLOWED_HOSTS: '*'
+      CACHE_DEFAULT: redis:6379/0
+      CACHE_AXES: redis:6379/0
+      DISABLE_2FA: yes
+      SUBPATH: ${SUBPATH:-/}
+    volumes:
+      - media:/app/media
+      - private_media:/app/private_media
+      - log:/app/log
     ports:
       - 8000:8000
     depends_on:
@@ -32,10 +33,21 @@ services:
         condition: service_completed_successfully
 
   web-init:
-    image: maykinmedia/objecttypes-api:latest
     build: .
-    environment: *app-env
+    environment:
+      <<: *app-env
+      #
+      # Django-setup-configuration
+      RUN_SETUP_CONFIG: ${RUN_SETUP_CONFIG:-true}
     command: /setup_configuration.sh
-    volumes: *web-volumes
+    volumes:
+      - log:/app/log
+      - ./docker/setup_configuration:/app/setup_configuration
     depends_on:
       - db
+
+volumes:
+  db:
+  log:
+  media:
+  private_media:
