@@ -17,6 +17,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
+    "objecttypes.setup_configuration",
     "objecttypes.core",
     "objecttypes.token",
     "objecttypes.utils",
