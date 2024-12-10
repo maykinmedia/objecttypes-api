@@ -20,7 +20,7 @@ class TokenAuthConfigurationStep(
     BaseConfigurationStep[TokenAuthGroupConfigurationModel]
 ):
     """
-    Configure configuration groups for the Objects API backend
+    Configure tokens for other applications to access Objecttypes API
     """
 
     namespace = "objecttypes_tokens"
