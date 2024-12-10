@@ -12,5 +12,5 @@ objecttypes_tokens:
 objecttypes_site_config_enable: true
 objecttypes_sites:
   items:
-    - domain: example-1.com
-      name: example-1
+    - domain: example.com
+      name: example
