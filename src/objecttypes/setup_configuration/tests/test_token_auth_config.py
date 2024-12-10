@@ -234,6 +234,31 @@ class TokenAuthConfigurationStepTests(TestCase):
         )
         self.assertEqual(TokenAuth.objects.count(), 0)
 
+    def test_invalid_empty_token(self):
+        object_source = {
+            "objecttypes_tokens_config_enable": True,
+            "objecttypes_tokens": {
+                "items": [
+                    {
+                        "identifier": "token-1",
+                        "token": "",
+                        "contact_person": "Person 1",
+                        "email": "person-1@example.com",
+                        "organization": "Organization 1",
+                        "application": "Application 1",
+                        "administration": "Administration 1",
+                    },
+                ],
+            },
+        }
+        with self.assertRaises(ConfigurationRunFailed) as command_error:
+            execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
+
+        self.assertTrue(
+            "Validation error(s) occured for token-1" in str(command_error.exception)
+        )
+        self.assertEqual(TokenAuth.objects.count(), 0)
+
     def test_invalid_setup_token_missing(self):
         object_source = {
             "objecttypes_tokens_config_enable": True,
