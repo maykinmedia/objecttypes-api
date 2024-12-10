@@ -79,7 +79,7 @@ class SitesConfigurationStep(BaseConfigurationStep[SiteGroupConfigurationModel])
     """
 
     namespace = "objecttypes_sites"
-    enable_setting = "objecttypes_site_config_enable"
+    enable_setting = "objecttypes_sites_config_enable"
 
     verbose_name = "Configuration to set up Sites for ObjectTypes"
     config_model = SiteGroupConfigurationModel

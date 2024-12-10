@@ -1,4 +1,4 @@
-objecttypes_site_config_enable: true
+objecttypes_sites_config_enable: true
 objecttypes_sites:
   items:
     - domain: example-1.com
