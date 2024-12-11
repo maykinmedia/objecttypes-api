@@ -2,8 +2,8 @@ services:
   db:
     image: postgres:12-alpine
     environment:
-      - POSTGRES_USER=objecttypes
-      - POSTGRES_PASSWORD=objecttypes
+      POSTGRES_USER: objecttypes
+      POSTGRES_PASSWORD: objecttypes
     command: postgres -c max_connections=300 -c log_min_messages=LOG
 
   redis:
