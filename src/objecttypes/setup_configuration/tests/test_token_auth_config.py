@@ -184,8 +184,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_email(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -209,8 +209,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_token(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -234,8 +234,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_empty_token(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -259,8 +259,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_token_missing(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -281,8 +281,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_token_unique(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -315,8 +315,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_contact_person(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "token-1",
@@ -340,8 +340,8 @@ class TokenAuthConfigurationStepTests(TestCase):
 
     def test_invalid_setup_identifier(self):
         object_source = {
-            "objecttypes_tokens_config_enable": True,
-            "objecttypes_tokens": {
+            "token_tokenauth_config_enable": True,
+            "token_tokenauth": {
                 "items": [
                     {
                         "identifier": "invalid identifier",
