@@ -17,8 +17,8 @@ class SitesConfigurationStep(BaseConfigurationStep[SitesConfigurationModel]):
     Configure the application site/domain.
     """
 
-    namespace = "objecttypes_sites"
-    enable_setting = "objecttypes_sites_config_enable"
+    namespace = "sites_config"
+    enable_setting = "sites_config_enable"
 
     verbose_name = "Configuration to set up Sites for ObjectTypes"
     config_model = SitesConfigurationModel

@@ -1,5 +1,5 @@
-objecttypes_sites_config_enable: true
-objecttypes_sites:
+sites_config_enable: true
+sites_config:
   items:
     - domain: example-1.com
       name: example-1

@@ -9,8 +9,8 @@ objecttypes_tokens:
       application: Application 1
       administration: Administration 1
 
-objecttypes_sites_config_enable: true
-objecttypes_sites:
+sites_config_enable: true
+sites_config:
   items:
     - domain: example.com
       name: example
