@@ -14,5 +14,5 @@ class SiteConfigurationModel(ConfigurationModel):
         }
 
 
-class SiteGroupConfigurationModel(ConfigurationModel):
+class SitesConfigurationModel(ConfigurationModel):
     items: list[SiteConfigurationModel] = Field()

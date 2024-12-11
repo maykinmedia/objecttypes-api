@@ -7,12 +7,12 @@ from django.db import IntegrityError
 from django_setup_configuration.configuration import BaseConfigurationStep
 from django_setup_configuration.exceptions import ConfigurationRunFailed
 
-from objecttypes.setup_configuration.models.sites import SiteGroupConfigurationModel
+from objecttypes.setup_configuration.models.sites import SitesConfigurationModel
 
 logger = logging.getLogger(__name__)
 
 
-class SitesConfigurationStep(BaseConfigurationStep[SiteGroupConfigurationModel]):
+class SitesConfigurationStep(BaseConfigurationStep[SitesConfigurationModel]):
     """
     Configure the application site/domain.
     """
@@ -21,9 +21,9 @@ class SitesConfigurationStep(BaseConfigurationStep[SiteGroupConfigurationModel])
     enable_setting = "objecttypes_sites_config_enable"
 
     verbose_name = "Configuration to set up Sites for ObjectTypes"
-    config_model = SiteGroupConfigurationModel
+    config_model = SitesConfigurationModel
 
-    def execute(self, model: SiteGroupConfigurationModel) -> None:
+    def execute(self, model: SitesConfigurationModel) -> None:
         for item in model.items:
             logger.info(f"Configuring {item.domain}")
 
