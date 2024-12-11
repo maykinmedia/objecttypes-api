@@ -8,7 +8,7 @@ from django_setup_configuration.exceptions import (
 )
 from django_setup_configuration.test_utils import execute_single_step
 
-from objecttypes.setup_configuration.steps import TokenAuthConfigurationStep
+from objecttypes.setup_configuration.steps.token_auth import TokenAuthConfigurationStep
 from objecttypes.token.models import TokenAuth
 from objecttypes.token.tests.factories.token import TokenAuthFactory
 

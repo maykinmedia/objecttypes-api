@@ -6,7 +6,7 @@ from django.test import TestCase
 from django_setup_configuration.exceptions import PrerequisiteFailed
 from django_setup_configuration.test_utils import execute_single_step
 
-from objecttypes.setup_configuration.steps import SitesConfigurationStep
+from objecttypes.setup_configuration.steps.sites import SitesConfigurationStep
 
 DIR_FILES = (Path(__file__).parent / "files/sites").resolve()
 
