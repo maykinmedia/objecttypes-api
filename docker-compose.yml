@@ -23,8 +23,6 @@ services:
       DISABLE_2FA: yes
       SUBPATH: ${SUBPATH:-/}
     volumes:
-      - media:/app/media
-      - private_media:/app/private_media
       - log:/app/log
     ports:
       - 8000:8000
@@ -49,5 +47,3 @@ services:
 volumes:
   db:
   log:
-  media:
-  private_media:
