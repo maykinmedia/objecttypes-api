@@ -47,9 +47,7 @@ class SitesConfigurationStep(BaseConfigurationStep[SitesConfigurationModel]):
                 Site.objects.update_or_create(
                     domain=item.domain,
                     defaults={
-                        key: value
-                        for key, value in model_kwargs.items()
-                        if key != "domain"
+                        "name": item.name,
                     },
                 )
 
