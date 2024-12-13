@@ -351,11 +351,10 @@ class TokenAuthConfigurationStepTests(TestCase):
                 ],
             },
         }
-        with self.assertRaises(ConfigurationRunFailed) as command_error:
+        with self.assertRaises(PrerequisiteFailed) as command_error:
             execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
-
         self.assertTrue(
-            "Validation error(s) occured for invalid identifier"
+            "String should match pattern"
             in str(command_error.exception)
         )
         self.assertEqual(TokenAuth.objects.count(), 0)
