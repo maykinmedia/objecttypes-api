@@ -276,7 +276,7 @@ There are no specific commands for the project. See
 .. _Django framework commands: https://docs.djangoproject.com/en/dev/ref/django-admin/#available-commands
 
 Configuration (CLI)
-========
+===================
 
 After deploying Objecttypes API, they need to be configured to be fully functional. The command line tool setup_configuration assist with this configuration:
 
