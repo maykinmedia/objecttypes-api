@@ -59,7 +59,10 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 max_length=40,
                 unique=True,
-                validators=[objecttypes.token.validators.validate_no_whitespace],
+                validators=[
+                    objecttypes.token.validators.validate_no_empty,
+                    objecttypes.token.validators.validate_no_whitespace,
+                ],
                 verbose_name="token",
             ),
         ),

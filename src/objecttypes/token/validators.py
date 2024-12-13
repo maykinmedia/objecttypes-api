@@ -13,3 +13,8 @@ def validate_no_whitespace(value: str) -> None:
             code="all-whitespace",
             message=_("Tokens cannot contain whitespace-like characters"),
         )
+
+
+def validate_no_empty(value: str) -> None:
+    if not value:
+        raise ValidationError(code="invalid", message=_("Blank values are not allowed"))

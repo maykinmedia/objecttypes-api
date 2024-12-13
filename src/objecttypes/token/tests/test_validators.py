@@ -1,7 +1,20 @@
 from django.core.exceptions import ValidationError
 from django.test import SimpleTestCase
 
-from objecttypes.token.validators import validate_no_whitespace
+from objecttypes.token.validators import validate_no_empty, validate_no_whitespace
+
+
+class NoEmptyValidatorTestCase(SimpleTestCase):
+    def test_valid(self):
+        self.assertIsNone(validate_no_empty("test123"))
+
+    def test_invalid_string(self):
+        with self.assertRaises(ValidationError):
+            validate_no_empty("")
+
+    def test_invalid_none(self):
+        with self.assertRaises(ValidationError):
+            validate_no_empty(None)
 
 
 class WhiteSpaceValidatorTestCase(SimpleTestCase):
