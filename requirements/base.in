@@ -7,7 +7,7 @@ furl
 # Framework libraries
 django-jsonsuit
 sharing-configs
-django-setup-configuration
+django-setup-configuration>=0.4.0
 
 # API libraries
 drf-nested-routers

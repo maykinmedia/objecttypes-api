@@ -1,0 +1,8 @@
+sites_config_enable: true
+sites_config:
+  items:
+    - domain: example-1.com
+      name: example-1
+  
+    - domain: example-2.com
+      name: example-2
