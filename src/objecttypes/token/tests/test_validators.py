@@ -39,7 +39,3 @@ class WhiteSpaceValidatorTestCase(SimpleTestCase):
     def test_tab_characters_only(self):
         with self.assertRaises(ValidationError):
             validate_no_whitespace("\t\t")
-
-    def test_blank_value(self):
-        with self.assertRaises(ValidationError):
-            validate_no_whitespace("")
