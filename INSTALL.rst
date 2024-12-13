@@ -274,3 +274,16 @@ There are no specific commands for the project. See
 ``python src/manage.py --help``.
 
 .. _Django framework commands: https://docs.djangoproject.com/en/dev/ref/django-admin/#available-commands
+
+Configuration (CLI)
+===================
+
+After deploying Objecttypes API, they need to be configured to be fully functional.
+The command line tool ``setup_configuration`` assist with this configuration.
+
+You can get the full command documentation with:
+
+See `Django Setup Configuration`_ for all documentation, or type
+``python src/manage.py setup_configuration --help``.
+
+.. _Django Setup Configuration: https://github.com/maykinmedia/django-setup-configuration
