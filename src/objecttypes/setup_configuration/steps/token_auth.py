@@ -28,6 +28,9 @@ class TokenAuthConfigurationStep(
     config_model = TokenAuthGroupConfigurationModel
 
     def execute(self, model: TokenAuthGroupConfigurationModel) -> None:
+        if len(model.items) == 0:
+            logger.warning("No tokens provided for configuration")
+
         for item in model.items:
             logger.info(f"Configuring {item.identifier}")
 
