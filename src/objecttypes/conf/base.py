@@ -55,4 +55,5 @@ SETUP_CONFIGURATION_STEPS = [
     "objecttypes.setup_configuration.steps.sites.SitesConfigurationStep",
     "objecttypes.setup_configuration.steps.token_auth.TokenAuthConfigurationStep",
     "objecttypes.setup_configuration.steps.TokenAuthConfigurationStep",
+    "mozilla_django_oidc_db.setup_configuration.steps.AdminOIDCConfigurationStep",
 ]

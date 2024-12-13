@@ -242,7 +242,7 @@ django-sessionprofile==3.0.0
     # via
     #   -r requirements/base.txt
     #   open-api-framework
-django-setup-configuration==0.4.0
+django-setup-configuration==0.5.0
     # via
     #   -r requirements/base.txt
     #   open-api-framework
@@ -262,6 +262,7 @@ django-solo==2.0.0
 django-two-factor-auth[phonenumberslite,webauthn]==1.16.0
     # via
     #   -r requirements/base.txt
+    #   django-two-factor-auth
     #   maykin-2fa
 django-webtest==1.9.10
     # via -r requirements/test-tools.in
@@ -296,6 +297,7 @@ drf-nested-routers==0.94.1
 drf-spectacular[sidecar]==0.27.2
     # via
     #   -r requirements/base.txt
+    #   drf-spectacular
     #   open-api-framework
 drf-spectacular-sidecar==2024.7.1
     # via
@@ -400,6 +402,7 @@ mozilla-django-oidc==4.0.0
 mozilla-django-oidc-db[django-setup-configuration]==0.21.1
     # via
     #   -r requirements/base.txt
+    #   mozilla-django-oidc-db
     #   open-api-framework
 multidict==6.0.5
     # via yarl
@@ -463,6 +466,7 @@ pydantic-settings[yaml]==2.6.1
     # via
     #   -r requirements/base.txt
     #   django-setup-configuration
+    #   pydantic-settings
 pyflakes==3.2.0
     # via flake8
 pyjwt==2.7.0
