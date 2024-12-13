@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 WHITESPACE_PATTERN = re.compile(r".*\s.*")
 
 
-def validate_whitespace(value: str) -> None:
+def validate_no_whitespace(value: str) -> None:
     if not value:
         raise ValidationError(code="invalid", message=_("Blank values are not allowed"))
 

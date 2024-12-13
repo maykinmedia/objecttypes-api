@@ -3,7 +3,7 @@ import secrets
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from objecttypes.token.validators import validate_whitespace
+from objecttypes.token.validators import validate_no_whitespace
 
 
 class TokenAuth(models.Model):
@@ -16,7 +16,7 @@ class TokenAuth(models.Model):
         _("token"),
         max_length=40,
         unique=True,
-        validators=[validate_whitespace],
+        validators=[validate_no_whitespace],
     )
 
     contact_person = models.CharField(
