@@ -353,8 +353,5 @@ class TokenAuthConfigurationStepTests(TestCase):
         }
         with self.assertRaises(PrerequisiteFailed) as command_error:
             execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
-        self.assertTrue(
-            "String should match pattern"
-            in str(command_error.exception)
-        )
+        self.assertTrue("String should match pattern" in str(command_error.exception))
         self.assertEqual(TokenAuth.objects.count(), 0)
