@@ -353,7 +353,6 @@ class TokenAuthConfigurationStepTests(TestCase):
         }
         with self.assertRaises(ConfigurationRunFailed) as command_error:
             execute_single_step(TokenAuthConfigurationStep, object_source=object_source)
-
         self.assertTrue(
             "Validation error(s) occured for invalid identifier"
             in str(command_error.exception)
