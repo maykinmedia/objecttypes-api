@@ -1,2 +1,6 @@
 codecov
 coverage
+
+# Documentation
+sphinx
+sphinx_rtd_theme
