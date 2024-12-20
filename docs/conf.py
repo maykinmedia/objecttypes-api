@@ -10,7 +10,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../src"))
 
-import objects  # noqa isort:skip
+import objecttypes  # noqa isort:skip
 
 # from objects.setup import setup_env  # noqa isort:skip
 
@@ -26,10 +26,10 @@ import objects  # noqa isort:skip
 
 project = "Objects and Objecttypes API"
 copyright = "2020, Maykin Media"
-author = objects.__author__
+author = objecttypes.__author__
 
 # The full version, including alpha/beta/rc tags
-release = objects.__version__
+release = objecttypes.__version__
 
 
 # -- General configuration ---------------------------------------------------
