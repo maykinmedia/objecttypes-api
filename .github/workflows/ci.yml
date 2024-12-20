@@ -95,6 +95,7 @@ jobs:
       main-branch: 'master'
       python-version: '3.11'
       docker-image-name: ${{ needs.store-reusable-workflow-vars.outputs.image-name }}
+      django-settings-module: objecttypes.conf.ci
       run-docs: false
 
   open-api-publish:
