@@ -6,8 +6,15 @@ pyquery  # integrates with webtest
 requests-mock
 tblib
 vcrpy
+pytest
 
 # Code formatting
 black
 isort
 flake8
+
+# Documentation
+sphinx
+sphinx-rtd-theme
+sphinx-tabs
+recommonmark
