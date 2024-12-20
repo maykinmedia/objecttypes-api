@@ -95,7 +95,18 @@ jobs:
       main-branch: 'master'
       python-version: '3.11'
       docker-image-name: ${{ needs.store-reusable-workflow-vars.outputs.image-name }}
-      run-docs: true
+      run-docs: false
+
+  dummy-job:
+    runs-on: ubuntu-latest
+    name: Dummy Job to Test Workflow
+    needs:
+      - open-api-ci
+    steps:
+      - name: Echo Dummy Test
+        run: echo "This is a dummy job to test the workflow execution."
+
+
 
   open-api-publish:
     uses: maykinmedia/open-api-workflows/.github/workflows/publish.yml@v1
