@@ -11,6 +11,13 @@ jobs:
         run: wget https://raw.githubusercontent.com/maykinmedia/objecttypes-api/feature/merge-docker-composes/docker-compose.yml
       - name: Start docker containers
         run: docker compose up -d --no-build
+      - name: Wait for migrations to finish
+        run: |
+          echo "Waiting for migrations to complete..."
+          until ! docker compose exec -T web src/manage.py showmigrations | grep -q '\[ \]'; do
+            echo "Migrations not finished, waiting..."
+            sleep 3
+          done
       - name: Load fixtures
         run: docker compose exec -T web src/manage.py loaddata demodata
       - name: Create superuser
