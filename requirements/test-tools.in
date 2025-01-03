@@ -1,3 +1,6 @@
+-c base.txt
+-r base.txt
+
 # Dependencies only relevant for (unit) testing
 django-webtest
 factory-boy
@@ -6,6 +9,8 @@ pyquery  # integrates with webtest
 requests-mock
 tblib
 vcrpy
+codecov
+coverage
 
 # Code formatting
 black
