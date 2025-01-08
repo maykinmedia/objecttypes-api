@@ -1,6 +1,6 @@
 from vng_api_common.conf.api import *  # noqa - imports white-listed
 
-API_VERSION = "2.2.2"
+API_VERSION = "2.3.0"
 
 
 # api settings
