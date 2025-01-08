@@ -148,7 +148,7 @@ coverage==4.5.4
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   codecov
-cryptography==42.0.7
+cryptography==44.0.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -637,7 +637,7 @@ pyjwt==2.7.0
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   zgw-consumers
-pyopenssl==24.0.0
+pyopenssl==24.3.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
