@@ -2,6 +2,38 @@
 Change history
 ==============
 
+2.3.0 (2025-01-08)
+------------------
+
+**New features**
+
+* added support for configuring ``mozilla-django-oidc-db`` through ``django-setup-configuration``
+  version ``0.4.0`` [objects-api/#480]
+* added support for configuring token authorizations through ``django-setup-configuration``
+  version ``0.4.0`` [objects-api/#485]
+
+**Bugfixes and QOL**
+
+* fixed ``latest`` docker image tag not being pushed [open-api-framework/#92]
+* updated ``django-setup-configuration`` to ``0.5.0`` and ``open-api-framework`` to ``0.9.1``
+* updated zgw-consumers to 0.35.1 [open-api-framework/#66]
+
+.. warning::
+
+    Configuring external services is now done through the ``Service`` model. This
+    replaces the ``APICredential`` model in the admin interface. A data migration
+    was added to move to the `Service` model. It is advised to verify the ``Service``
+    instances in the admin to check that the data migration was ran as expected.
+
+* removed V1 endpoints [objects-api/#453]
+* re-enabled Trivy image scanning [#463]
+
+**Project maintenance**
+
+* security updates [open-api-framework/#93]
+* switched from ``pip-compile`` to ``uv`` [open-api-framework/#81]
+* implementend open-api-workflows [open-api-framework/#13]
+
 2.2.2 (2024-10-01)
 ------------------
 

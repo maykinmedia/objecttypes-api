@@ -2,7 +2,7 @@
 Objecttypen API
 ===============
 
-:Version: 2.2.2
+:Version: 2.3.0
 :Source: https://github.com/maykinmedia/objecttypes-api
 :Keywords: objecten, assets, zaakobjecten
 
@@ -36,7 +36,10 @@ Versie          Release datum   API specificatie
 ==============  ==============  =============================
 latest          n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
                                 `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.2..master#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
+                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.3.0..master>`_)
+2.3.0           2025-01-08      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_,
+                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_
+                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.2..2.3.0>`_)
 2.2.2           2022-08-23      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_,
                                 `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_
                                 (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.0..2.2.2#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
