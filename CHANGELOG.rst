@@ -2,6 +2,47 @@
 Change history
 ==============
 
+2.3.0 (2025-01-10)
+------------------
+
+**Breaking changes**
+
+* upgraded ``django-setup-configuration`` to ``0.5.0``
+
+.. warning::
+
+    Previous configuration files used for ``setup_configuration`` do not work.
+    See the `documentation <https://objects-and-objecttypes-api.readthedocs.io/en/latest/installation/config_cli.html>`_
+    for the available settings that can now be configured through ``setup_configuration``.
+    Note that not all previous configurable options are available in this release.
+
+* added support for configuring token authorizations through ``django-setup-configuration``
+  version ``0.4.0`` [#481]
+* added support for configuring ``mozilla-django-oidc-db`` through ``django-setup-configuration``
+  version ``0.4.0`` [#480]
+
+**New features**
+
+* updated OAF version to 0.9.1. This upgrade allows admin users managing their sessions through the admin.
+
+**Bugfixes and QOL**
+
+* fixed ``latest`` docker image tag not being pushed [open-api-framework/#92]
+* updated zgw-consumers to 0.35.1 [open-api-framework/#66]
+
+.. warning::
+
+    Configuring external services is now done through the ``Service`` model. This
+    replaces the ``APICredential`` model in the admin interface. A data migration
+    was added to move to the `Service` model. It is advised to verify the ``Service``
+    instances in the admin to check that the data migration was ran as expected.
+
+**Project maintenance**
+
+* security updates [open-api-framework/#93]
+* switched from ``pip-compile`` to ``uv`` [open-api-framework/#81]
+* implementend open-api-workflows [open-api-framework/#13]
+
 2.2.2 (2024-10-01)
 ------------------
 
