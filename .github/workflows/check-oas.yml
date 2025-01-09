@@ -15,9 +15,11 @@ jobs:
     strategy:
       matrix:
         version:
+          - v1
           - v2
     with:
       schema-path: 'src/objecttypes/api/${{ matrix.version }}/openapi.yaml'
+      schema-command: 'spectacular --validate --api-version ${{ matrix.version }}'
       python-version: '3.11'
       django-settings-module: 'objecttypes.conf.ci'
       apt-packages: 'libgdal-dev gdal-bin'
