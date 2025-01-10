@@ -25,7 +25,7 @@ class AuthTests(APITestCase):
         TokenAuth.objects.create(contact_person="John Smith", email="smith@bomen.nl")
         for url in self.urls:
             with self.subTest(url=url):
-                response = self.client.get(url, HTTP_AUTHORIZATION=f"Token 12345")
+                response = self.client.get(url, HTTP_AUTHORIZATION="Token 12345")
                 self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_valid_token(self):
