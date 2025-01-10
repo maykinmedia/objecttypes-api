@@ -8,7 +8,7 @@ name: Objecttypes API
 url: 'http://github.com/maykinmedia/objecttypes-api.git'
 softwareType: standalone/backend
 softwareVersion: 2.3.0
-releaseDate: '2021-01-13'
+releaseDate: '2025-01-10'
 logo: 'https://github.com/maykinmedia/objects-api/blob/master/docs/logo.png'
 platforms:
   - web
