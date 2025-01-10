@@ -21,6 +21,10 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
 
         response = self.client.get(url)
 
+        version_path = reverse(
+            "objectversion-detail", args=[object_type.uuid, object_version.version]
+        )
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
             response.json(),
@@ -43,9 +47,7 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
                 "createdAt": "2020-01-01",
                 "modifiedAt": "2020-01-01",
                 "allowGeometry": object_type.allow_geometry,
-                "versions": [
-                    f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}"
-                ],
+                "versions": [f"http://testserver{version_path}"],
             },
         )
 
@@ -63,13 +65,16 @@ class ObjectTypeAPITests(TokenAuthMixin, APITestCase):
 
                 self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+                version_path = reverse(
+                    "objectversion-detail",
+                    args=[object_type.uuid, object_versions[i].version],
+                )
+
                 data = response.json()
                 self.assertEqual(len(data["versions"]), 1)
                 self.assertEqual(
                     data["versions"],
-                    [
-                        f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_versions[i].version])}"
-                    ],
+                    [f"http://testserver{version_path}"],
                 )
 
     def test_create_objecttype(self):

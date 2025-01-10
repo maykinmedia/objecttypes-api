@@ -1,5 +1,4 @@
 from open_api_framework.conf.base import *  # noqa
-from open_api_framework.conf.utils import config
 
 from .api import *  # noqa
 
@@ -18,7 +17,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
-    "objecttypes.config",
+    "objecttypes.setup_configuration",
     "objecttypes.core",
     "objecttypes.token",
     "objecttypes.utils",
@@ -53,30 +52,7 @@ ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
 # Django setup configuration
 #
 SETUP_CONFIGURATION_STEPS = [
-    "objecttypes.config.site.SiteConfigurationStep",
-    "objecttypes.config.objects.ObjectsAuthStep",
-    "objecttypes.config.demo.DemoUserStep",
+    "objecttypes.setup_configuration.steps.token_auth.TokenAuthConfigurationStep",
+    "django_setup_configuration.contrib.sites.steps.SitesConfigurationStep",
+    "mozilla_django_oidc_db.setup_configuration.steps.AdminOIDCConfigurationStep",
 ]
-
-
-#
-# Objecttypes settings
-#
-
-# setup_configuration command
-# sites config
-SITES_CONFIG_ENABLE = config("SITES_CONFIG_ENABLE", default=False)
-OBJECTTYPES_DOMAIN = config("OBJECTTYPES_DOMAIN", "")
-OBJECTTYPES_ORGANIZATION = config("OBJECTTYPES_ORGANIZATION", "")
-# objects auth config
-OBJECTS_OBJECTTYPES_CONFIG_ENABLE = config(
-    "OBJECTS_OBJECTTYPES_CONFIG_ENABLE", default=False
-)
-OBJECTS_OBJECTTYPES_TOKEN = config("OBJECTS_OBJECTTYPES_TOKEN", "")
-OBJECTS_OBJECTTYPES_PERSON = config("OBJECTS_OBJECTTYPES_PERSON", "")
-OBJECTS_OBJECTTYPES_EMAIL = config("OBJECTS_OBJECTTYPES_EMAIL", "")
-# Demo User Configuration
-DEMO_CONFIG_ENABLE = config("DEMO_CONFIG_ENABLE", default=False)
-DEMO_TOKEN = config("DEMO_TOKEN", "")
-DEMO_PERSON = config("DEMO_PERSON", "")
-DEMO_EMAIL = config("DEMO_EMAIL", "")

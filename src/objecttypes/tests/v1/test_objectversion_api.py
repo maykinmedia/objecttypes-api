@@ -29,14 +29,22 @@ class ObjectVersionAPITests(TokenAuthMixin, APITestCase):
 
         response = self.client.get(url)
 
+        object_path = reverse(
+            "objectversion-detail", args=[object_type.uuid, object_version.version]
+        )
+
+        objecttype_path = reverse(
+            "objecttype-detail", args=[object_version.object_type.uuid]
+        )
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
             response.json(),
             [
                 {
-                    "url": f"http://testserver{reverse('objectversion-detail', args=[object_type.uuid, object_version.version])}",
+                    "url": f"http://testserver{object_path}",
                     "version": object_version.version,
-                    "objectType": f"http://testserver{reverse('objecttype-detail', args=[object_version.object_type.uuid])}",
+                    "objectType": f"http://testserver{objecttype_path}",
                     "status": object_version.status,
                     "createdAt": "2020-01-01",
                     "modifiedAt": "2020-01-01",

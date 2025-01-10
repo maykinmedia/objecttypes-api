@@ -7,7 +7,8 @@ furl
 # Framework libraries
 django-jsonsuit
 sharing-configs
-django-setup-configuration
+django-setup-configuration>=0.5.0
+mozilla-django-oidc-db[django-setup-configuration]
 
 # API libraries
 drf-nested-routers

@@ -15,9 +15,7 @@ class FilterTests(TokenAuthMixin, APITestCase):
         object_type_1 = ObjectTypeFactory.create(
             data_classification=DataClassificationChoices.open
         )
-        object_type_2 = ObjectTypeFactory.create(
-            data_classification=DataClassificationChoices.intern
-        )
+        ObjectTypeFactory.create(data_classification=DataClassificationChoices.intern)
 
         response = self.client.get(
             self.url, {"dataClassification": DataClassificationChoices.open}

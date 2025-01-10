@@ -1,0 +1,30 @@
+tokenauth_config_enable: true
+tokenauth:
+  items:
+    - identifier: token-1
+      token: 18b2b74ef994314b84021d47b9422e82b685d82f
+      contact_person: Person 1
+      email: person-1@example.com
+      organization: Organization 1
+      application: Application 1
+      administration: Administration 1
+
+sites_config_enable: true
+sites_config:
+  items:
+    - domain: example.com
+      name: example
+
+oidc_db_config_enable: true
+oidc_db_config_admin_auth:
+  items:
+    - identifier: admin-oidc
+      oidc_rp_client_id: client-id
+      oidc_rp_client_secret: secret
+      endpoint_config:
+        oidc_op_authorization_endpoint: https://example.com/realms/test/protocol/openid-connect/auth
+        oidc_op_token_endpoint: https://example.com/realms/test/protocol/openid-connect/token
+        oidc_op_user_endpoint: https://example.com/realms/test/protocol/openid-connect/userinfo
+
+      # workaround for https://github.com/maykinmedia/django-setup-configuration/issues/27
+      userinfo_claims_source: id_token

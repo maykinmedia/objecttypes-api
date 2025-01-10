@@ -1,6 +1,7 @@
+-c base.txt
+-r base.txt
+
 # Dependencies only relevant for (unit) testing
-coverage < 5.0
-django-jenkins
 django-webtest
 factory-boy
 freezegun
@@ -8,3 +9,10 @@ pyquery  # integrates with webtest
 requests-mock
 tblib
 vcrpy
+codecov
+coverage
+
+# Code formatting
+black
+isort
+flake8
