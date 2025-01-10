@@ -2,6 +2,13 @@
 Change history
 ==============
 
+3.0.0 (2025-01-10)
+------------------
+
+**Breaking changes**
+
+* removed v1 endpoints [objects-api/issues/#453]
+
 2.3.0 (2025-01-10)
 ------------------
 
