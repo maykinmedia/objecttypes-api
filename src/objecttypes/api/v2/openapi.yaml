@@ -111,25 +111,7 @@ paths:
   /objecttypes/{objecttype_uuid}/versions:
     get:
       operationId: objectversion_list
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Retrieve all versions of an OBJECTTYPE
       parameters:
       - in: path
         name: objecttype_uuid
@@ -163,25 +145,7 @@ paths:
           description: OK
     post:
       operationId: objectversion_create
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Create an OBJECTTYPE with the given version.
       parameters:
       - in: header
         name: Content-Type
@@ -217,25 +181,7 @@ paths:
   /objecttypes/{objecttype_uuid}/versions/{version}:
     get:
       operationId: objectversion_read
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Retrieve an OBJECTTYPE with the given version.
       parameters:
       - in: path
         name: objecttype_uuid
@@ -265,25 +211,7 @@ paths:
           description: OK
     put:
       operationId: objectversion_update
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Update an OBJECTTYPE with the given version.
       parameters:
       - in: header
         name: Content-Type
@@ -326,25 +254,7 @@ paths:
           description: OK
     patch:
       operationId: objectversion_partial_update
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Partially update an OBJECTTYPE with the given version.
       parameters:
       - in: header
         name: Content-Type
@@ -387,25 +297,7 @@ paths:
           description: OK
     delete:
       operationId: objectversion_delete
-      description: |-
-        Abstract base class for generic types.
-
-        A generic type is typically declared by inheriting from
-        this class parameterized with one or more type variables.
-        For example, a generic mapping type might be defined as::
-
-          class Mapping(Generic[KT, VT]):
-              def __getitem__(self, key: KT) -> VT:
-                  ...
-              # Etc.
-
-        This class can then be used as follows::
-
-          def lookup_name(mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:
-              try:
-                  return mapping[key]
-              except KeyError:
-                  return default
+      description: Destroy the given OBJECTTYPE.
       parameters:
       - in: path
         name: objecttype_uuid

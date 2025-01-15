@@ -42,8 +42,30 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
 
 
 @extend_schema_view(
-    retrieve=extend_schema(operation_id="objectversion_read"),
-    destroy=extend_schema(operation_id="objectversion_delete"),
+    retrieve=extend_schema(
+        operation_id="objectversion_read",
+        description=_("Retrieve an OBJECTTYPE with the given version.")
+    ),
+    list=extend_schema(
+        operation_id="objectversion_list",
+        description=_("Retrieve all versions of an OBJECTTYPE")
+    ),
+    create=extend_schema(
+        operation_id="objectversion_create",
+        description=_("Create an OBJECTTYPE with the given version.")
+    ),
+    destroy=extend_schema(
+        operation_id="objectversion_delete",
+        description=_("Destroy the given OBJECTTYPE.")
+    ),
+    update=extend_schema(
+        operation_id="objectversion_update",
+        description=_("Update an OBJECTTYPE with the given version.")
+    ),
+    partial_update=extend_schema(
+        operation_id="objectversion_partial_update",
+        description=_("Partially update an OBJECTTYPE with the given version.")
+    ),
 )
 class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = ObjectVersion.objects.order_by("object_type", "-version")
