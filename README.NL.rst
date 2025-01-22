@@ -31,28 +31,28 @@ API specificatie
 
 |lint-oas| |generate-sdks| |generate-postman-collection|
 
-==============  ==============  =============================
-Versie          Release datum   API specificatie
-==============  ==============  =============================
-latest          n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..master>`_)
-3.0.0           2025-01-22      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.3.0..3.0.0>`_)
-2.3.0           2025-01-10      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.2..2.3.0>`_)
-2.2.2           2022-08-23      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.0..2.2.2#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
-2.2.0           2022-06-24      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.0/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.0/src/objecttypes/api/v2/openapi.yaml>`_
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.0.0..2.2.0#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
-2.0.0           2021-10-04      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
-                                `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.0.0/src/objecttypes/api/v2/openapi.yaml>`_
-                                (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/1.2.0..2.0.0#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
-==============  ==============  =============================
+=================      ==============  =============================
+Applicatie versie      Release datum   API specificatie
+=================      ==============  =============================
+latest                 n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..master>`_)
+3.0.0                  2025-01-22      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.3.0..3.0.0>`_)
+2.3.0                  2025-01-10      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.2..2.3.0>`_)
+2.2.2                  2022-08-23      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.2/src/objecttypes/api/v2/openapi.yaml>`_
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.2.0..2.2.2#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
+2.2.0                  2022-06-24      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.0/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.2.0/src/objecttypes/api/v2/openapi.yaml>`_
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.0.0..2.2.0#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
+2.0.0                  2021-10-04      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
+                                       `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.0.0/src/objecttypes/api/v2/openapi.yaml>`_
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/1.2.0..2.0.0#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
+=================      ==============  =============================
 
 Vorige versies worden nog 6 maanden ondersteund nadat de volgende versie is uitgebracht.
 
