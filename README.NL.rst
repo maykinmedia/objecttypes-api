@@ -37,7 +37,7 @@ Versie          Release datum   API specificatie
 latest          n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
                                 `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
                                 (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..master>`_)
-3.0.0           2025-01-14      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
+3.0.0           2025-01-22      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
                                 `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_
                                 (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.3.0..3.0.0>`_)
 2.3.0           2025-01-10      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/2.3.0/src/objecttypes/api/v2/openapi.yaml>`_,
