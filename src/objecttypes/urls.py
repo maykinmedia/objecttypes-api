@@ -18,6 +18,7 @@ handler500 = "objecttypes.utils.views.server_error"
 admin.site.site_header = "objecttypes admin"
 admin.site.site_title = "objecttypes admin"
 admin.site.index_title = "Welcome to the objecttypes admin"
+admin.site.enable_nav_sidebar = False
 
 monkeypatch_admin()
 
