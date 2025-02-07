@@ -31,6 +31,7 @@ services:
         condition: service_completed_successfully
 
   web-init:
+    image: maykinmedia/objecttypes-api:latest
     build: .
     environment:
       <<: *app-env
