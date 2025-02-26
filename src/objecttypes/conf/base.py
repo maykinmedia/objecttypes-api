@@ -2,8 +2,6 @@ from open_api_framework.conf.base import *  # noqa
 
 from .api import *  # noqa
 
-init_sentry()
-
 #
 # Core Django settings
 #

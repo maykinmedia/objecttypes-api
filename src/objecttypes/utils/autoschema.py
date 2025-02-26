@@ -6,7 +6,7 @@ from drf_spectacular.openapi import AutoSchema as _AutoSchema
 from drf_spectacular.utils import OpenApiParameter
 from rest_framework.test import APIRequestFactory
 from rest_framework_nested.viewsets import NestedViewSetMixin
-from vng_api_common.inspectors.view import HTTP_STATUS_CODE_TITLES
+from vng_api_common.schema import HTTP_STATUS_CODE_TITLES
 
 
 class AutoSchema(_AutoSchema):
