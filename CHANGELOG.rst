@@ -2,6 +2,20 @@
 Change history
 ==============
 
+3.0.1 (2025-03-04)
+------------------
+
+**Bugfixes and QOL**
+
+* disabled admin nav sidebar [open-api-framework/#79]
+
+**Project maintenance**
+
+* bumped python dependencies: open-api-framework to 0.9.3, commonground-api-common to 2.5.0, django to 4.2.19, cryptography to 44.0.1
+* added bump-my-version to dev dependencies [#152]
+* added workflow to CI to auto-update open-api-framework [#145]
+* updated quick-start workflow to test docker-compose.yml [maykinmedia/objects-api#509, open-api-framework/#104]
+
 3.0.0 (2025-01-22)
 ------------------
 
