@@ -449,11 +449,11 @@ components:
         url:
           type: string
           format: uri
+          readOnly: true
           minLength: 1
           maxLength: 1000
           description: URL reference to this object. This is the unique identification
             and location of this object.
-          readOnly: true
         uuid:
           type: string
           format: uuid
@@ -657,11 +657,11 @@ components:
         url:
           type: string
           format: uri
+          readOnly: true
           minLength: 1
           maxLength: 1000
           description: URL reference to this object. This is the unique identification
             and location of this object.
-          readOnly: true
         uuid:
           type: string
           format: uuid
