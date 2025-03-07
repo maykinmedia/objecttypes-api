@@ -8,4 +8,4 @@ export SCHEMA_PATH=src/objecttypes/api/v2/openapi.yaml
 
 OUTPUT_FILE=$1
 
-src/manage.py spectacular --file ${OUTPUT_FILE:-$SCHEMA_PATH} --validate
+src/manage.py spectacular --file ${OUTPUT_FILE:-$SCHEMA_PATH} --validate --lang="en"
