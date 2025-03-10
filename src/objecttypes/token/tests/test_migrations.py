@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management import call_command
 from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
@@ -48,6 +50,66 @@ class BaseMigrationTest(TransactionTestCase):
 
         # reset to latest migration
         call_command("migrate", verbosity=0, database=connection._alias)
+
+
+class SwitchToNewTokenAuthModelTestCase(BaseMigrationTest):
+    app = "token"
+    migrate_from = "0005_tokenauth"
+    migrate_to = "0006_copy_token_auth"
+
+    def test_migrate_to_new_model(self):
+        OldTokenAuth = self.old_app_state.get_model("token", "OldTokenAuth")
+
+        token = OldTokenAuth.objects.create(
+            token="foo",
+            contact_person="john doe",
+            email="john@example.com",
+            organization="ACME",
+            last_modified=datetime(2024, 1, 1),
+            created=datetime(2024, 1, 1),
+            application="Foo",
+            administration="Bar",
+        )
+
+        self.assertEqual(token.pk, "foo")
+
+        self._perform_migration()
+
+        TokenAuth = self.apps.get_model("token", "TokenAuth")
+        token = TokenAuth.objects.get()
+
+        self.assertTrue(isinstance(token.pk, int))
+        self.assertEqual(token.token, "foo")
+
+
+class SwitchToOldTokenAuthModelTestCase(BaseMigrationTest):
+    app = "token"
+    migrate_from = "0006_copy_token_auth"
+    migrate_to = "0005_tokenauth"
+
+    def test_migrate_to_old_model(self):
+        TokenAuth = self.old_app_state.get_model("token", "TokenAuth")
+
+        token = TokenAuth.objects.create(
+            token="foo",
+            contact_person="john doe",
+            email="john@example.com",
+            organization="ACME",
+            last_modified=datetime(2024, 1, 1),
+            created=datetime(2024, 1, 1),
+            application="Foo",
+            administration="Bar",
+        )
+
+        self.assertTrue(isinstance(token.pk, int))
+
+        self._perform_migration()
+
+        OldTokenAuth = self.apps.get_model("token", "OldTokenAuth")
+        token = OldTokenAuth.objects.get()
+
+        self.assertEqual(token.pk, "foo")
+        self.assertEqual(token.token, "foo")
 
 
 class TestTokenAuthUniqueness(BaseMigrationTest):
