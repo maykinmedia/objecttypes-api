@@ -1,0 +1,6 @@
+# Keep in sync with setup.cfg in the root of the project
+ignore:
+  - "src/manage.py"
+  - "src/objecttypes/wsgi.py"
+  - "src/objecttypes/conf/local_example.py"
+  - "**/tests/*"
