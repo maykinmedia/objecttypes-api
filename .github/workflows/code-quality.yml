@@ -20,7 +20,7 @@ jobs:
       apt-packages: 'libgdal-dev gdal-bin'
       python-version: '3.11'
       node-version: '18'
-      postgres-image: 'postgres:12'
+      postgres-image: 'postgres:17'
 
       black-src-pattern: 'src'
 
