@@ -42,7 +42,7 @@ billiard==4.2.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   celery
-black==24.8.0
+black==25.1.0
     # via -r requirements/test-tools.in
 bleach==6.1.0
     # via
@@ -370,7 +370,7 @@ factory-boy==3.2.1
     # via -r requirements/test-tools.in
 faker==18.9.0
     # via factory-boy
-flake8==7.1.1
+flake8==7.1.2
     # via -r requirements/test-tools.in
 flower==2.0.1
     # via
@@ -415,7 +415,7 @@ isodate==0.6.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   commonground-api-common
-isort==5.13.2
+isort==6.0.1
     # via -r requirements/test-tools.in
 itypes==1.2.0
     # via

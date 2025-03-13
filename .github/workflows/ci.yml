@@ -38,7 +38,12 @@ jobs:
       changed-requirements: ${{ steps.changed-requirements.outputs.any_changed }}
 
   tests:
-    name: Run the Django test suite
+    strategy:
+      matrix:
+        postgres: ['13', '15', '16', '17']
+
+    name: Run the Django test suite (PG ${{ matrix.postgres }})
+
     runs-on: ubuntu-latest
     needs:
       - changed-files
@@ -46,7 +51,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:12
+        image: postgres:${{ matrix.postgres }}
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
@@ -90,7 +95,7 @@ jobs:
         id: image-name
 
   open-api-ci:
-    uses: maykinmedia/open-api-workflows/.github/workflows/ci.yml@v3.0.2
+    uses: maykinmedia/open-api-workflows/.github/workflows/ci.yml@v5
     needs:
       - store-reusable-workflow-vars
     with:
@@ -101,7 +106,7 @@ jobs:
       run-docs: false
 
   open-api-publish:
-    uses: maykinmedia/open-api-workflows/.github/workflows/publish.yml@v3.0.2
+    uses: maykinmedia/open-api-workflows/.github/workflows/publish.yml@v5
     needs:
       - store-reusable-workflow-vars
       - open-api-ci
