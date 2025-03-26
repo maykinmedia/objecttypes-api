@@ -13,7 +13,6 @@ from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
 from .constants import ObjectVersionStatus
 from .forms import ObjectVersionForm, UrlImportForm
 from .models import ObjectType, ObjectVersion
-from .utils import check_json_schema
 from .widgets import JSONSuit
 
 
