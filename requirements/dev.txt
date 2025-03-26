@@ -750,10 +750,6 @@ setuptools==75.6.0
     #   -r requirements/ci.txt
     #   josepy
     #   pip-tools
-sharing-configs==0.1.2
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
 six==1.16.0
     # via
     #   -c requirements/ci.txt

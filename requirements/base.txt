@@ -314,8 +314,6 @@ sentry-sdk==2.12.0
     # via open-api-framework
 setuptools==75.6.0
     # via josepy
-sharing-configs==0.1.2
-    # via -r requirements/base.in
 six==1.16.0
     # via
     #   bleach

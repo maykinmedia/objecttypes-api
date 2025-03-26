@@ -631,10 +631,6 @@ setuptools==75.6.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   josepy
-sharing-configs==0.1.2
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.txt
 six==1.16.0
     # via
     #   -c requirements/base.txt

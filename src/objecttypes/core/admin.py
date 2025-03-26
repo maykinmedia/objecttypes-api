@@ -9,7 +9,6 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from jsonsuit.widgets import READONLY_WIDGET_MEDIA_CSS, READONLY_WIDGET_MEDIA_JS
-from sharing_configs.admin import SharingConfigsExportMixin, SharingConfigsImportMixin
 
 from .constants import ObjectVersionStatus
 from .forms import ObjectVersionForm, UrlImportForm
@@ -94,8 +93,7 @@ class ObjectVersionInline(admin.StackedInline):
 
 
 @admin.register(ObjectType)
-class ObjectTypeAdmin(
-    SharingConfigsImportMixin, SharingConfigsExportMixin, admin.ModelAdmin
+class ObjectTypeAdmin( admin.ModelAdmin
 ):
     list_display = ("name", "name_plural", "allow_geometry")
     search_fields = ("name", "name_plural", "uuid")
@@ -176,13 +174,3 @@ class ObjectTypeAdmin(
         return render(
             request, "admin/core/objecttype/object_import_form.html", {"form": form}
         )
-
-    def get_sharing_configs_import_data(self, content: bytes) -> ObjectType:
-        json_schema = json.loads(content.decode())
-        check_json_schema(json_schema)
-
-        return ObjectType.objects.create_from_schema(json_schema)
-
-    def get_sharing_configs_export_data(self, obj: ObjectType) -> bytes:
-        json_schema_str = json.dumps(obj.last_version.json_schema)
-        return json_schema_str.encode()
