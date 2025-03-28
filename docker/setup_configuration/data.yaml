@@ -9,11 +9,6 @@ tokenauth:
       application: Application 1
       administration: Administration 1
 
-sites_config_enable: true
-sites_config:
-  items:
-    - domain: example.com
-      name: example
 
 oidc_db_config_enable: true
 oidc_db_config_admin_auth:
