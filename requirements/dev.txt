@@ -208,7 +208,6 @@ django==4.2.19
     #   mozilla-django-oidc-db
     #   notifications-api-common
     #   open-api-framework
-    #   sharing-configs
     #   zgw-consumers
 django-admin-index==3.1.1
     # via
@@ -333,7 +332,6 @@ django-solo==2.0.0
     #   django-log-outgoing-requests
     #   mozilla-django-oidc-db
     #   notifications-api-common
-    #   sharing-configs
     #   zgw-consumers
 django-two-factor-auth==1.16.0
     # via
@@ -725,7 +723,6 @@ requests==2.32.3
     #   mozilla-django-oidc
     #   open-api-framework
     #   requests-mock
-    #   sharing-configs
     #   sphinx
     #   zgw-consumers
 requests-mock==1.12.1
@@ -750,10 +747,6 @@ setuptools==75.6.0
     #   -r requirements/ci.txt
     #   josepy
     #   pip-tools
-sharing-configs==0.1.2
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
 six==1.16.0
     # via
     #   -c requirements/ci.txt

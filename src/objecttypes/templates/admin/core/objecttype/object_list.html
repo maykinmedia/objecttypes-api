@@ -7,10 +7,5 @@
            {% trans 'Import from URL' %}
         </a>
     </li>
-    <li>
-        <a href="{% url opts|admin_urlname:'import' %}" class="addlink ">
-            {% trans 'Import from Community' %}
-        </a>
-    </li>
     {{ block.super }}
 {% endblock %}

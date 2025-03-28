@@ -11,7 +11,6 @@ INSTALLED_APPS = INSTALLED_APPS + [
     # External applications.
     "jsonsuit.apps.JSONSuitConfig",
     # Two-factor authentication in the Django admin, enforced.
-    "sharing_configs",
     # Project applications.
     "objecttypes.accounts",
     "objecttypes.api",
