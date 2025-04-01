@@ -2,16 +2,34 @@
 Change history
 ==============
 
-3.x.x (2025-03-31)
+3.0.2 (2025-04-03)
 ------------------
 
 **Project maintenance**
 
-* Confirm support for Postgres 17 and drop (verified) support for Postgres 12
+* upgraded docker image to debian-bookworm [open-api-framework/#125]
+* removed django.contrib.sites [open-api-framework/#59] 
+* removed sharing-configs [objects-api/#552]
+* moved changed files CI action to script
+* Confirm support for Postgres 17 and drop (verified) support for Postgres 12 [open-api-framework/#117]
 * Upgrade nodejs version in Docker image to 20
 * Upgrade dependencies
 
-  * Development tools: black to 25.1.0, flake to 7.1.2 and isort to 6.0.1
+  * django to 4.2.20
+  * jinja2 to 3.1.6
+  * open-api-framework to 0.9.6
+  * commonground-api-common to 2.5.5
+  * notifications-api-common to 0.7.2
+ 
+* Upgrade dev dependencies
+
+  * Upgrade black to 25.1.0
+  * Upgrade flake to 7.1.2
+  * Upgrade isort to 6.0.1
+
+* fixed coverage
+* fixed codecov publish [open-api-framework/#116]
+* fixed oas CI check [open-api-framework/#115]
 
 3.0.1 (2025-03-04)
 ------------------
