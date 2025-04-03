@@ -140,7 +140,7 @@ cryptography==44.0.1
     #   webauthn
 cssselect==1.2.0
     # via pyquery
-django==4.2.19
+django==4.2.20
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -420,7 +420,7 @@ itypes==1.2.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   coreapi
-jinja2==3.1.5
+jinja2==3.1.6
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
