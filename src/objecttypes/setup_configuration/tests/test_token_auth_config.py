@@ -276,6 +276,7 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertEqual(TokenAuth.objects.count(), 0)
 
     def test_invalid_setup_token_unique(self):
+        self.assertEqual(TokenAuth.objects.count(), 0)
         object_source = {
             "tokenauth_config_enable": True,
             "tokenauth": {
@@ -307,7 +308,8 @@ class TokenAuthConfigurationStepTests(TestCase):
         self.assertTrue(
             "Failed configuring token token-2" in str(command_error.exception)
         )
-        self.assertEqual(TokenAuth.objects.count(), 1)
+        # All database changes have been rolled back
+        self.assertEqual(TokenAuth.objects.count(), 0)
 
     def test_invalid_setup_contact_person(self):
         object_source = {

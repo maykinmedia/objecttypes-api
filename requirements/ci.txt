@@ -280,7 +280,7 @@ django-sessionprofile==3.0.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   open-api-framework
-django-setup-configuration==0.5.0
+django-setup-configuration==0.7.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -333,6 +333,11 @@ djangorestframework-inclusions==1.2.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   open-api-framework
+docutils==0.21.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-setup-configuration
 drf-nested-routers==0.94.1
     # via
     #   -c requirements/base.txt
@@ -612,6 +617,16 @@ requests-mock==1.12.1
     #   -r requirements/base.txt
     #   -r requirements/test-tools.in
     #   commonground-api-common
+ruamel-yaml==0.18.10
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-setup-configuration
+ruamel-yaml-clib==0.2.12
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   ruamel-yaml
 sentry-sdk==2.12.0
     # via
     #   -c requirements/base.txt

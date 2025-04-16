@@ -314,7 +314,7 @@ django-sessionprofile==3.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   open-api-framework
-django-setup-configuration==0.5.0
+django-setup-configuration==0.7.2
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -371,6 +371,9 @@ djangorestframework-inclusions==1.2.0
     #   open-api-framework
 docutils==0.21.2
     # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
+    #   django-setup-configuration
     #   sphinx
     #   sphinx-rtd-theme
 drf-nested-routers==0.94.1
@@ -732,6 +735,16 @@ rich-click==1.8.5
     # via bump-my-version
 roman-numerals-py==3.1.0
     # via sphinx
+ruamel-yaml==0.18.10
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
+    #   django-setup-configuration
+ruamel-yaml-clib==0.2.12
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
+    #   ruamel-yaml
 sentry-sdk==2.12.0
     # via
     #   -c requirements/ci.txt
