@@ -56,7 +56,7 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-commonground-api-common==2.5.5
+commonground-api-common==2.6.2
     # via open-api-framework
 coreapi==2.3.3
     # via commonground-api-common
@@ -150,7 +150,7 @@ django-sendfile2==0.7.0
     # via django-privates
 django-sessionprofile==3.0.0
     # via open-api-framework
-django-setup-configuration==0.5.0
+django-setup-configuration==0.7.2
     # via
     #   -r requirements/base.in
     #   open-api-framework
@@ -182,6 +182,8 @@ djangorestframework-gis==1.0
     # via open-api-framework
 djangorestframework-inclusions==1.2.0
     # via open-api-framework
+docutils==0.21.2
+    # via django-setup-configuration
 drf-nested-routers==0.94.1
     # via
     #   -r requirements/base.in
@@ -213,8 +215,6 @@ idna==3.7
 inflection==0.5.1
     # via drf-spectacular
 iso-639==0.4.5
-    # via commonground-api-common
-isodate==0.6.1
     # via commonground-api-common
 itypes==1.2.0
     # via coreapi
@@ -307,6 +307,10 @@ requests==2.32.3
     #   zgw-consumers
 requests-mock==1.12.1
     # via commonground-api-common
+ruamel-yaml==0.18.10
+    # via django-setup-configuration
+ruamel-yaml-clib==0.2.12
+    # via ruamel-yaml
 sentry-sdk==2.12.0
     # via open-api-framework
 setuptools==75.6.0
@@ -316,7 +320,6 @@ six==1.16.0
     #   bleach
     #   click-repl
     #   furl
-    #   isodate
     #   orderedmultidict
     #   python-dateutil
     #   qrcode
