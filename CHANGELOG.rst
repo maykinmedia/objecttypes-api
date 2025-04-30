@@ -2,6 +2,18 @@
 Change history
 ==============
 
+3.0.3 (2025-05-14)
+------------------
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * Upgrade commonground-api-common to 2.6.3
+  * Upgrade django-setup-configuration to 0.7.2
+  * Upgrade h11 to 0.16.0
+  * Upgrade NPM http-proxy-middleware to 2.0.9
+ 
 3.0.2 (2025-04-03)
 ------------------
 
