@@ -29,6 +29,11 @@ asn1crypto==1.5.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   webauthn
+async-timeout==5.0.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   redis
 attrs==23.1.0
     # via
     #   -c requirements/base.txt
@@ -110,7 +115,7 @@ click-repl==0.2.0
     #   celery
 codecov==2.1.13
     # via -r requirements/test-tools.in
-commonground-api-common==2.6.3
+commonground-api-common @ git+https://github.com/maykinmedia/commonground-api-common.git@3515c48be9ef0c3bfafeac9bf6cf84938ce00e71
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -656,6 +661,8 @@ sqlparse==0.5.0
     #   django
 tblib==1.7.0
     # via -r requirements/test-tools.in
+tomli==2.2.1
+    # via black
 tornado==6.4.2
     # via
     #   -c requirements/base.txt
@@ -665,6 +672,7 @@ typing-extensions==4.11.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   black
     #   mozilla-django-oidc-db
     #   pydantic
     #   pydantic-core
