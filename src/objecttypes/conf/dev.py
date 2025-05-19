@@ -113,7 +113,7 @@ if config("DISABLE_2FA", default=True):  # pragma: no cover
     MAYKIN_2FA_ALLOW_MFA_BYPASS_BACKENDS = AUTHENTICATION_BACKENDS
 
 # Override settings with local settings.
-try:
+try:  # noqa: SIM105
     from .local import *  # noqa
 except ImportError:
     pass
