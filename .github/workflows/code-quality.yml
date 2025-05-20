@@ -21,8 +21,8 @@ jobs:
       python-version: '3.11'
       node-version: '20'
       postgres-image: 'postgres:17'
-
-      black-src-pattern: 'src'
-
+      
+      ruff-src-pattern: 'src'
+      
       django-settings-module: 'objecttypes.conf.ci'
       django-secret-key: dummy

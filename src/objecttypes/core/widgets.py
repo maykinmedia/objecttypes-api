@@ -6,7 +6,9 @@ from jsonsuit.widgets import JSONSuit as _JSONSuit
 class JSONSuit(_JSONSuit):
     initial = dict()
 
-    def render(self, name, value, attrs={}, renderer=None):
+    def render(self, name, value, attrs=None, renderer=None):
+        if attrs is None:
+            attrs = {}
         try:
             json.loads(value)
         except ValueError:
