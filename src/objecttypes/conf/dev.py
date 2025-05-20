@@ -10,9 +10,9 @@ os.environ.setdefault(
 os.environ.setdefault("ENVIRONMENT", "development")
 os.environ.setdefault("RELEASE", "dev")
 
-os.environ.setdefault("DB_NAME", "objecttypes"),
-os.environ.setdefault("DB_USER", "objecttypes"),
-os.environ.setdefault("DB_PASSWORD", "objecttypes"),
+os.environ.setdefault("DB_NAME", "objecttypes")
+os.environ.setdefault("DB_USER", "objecttypes")
+os.environ.setdefault("DB_PASSWORD", "objecttypes")
 
 from .base import *  # noqa isort:skip
 
