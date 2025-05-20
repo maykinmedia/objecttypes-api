@@ -13,6 +13,4 @@ codecov
 coverage
 
 # Code formatting
-black
-isort
-flake8
+ruff
