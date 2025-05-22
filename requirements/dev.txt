@@ -131,7 +131,7 @@ codecov==2.1.13
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-commonground-api-common==2.6.3
+commonground-api-common==2.6.4
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -536,7 +536,7 @@ notifications-api-common==0.7.2
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
-open-api-framework==0.9.6
+open-api-framework==0.10.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
