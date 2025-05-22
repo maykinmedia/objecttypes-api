@@ -50,7 +50,7 @@ class AdminAddTests(WebTest):
     def test_create_objecttype_success(self):
         get_response = self.app.get(self.url)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
@@ -105,7 +105,7 @@ class AdminAddTests(WebTest):
     def test_create_objecttype_invalid_json_schema(self):
         get_response = self.app.get(self.url)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
@@ -132,7 +132,7 @@ class AdminAddTests(WebTest):
         # The submitted value is shown in the error
         self.assertIn("{}{", error_list.text)
 
-        json_schema_field = response.form.fields["versions-0-json_schema"][0]
+        json_schema_field = response.forms[1].fields["versions-0-json_schema"][0]
 
         # Verify that the value of the JSON schema field is the fallback value
         self.assertEqual(json_schema_field.value, "{}")
@@ -140,7 +140,7 @@ class AdminAddTests(WebTest):
     def test_create_objecttype_without_version_fail(self):
         get_response = self.app.get(self.url)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
@@ -154,7 +154,7 @@ class AdminAddTests(WebTest):
     def test_create_objecttype_with_invalid_json_schema(self):
         get_response = self.app.get(self.url)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["name"] = "boom"
         form["name_plural"] = "bomen"
         form["description"] = "some object type description"
@@ -270,7 +270,7 @@ class AdminDetailTests(WebTest):
 
         self.assertEqual(get_response.status_code, 200)
 
-        form = get_response.form
+        form = get_response.forms[1]
 
         self.assertEqual(form["versions-0-id"].value, "")
 
@@ -280,7 +280,7 @@ class AdminDetailTests(WebTest):
         url = reverse("admin:core_objecttype_change", args=[object_type.id])
 
         get_response = self.app.get(url)
-        form = get_response.form
+        form = get_response.forms[1]
 
         self.assertEqual(int(form["versions-TOTAL_FORMS"].value), 1)
         self.assertEqual(int(form["versions-0-id"].value), object_type.last_version.id)
@@ -305,7 +305,7 @@ class AdminDetailTests(WebTest):
         save_button = get_response.html.find("input", {"name": "_save"})
         self.assertIsNotNone(save_button)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["versions-0-json_schema"] = json.dumps(JSON_SCHEMA)
         response = form.submit()
 
@@ -334,7 +334,7 @@ class AdminDetailTests(WebTest):
         save_button = get_response.html.find("input", {"name": "_save"})
         self.assertIsNotNone(save_button)
 
-        form = get_response.form
+        form = get_response.forms[1]
         form["versions-0-json_schema"] = "{}{"
         response = form.submit()
 
@@ -348,7 +348,7 @@ class AdminDetailTests(WebTest):
         # The submitted value is shown in the error
         self.assertIn("{}{", error_list.text)
 
-        json_schema_field = response.form.fields["versions-0-json_schema"][0]
+        json_schema_field = response.forms[1].fields["versions-0-json_schema"][0]
 
         # Verify that the value of the JSON schema field is the fallback value
         self.assertEqual(json_schema_field.value, json.dumps(old_schema))
@@ -387,7 +387,7 @@ class AdminDetailTests(WebTest):
         publish_button = get_response.html.find("input", {"name": "_publish"})
         self.assertIsNotNone(publish_button)
 
-        form = get_response.form
+        form = get_response.forms[1]
         response = form.submit("_publish")
 
         self.assertEqual(response.status_code, 302)
@@ -431,7 +431,7 @@ class AdminDetailTests(WebTest):
         new_version_button = get_response.html.find("input", {"name": "_newversion"})
         self.assertIsNotNone(new_version_button)
 
-        form = get_response.form
+        form = get_response.forms[1]
         response = form.submit("_newversion")
 
         self.assertEqual(response.status_code, 302)
