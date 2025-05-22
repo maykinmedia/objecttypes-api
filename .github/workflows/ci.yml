@@ -63,7 +63,7 @@ jobs:
         uses: maykinmedia/setup-django-backend@v1.3
         with:
           apt-packages: 'libgdal-dev gdal-bin'
-          python-version: '3.11'
+          python-version: '3.12'
           setup-node: true
 
       - name: Run tests
@@ -98,7 +98,7 @@ jobs:
       - store-reusable-workflow-vars
     with:
       main-branch: 'master'
-      python-version: '3.11'
+      python-version: '3.12'
       docker-image-name: ${{ needs.store-reusable-workflow-vars.outputs.image-name }}
       django-settings-module: objecttypes.conf.ci
       run-docs: false
