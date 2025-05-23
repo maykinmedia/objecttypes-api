@@ -1,4 +1,5 @@
 import os
+import string
 
 from django.conf import settings
 from django.contrib.auth.management.commands.createsuperuser import (
@@ -6,6 +7,7 @@ from django.contrib.auth.management.commands.createsuperuser import (
 )
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.utils.crypto import get_random_string
 
 
 class Command(BaseCommand):
@@ -50,7 +52,9 @@ class Command(BaseCommand):
         user = qs.get()
 
         if not password and options["generate_password"]:
-            password = self.UserModel.objects.make_random_password(length=20)
+            password = get_random_string(
+                20, allowed_chars=string.ascii_letters + string.digits
+            )
 
         if password:
             self.stdout.write("Setting user password...")

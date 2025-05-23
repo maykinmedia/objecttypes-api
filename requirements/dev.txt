@@ -21,7 +21,7 @@ ape-pie==0.1.0
     #   commonground-api-common
     #   notifications-api-common
     #   zgw-consumers
-asgiref==3.6.0
+asgiref==3.8.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -167,7 +167,7 @@ cssselect==1.2.0
     #   pyquery
 distlib==0.3.9
     # via virtualenv
-django==4.2.20
+django==5.2.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -337,7 +337,7 @@ django-two-factor-auth==1.16.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   maykin-2fa
-django-webtest==1.9.10
+django-webtest==1.9.13
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt

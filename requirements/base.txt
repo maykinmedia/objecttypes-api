@@ -9,7 +9,7 @@ ape-pie==0.1.0
     #   commonground-api-common
     #   notifications-api-common
     #   zgw-consumers
-asgiref==3.6.0
+asgiref==3.8.1
     # via
     #   django
     #   django-axes
@@ -69,7 +69,7 @@ cryptography==44.0.1
     #   mozilla-django-oidc
     #   pyopenssl
     #   webauthn
-django==4.2.20
+django==5.2.1
     # via
     #   commonground-api-common
     #   django-admin-index
