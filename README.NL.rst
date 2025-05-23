@@ -126,11 +126,19 @@ Licensed under the EUPL_
     :target: https://github.com/astral-sh/ruff
     :alt: Ruff
 
-.. |docker| image:: https://images.microbadger.com/badges/image/maykinmedia/objecttypes-api.svg
+.. |code-style| image:: https://github.com/maykinmedia/objecttypes-api/actions/workflows/code-quality.yml/badge.svg?branch=master
+    :alt: Code style
+    :target: https://github.com/maykinmedia/objecttypes-api/actions/workflows/code-quality.yml
+
+.. |codeql| image:: https://github.com/maykinmedia/objecttypes-api/actions/workflows/codeql-analysis.yml/badge.svg?branch=master
+    :alt: CodeQL scan
+    :target: https://github.com/maykinmedia/objecttypes-api/actions/workflows/codeql-analysis.yml
+
+.. |docker| image:: https://img.shields.io/docker/v/maykinmedia/objecttypes-api.svg?sort=semver
     :alt: Docker image
     :target: https://hub.docker.com/r/maykinmedia/objecttypes-api
 
-.. |python-versions| image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
+.. |python-versions| image:: https://img.shields.io/badge/python-3.12%2B-blue.svg
     :alt: Supported Python version
 
 .. |lint-oas| image:: https://github.com/maykinmedia/objecttypes-api/workflows/lint-oas/badge.svg

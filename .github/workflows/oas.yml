@@ -15,7 +15,7 @@ jobs:
     name: Checks
     uses: maykinmedia/open-api-workflows/.github/workflows/oas.yml@v5
     with:
-      python-version: '3.11'
+      python-version: '3.12'
       django-settings-module: objecttypes.conf.ci
       oas-generate-command: ./bin/generate_schema.sh
       schema-path: src/objecttypes/api/v2/openapi.yaml
