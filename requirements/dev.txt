@@ -728,7 +728,7 @@ sentry-sdk==2.12.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   open-api-framework
-setuptools==75.6.0
+setuptools==80.8.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -786,7 +786,7 @@ tblib==1.7.0
     #   -r requirements/ci.txt
 tomlkit==0.13.2
     # via bump-my-version
-tornado==6.4.2
+tornado==6.5.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
