@@ -61,15 +61,18 @@ body {
   }
 }
 
-#user-tools a {
+#user-tools a,
+#user-tools button {
   border-bottom: none;
   text-decoration: underline;
 
   &:focus,
   &:hover {
     color: var(--header-link-color);
+    margin-bottom: 0;
   }
 }
+
 
 div.breadcrumbs {
   a {
