@@ -4,13 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**.py'
-      - '**.yml'
   pull_request:
-    paths:
-      - '**.py'
-      - '**.yml'
   workflow_dispatch:
 
 jobs:
@@ -18,7 +12,7 @@ jobs:
     uses: maykinmedia/open-api-workflows/.github/workflows/code-quality.yml@v5
     with:
       apt-packages: 'libgdal-dev gdal-bin'
-      python-version: '3.11'
+      python-version: '3.12'
       node-version: '20'
       postgres-image: 'postgres:17'
       

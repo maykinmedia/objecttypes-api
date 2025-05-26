@@ -72,7 +72,7 @@ certifi==2024.7.4
     #   elastic-apm
     #   requests
     #   sentry-sdk
-cffi==1.15.1
+cffi==1.17.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -433,7 +433,7 @@ kombu==5.3.5
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   celery
-lxml==4.9.2
+lxml==5.4.0
     # via pyquery
 markupsafe==2.1.2
     # via
@@ -462,7 +462,7 @@ notifications-api-common==0.7.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   commonground-api-common
-open-api-framework==0.10.0
+open-api-framework==0.10.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -491,6 +491,8 @@ prompt-toolkit==3.0.38
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   click-repl
+propcache==0.3.1
+    # via yarl
 psycopg2==2.9.9
     # via
     #   -c requirements/base.txt
@@ -669,7 +671,7 @@ urllib3==2.2.2
     #   elastic-apm
     #   requests
     #   sentry-sdk
-uwsgi==2.0.24
+uwsgi==2.0.29
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -710,9 +712,9 @@ wrapt==1.14.1
     #   -r requirements/base.txt
     #   elastic-apm
     #   vcrpy
-yarl==1.9.4
+yarl==1.20.0
     # via vcrpy
-zgw-consumers==0.35.1
+zgw-consumers==0.38.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt

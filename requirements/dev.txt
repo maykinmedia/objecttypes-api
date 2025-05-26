@@ -89,7 +89,7 @@ certifi==2024.7.4
     #   httpx
     #   requests
     #   sentry-sdk
-cffi==1.15.1
+cffi==1.17.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -495,7 +495,7 @@ kombu==5.3.5
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   celery
-lxml==4.9.2
+lxml==5.4.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -536,7 +536,7 @@ notifications-api-common==0.7.2
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
-open-api-framework==0.10.0
+open-api-framework==0.10.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -578,6 +578,11 @@ prompt-toolkit==3.0.38
     #   -r requirements/ci.txt
     #   click-repl
     #   questionary
+propcache==0.3.1
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
+    #   yarl
 psycopg2==2.9.9
     # via
     #   -c requirements/ci.txt
@@ -815,7 +820,7 @@ urllib3==2.2.2
     #   elastic-apm
     #   requests
     #   sentry-sdk
-uwsgi==2.0.24
+uwsgi==2.0.29
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -865,7 +870,7 @@ webtest==3.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-webtest
-wheel==0.40.0
+wheel==0.45.1
     # via pip-tools
 wrapt==1.14.1
     # via
@@ -873,12 +878,12 @@ wrapt==1.14.1
     #   -r requirements/ci.txt
     #   elastic-apm
     #   vcrpy
-yarl==1.9.4
+yarl==1.20.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   vcrpy
-zgw-consumers==0.35.1
+zgw-consumers==0.38.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
