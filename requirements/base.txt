@@ -40,7 +40,7 @@ certifi==2024.7.4
     #   elastic-apm
     #   requests
     #   sentry-sdk
-cffi==1.15.1
+cffi==1.17.1
     # via cryptography
 charset-normalizer==3.1.0
     # via requests
@@ -240,7 +240,7 @@ mozilla-django-oidc-db==0.21.1
     #   open-api-framework
 notifications-api-common==0.7.2
     # via commonground-api-common
-open-api-framework==0.10.0
+open-api-framework==0.10.1
     # via -r requirements/base.in
 orderedmultidict==1.0.1
     # via furl
@@ -344,7 +344,7 @@ urllib3==2.2.2
     #   elastic-apm
     #   requests
     #   sentry-sdk
-uwsgi==2.0.24
+uwsgi==2.0.29
     # via open-api-framework
 vine==5.1.0
     # via
@@ -359,7 +359,7 @@ webencodings==0.5.1
     # via bleach
 wrapt==1.14.1
     # via elastic-apm
-zgw-consumers==0.35.1
+zgw-consumers==0.38.0
     # via
     #   commonground-api-common
     #   notifications-api-common
