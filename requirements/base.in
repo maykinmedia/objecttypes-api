@@ -11,3 +11,5 @@ mozilla-django-oidc-db[django-setup-configuration]
 
 # API libraries
 drf-nested-routers
+
+psycopg[pool]
