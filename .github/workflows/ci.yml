@@ -39,9 +39,22 @@ jobs:
     strategy:
       matrix:
         postgres: ['14', '15', '16', '17']
+        postgis: ['3.2', '3.5']
+        use_pooling: [false]
+        exclude:
+          # postgis 3.2 is not compatible with recent postgres versions
+          - postgres: '17'
+            postgis: '3.2'
+          - postgres: '16'
+            postgis: '3.2'
+          - postgres: '15'
+            postgis: '3.2'
+        include:
+          - postgres: '17'
+            postgis: '3.5'
+            use_pooling: true
 
-    name: Run the Django test suite (PG ${{ matrix.postgres }})
-
+    name: Run the Django test suite (PG ${{ matrix.postgres }}, postgis ${{ matrix.postgis }}) ${{matrix.use_pooling && 'with connection pooling' || ''}}
     runs-on: ubuntu-latest
     needs:
       - changed-files
@@ -75,7 +88,8 @@ jobs:
           SECRET_KEY: dummy
           DB_USER: postgres
           DB_PASSWORD: ''
-
+          DB_POOL_ENABLED: ${{ matrix.use_pooling }}
+          
       - name: Publish coverage report
         uses: codecov/codecov-action@v4
         with:
