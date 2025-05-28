@@ -2,6 +2,40 @@
 Change history
 ==============
 
+3.0.4 (2025-05-28)
+------------------
+
+.. warning::
+
+    This release upgrades Django to version 5.2.1, which requires PostgreSQL version 14 or higher.
+    Attempting to deploy with PostgreSQL <14 will cause errors during deployment.
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * [maykinmedia/open-api-framework#140] Python to 3.12
+  * [maykinmedia/objects-api#598] Django to 5.2.1
+  * tornado to 6.5.1
+  * open-api-framework to 0.10.1
+  * commonground-api-common to 2.6.4
+  * cffi to 1.17.1
+  * uwsgi to 2.0.29
+  * zgw-consumers to 0.38.0
+  * lxml to 5.4.0
+  * yarl to 1.20.0
+  * wheel to 0.45.1
+  * setuptools to 80.8.0
+
+* Upgrade npm packages to fix vulnerabilities
+* Replace OAS GitHub actions workflows with single workflow
+* [maykinmedia/open-api-framework#133] Replace ``black``, ``isort`` and ``flake8`` with ``ruff`` and update code-quality workflow
+ 
+**Bugfixes**
+
+* Do not use ``save_outgoing_requests`` log handler if ``LOG_REQUESTS`` is set to false
+
+
 3.0.3 (2025-05-14)
 ------------------
 

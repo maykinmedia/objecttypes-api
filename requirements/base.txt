@@ -313,7 +313,7 @@ ruamel-yaml-clib==0.2.12
     # via ruamel-yaml
 sentry-sdk==2.12.0
     # via open-api-framework
-setuptools==75.6.0
+setuptools==80.8.0
     # via josepy
 six==1.16.0
     # via
@@ -325,7 +325,7 @@ six==1.16.0
     #   qrcode
 sqlparse==0.5.0
     # via django
-tornado==6.4.2
+tornado==6.5.1
     # via flower
 typing-extensions==4.11.0
     # via
