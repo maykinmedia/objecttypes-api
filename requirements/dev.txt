@@ -33,11 +33,6 @@ asn1crypto==1.5.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   webauthn
-async-timeout==5.0.1
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   redis
 attrs==23.1.0
     # via
     #   -c requirements/ci.txt
@@ -406,8 +401,6 @@ elastic-apm==6.22.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   open-api-framework
-exceptiongroup==1.3.0
-    # via anyio
 face==20.1.1
     # via
     #   -c requirements/ci.txt
@@ -797,12 +790,6 @@ tblib==1.7.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-tomli==2.2.1
-    # via
-    #   build
-    #   pip-tools
-    #   pyproject-hooks
-    #   sphinx
 tomlkit==0.13.2
     # via bump-my-version
 tornado==6.5.1
@@ -815,14 +802,11 @@ typing-extensions==4.11.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   anyio
-    #   asgiref
-    #   exceptiongroup
     #   mozilla-django-oidc-db
     #   psycopg
     #   psycopg-pool
     #   pydantic
     #   pydantic-core
-    #   rich
     #   rich-click
     #   zgw-consumers
 tzdata==2024.1
