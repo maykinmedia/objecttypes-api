@@ -29,11 +29,6 @@ asn1crypto==1.5.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   webauthn
-async-timeout==5.0.1
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.txt
-    #   redis
 attrs==23.1.0
     # via
     #   -c requirements/base.txt
@@ -170,6 +165,7 @@ django==5.2.1
     #   django-simple-certmanager
     #   django-solo
     #   django-two-factor-auth
+    #   django-upgrade-check
     #   djangorestframework
     #   djangorestframework-inclusions
     #   drf-nested-routers
@@ -306,6 +302,11 @@ django-two-factor-auth==1.16.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   maykin-2fa
+django-upgrade-check==1.1.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   open-api-framework
 django-webtest==1.9.13
     # via -r requirements/test-tools.in
 djangorestframework==3.15.2
@@ -467,7 +468,7 @@ notifications-api-common==0.7.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   commonground-api-common
-open-api-framework==0.10.1
+open-api-framework==0.10.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -623,6 +624,11 @@ ruamel-yaml-clib==0.2.12
     #   ruamel-yaml
 ruff==0.11.10
     # via -r requirements/test-tools.in
+semantic-version==2.10.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-upgrade-check
 sentry-sdk==2.12.0
     # via
     #   -c requirements/base.txt
@@ -661,7 +667,6 @@ typing-extensions==4.11.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-    #   asgiref
     #   mozilla-django-oidc-db
     #   psycopg
     #   psycopg-pool
