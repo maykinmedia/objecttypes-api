@@ -29,11 +29,6 @@ asn1crypto==1.5.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   webauthn
-async-timeout==5.0.1
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.txt
-    #   redis
 attrs==23.1.0
     # via
     #   -c requirements/base.txt
@@ -661,7 +656,6 @@ typing-extensions==4.11.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-    #   asgiref
     #   mozilla-django-oidc-db
     #   psycopg
     #   psycopg-pool
