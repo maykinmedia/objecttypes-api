@@ -30,7 +30,7 @@ Change history
 * Upgrade npm packages to fix vulnerabilities
 * Replace OAS GitHub actions workflows with single workflow
 * [maykinmedia/open-api-framework#133] Replace ``black``, ``isort`` and ``flake8`` with ``ruff`` and update code-quality workflow
- 
+
 **Bugfixes**
 
 * Do not use ``save_outgoing_requests`` log handler if ``LOG_REQUESTS`` is set to false
@@ -47,14 +47,14 @@ Change history
   * Upgrade django-setup-configuration to 0.7.2
   * Upgrade h11 to 0.16.0
   * Upgrade NPM http-proxy-middleware to 2.0.9
- 
+
 3.0.2 (2025-04-03)
 ------------------
 
 **Project maintenance**
 
 * upgraded docker image to debian-bookworm [open-api-framework/#125]
-* removed django.contrib.sites [open-api-framework/#59] 
+* removed django.contrib.sites [open-api-framework/#59]
 * removed sharing-configs [objects-api/#552]
 * moved changed files CI action to script
 * Confirm support for Postgres 17 and drop (verified) support for Postgres 12 [open-api-framework/#117]
@@ -66,7 +66,7 @@ Change history
   * open-api-framework to 0.9.6
   * commonground-api-common to 2.5.5
   * notifications-api-common to 0.7.2
- 
+
 * Upgrade dev dependencies
 
   * Upgrade black to 25.1.0
