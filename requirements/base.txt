@@ -243,7 +243,7 @@ mozilla-django-oidc-db==0.21.1
     #   open-api-framework
 notifications-api-common==0.7.2
     # via commonground-api-common
-open-api-framework==0.10.2
+open-api-framework==0.10.3
     # via -r requirements/base.in
 orderedmultidict==1.0.1
     # via furl
