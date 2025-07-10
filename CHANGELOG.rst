@@ -2,6 +2,44 @@
 Change history
 ==============
 
+3.1.0 (2025-07-10)
+------------------
+
+**New features**
+
+* [maykinmedia/objects-api#607] Add db connection pooling environment variables (`see documentation for environment variables for database <https://objects-and-objecttypes-api.readthedocs.io/en/latest/installation/config.html#database>`_)
+
+  * DB_POOL_ENABLED
+  * DB_POOL_MIN_SIZE
+  * DB_POOL_MAX_SIZE
+  * DB_POOL_TIMEOUT
+  * DB_POOL_MAX_WAITING
+  * DB_POOL_MAX_LIFETIME
+  * DB_POOL_MAX_IDLE
+  * DB_POOL_RECONNECT_TIMEOUT
+  * DB_POOL_NUM_WORKERS
+
+* [maykinmedia/objects-api#607] Add DB_CONN_MAX_AGE environment variable (`see documentation for environment variables for database <https://objects-and-objecttypes-api.readthedocs.io/en/latest/installation/config.html#database>`_)
+
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * Django to 5.2.3
+  * open-api-framework to 0.11.0
+  * requests to 2.32.4
+  * urllib3 to 2.5.0
+  * vcrpy to 7.0.0
+
+* [maykinmedia/open-api-framework#151] Move ruff config to  pyproject.toml
+* [maykinmedia/open-api-framework#139] Integrate django-upgrade-check
+
+**Bugfixes**
+
+* [maykinmedia/open-api-framework#149] Fix dark/light theme toggle
+
+
 3.0.4 (2025-05-28)
 ------------------
 
