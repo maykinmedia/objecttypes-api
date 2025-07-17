@@ -22,7 +22,6 @@ services:
       CACHE_AXES: redis:6379/0
       DISABLE_2FA: yes
       SUBPATH: ${SUBPATH:-/}
-      DB_CONN_MAX_AGE: "0"
       DB_POOL_ENABLED: True
     volumes:
       - log:/app/log
