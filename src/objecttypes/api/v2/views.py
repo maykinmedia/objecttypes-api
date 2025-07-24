@@ -116,6 +116,7 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         logger.info(
             "object_version_created",
             version=str(obj.version),
+            objecttype_uuid=str(obj.object_type.uuid),
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )
@@ -127,6 +128,7 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         logger.info(
             "object_version_updated",
             version=str(obj.version),
+            objecttype_uuid=str(obj.object_type.uuid),
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )
@@ -147,6 +149,7 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         logger.info(
             "object_version_deleted",
             version=str(instance.version),
+            objecttype_uuid=str(instance.object_type.uuid),
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )

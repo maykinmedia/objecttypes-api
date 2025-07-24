@@ -28,10 +28,10 @@ class TokenAuthConfigurationStep(
 
     def execute(self, model: TokenAuthGroupConfigurationModel) -> None:
         if len(model.items) == 0:
-            logger.warning("no_tokens_provided_for_configuration")
+            logger.warning("no_tokens_defined")
 
         for item in model.items:
-            logger.info("configuring", identifier=item.identifier)
+            logger.info("configuring_token", token_identifier=item.identifier)
 
             model_kwargs = {
                 "identifier": item.identifier,
@@ -53,10 +53,8 @@ class TokenAuthConfigurationStep(
                 )
                 raise ConfigurationRunFailed(exception_message) from exception
 
-            logger.debug("no_validation_errors_found", identifier=item.identifier)
-
             try:
-                logger.debug("saving", identifier=item.identifier)
+                logger.debug("save_token_to_database", token_identifier=item.identifier)
 
                 TokenAuth.objects.update_or_create(
                     identifier=item.identifier,
@@ -70,4 +68,4 @@ class TokenAuthConfigurationStep(
                 exception_message = f"Failed configuring token {item.identifier}."
                 raise ConfigurationRunFailed(exception_message) from exception
 
-            logger.info("configured", identifier=item.identifier)
+            logger.info("token_configuration_success", token_identifier=item.identifier)
