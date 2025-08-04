@@ -5,9 +5,13 @@ services:
       POSTGRES_USER: objecttypes
       POSTGRES_PASSWORD: objecttypes
     command: postgres -c max_connections=300 -c log_min_messages=LOG
+    networks:
+      - objecttypes-api-dev 
 
   redis:
     image: redis
+    networks:
+      - objecttypes-api-dev 
 
   web:
     image: maykinmedia/objecttypes-api:latest
@@ -31,6 +35,12 @@ services:
     depends_on:
       web-init:
         condition: service_completed_successfully
+    labels:
+      - app=objecttypes-api
+      - service=api
+    networks:
+      - objecttypes-api-dev 
+    
 
   web-init:
     image: maykinmedia/objecttypes-api:latest
@@ -46,7 +56,13 @@ services:
       - ./docker/setup_configuration:/app/setup_configuration
     depends_on:
       - db
+    networks:
+      - objecttypes-api-dev 
 
 volumes:
   db:
   log:
+
+networks:
+  objecttypes-api-dev:
+    name: objecttypes-api-dev

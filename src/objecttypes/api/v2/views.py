@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 
+import structlog
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
@@ -7,11 +8,14 @@ from rest_framework.settings import api_settings
 
 from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectType, ObjectVersion
+from objecttypes.token.models import TokenAuth
 
 from ..filters import ObjectTypeFilterSet
 from ..mixins import NestedViewSetMixin
 from ..pagination import DynamicPageSizePagination
 from ..serializers import ObjectTypeSerializer, ObjectVersionSerializer
+
+logger = structlog.stdlib.get_logger(__name__)
 
 
 @extend_schema_view(
@@ -24,6 +28,30 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
     lookup_field = "uuid"
     filterset_class = ObjectTypeFilterSet
     pagination_class = DynamicPageSizePagination
+
+    def perform_create(self, serializer):
+        super().perform_create(serializer)
+        obj = serializer.instance
+        token_auth: TokenAuth = self.request.auth
+        logger.info(
+            "objecttype_created",
+            uuid=str(obj.uuid),
+            name=obj.name,
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )
+
+    def perform_update(self, serializer):
+        super().perform_update(serializer)
+        obj = serializer.instance
+        token_auth: TokenAuth = self.request.auth
+        logger.info(
+            "objecttype_updated",
+            uuid=str(obj.uuid),
+            name=obj.name,
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )
 
     def perform_destroy(self, instance):
         if instance.versions.exists():
@@ -39,6 +67,14 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
             )
 
         super().perform_destroy(instance)
+        token_auth: TokenAuth = self.request.auth
+        logger.info(
+            "objecttype_deleted",
+            uuid=str(instance.uuid),
+            name=instance.name,
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )
 
 
 @extend_schema_view(
@@ -73,6 +109,30 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     lookup_field = "version"
     pagination_class = DynamicPageSizePagination
 
+    def perform_create(self, serializer):
+        super().perform_create(serializer)
+        obj = serializer.instance
+        token_auth = self.request.auth
+        logger.info(
+            "object_version_created",
+            version=str(obj.version),
+            objecttype_uuid=str(obj.object_type.uuid),
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )
+
+    def perform_update(self, serializer):
+        super().perform_update(serializer)
+        obj = serializer.instance
+        token_auth = self.request.auth
+        logger.info(
+            "object_version_updated",
+            version=str(obj.version),
+            objecttype_uuid=str(obj.object_type.uuid),
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )
+
     def perform_destroy(self, instance):
         if instance.status != ObjectVersionStatus.draft:
             raise ValidationError(
@@ -85,3 +145,11 @@ class ObjectVersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             )
 
         super().perform_destroy(instance)
+        token_auth = self.request.auth
+        logger.info(
+            "object_version_deleted",
+            version=str(instance.version),
+            objecttype_uuid=str(instance.object_type.uuid),
+            token_identifier=token_auth.identifier,
+            token_application=token_auth.application,
+        )

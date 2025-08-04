@@ -1,8 +1,7 @@
-import logging
-
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 
+import structlog
 from django_setup_configuration.configuration import BaseConfigurationStep
 from django_setup_configuration.exceptions import ConfigurationRunFailed
 
@@ -11,7 +10,7 @@ from objecttypes.setup_configuration.models.token_auth import (
 )
 from objecttypes.token.models import TokenAuth
 
-logger = logging.getLogger(__name__)
+logger = structlog.stdlib.get_logger(__name__)
 
 
 class TokenAuthConfigurationStep(
@@ -29,10 +28,10 @@ class TokenAuthConfigurationStep(
 
     def execute(self, model: TokenAuthGroupConfigurationModel) -> None:
         if len(model.items) == 0:
-            logger.warning("No tokens provided for configuration")
+            logger.warning("no_tokens_defined")
 
         for item in model.items:
-            logger.info(f"Configuring {item.identifier}")
+            logger.info("configuring_token", token_identifier=item.identifier)
 
             model_kwargs = {
                 "identifier": item.identifier,
@@ -54,10 +53,8 @@ class TokenAuthConfigurationStep(
                 )
                 raise ConfigurationRunFailed(exception_message) from exception
 
-            logger.debug(f"No validation errors found for {item.identifier}")
-
             try:
-                logger.debug(f"Saving {item.identifier}")
+                logger.debug("save_token_to_database", token_identifier=item.identifier)
 
                 TokenAuth.objects.update_or_create(
                     identifier=item.identifier,
@@ -71,4 +68,4 @@ class TokenAuthConfigurationStep(
                 exception_message = f"Failed configuring token {item.identifier}."
                 raise ConfigurationRunFailed(exception_message) from exception
 
-            logger.info(f"Configured {item.identifier}")
+            logger.info("token_configuration_success", token_identifier=item.identifier)
