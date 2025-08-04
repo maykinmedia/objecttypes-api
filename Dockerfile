@@ -64,6 +64,7 @@ WORKDIR /app
 COPY ./bin/wait_for_db.sh /wait_for_db.sh
 COPY ./bin/docker_start.sh /start.sh
 COPY ./bin/setup_configuration.sh /setup_configuration.sh
+COPY ./bin/dump_data.sh /dump_data.sh
 COPY ./bin/uwsgi.ini /
 RUN mkdir /app/log /app/config
 
