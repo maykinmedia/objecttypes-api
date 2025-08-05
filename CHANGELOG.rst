@@ -2,6 +2,35 @@
 Change history
 ==============
 
+3.2.0 (2025-08-07)
+------------------
+
+**New features**
+
+.. note::
+
+  The logging format has been changed from unstructured to structured with `structlog <https://www.structlog.org/en/stable/>`_.
+
+* [maykinmedia/objects-api#639] Add structlog for observability
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * django-privates to 3.1.1
+  * open-api-framework to 0.12.0
+  * commonground-api-common to 2.7.0
+  * pyjwt to 2.10.1
+  * pytz to 2025.2
+
+* Use DB connection pooling settings from ``open-api-framework``
+* Update DB_CONN_MAX_AGE settings
+* [maykinmedia/open-api-framework#118] Remove old deployment directories
+
+**Bugfixes**
+
+* Fix issue that caused Elastic APM to not show time spent on queries when connection pooling is enabled
+
 3.1.0 (2025-07-10)
 ------------------
 
