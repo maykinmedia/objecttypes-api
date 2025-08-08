@@ -13,7 +13,7 @@ router = routers.DefaultRouter()
 router.register(
     r"objecttypes",
     ObjectTypeViewSet,
-    [routers.nested("versions", ObjectVersionViewSet)],
+    [routers.Nested("versions", ObjectVersionViewSet)],
 )
 
 
