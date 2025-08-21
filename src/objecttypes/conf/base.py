@@ -249,6 +249,9 @@ TIME_ZONE = "Europe/Amsterdam"  # FIXME should this be "UTC"?
 PROJECT_NAME = "Objecttypes"
 SITE_TITLE = "Starting point"
 
+# Default (connection timeout, read timeout) for the requests library (in seconds)
+REQUESTS_DEFAULT_TIMEOUT = (10, 30)
+
 ##############################
 #                            #
 # 3RD PARTY LIBRARY SETTINGS #
