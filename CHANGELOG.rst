@@ -2,6 +2,17 @@
 Change history
 ==============
 
+3.2.1 (2025-08-28)
+------------------
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * zgw-consumers to 1.0.0
+
+* [maykinmedia/open-api-framework#179] Add monkeypatch to requests applying a default timeout to all requests calls
+
 3.2.0 (2025-08-07)
 ------------------
 
