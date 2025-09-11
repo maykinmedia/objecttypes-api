@@ -12,7 +12,7 @@ from maykin_2fa.urls import urlpatterns as maykin_2fa_urlpatterns, webauthn_urlp
 from mozilla_django_oidc_db.views import AdminLoginFailure
 from rest_framework.settings import api_settings
 
-handler500 = "objecttypes.utils.views.server_error"
+handler500 = "maykin_common.views.server_error"
 admin.site.site_header = "objecttypes admin"
 admin.site.site_title = "objecttypes admin"
 admin.site.index_title = "Welcome to the objecttypes admin"

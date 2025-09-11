@@ -51,7 +51,7 @@ REQUESTS_DEFAULT_TIMEOUT = (10, 30)
 
 # Django-Admin-Index
 ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
-    "objecttypes.utils.admin_index.should_display_dropdown_menu"
+    "maykin_common.django_two_factor_auth.should_display_dropdown_menu"
 )
 
 #
