@@ -34,6 +34,8 @@ info:
 
   contact:
     url: https://github.com/maykinmedia/objecttypes-api
+    name: Maykin Media
+    email: support@maykinmedia.nl
   license:
     name: EUPL-1.2
 paths:
@@ -75,6 +77,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -103,6 +111,12 @@ paths:
       - tokenAuth: []
       responses:
         '201':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -138,6 +152,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -173,6 +193,12 @@ paths:
       - tokenAuth: []
       responses:
         '201':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -204,6 +230,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -247,6 +279,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -290,6 +328,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -320,6 +364,12 @@ paths:
       - tokenAuth: []
       responses:
         '204':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           description: No response body
   /objecttypes/{uuid}:
     get:
@@ -338,6 +388,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -373,6 +429,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -407,6 +469,12 @@ paths:
       - tokenAuth: []
       responses:
         '200':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
             application/json:
               schema:
@@ -428,6 +496,12 @@ paths:
       - tokenAuth: []
       responses:
         '204':
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
           description: No response body
 components:
   schemas:

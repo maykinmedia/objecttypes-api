@@ -6,6 +6,7 @@ from drf_spectacular.openapi import AutoSchema as _AutoSchema
 from drf_spectacular.utils import OpenApiParameter
 from rest_framework.test import APIRequestFactory
 from rest_framework_nested.viewsets import NestedViewSetMixin
+from vng_api_common.constants import VERSION_HEADER
 from vng_api_common.schema import HTTP_STATUS_CODE_TITLES
 
 
@@ -19,10 +20,19 @@ class AutoSchema(_AutoSchema):
             return f"{model_name}_{self.view.action}"
         return super().get_operation_id()
 
+    def get_response_serializers(
+        self,
+    ):
+        if self.method == "DELETE":
+            return {204: None}
+
+        return super().get_response_serializers()
+
     def get_override_parameters(self):
         content_type_headers = self.get_content_type_headers()
         parent_path_headers = self.get_parent_path_headers()
-        return content_type_headers + parent_path_headers
+        version_headers = self.get_version_headers()
+        return content_type_headers + parent_path_headers + version_headers
 
     def _get_response_for_code(
         self, serializer, status_code, media_types=None, direction="response"
@@ -48,6 +58,20 @@ class AutoSchema(_AutoSchema):
                 required=True,
                 enum=["application/json"],
                 description=_("Content type of the request body."),
+            )
+        ]
+
+    def get_version_headers(self) -> list[OpenApiParameter]:
+        return [
+            OpenApiParameter(
+                name=VERSION_HEADER,
+                type=str,
+                location=OpenApiParameter.HEADER,
+                description=_(
+                    "Geeft een specifieke API-versie aan in de context van "
+                    "een specifieke aanroep. Voorbeeld: 1.2.1."
+                ),
+                response=True,
             )
         ]
 
