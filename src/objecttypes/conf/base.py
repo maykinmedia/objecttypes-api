@@ -213,6 +213,8 @@ LOGGING = {
     },
 }
 
+MIDDLEWARE += ["vng_api_common.middleware.APIVersionHeaderMiddleware"]
+
 structlog.configure(
     processors=[
         structlog.contextvars.merge_contextvars,
