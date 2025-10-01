@@ -63,6 +63,8 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "CONTACT": {
         "url": "https://github.com/maykinmedia/objecttypes-api",
+        "name": "Maykin Media",
+        "email": "support@maykinmedia.nl",
     },
     "LICENSE": {"name": "EUPL-1.2"},
     "EXTERNAL_DOCS": {
