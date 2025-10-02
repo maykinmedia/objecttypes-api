@@ -77,7 +77,6 @@ celery==5.4.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-    #   flower
     #   notifications-api-common
 certifi==2024.7.4
     # via
@@ -130,7 +129,7 @@ codecov==2.1.13
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-commonground-api-common==2.7.0
+commonground-api-common==2.10.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -217,7 +216,7 @@ django-cors-headers==4.4.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-django-csp==3.8
+django-csp==4.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -415,10 +414,6 @@ faker==37.1.0
     #   factory-boy
 filelock==3.18.0
     # via virtualenv
-flower==2.0.1
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
 freezegun==1.2.2
     # via
     #   -c requirements/ci.txt
@@ -439,11 +434,6 @@ httpcore==1.0.9
     # via httpx
 httpx==0.28.1
     # via bump-my-version
-humanize==4.9.0
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   flower
 identify==2.6.10
     # via pre-commit
 idna==3.7
@@ -521,7 +511,7 @@ notifications-api-common==0.7.2
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
-open-api-framework==0.12.0
+open-api-framework==0.13.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -535,9 +525,12 @@ oyaml==1.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
-packaging==23.1
+packaging==25.0
     # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
     #   build
+    #   django-csp
     #   sphinx
 phonenumberslite==8.13.30
     # via
@@ -552,11 +545,6 @@ platformdirs==4.3.8
     # via virtualenv
 pre-commit==4.2.0
     # via -r requirements/dev.in
-prometheus-client==0.20.0
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   flower
 prompt-toolkit==3.0.38
     # via
     #   -c requirements/ci.txt
@@ -655,11 +643,6 @@ python-ipware==3.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-ipware
-pytz==2025.2
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   flower
 pyyaml==6.0.2
     # via
     #   -c requirements/ci.txt
@@ -791,11 +774,6 @@ tblib==1.7.0
     #   -r requirements/ci.txt
 tomlkit==0.13.2
     # via bump-my-version
-tornado==6.5.1
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   flower
 typing-extensions==4.11.0
     # via
     #   -c requirements/ci.txt
