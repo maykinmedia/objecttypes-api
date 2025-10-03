@@ -2,6 +2,37 @@
 Change history
 ==============
 
+3.3.0 (2025-10-06)
+------------------
+
+.. warning::
+
+    The default number of ``UWSGI_THREADS`` and ``UWSGI_PROCESSES`` has been increased from 2 to 4.
+
+**New features**
+
+* [maykinmedia/open-api-framework#175] Changes to logging of handled and unhandled exceptions (`see documentation for exceptions handling <https://objects-and-objecttypes-api.readthedocs.io/en/latest/manual/logging.html#exceptions>`_)
+
+  * Log events for handled API exceptions (e.g. HTTP 400) now include ``data``
+  * Log events for unhandled API exceptions (e.g. HTTP 500) now include the traceback via ``exception``
+
+* [maykinmedia/open-api-framework#184] ``setup_configuration`` now supports pulling values from
+  environment variables in YAML configuration by using ``value_from`` (`see documentation for setup configuration <https://github.com/maykinmedia/django-setup-configuration/blob/main/README.rst#environment-variable-substitution>`_)
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * django to 5.2.7
+  * pip to 25.2 in dev dependencies
+  * commonground-api-common to 2.10.1
+  * open-api-framework to 0.13.1
+  * django-csp to 4.0
+  * django-setup-configuration to 0.9.0
+  * packaging to 25.0
+
+* [maykinmedia/objecttypes-api#206] Use logging settings from ``open-api-framework``
+
 3.2.1 (2025-08-28)
 ------------------
 

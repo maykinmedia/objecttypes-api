@@ -1,6 +1,6 @@
 {
   "name": "objecttypes",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "objecttypes project",
   "main": "src/objecttypes/static/bundles/objecttypes-js.js",
   "directories": {
