@@ -2,7 +2,7 @@
 Objecttypes API
 ===============
 
-:Version: 3.2.1
+:Version: 3.3.0
 :Source: https://github.com/maykinmedia/objecttypes-api
 :Keywords: objects, assets, zaakobjecten
 
