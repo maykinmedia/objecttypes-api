@@ -1,15 +1,15 @@
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import RedirectView
 
 import structlog
-from open_api_framework.conf.utils import config
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import exception_handler as drf_exception_handler
-
 from drf_spectacular.views import (
     SpectacularJSONAPIView as _SpectacularJSONAPIView,
     SpectacularYAMLAPIView as _SpectacularYAMLAPIView,
 )
+from open_api_framework.conf.utils import config
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import exception_handler as drf_exception_handler
 
 logger = structlog.stdlib.get_logger(__name__)
 
@@ -65,3 +65,12 @@ class SpectacularYAMLAPIView(AllowAllOriginsMixin, _SpectacularYAMLAPIView):
 
 class SpectacularJSONAPIView(AllowAllOriginsMixin, _SpectacularJSONAPIView):
     """Spectacular JSON API view with Access-Control-Allow-Origin set to allow all"""
+
+
+class DeprecationRedirectView(RedirectView):
+    def get(self, request, *args, **kwargs):
+        logger.warning(
+            "deprecated_endpoint_called",
+            endpoint=request.path,
+        )
+        return super().get(request, *args, **kwargs)
