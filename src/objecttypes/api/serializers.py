@@ -1,8 +1,10 @@
 from django.utils.translation import gettext_lazy as _
 
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
+from vng_api_common.utils import get_help_text
 
 from objecttypes.core.models import ObjectType, ObjectVersion
 
@@ -65,7 +67,22 @@ class ObjectVersionSerializer(NestedHyperlinkedModelSerializer):
         return super().create(validated_data)
 
 
+@extend_schema_field(
+    {
+        "type": "object",
+        "additionalProperties": {"type": "string"},
+    }
+)
+class LabelsField(serializers.JSONField):
+    pass
+
+
 class ObjectTypeSerializer(serializers.HyperlinkedModelSerializer):
+    labels = LabelsField(
+        required=False,
+        help_text=get_help_text("core.ObjectType", "labels"),
+    )
+
     versions = NestedHyperlinkedRelatedField(
         many=True,
         read_only=True,
