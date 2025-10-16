@@ -68,7 +68,10 @@ COPY ./bin/dump_data.sh /dump_data.sh
 COPY ./bin/uwsgi.ini /
 RUN mkdir /app/log /app/config
 
+# copy frontend build statics
 COPY --from=frontend-build /app/src/objecttypes/static /app/src/objecttypes/static
+COPY --from=frontend-build /app/node_modules/@fortawesome/fontawesome-free/webfonts /app/node_modules/@fortawesome/fontawesome-free/webfonts
+
 COPY ./src /app/src
 
 RUN useradd -M -u 1000 user

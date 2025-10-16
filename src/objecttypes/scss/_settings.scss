@@ -1,0 +1,50 @@
+// sass vars
+/* Colors */
+$color_primary: #04a5bb;
+$color_primary_dark: #017092;
+$color_primary_light: #c3eaef;
+
+$color_secondary: #f3f3f3;
+$color_secondary_dark: #c6c6c6;
+$color_secondary_light: #fff;
+
+$color_alert: #dc3545;
+$color_alert_dark: #bd2130;
+
+$color_darkest: #000;
+$color_dark: #333;
+$color_lightest: #fff;
+$color_muted: #6c757d;
+
+$color_link: #017092;
+$color_link_hover: #051f31;
+$color-text: $color_dark;
+$color-border: $color_secondary_dark;
+
+// css vars
+:root {
+  // Link component
+  --link-color: #017092;
+  --link-color-hover: var(--link-color);
+  --link-color-muted: #6c757d;
+
+  // footer component
+  --footer-border-color: #dee2e6;
+
+  // tabs component
+  --tabs-border-color: #dee2e6;
+  --tabs-item-hover-border-color: #f3f3f3;
+
+  // Button component
+  --button-color: #ffffff;
+  --button-background-color: #04a5bb;
+  --button-hover-background-color: #017092;
+  --button-alert-background-color: #dc3545;
+  --button-alert-hover-background-color: #bd2130;
+}
+
+.content {
+  &#{&}--align-right {
+    text-align: right;
+  }
+}

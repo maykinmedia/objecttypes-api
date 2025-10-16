@@ -9,13 +9,14 @@ from django.views.generic.base import TemplateView
 
 from maykin_2fa import monkeypatch_admin
 from maykin_2fa.urls import urlpatterns as maykin_2fa_urlpatterns, webauthn_urlpatterns
+from maykin_common.accounts.views import PasswordResetView
 from mozilla_django_oidc_db.views import AdminLoginFailure
 from rest_framework.settings import api_settings
 
-handler500 = "objecttypes.utils.views.server_error"
-admin.site.site_header = "objecttypes admin"
-admin.site.site_title = "objecttypes admin"
-admin.site.index_title = "Welcome to the objecttypes admin"
+handler500 = "maykin_common.views.server_error"
+admin.site.site_header = "Objecttypes admin"
+admin.site.site_title = "Objecttypes admin"
+admin.site.index_title = "Welcome to the Objecttypes admin"
 admin.site.enable_nav_sidebar = False
 
 monkeypatch_admin()
@@ -23,7 +24,7 @@ monkeypatch_admin()
 urlpatterns = [
     path(
         "admin/password_reset/",
-        auth_views.PasswordResetView.as_view(),
+        PasswordResetView.as_view(),
         name="admin_password_reset",
     ),
     path(
