@@ -14,6 +14,7 @@ from .api import *  # noqa
 # Application definition
 INSTALLED_APPS = INSTALLED_APPS + [
     "maykin_common",
+    "capture_tag",
     # External applications.
     "jsonsuit.apps.JSONSuitConfig",
     # Two-factor authentication in the Django admin, enforced.
