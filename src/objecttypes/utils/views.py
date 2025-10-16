@@ -11,6 +11,7 @@ logger = structlog.stdlib.get_logger(__name__)
 DEFAULT_CODE = "invalid"
 DEFAULT_DETAIL = _("Invalid input.")
 
+
 def exception_handler(exc, context):
     """
     Transform 5xx errors into DSO-compliant shape.
