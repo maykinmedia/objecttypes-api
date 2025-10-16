@@ -17,14 +17,12 @@
     cursor: pointer;
 
     &:hover {
-      border-color: var(--color_secondary) var(--color_secondary)
-        var(--color-border);
+      border-color: var(--color_secondary) var(--color_secondary) var(--color-border);
       color: var(--color_link_hover);
     }
 
     &--active {
-      border-color: var(--color-border) var(--color-border)
-        var(--color_lightest) !important;
+      border-color: var(--color-border) var(--color-border) var(--color_lightest) !important;
       margin-bottom: -1px;
     }
   }
