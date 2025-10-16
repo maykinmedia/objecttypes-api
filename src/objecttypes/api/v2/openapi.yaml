@@ -526,6 +526,9 @@ components:
           description: Link to the documentation for the object type
           maxLength: 200
         labels:
+          type: object
+          additionalProperties:
+            type: string
           description: Key-value pairs of keywords related for the object type
         createdAt:
           type: string
@@ -734,6 +737,9 @@ components:
           description: Link to the documentation for the object type
           maxLength: 200
         labels:
+          type: object
+          additionalProperties:
+            type: string
           description: Key-value pairs of keywords related for the object type
         createdAt:
           type: string
