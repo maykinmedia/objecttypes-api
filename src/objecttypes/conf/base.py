@@ -27,6 +27,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "objecttypes.utils",
 ]
 
+MIDDLEWARE += ["vng_api_common.middleware.APIVersionHeaderMiddleware"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

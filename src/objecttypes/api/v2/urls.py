@@ -1,11 +1,13 @@
 from django.urls import include, path
 
-from drf_spectacular.views import (
+from drf_spectacular.views import SpectacularRedocView
+from vng_api_common import routers
+
+from objecttypes.utils.views import (
+    DeprecationRedirectView,
     SpectacularJSONAPIView,
-    SpectacularRedocView,
     SpectacularYAMLAPIView,
 )
-from vng_api_common import routers
 
 from .views import ObjectTypeViewSet, ObjectVersionViewSet
 
@@ -20,7 +22,6 @@ router.register(
 app_name = "v2"
 
 urlpatterns = [
-    path("", SpectacularJSONAPIView.as_view(), name="schema-json"),
     path(
         "/",
         include(
@@ -28,8 +29,17 @@ urlpatterns = [
                 # schema
                 path(
                     "schema/openapi.yaml",
+                    DeprecationRedirectView.as_view(pattern_name="v2:schema"),
+                ),
+                path(
+                    "openapi.yaml",
                     SpectacularYAMLAPIView.as_view(),
                     name="schema",
+                ),
+                path(
+                    "openapi.json",
+                    SpectacularJSONAPIView.as_view(),
+                    name="schema-json",
                 ),
                 path(
                     "schema/",
