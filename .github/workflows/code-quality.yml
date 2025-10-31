@@ -13,7 +13,7 @@ jobs:
     with:
       apt-packages: 'libgdal-dev gdal-bin'
       python-version: '3.12'
-      node-version: '20'
+      node-version: '24'
       postgres-image: 'postgres:17'
       
       ruff-src-pattern: 'src'
