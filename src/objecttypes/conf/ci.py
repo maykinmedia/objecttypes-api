@@ -9,6 +9,8 @@ from open_api_framework.conf.utils import mute_logging
 os.environ.setdefault("SECRET_KEY", "dummy")
 os.environ.setdefault("ENVIRONMENT", "ci")
 os.environ.setdefault("IS_HTTPS", "no")
+os.environ.setdefault("OTEL_SDK_DISABLED", "true")
+os.environ.setdefault("OTEL_SERVICE_NAME", "objecttypes-ci")
 
 from .base import *  # noqa isort:skip
 

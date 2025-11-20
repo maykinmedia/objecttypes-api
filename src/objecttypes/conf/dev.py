@@ -11,6 +11,9 @@ os.environ.setdefault("ENVIRONMENT", "development")
 os.environ.setdefault("RELEASE", "dev")
 os.environ.setdefault("LOG_FORMAT_CONSOLE", "plain_console")
 
+os.environ.setdefault("OTEL_SDK_DISABLED", "true")
+os.environ.setdefault("OTEL_EXPORTER_OTLP_METRICS_INSECURE", "true")
+
 os.environ.setdefault("DB_NAME", "objecttypes")
 os.environ.setdefault("DB_USER", "objecttypes")
 os.environ.setdefault("DB_PASSWORD", "objecttypes")

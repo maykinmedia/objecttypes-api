@@ -18,9 +18,12 @@ mountpoint=${SUBPATH:-/}
 # wait for required services
 ${SCRIPTPATH}/wait_for_db.sh
 
+# Set defaults for OTEL
+export OTEL_SERVICE_NAME="${OTEL_SERVICE_NAME:-objecttypes}"
+
 # Apply database migrations
 >&2 echo "Apply database migrations"
-python src/manage.py migrate
+OTEL_SDK_DISABLED=True python src/manage.py migrate
 
 # Load any JSON fixtures present
 if [ -d $fixtures_dir ]; then
@@ -48,6 +51,7 @@ fi
 # Start server
 >&2 echo "Starting server"
 uwsgi \
+    --strict \
     --ini "${SCRIPTPATH}/uwsgi.ini" \
     --http :$uwsgi_port \
     --http-keepalive \
@@ -57,6 +61,9 @@ uwsgi \
     --static-map /media=/app/media  \
     --chdir src \
     --enable-threads \
+    --single-interpreter \
+    --die-on-term \
+    --need-app \
     --processes $uwsgi_processes \
     --threads $uwsgi_threads \
     --buffer-size=65535
