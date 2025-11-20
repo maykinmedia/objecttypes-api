@@ -6,6 +6,11 @@ from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.settings import api_settings
 
+from objecttypes.api.metrics import (
+    objecttype_create_counter,
+    objecttype_delete_counter,
+    objecttype_update_counter,
+)
 from objecttypes.core.constants import ObjectVersionStatus
 from objecttypes.core.models import ObjectType, ObjectVersion
 from objecttypes.token.models import TokenAuth
@@ -40,6 +45,7 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )
+        objecttype_create_counter.add(1)
 
     def perform_update(self, serializer):
         super().perform_update(serializer)
@@ -52,6 +58,7 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )
+        objecttype_update_counter.add(1)
 
     def perform_destroy(self, instance):
         if instance.versions.exists():
@@ -75,6 +82,7 @@ class ObjectTypeViewSet(viewsets.ModelViewSet):
             token_identifier=token_auth.identifier,
             token_application=token_auth.application,
         )
+        objecttype_delete_counter.add(1)
 
 
 @extend_schema_view(
