@@ -124,7 +124,7 @@ cryptography==44.0.1
     #   webauthn
 cssselect==1.2.0
     # via pyquery
-django==5.2.7
+django==5.2.8
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -458,7 +458,7 @@ notifications-api-common==0.7.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   commonground-api-common
-open-api-framework==0.13.1
+open-api-framework==0.13.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
