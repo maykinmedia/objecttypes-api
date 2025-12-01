@@ -2,7 +2,7 @@
 Change history
 ==============
 
-3.4.0 (TBD)
+3.4.0 (2025-12-01)
 -----------
 
 .. warning::
@@ -33,6 +33,54 @@ Change history
     For detailed configuration, see :ref:`Admin OIDC Configuration Step  <ref_step_mozilla_django_oidc_db.setup_configuration.steps.AdminOIDCConfigurationStep>`.
     Make sure to check which fields are marked as ``DEPRECATED`` and replace them with the fields that are mentioned as replacements.
 
+**New features**
+
+* [maykinmedia/open-archiefbeheer#864] Add booleanfield to ObjectType that indicates whether objects of this type should be linkable to zaken
+* [maykinmedia/open-api-framework#188] Add csv option to data dump script
+* [maykinmedia/open-api-framework#152] Add OpenTelemetry (``OTel``) for collecting and exporting application metrics.
+
+    * Metrics now exposed include:
+
+        - HTTP request durations.
+        - Number of active requests.
+        - Number of users, logins, logouts, failed logins, and account lockouts.
+        - **CRUD** operations for the ``/objecttype`` endpoint:
+
+    * All metrics are exported using the **OpenTelemetry standard**, enabling seamless integration with existing monitoring and visualization platforms.
+
+.. note::
+
+    The OpenTelemetry SDK is **enabled by default**.
+
+    If you do not have an endpoint to send system telemetry to, update your deployment to **disable it** by setting the environment variable:
+
+    .. code-block:: bash
+      
+        OTEL_SDK_DISABLED=true
+        
+    If this is not done, warnings will be emitted to the container logs. The application will continue to function normally.
+
+    All available metrics and details can be found in the :ref: `Observability documentation <installation_observability_index>`.
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * django to 5.2.8
+  * pip to 25.3 
+  * django-setup-configuration to 0.11.0
+  * mozilla-django-oidc-db to 1.1.0
+  * open-api-framework to 0.13.2
+
+* [maykinmedia/open-api-workflows#31] Upgrade workflows to v6
+* [maykinmedia/open-api-framework#191] upgrade nodejs to v24
+* [maykinmedia/open-api-framework#188] Update docker backend image to ``python:3.12-slim-trixie`` and frontend image to ``node:24-trixie-slim``
+* [maykinmedia/open-api-framework#163] Integrate ``maykin-common``
+
+**Bugfixes**
+
+* [maykinmedia/commonground-api-common#134] Ensure exceptions that occur in the API get sent to Sentry
+* [maykinmedia/objects-api#667] Improve typing information in API schema
 
 3.3.0 (2025-10-06)
 ------------------
