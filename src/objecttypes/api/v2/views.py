@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.settings import api_settings
+from vng_api_common.pagination import DynamicPageSizePagination
 
 from objecttypes.api.metrics import (
     objecttype_create_counter,
@@ -17,7 +18,6 @@ from objecttypes.token.models import TokenAuth
 
 from ..filters import ObjectTypeFilterSet
 from ..mixins import NestedViewSetMixin
-from ..pagination import DynamicPageSizePagination
 from ..serializers import ObjectTypeSerializer, ObjectVersionSerializer
 
 logger = structlog.stdlib.get_logger(__name__)

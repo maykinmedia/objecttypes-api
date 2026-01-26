@@ -129,7 +129,7 @@ codecov==2.1.13
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-commonground-api-common==2.10.1
+commonground-api-common==2.10.7
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -820,6 +820,7 @@ sentry-sdk==2.12.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
+    #   commonground-api-common
     #   open-api-framework
 setuptools==80.8.0
     # via
