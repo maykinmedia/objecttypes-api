@@ -29,7 +29,7 @@ boltons==23.0.0
     # via
     #   face
     #   glom
-cbor2==5.6.3
+cbor2==5.8.0
     # via webauthn
 celery==5.4.0
     # via notifications-api-common
@@ -63,7 +63,7 @@ cryptography==44.0.1
     #   mozilla-django-oidc
     #   pyopenssl
     #   webauthn
-django==5.2.8
+django==5.2.10
     # via
     #   commonground-api-common
     #   django-admin-index
@@ -420,7 +420,7 @@ tzdata==2024.1
     # via celery
 uritemplate==4.1.1
     # via drf-spectacular
-urllib3==2.5.0
+urllib3==2.6.3
     # via
     #   elastic-apm
     #   requests

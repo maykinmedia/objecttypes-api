@@ -2,6 +2,25 @@
 Change history
 ==============
 
+3.4.1 (2026-01-27)
+-----------
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * django to 5.2.10
+  * commonground-api-common to 2.10.7 
+  * urllib3 to 2.6.3
+  * cbor2 to 5.8.0
+
+* [:objecttypes-api:`215`] Revert adding the linkable to zaken flag.
+* Updated `uwsgi logs` from event to msg for high-cardinality log messages.
+
+**Documentation**
+
+* [:open-api-framework:`197`] Fix documentation with maximum pagination ``pageSize`` in the OAS. 
+
 3.4.0 (2025-12-01)
 -----------
 
