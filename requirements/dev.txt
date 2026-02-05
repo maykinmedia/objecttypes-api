@@ -68,7 +68,7 @@ build==0.10.0
     # via pip-tools
 bump-my-version==0.32.1
     # via -r requirements/dev.in
-cbor2==5.6.3
+cbor2==5.8.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -154,7 +154,7 @@ cssselect==1.2.0
     #   pyquery
 distlib==0.3.9
     # via virtualenv
-django==5.2.8
+django==5.2.11
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -416,7 +416,7 @@ faker==37.1.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   factory-boy
-filelock==3.18.0
+filelock==3.20.3
     # via virtualenv
 freezegun==1.2.2
     # via
@@ -635,6 +635,7 @@ packaging==25.0
     #   django-csp
     #   opentelemetry-instrumentation
     #   sphinx
+    #   wheel
 phonenumberslite==8.13.30
     # via
     #   -c requirements/ci.txt
@@ -913,7 +914,7 @@ uritemplate==4.1.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   drf-spectacular
-urllib3==2.5.0
+urllib3==2.6.3
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -970,7 +971,7 @@ webtest==3.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-webtest
-wheel==0.45.1
+wheel==0.46.3
     # via pip-tools
 wrapt==1.14.1
     # via

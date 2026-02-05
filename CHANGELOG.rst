@@ -2,6 +2,25 @@
 Change history
 ==============
 
+3.4.1 (2026-02-05)
+------------------
+
+**Project maintenance**
+
+* Upgrade dependencies
+
+  * django to 5.2.11
+  * commonground-api-common to 2.10.7
+  * urllib3 to 2.6.3
+  * cbor2 to 5.8.0
+
+* [:objecttypes-api:`215`] Remove ``linkableToZaken`` flag from ObjectType
+* Updated `uwsgi logs` from event to msg for high-cardinality log messages.
+
+**Documentation**
+
+* [:open-api-framework:`197`] Fix documentation with maximum pagination ``pageSize`` in the OAS.
+
 3.4.0 (2025-12-01)
 -----------
 
@@ -55,9 +74,9 @@ Change history
     If you do not have an endpoint to send system telemetry to, update your deployment to **disable it** by setting the environment variable:
 
     .. code-block:: bash
-      
+
         OTEL_SDK_DISABLED=true
-        
+
     If this is not done, warnings will be emitted to the container logs. The application will continue to function normally.
 
     All available metrics and details can be found in the :ref: `Observability documentation <installation_observability_index>`.
@@ -67,7 +86,7 @@ Change history
 * Upgrade dependencies
 
   * django to 5.2.8
-  * pip to 25.3 
+  * pip to 25.3
   * django-setup-configuration to 0.11.0
   * mozilla-django-oidc-db to 1.1.0
   * open-api-framework to 0.13.2

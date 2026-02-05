@@ -2,7 +2,7 @@
 Objecttypen API
 ===============
 
-:Version: 3.4.0
+:Version: 3.4.1
 :Source: https://github.com/maykinmedia/objecttypes-api
 :Keywords: objecten, assets, zaakobjecten
 
@@ -36,10 +36,13 @@ Applicatie versie      Release datum   API specificatie
 =================      ==============  =============================
 latest                 n/a             `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
                                        `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/master/src/objecttypes/api/v2/openapi.yaml>`_,
-                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..master>`_)
+                                       (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.4.1..master>`_)
+3.4.1                   2026-02-05      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.4.1/src/objecttypes/api/v2/openapi.yaml>`_,
+                                        `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.4.1/src/objecttypes/api/v2/openapi.yaml>`_
+                                        (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.4.0..3.4.1>`_)
 3.4.0                   2025-12-01      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.4.0/src/objecttypes/api/v2/openapi.yaml>`_,
                                         `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.4.0/src/objecttypes/api/v2/openapi.yaml>`_
-                                        (`diff <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..3.4.0>`_)
+                                        (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/3.0.0..3.4.0>`_)
 3.0.0                  2025-01-22      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_,
                                        `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/maykinmedia/objecttypes-api/3.0.0/src/objecttypes/api/v2/openapi.yaml>`_
                                        (`verschillen <https://github.com/maykinmedia/objecttypes-api/compare/2.3.0..3.0.0>`_)
