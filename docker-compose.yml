@@ -14,7 +14,7 @@ services:
       - objecttypes-api-dev
 
   web:
-    image: maykinmedia/objecttypes-api:latest
+    image: maykinmedia/objecttypes-api:${TAG:-latest}
     build: .
     environment: &app-env
       DB_USER: objecttypes
@@ -28,7 +28,7 @@ services:
       SUBPATH: ${SUBPATH:-/}
       DB_CONN_MAX_AGE: "0"
       DB_POOL_ENABLED: True
-      
+
       # Enabling Open Telemetry requires the services in docker/docker-compose.observability.yaml
       # to be up and running.
       OTEL_SDK_DISABLED: ${OTEL_SDK_DISABLED:-true}
@@ -54,8 +54,7 @@ services:
 
 
   web-init:
-    image: maykinmedia/objecttypes-api:latest
-    build: .
+    image: maykinmedia/objecttypes-api:${TAG:-latest}
     environment:
       <<: *app-env
       #
