@@ -315,7 +315,7 @@ phonenumberslite==8.13.30
     # via django-two-factor-auth
 prompt-toolkit==3.0.38
     # via click-repl
-protobuf==6.33.1
+protobuf==6.33.5
     # via
     #   googleapis-common-protos
     #   opentelemetry-proto
