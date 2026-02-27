@@ -87,7 +87,7 @@ certifi==2024.7.4
     #   httpx
     #   requests
     #   sentry-sdk
-cffi==1.17.1
+cffi==2.0.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -138,7 +138,7 @@ coverage==4.5.4
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   codecov
-cryptography==44.0.1
+cryptography==46.0.5
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -713,7 +713,7 @@ pyjwt==2.10.1
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   zgw-consumers
-pyopenssl==24.3.0
+pyopenssl==25.3.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -901,6 +901,7 @@ typing-extensions==4.11.0
     #   psycopg-pool
     #   pydantic
     #   pydantic-core
+    #   pyopenssl
     #   rich-click
     #   zgw-consumers
 tzdata==2024.1
