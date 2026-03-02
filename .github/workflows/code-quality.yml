@@ -11,12 +11,11 @@ jobs:
   open-api-workflow-code-quality:
     uses: maykinmedia/open-api-workflows/.github/workflows/code-quality.yml@v6
     with:
-      apt-packages: 'libgdal-dev gdal-bin'
       python-version: '3.12'
       node-version: '24'
       postgres-image: 'postgres:17'
-      
+
       ruff-src-pattern: 'src'
-      
+
       django-settings-module: 'objecttypes.conf.ci'
       django-secret-key: dummy

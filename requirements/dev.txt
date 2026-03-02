@@ -87,7 +87,7 @@ certifi==2024.7.4
     #   httpx
     #   requests
     #   sentry-sdk
-cffi==1.17.1
+cffi==2.0.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -138,7 +138,7 @@ coverage==4.5.4
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   codecov
-cryptography==44.0.1
+cryptography==46.0.5
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -416,8 +416,10 @@ faker==37.1.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   factory-boy
-filelock==3.20.3
-    # via virtualenv
+filelock==3.24.3
+    # via
+    #   python-discovery
+    #   virtualenv
 freezegun==1.2.2
     # via
     #   -c requirements/ci.txt
@@ -641,12 +643,14 @@ phonenumberslite==8.13.30
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-two-factor-auth
-pip==25.3
+pip==26.0.1
     # via pip-tools
 pip-tools==7.3.0
     # via -r requirements/dev.in
 platformdirs==4.3.8
-    # via virtualenv
+    # via
+    #   python-discovery
+    #   virtualenv
 pre-commit==4.2.0
     # via -r requirements/dev.in
 prompt-toolkit==3.0.38
@@ -660,7 +664,7 @@ propcache==0.3.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   yarl
-protobuf==6.33.1
+protobuf==6.33.5
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -713,7 +717,7 @@ pyjwt==2.10.1
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   zgw-consumers
-pyopenssl==24.3.0
+pyopenssl==25.3.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -742,6 +746,8 @@ python-decouple==3.8
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   open-api-framework
+python-discovery==1.1.0
+    # via virtualenv
 python-dotenv==1.0.0
     # via
     #   -c requirements/ci.txt
@@ -869,7 +875,7 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
-sqlparse==0.5.0
+sqlparse==0.5.5
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -901,6 +907,7 @@ typing-extensions==4.11.0
     #   psycopg-pool
     #   pydantic
     #   pydantic-core
+    #   pyopenssl
     #   rich-click
     #   zgw-consumers
 tzdata==2024.1
@@ -937,7 +944,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.31.2
+virtualenv==21.1.0
     # via pre-commit
 waitress==3.0.1
     # via
