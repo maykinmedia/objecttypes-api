@@ -9,7 +9,7 @@ ape-pie==0.1.0
     #   commonground-api-common
     #   notifications-api-common
     #   zgw-consumers
-asgiref==3.8.1
+asgiref==3.11.1
     # via
     #   django
     #   django-axes
@@ -63,7 +63,7 @@ cryptography==46.0.5
     #   mozilla-django-oidc
     #   pyopenssl
     #   webauthn
-django==5.2.11
+django==5.2.12
     # via
     #   commonground-api-common
     #   django-admin-index
@@ -337,7 +337,7 @@ pydantic-core==2.23.4
     # via pydantic
 pydantic-settings==2.6.1
     # via django-setup-configuration
-pyjwt==2.10.1
+pyjwt==2.12.1
     # via
     #   commonground-api-common
     #   zgw-consumers
