@@ -8,7 +8,7 @@ from django.urls import include, path
 from django.views.generic.base import TemplateView
 
 from maykin_2fa import monkeypatch_admin
-from maykin_2fa.urls import urlpatterns as maykin_2fa_urlpatterns, webauthn_urlpatterns
+from maykin_2fa.urls import urlpatterns, webauthn_urlpatterns
 from maykin_common.accounts.views import PasswordResetView
 from mozilla_django_oidc_db.views import AdminLoginFailure
 from rest_framework.settings import api_settings
@@ -33,7 +33,7 @@ urlpatterns = [
         name="password_reset_done",
     ),
     path("admin/login/failure/", AdminLoginFailure.as_view(), name="admin-oidc-error"),
-    path("admin/", include((maykin_2fa_urlpatterns, "maykin_2fa"))),
+    path("admin/", include((urlpatterns, "maykin_2fa"))),
     path("admin/", include((webauthn_urlpatterns, "two_factor"))),
     path("admin/", admin.site.urls),
     path(
