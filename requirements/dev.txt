@@ -143,7 +143,6 @@ cryptography==46.0.5
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-simple-certmanager
-    #   josepy
     #   mozilla-django-oidc
     #   pyopenssl
     #   webauthn
@@ -235,7 +234,7 @@ django-filter==24.2
     #   -r requirements/ci.txt
     #   commonground-api-common
     #   open-api-framework
-django-formtools==2.4.1
+django-formtools==2.5.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -480,11 +479,6 @@ iso639-lang==2.6.0
     #   commonground-api-common
 jinja2==3.1.6
     # via sphinx
-josepy==1.13.0
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   mozilla-django-oidc
 jsonschema==4.17.3
     # via
     #   -c requirements/ci.txt
@@ -515,12 +509,12 @@ maykin-common==0.11.0
     #   -r requirements/ci.txt
 mdurl==0.1.2
     # via markdown-it-py
-mozilla-django-oidc==4.0.0
+mozilla-django-oidc==5.0.2
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   mozilla-django-oidc-db
-mozilla-django-oidc-db==1.1.0
+mozilla-django-oidc-db==2.0.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -537,7 +531,7 @@ notifications-api-common==0.7.2
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
-open-api-framework==0.13.2
+open-api-framework==0.13.4
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -716,12 +710,12 @@ pyjwt==2.12.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   commonground-api-common
+    #   mozilla-django-oidc
     #   zgw-consumers
-pyopenssl==25.3.0
+pyopenssl==26.0.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-    #   josepy
     #   webauthn
 pyproject-hooks==1.0.0
     # via build
@@ -830,11 +824,7 @@ sentry-sdk==2.12.0
     #   commonground-api-common
     #   open-api-framework
 setuptools==80.8.0
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-    #   josepy
-    #   pip-tools
+    # via pip-tools
 six==1.16.0
     # via
     #   -c requirements/ci.txt
