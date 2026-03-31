@@ -48,6 +48,9 @@ if [ -n "${OBJECTTYPE_SUPERUSER_USERNAME}" ]; then
     unset OBJECTTYPE_SUPERUSER_USERNAME OBJECTTYPE_SUPERUSER_EMAIL OBJECTTYPE_SUPERUSER_PASSWORD
 fi
 
+# Periodically recycle workers - recover memory in the event of memory leaks
+export UWSGI_MAX_REQUESTS=${UWSGI_MAX_REQUESTS:-1000}
+
 # Start server
 >&2 echo "Starting server"
 uwsgi \
