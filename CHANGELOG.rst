@@ -2,6 +2,41 @@
 Change history
 ==============
 
+3.4.2 (2026-04-10)
+------------------
+
+**Project maintenance**
+
+* [maykinmedia/open-api-framework#211] Optimize memory usage for uWSGI and celery-flower
+
+  * Make sure uWSGI workers restart after 1000 requests
+  * Set ``FLOWER_MAX_TASKS=1000`` and ``FLOWER_MAX_WORKERS=50``
+
+* Upgrade python dependencies
+
+  * ``asgiref`` to 3.11.1
+  * ``cbor2`` to 5.9.0
+  * ``cffi`` to 2.0.0
+  * ``commonground-api-common`` to 2.11.0
+  * ``cryptography`` to 46.0.6
+  * ``django`` to 5.2.13
+  * ``django-formtools`` to 2.5.1
+  * ``mozilla-django-oidc`` to 5.0.2
+  * ``mozilla-django-oidc-db`` to 2.0.1
+  * ``open-api-framework`` to 0.13.4
+  * ``protobuf`` to 6.33.5
+  * ``pyjwt`` to 2.12.1
+  * ``pyopenssl`` to 26.0.0
+  * ``requests`` to 2.33.1
+  * ``sqlparse`` to 0.5.5
+
+* Upgrade NPM dependencies
+* [maykinmedia/commonground-api-common#142] Update API response error format to be compliant with ``application/problem+json``
+
+* Remove unnecessary dev packages from docker build
+* Fix CodeQL warning for codeql-analysis action
+* Add explicit least privilege permissions for each Github actions workflow
+
 3.4.1 (2026-02-05)
 ------------------
 

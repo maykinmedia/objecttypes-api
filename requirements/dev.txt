@@ -68,7 +68,7 @@ build==0.10.0
     # via pip-tools
 bump-my-version==0.32.1
     # via -r requirements/dev.in
-cbor2==5.8.0
+cbor2==5.9.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -138,7 +138,7 @@ coverage==4.5.4
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   codecov
-cryptography==46.0.5
+cryptography==46.0.6
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -153,7 +153,7 @@ cssselect==1.2.0
     #   pyquery
 distlib==0.3.9
     # via virtualenv
-django==5.2.12
+django==5.2.13
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -701,7 +701,7 @@ pydantic-settings==2.6.1
     #   -r requirements/ci.txt
     #   bump-my-version
     #   django-setup-configuration
-pygments==2.19.1
+pygments==2.20.0
     # via
     #   rich
     #   sphinx
@@ -774,7 +774,7 @@ redis==4.5.5
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-redis
-requests==2.32.4
+requests==2.33.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
